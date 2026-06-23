@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="vi" class="light-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Nghiên cứu — Case study AVN-TT: workshop BA, phỏng vấn nhân viên, quan sát tại kho, persona người dùng và điểm đau chính." />
+  <title>AVN-TT · Nghiên cứu — Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../Portfolio/library/foundations/thickness.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/foundations/base.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/_shared/icon.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/button/button.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/site-nav/site-nav.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/hero-section/hero-section.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/section-header/section-header.css" />
+  <link rel="stylesheet" href="../../Portfolio/styles/portfolio.css" />
+  <link rel="stylesheet" href="../../Portfolio/styles/case-study.css" />
+</head>
+<body>
+  <div class="case-page portfolio-page">
+
+    <header class="uu-site-nav portfolio-shell portfolio-nav--floating" id="top">
+      <a class="uu-site-nav__brand portfolio-nav__brand" href="../../Portfolio/index.html">
+        <img class="portfolio-nav__logo" src="../../Portfolio/assets/images/banners/Logo-thickness1.svg" alt="Nguyen Tuyen Thong" width="193" height="47" decoding="async" />
+      </a>
+      <button type="button" class="uu-site-nav__menu-btn" aria-label="Mở menu" aria-expanded="false" id="nav-toggle">
+        <svg class="uu-icon uu-icon--24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <nav aria-label="Điều hướng chính">
+        <ul class="uu-site-nav__links" id="nav-links">
+          <li><a class="uu-site-nav__link" href="../../Portfolio/index.html">Trang chủ</a></li>
+          <li><a class="uu-site-nav__link" href="../../Portfolio/index.html#projects">Dự án</a></li>
+          <li><a class="uu-site-nav__link" href="../../Portfolio/index.html#contact">Liên hệ</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+
+      <nav class="case-tabs portfolio-shell" aria-label="Các phần của case study">
+        <div class="case-tabs__scroll">
+          <div class="uu-button-group" data-uu-size="sm">
+            <a href="01-summary.html"  class="uu-button-group__item">Tổng quan</a>
+            <a href="02-problem.html"  class="uu-button-group__item">Vấn đề</a>
+            <a href="03-research.html" class="uu-button-group__item is-selected" aria-current="page">Nghiên cứu</a>
+            <a href="04-design.html"   class="uu-button-group__item">Thiết kế</a>
+            <a href="05-results.html"  class="uu-button-group__item">Kết quả</a>
+          </div>
+        </div>
+      </nav>
+
+      <section class="uu-hero portfolio-hero portfolio-hero--centered portfolio-shell case-hero" aria-labelledby="case-title">
+        <a href="../../Portfolio/index.html#case-avn-tt" class="case-hero__back" aria-label="Quay lại portfolio">
+          <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Quay lại portfolio
+        </a>
+        <div class="portfolio-hero__content">
+          <h1 class="portfolio-hero__headline" id="case-title">Case study: Kiểm tra tồn kho</h1>
+        </div>
+      </section>
+
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="research" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">03</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Nghiên cứu</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <ul class="case-list">
+              <li>
+                <p class="case-list__title">Thông tin phân tán</p>
+                <p class="uu-section__body">Kiểm tra một phiếu CI cần đi qua 3 màn hình và 7+ thao tác. Không có màn hình tổng hợp — nhân viên thường bị lạc giữa chừng và phải bắt đầu lại từ màn hình nhiệm&nbsp;vụ.</p>
+              </li>
+              <li>
+                <p class="case-list__title">Không có phản hồi sau khi tạo phiếu</p>
+                <p class="uu-section__body">Nhân viên không biết thao tác "Lấy hàng" có thành công không. Có người gọi văn phòng hai lần về cùng một phiếu — lần xác nhận phiếu tồn tại, lần hỏi làm tiếp&nbsp;gì.</p>
+              </li>
+              <li>
+                <p class="case-list__title">Mất ngữ cảnh trong chuỗi duyệt</p>
+                <p class="uu-section__body">Người duyệt L2 phải gọi người nộp trước khi duyệt vì không thấy ghi chú của L1 trên màn hình xem chi tiết. Gây chậm trễ và làm giảm độ tin cậy của dữ liệu.</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="case-block">
+            <p class="case-kicker">Lời nhân viên</p>
+            <div class="case-quotes-stack">
+              <blockquote class="case-quote">
+                <p>"Sau khi bấm nút xong thì… chờ vậy thôi? Không biết có thành công không hay phải làm gì nữa. Thường thì gọi văn phòng cho chắc."</p>
+                <cite>— Nhân viên bán hàng, TT Biên Hòa 2, về bước tạo phiếu</cite>
+              </blockquote>
+              <blockquote class="case-quote">
+                <p>"Tôi thấy có phiếu cần duyệt, nhưng không thấy người trước ghi gì. Phải gọi cho họ hỏi trước rồi mới dám duyệt."</p>
+                <cite>— Người duyệt L2 (NVBH 2), về màn hình xem chi tiết</cite>
+              </blockquote>
+            </div>
+          </div>
+
+          <div class="case-block">
+            <p class="case-kicker">Người dùng chính</p>
+            <article class="portfolio-about-card">
+              <div class="case-persona">
+                <div class="case-persona__avatar" aria-hidden="true">👤</div>
+                <div>
+                  <p class="case-persona__name">Minh — Nhân viên bán hàng (NVBH)</p>
+                  <p class="case-persona__bio uu-section__body">Làm việc theo cặp hai người, được supervisor phân công điểm phân phối. Đến kho theo lịch tuyến, cầm điện thoại một tay, tay kia đang đếm hàng trên kệ. Cần đóng phiếu CI nhanh — trễ là ảnh hưởng cả lịch tuyến và chỉ tiêu ngày.</p>
+                </div>
+              </div>
+              <div class="case-persona__meta">
+                <div class="case-persona__item">
+                  <span class="case-persona__label">Mục tiêu</span>
+                  <span class="case-persona__value">Nộp phiếu và xác nhận xong trong vòng 5 phút</span>
+                </div>
+                <div class="case-persona__item">
+                  <span class="case-persona__label">Khó chịu nhất</span>
+                  <span class="case-persona__value">Không có xác nhận = không chắc đã xong = gọi điện</span>
+                </div>
+                <div class="case-persona__item">
+                  <span class="case-persona__label">Bối cảnh dùng</span>
+                  <span class="case-persona__value">Android, một tay, sàn kho, Wi-Fi không ổn định</span>
+                </div>
+                <div class="case-persona__item">
+                  <span class="case-persona__label">Tư duy người dùng</span>
+                  <span class="case-persona__value">"Điền vào → gửi cho ai đó → xong." Thêm bước nào là thêm khó chịu.</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="case-page-actions portfolio-shell">
+        <div class="uu-hero__actions case-actions">
+          <a href="02-problem.html" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray">
+            <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Vấn đề
+          </a>
+          <a href="04-design.html" class="uu-button" data-uu-size="md" data-uu-hierarchy="primary">
+            Tiếp theo: Thiết kế
+            <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="../../Portfolio/source-code/scripts/orphan-guard.js"></script>
+  <script src="../../Portfolio/source-code/scripts/case-study.js"></script>
+</body>
+</html>

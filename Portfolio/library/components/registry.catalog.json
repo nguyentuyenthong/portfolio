@@ -1,0 +1,203 @@
+{
+  "$description": "Full Untitled UI React catalog — open-source repo. status: generated | pending | planned",
+  "meta": {
+    "github": "https://github.com/untitleduico/react",
+    "rawBase": "https://raw.githubusercontent.com/untitleduico/react/main/",
+    "agentDoc": "https://www.untitledui.com/react/AGENT.md"
+  },
+  "base": [
+    {
+      "key": "buttons",
+      "folder": "button",
+      "reactPath": "components/base/buttons/button.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "utility-buttons",
+      "folder": "utility-button",
+      "reactPath": "components/base/buttons/button-utility.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "inputs",
+      "folder": "input",
+      "reactPath": "components/base/input/input.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "textareas",
+      "folder": "textarea",
+      "reactPath": "components/base/textarea/textarea.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "checkboxes",
+      "folder": "checkbox",
+      "reactPath": "components/base/checkbox/checkbox.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "radio-buttons",
+      "folder": "radio",
+      "reactPath": "components/base/radio-buttons/radio-buttons.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "toggles",
+      "folder": "toggle",
+      "reactPath": "components/base/toggle/toggle.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "select",
+      "folder": "select",
+      "reactPath": "components/base/select/select.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "dropdowns",
+      "folder": "dropdown",
+      "reactPath": "components/base/dropdown/dropdown.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "tooltips",
+      "folder": "tooltip",
+      "reactPath": "components/base/tooltip/tooltip.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "badges",
+      "folder": "badge",
+      "reactPath": "components/base/badges/badges.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "tags",
+      "folder": "tag",
+      "reactPath": "components/base/tags/tags.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "avatars",
+      "folder": "avatar",
+      "reactPath": "components/base/avatar/avatar.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "progress-indicators",
+      "folder": "progress",
+      "reactPath": "components/base/progress-indicators/progress-indicators.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "breadcrumbs",
+      "folder": "breadcrumb",
+      "reactPath": "components/base/breadcrumbs/breadcrumbs.tsx",
+      "status": "generated"
+    }
+  ],
+  "application": [
+    {
+      "key": "pagination",
+      "folder": "pagination",
+      "reactPath": "components/application/pagination/pagination.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "tables",
+      "folder": "table",
+      "reactPath": "components/application/table/table.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "section-headers",
+      "folder": "section-header",
+      "reactPath": "components/application/table/table.tsx",
+      "status": "generated",
+      "note": "TableCard.Header variant"
+    },
+    {
+      "key": "modals",
+      "folder": "modal",
+      "reactPath": "components/application/modals/modal.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "slideout-menus",
+      "folder": "slideout-menu",
+      "reactPath": "components/application/slideout-menus/slideout-menu.tsx",
+      "status": "pending"
+    },
+    {
+      "key": "tabs",
+      "folder": "tabs",
+      "reactPath": "components/application/tabs/tabs.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "date-pickers",
+      "folder": "date-picker",
+      "reactPath": "components/application/date-picker/date-picker.tsx",
+      "status": "pending"
+    },
+    {
+      "key": "calendars",
+      "folder": "calendar",
+      "reactPath": "components/application/calendar/calendar.tsx",
+      "status": "pending"
+    },
+    {
+      "key": "alerts",
+      "folder": "alert",
+      "reactPath": "components/application/alerts/alerts.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "notifications",
+      "folder": "notification",
+      "reactPath": "components/application/notifications/notifications.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "empty-states",
+      "folder": "empty-state",
+      "reactPath": "components/application/empty-states/empty-state.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "file-uploaders",
+      "folder": "file-upload",
+      "reactPath": "components/application/file-upload/file-upload.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "metrics",
+      "folder": "metric",
+      "reactPath": "components/application/metrics/metrics.tsx",
+      "status": "generated"
+    },
+    {
+      "key": "loading-indicators",
+      "folder": "loading",
+      "reactPath": "components/application/loading-indicators/loading-indicator.tsx",
+      "status": "generated"
+    }
+  ],
+  "marketing": [
+    {
+      "key": "header-navigation",
+      "folder": null,
+      "reactPath": "components/marketing/header-navigation/header.tsx",
+      "status": "planned",
+      "note": "Use portfolio patterns instead"
+    },
+    {
+      "key": "footers",
+      "folder": null,
+      "reactPath": "components/marketing/footers/footer.tsx",
+      "status": "planned",
+      "note": "Use site-footer pattern"
+    }
+  ]
+}

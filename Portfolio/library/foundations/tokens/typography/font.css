@@ -1,0 +1,82 @@
+/**
+ * Thickness — Typography primitives (font/text tokens)
+ * Font family, font weights, font sizes, line heights
+ *
+ * Size scale (base 16px = 1rem):
+ * | Token              | rem     | px (size / line) |
+ * |--------------------|---------|------------------|
+ * | text-xs            | 0.75    | 12 / 18          |
+ * | text-sm            | 0.875   | 14 / 20          |
+ * | text-md            | 1       | 16 / 24          |
+ * | text-lg            | 1.125   | 18 / 28          |
+ * | text-xl            | 1.25    | 20 / 30          |
+ * | display-xs (2xl)   | 1.5     | 24 / 32          |
+ * | display-sm (3xl)   | 1.875   | 30 / 38          |
+ * | display-md (4xl)   | 2.25    | 36 / 44          |
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+  /* Font family */
+  --font-family: "Inter", sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Font weights */
+  --font-weight-light-300: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Text sizes — quy đổi rem → px (base 16px = 1rem) */
+  --font-size-text-xs: 0.75rem; /* 12px */
+  --line-height-text-xs: 1.125rem; /* 18px */
+  --font-size-text-sm: 0.875rem; /* 14px */
+  --line-height-text-sm: 1.25rem; /* 20px */
+  --font-size-text-md: 1rem; /* 16px */
+  --line-height-text-md: 1.5rem; /* 24px */
+  --font-size-text-lg: 1.125rem; /* 18px */
+  --line-height-text-lg: 1.75rem; /* 28px */
+  --font-size-text-xl: 1.25rem; /* 20px */
+  --line-height-text-xl: 1.875rem; /* 30px */
+
+  /* Display sizes — quy đổi rem → px (base 16px = 1rem) */
+  --font-size-display-xs: 1.5rem; /* 24px — Tailwind text-2xl */
+  --line-height-display-xs: 2rem; /* 32px */
+  --font-size-display-sm: 1.875rem; /* 30px — Tailwind text-3xl */
+  --line-height-display-sm: 2.375rem; /* 38px */
+  --font-size-display-md: 2.25rem; /* 36px — Tailwind text-4xl */
+  --line-height-display-md: 2.75rem; /* 44px */
+
+  /* Letter spacing — Tailwind tracking scale */
+  --letter-spacing-tighter: -0.05em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+  --letter-spacing-caps: 0.04em;
+
+  /* Semantic type roles (agent + layout) */
+  --type-body-size: var(--font-size-text-md);
+  --type-body-line: var(--line-height-text-md);
+  --type-body-weight: var(--font-weight-regular);
+
+  --type-label-size: var(--font-size-text-sm);
+  --type-label-line: var(--line-height-text-sm);
+  --type-label-weight: var(--font-weight-medium);
+
+  --type-caption-size: var(--font-size-text-xs);
+  --type-caption-line: var(--line-height-text-xs);
+  --type-caption-weight: var(--font-weight-regular);
+
+  --type-overline-size: var(--font-size-text-xs);
+  --type-overline-line: var(--line-height-text-xs);
+  --type-overline-weight: var(--font-weight-semibold);
+  --type-overline-tracking: var(--letter-spacing-caps);
+
+  --type-button-size: var(--font-size-text-sm);
+  --type-button-line: var(--line-height-text-sm);
+  --type-button-weight: var(--font-weight-semibold);
+}

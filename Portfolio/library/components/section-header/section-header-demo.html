@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Section Header — Thickness · Untitled UI</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../_shared/demo-shell.css" />
+  <link rel="stylesheet" href="section-header.css" />
+  <style>
+    .demo-stack { display: grid; gap: var(--spacing-4xl); }
+    .demo-panel {
+      border: var(--width-border-thin) solid var(--border-secondary);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--surface-default);
+      box-shadow: var(--shadow-xs);
+    }
+    .demo-panel__body {
+      padding: var(--spacing-3xl);
+      font-size: var(--font-size-text-sm);
+      color: var(--text-tertiary);
+      border-top: var(--width-border-thin) solid var(--border-tertiary);
+    }
+    .demo-label {
+      margin: 0 0 var(--spacing-md);
+      font-size: var(--font-size-text-sm);
+      color: var(--text-tertiary);
+    }
+    .demo-frame-mobile { max-width: 428px; }
+    .demo-callout {
+      padding: var(--spacing-lg) var(--spacing-xl);
+      margin-bottom: var(--spacing-3xl);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--brand-200);
+      background: var(--brand-50);
+      color: var(--brand-800);
+      font-size: var(--font-size-text-sm);
+      line-height: var(--line-height-text-sm);
+    }
+    .demo-callout code { font-size: var(--font-size-text-xs); }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/foundation-preview/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Section Header</h1>
+    <p class="demo-page__meta">
+      Untitled UI · <a href="https://www.untitledui.com/react/components/section-headers">docs</a> ·
+      Spec: <code>section-header.md</code>
+    </p>
+
+    <div class="demo-toolbar">
+      <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" id="theme-toggle">Light / Dark</button>
+    </div>
+
+    <div class="demo-callout">
+      <strong>Gene demo — buttons variant:</strong> đổi <code>data-uu-actions-layout</code> trên
+      <code>.uu-section-header__actions</code> — <code>buttons</code> (nút rời) hoặc
+      <code>button-group</code> (segmented). Chi tiết trong <code>section-header.md</code>.
+    </div>
+
+    <div class="demo-stack">
+      <!-- 1. Search input -->
+      <section>
+        <p class="demo-label"><strong>1. Section header — search input</strong> (desktop)</p>
+        <div class="demo-panel">
+          <header class="uu-section-header uu-section-header--search" data-uu-size="md">
+            <div class="uu-section-header__leading">
+              <div class="uu-section-header__title-row">
+                <h2 class="uu-section-header__title">Vendor movements</h2>
+                <span class="uu-badge" data-uu-color="gray" data-uu-type="pill" data-uu-size="sm">240 vendors</span>
+              </div>
+              <p class="uu-section-header__desc">Keep track of vendors and their security ratings.</p>
+            </div>
+            <div class="uu-section-header__actions">
+              <div class="uu-field uu-input uu-section-header__search" data-uu-size="sm">
+                <div class="uu-control uu-control--with-icon">
+                  <svg class="uu-input__icon uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M7 7a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <input class="uu-control__input" type="search" placeholder="Search" aria-label="Search" />
+                  <span class="uu-section-header__search-kbd" aria-hidden="true">⌘K</span>
+                </div>
+              </div>
+              <button type="button" class="uu-button" data-uu-size="sm" data-uu-hierarchy="secondary-gray">
+                <svg class="uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                Filters
+              </button>
+            </div>
+          </header>
+          <div class="demo-panel__body">Nội dung section / table bên dưới…</div>
+        </div>
+      </section>
+
+      <!-- 2a. Buttons -->
+      <section>
+        <p class="demo-label"><strong>2a. Section header — buttons</strong> (<code>data-uu-actions-layout="buttons"</code>)</p>
+        <div class="demo-panel">
+          <header class="uu-section-header uu-section-header--buttons" data-uu-size="md">
+            <div class="uu-section-header__leading">
+              <div class="uu-section-header__title-row">
+                <h2 class="uu-section-header__title">Users</h2>
+              </div>
+              <p class="uu-section-header__desc">Manage team members, external users, and their access.</p>
+            </div>
+            <div class="uu-section-header__actions" data-uu-actions-layout="buttons">
+              <div class="uu-section-header__buttons">
+                <button type="button" class="uu-button" data-uu-size="sm" data-uu-hierarchy="secondary-gray">
+                  <svg class="uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 12V4M4 8l4-4 4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Export CSV
+                </button>
+                <button type="button" class="uu-button" data-uu-size="sm" data-uu-hierarchy="primary">
+                  <svg class="uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3v10M3 8h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  Add user
+                </button>
+              </div>
+              <div class="uu-button-group" data-uu-size="sm" role="group" aria-label="View (ẩn khi layout=buttons)">
+                <button type="button" class="uu-button-group__item" aria-pressed="true">All</button>
+                <button type="button" class="uu-button-group__item">Active</button>
+              </div>
+            </div>
+          </header>
+          <div class="demo-panel__body">Dùng khi cần CTA rời: Import / Add / Export…</div>
+        </div>
+      </section>
+
+      <!-- 2b. Button group -->
+      <section>
+        <p class="demo-label"><strong>2b. Section header — button group</strong> (<code>data-uu-actions-layout="button-group"</code>)</p>
+        <div class="demo-panel">
+          <header class="uu-section-header uu-section-header--buttons" data-uu-size="md">
+            <div class="uu-section-header__leading">
+              <div class="uu-section-header__title-row">
+                <h2 class="uu-section-header__title">Orders</h2>
+                <span class="uu-badge" data-uu-color="brand" data-uu-type="pill" data-uu-size="sm">128 online</span>
+              </div>
+              <p class="uu-section-header__desc">Filter orders by status.</p>
+            </div>
+            <div class="uu-section-header__actions" data-uu-actions-layout="button-group">
+              <div class="uu-section-header__buttons">
+                <button type="button" class="uu-button" data-uu-size="sm" data-uu-hierarchy="primary">Hidden</button>
+              </div>
+              <div class="uu-button-group" data-uu-size="sm" role="group" aria-label="Order status">
+                <button type="button" class="uu-button-group__item" aria-pressed="true">All</button>
+                <button type="button" class="uu-button-group__item">Pending</button>
+                <button type="button" class="uu-button-group__item">Completed</button>
+              </div>
+            </div>
+          </header>
+          <div class="demo-panel__body">Dùng cho view switcher / filter nhanh (tab-like).</div>
+        </div>
+      </section>
+
+      <!-- Mobile search -->
+      <section class="demo-frame-mobile">
+        <p class="demo-label"><strong>Mobile</strong> — search input (fill width, không tràn frame)</p>
+        <div class="demo-panel">
+          <header class="uu-section-header uu-section-header--search" data-uu-size="sm">
+            <div class="uu-section-header__leading">
+              <div class="uu-section-header__title-row">
+                <h2 class="uu-section-header__title">Invoices</h2>
+              </div>
+            </div>
+            <div class="uu-section-header__actions">
+              <div class="uu-field uu-input uu-section-header__search" data-uu-size="sm">
+                <div class="uu-control uu-control--with-icon">
+                  <svg class="uu-input__icon uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                    <path d="M7 7a3 3 0 1 1 0 6 3 3 0 0 1 0-6Z" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <input class="uu-control__input" type="search" placeholder="Search" aria-label="Search" />
+                </div>
+              </div>
+            </div>
+          </header>
+          <div class="demo-panel__body">Table scroll ngang bên dưới…</div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+    });
+  </script>
+</body>
+</html>

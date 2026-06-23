@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pagination — Thickness · Untitled UI</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../_shared/demo-shell.css" />
+  <link rel="stylesheet" href="pagination.css" />
+  <style>
+    .demo-block { margin-bottom: var(--spacing-4xl); }
+    .demo-block h2 {
+      margin: 0 0 var(--spacing-md);
+      font-size: var(--font-size-text-lg);
+      font-weight: var(--font-weight-semibold);
+    }
+    .demo-block p {
+      margin: 0 0 var(--spacing-lg);
+      font-size: var(--font-size-text-sm);
+      color: var(--text-tertiary);
+    }
+    .demo-card {
+      border: var(--width-border-thin) solid var(--border-primary);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: var(--shadow-xs);
+    }
+    .demo-card__body {
+      padding: var(--spacing-3xl);
+      min-height: 80px;
+      font-size: var(--font-size-text-sm);
+      color: var(--text-tertiary);
+    }
+    .demo-frame-mobile {
+      max-width: 428px;
+      margin: 0 auto;
+    }
+    .demo-frame-desktop {
+      max-width: 960px;
+    }
+    .demo-row-carousel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-3xl);
+      align-items: flex-end;
+    }
+    .demo-carousel-wrap { width: 280px; }
+    @media (min-width: 768px) {
+      .uu-pagination--card-default .uu-btn-label--mobile-only { display: none; }
+    }
+    @media (max-width: 767px) {
+      .uu-pagination--card-default .uu-btn-label--desktop-only { display: none; }
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/foundation-preview/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Pagination</h1>
+    <p class="demo-page__meta">
+      Untitled UI · <a href="https://www.untitledui.com/react/components/pagination">docs</a> ·
+      Spec: <code>pagination.md</code>
+    </p>
+
+    <div class="demo-toolbar">
+      <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" id="theme-toggle">Light / Dark</button>
+    </div>
+
+    <!-- 1. Card default (mobile) -->
+    <section class="demo-block">
+      <h2>1. Card default — mobile</h2>
+      <p>Footer card/list: Prev/Next icon + <strong>Page X of Y</strong>. Thu hẹp viewport &lt;768px để thấy mobile; ≥768px hiện số trang.</p>
+      <div class="demo-frame-mobile demo-card">
+        <div class="demo-card__body">Nội dung card / danh sách…</div>
+        <nav class="uu-pagination uu-pagination--card-default" aria-label="Pagination">
+          <button type="button" class="uu-button uu-pagination__icon-btn" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="Previous page">
+            <svg class="uu-icon uu-icon--20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 15L7.5 10l5-5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <span class="uu-pagination__mobile-label">Page <strong>3</strong> of <strong>10</strong></span>
+          <div class="uu-pagination__pages" aria-hidden="false">
+            <button type="button" class="uu-pagination__page" aria-label="Page 1">1</button>
+            <button type="button" class="uu-pagination__page" aria-label="Page 2">2</button>
+            <button type="button" class="uu-pagination__page" aria-current="page" aria-label="Page 3">3</button>
+            <span class="uu-pagination__ellipsis" aria-hidden="true">…</span>
+            <button type="button" class="uu-pagination__page" aria-label="Page 10">10</button>
+          </div>
+          <button type="button" class="uu-button uu-pagination__icon-btn" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="Next page">
+            <svg class="uu-icon uu-icon--20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 15l5-5-5-5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 2. Card advanced center (desktop / table) -->
+    <section class="demo-block">
+      <h2>2. Card advanced center — desktop (table data)</h2>
+      <p>Page input, rows per page, first/prev/numbers/next/last — căn giữa nhóm số trang. Mobile (&lt;768px) fallback giống card default.</p>
+      <div class="demo-frame-desktop demo-card">
+        <div class="demo-card__body">Bảng dữ liệu…</div>
+        <nav class="uu-pagination uu-pagination--card-advanced" aria-label="Table pagination">
+          <button type="button" class="uu-button uu-pagination__mobile-prev" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="Previous page">
+            <svg class="uu-icon uu-icon--20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 15L7.5 10l5-5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+            <div class="uu-pagination__left">
+              <div class="uu-pagination__meta">
+                Page
+                <input type="text" class="uu-pagination__meta-input" value="1" inputmode="numeric" aria-label="Current page" />
+                of 10
+              </div>
+            </div>
+          <span class="uu-pagination__mobile-label">Page <strong>3</strong> of <strong>10</strong></span>
+          <div class="uu-pagination__center">
+            <div class="uu-pagination__nav-group">
+                <button type="button" class="uu-button uu-pagination__icon-btn" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="First page" disabled>
+                <svg class="uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M11 12L7 8l4-4M5 12L1 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+                <button type="button" class="uu-button uu-pagination__icon-btn" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="Previous page" disabled>
+                <svg class="uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <div class="uu-pagination__pages">
+                  <button type="button" class="uu-pagination__page" aria-current="page">1</button>
+                  <button type="button" class="uu-pagination__page">2</button>
+                  <button type="button" class="uu-pagination__page">3</button>
+                  <button type="button" class="uu-pagination__page">4</button>
+                  <button type="button" class="uu-pagination__page">5</button>
+                <span class="uu-pagination__ellipsis">…</span>
+                <button type="button" class="uu-pagination__page">10</button>
+              </div>
+                <button type="button" class="uu-button uu-pagination__icon-btn" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="Next page">
+                <svg class="uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+                <button type="button" class="uu-button uu-pagination__icon-btn" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="Last page">
+                <svg class="uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 12l4-4-4-4M11 12l4-4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+          </div>
+          <button type="button" class="uu-button uu-pagination__mobile-next" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="Next page">
+            <svg class="uu-icon uu-icon--20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 15l5-5-5-5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="uu-pagination__right">
+              <div class="uu-pagination__meta">
+                Rows per page
+                <span class="uu-pagination__select-wrap">
+                  <select class="uu-pagination__meta-select" aria-label="Rows per page">
+                    <option>5</option>
+                    <option selected>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                    <option>100</option>
+                  </select>
+                  <svg class="uu-pagination__select-chevron uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </div>
+          </div>
+        </nav>
+      </div>
+    </section>
+
+    <!-- 3 & 4. Dot + Line carousel -->
+    <section class="demo-block">
+      <h2>3. Pagination dot · 4. Pagination line</h2>
+      <p>Carousel ảnh/card — swipe trái/phải. Overlay dưới slide; <code>data-uu-framed="true"</code> khi nền tối.</p>
+      <div class="demo-row-carousel">
+        <div class="demo-carousel-wrap">
+          <p style="font-size:var(--font-size-text-xs);margin-bottom:8px">Dot (md)</p>
+          <div class="uu-carousel" data-carousel="dot">
+            <div class="uu-carousel__track">
+              <div class="uu-carousel__slide" style="background:var(--brand-50)">Slide 1</div>
+              <div class="uu-carousel__slide" style="background:var(--gray-100)">Slide 2</div>
+              <div class="uu-carousel__slide" style="background:var(--brand-100)">Slide 3</div>
+            </div>
+            <div class="uu-carousel__dots uu-pagination uu-pagination--dot" data-uu-size="md" data-uu-framed="true" role="tablist" aria-label="Slides">
+              <button type="button" class="uu-pagination--dot__item" aria-current="true" aria-label="Slide 1" data-index="0"></button>
+              <button type="button" class="uu-pagination--dot__item" aria-label="Slide 2" data-index="1"></button>
+              <button type="button" class="uu-pagination--dot__item" aria-label="Slide 3" data-index="2"></button>
+            </div>
+          </div>
+        </div>
+        <div class="demo-carousel-wrap">
+          <p style="font-size:var(--font-size-text-xs);margin-bottom:8px">Line (md)</p>
+          <div class="uu-carousel" data-carousel="line">
+            <div class="uu-carousel__track">
+              <div class="uu-carousel__slide" style="background:var(--gray-200)">Slide 1</div>
+              <div class="uu-carousel__slide" style="background:var(--gray-100)">Slide 2</div>
+              <div class="uu-carousel__slide" style="background:var(--gray-200)">Slide 3</div>
+            </div>
+            <div class="uu-carousel__line uu-pagination uu-pagination--line" data-uu-size="md" data-uu-framed="true" role="tablist" aria-label="Slides" style="max-width:220px">
+              <button type="button" class="uu-pagination--line__item" aria-current="true" aria-label="Slide 1" data-index="0"></button>
+              <button type="button" class="uu-pagination--line__item" aria-label="Slide 2" data-index="1"></button>
+              <button type="button" class="uu-pagination--line__item" aria-label="Slide 3" data-index="2"></button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:var(--font-size-text-xs);margin-bottom:8px">Dot lg (không framed)</p>
+          <div class="uu-pagination uu-pagination--dot" data-uu-size="lg" role="tablist">
+            <button type="button" class="uu-pagination--dot__item" aria-current="true"></button>
+            <button type="button" class="uu-pagination--dot__item"></button>
+            <button type="button" class="uu-pagination--dot__item"></button>
+            <button type="button" class="uu-pagination--dot__item"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+    });
+
+    function wireCarousel(root) {
+      const track = root.querySelector(".uu-carousel__track");
+      const indicators = root.querySelectorAll("[data-index]");
+      const go = (i) => {
+        track.style.transform = `translateX(-${i * 100}%)`;
+        indicators.forEach((btn, j) => {
+          btn.setAttribute("aria-current", j === i ? "true" : "false");
+        });
+      };
+      indicators.forEach((btn) => {
+        btn.addEventListener("click", () => go(Number(btn.dataset.index)));
+      });
+    }
+    document.querySelectorAll("[data-carousel]").forEach(wireCarousel);
+  </script>
+</body>
+</html>

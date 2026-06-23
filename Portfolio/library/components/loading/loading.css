@@ -1,0 +1,55 @@
+/**
+ * Loading Indicator — Untitled UI → Thickness tokens
+ * Types: line-simple · line-spinner · dot-circle. Sizes sm · md · lg · xl.
+ */
+
+.uu-loading {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xl); /* 16px */
+  font-family: var(--font-family);
+}
+.uu-loading[data-uu-size="xl"] {
+  gap: var(--spacing-2xl); /* 20px */
+}
+
+.uu-loading__spinner {
+  display: block;
+  color: var(--brand-600);
+  animation: uu-loading-spin 0.8s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .uu-loading__spinner { animation-duration: 2s; }
+}
+
+/* Track circle (line-simple) */
+.uu-loading__track {
+  stroke: var(--background-tertiary); /* gray-100 */
+}
+.uu-loading__arc {
+  stroke: var(--brand-600);
+}
+
+/* Sizes */
+.uu-loading[data-uu-size="sm"] .uu-loading__spinner { width: 32px; height: 32px; }
+.uu-loading[data-uu-size="md"] .uu-loading__spinner { width: 48px; height: 48px; }
+.uu-loading[data-uu-size="lg"] .uu-loading__spinner { width: 56px; height: 56px; }
+.uu-loading[data-uu-size="xl"] .uu-loading__spinner { width: 64px; height: 64px; }
+
+.uu-loading__label {
+  font-size: var(--font-size-text-sm); /* sm/md */
+  line-height: var(--line-height-text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+}
+.uu-loading[data-uu-size="lg"] .uu-loading__label,
+.uu-loading[data-uu-size="xl"] .uu-loading__label {
+  font-size: var(--font-size-text-lg); /* 18px */
+  line-height: var(--line-height-text-lg);
+}
+
+@keyframes uu-loading-spin {
+  to { transform: rotate(360deg); }
+}

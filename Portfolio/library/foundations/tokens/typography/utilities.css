@@ -1,0 +1,114 @@
+/**
+ * Thickness typography utilities
+ * Map Tailwind/Untitled class intent → CSS (HTML demos — không dùng class Tailwind raw)
+ * Spec: library/rules/typography-map.md
+ */
+
+/* ─── Size + line-height pairs ─────────────────────────────── */
+.uu-text-xs {
+  font-size: var(--font-size-text-xs);
+  line-height: var(--line-height-text-xs);
+}
+
+.uu-text-sm {
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+}
+
+.uu-text-md {
+  font-size: var(--font-size-text-md);
+  line-height: var(--line-height-text-md);
+}
+
+.uu-text-lg {
+  font-size: var(--font-size-text-lg);
+  line-height: var(--line-height-text-lg);
+}
+
+.uu-text-xl {
+  font-size: var(--font-size-text-xl);
+  line-height: var(--line-height-text-xl);
+}
+
+.uu-display-xs {
+  font-size: var(--font-size-display-xs);
+  line-height: var(--line-height-display-xs);
+}
+
+.uu-display-sm {
+  font-size: var(--font-size-display-sm);
+  line-height: var(--line-height-display-sm);
+}
+
+.uu-display-md {
+  font-size: var(--font-size-display-md);
+  line-height: var(--line-height-display-md);
+}
+
+/* ─── Semantic roles ───────────────────────────────────────── */
+.uu-type-body {
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-line);
+  font-weight: var(--type-body-weight);
+}
+
+.uu-type-label {
+  font-size: var(--type-label-size);
+  line-height: var(--type-label-line);
+  font-weight: var(--type-label-weight);
+}
+
+.uu-type-caption {
+  font-size: var(--type-caption-size);
+  line-height: var(--type-caption-line);
+  font-weight: var(--type-caption-weight);
+  color: var(--text-tertiary);
+}
+
+.uu-type-overline {
+  font-size: var(--type-overline-size);
+  line-height: var(--type-overline-line);
+  font-weight: var(--type-overline-weight);
+  letter-spacing: var(--type-overline-tracking);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+/* ─── Weight ───────────────────────────────────────────────── */
+.uu-font-light-300 { font-weight: var(--font-weight-light-300); }
+.uu-font-regular { font-weight: var(--font-weight-regular); }
+.uu-font-medium { font-weight: var(--font-weight-medium); }
+.uu-font-semibold { font-weight: var(--font-weight-semibold); }
+.uu-font-bold { font-weight: var(--font-weight-bold); }
+
+/* ─── Letter spacing ───────────────────────────────────────── */
+.uu-tracking-tight { letter-spacing: var(--letter-spacing-tight); }
+.uu-tracking-normal { letter-spacing: var(--letter-spacing-normal); }
+.uu-tracking-wide { letter-spacing: var(--letter-spacing-wide); }
+.uu-tracking-wider { letter-spacing: var(--letter-spacing-wider); }
+.uu-tracking-caps { letter-spacing: var(--letter-spacing-caps); }
+
+/* ─── Transform & decoration ───────────────────────────────── */
+.uu-uppercase { text-transform: uppercase; }
+.uu-capitalize { text-transform: capitalize; }
+.uu-normal-case { text-transform: none; }
+.uu-italic { font-style: italic; }
+.uu-underline { text-decoration: underline; }
+.uu-line-through { text-decoration: line-through; }
+.uu-no-underline { text-decoration: none; }
+
+/* ─── Numeric (table, pagination, metrics) ─────────────────── */
+.uu-tabular-nums {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+.uu-proportional-nums {
+  font-variant-numeric: proportional-nums;
+  font-feature-settings: "pnum" 1;
+}
+
+/* ─── Mono (code, meta) ────────────────────────────────────── */
+.uu-font-mono {
+  font-family: var(--font-family-mono);
+}

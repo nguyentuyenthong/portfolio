@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modal — Thickness × Untitled UI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F9FAFB;
+      color: #101828;
+      min-height: 100vh;
+      padding: 48px 24px;
+    }
+
+    /* ── Icon base ── */
+    .uu-icon {
+      flex-shrink: 0;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+    .uu-icon--16 { width: 16px; height: 16px; }
+    .uu-icon--20 { width: 20px; height: 20px; }
+    .uu-icon--24 { width: 24px; height: 24px; }
+
+    /* ── Page header ── */
+    .demo-header { text-align: center; margin-bottom: 56px; }
+    .demo-header__label {
+      font-size: 11px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: #444CE7; margin-bottom: 8px;
+    }
+    .demo-header__title { font-size: 30px; font-weight: 700; margin-bottom: 10px; text-wrap: balance; }
+    .demo-header__sub { font-size: 15px; color: #667085; }
+
+    /* ── Trigger grid ── */
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 16px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .trigger-card {
+      background: #fff;
+      border: 1px solid #EAECF0;
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .trigger-card__label { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #667085; }
+    .trigger-card__title { font-size: 14px; font-weight: 600; }
+
+    /* ── Buttons ── */
+    .uu-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 16px; border-radius: 8px;
+      font-size: 14px; font-weight: 600; font-family: inherit;
+      cursor: pointer; border: none; transition: background .15s;
+    }
+    .uu-btn--primary { background: #444CE7; color: #fff; }
+    .uu-btn--primary:hover { background: #3538CD; }
+    .uu-btn--secondary {
+      background: #fff; color: #344054;
+      border: 1px solid #D0D5DD;
+      box-shadow: 0 1px 2px rgba(16,24,40,.05);
+    }
+    .uu-btn--secondary:hover { background: #F9FAFB; }
+    .uu-btn--danger { background: #D92D20; color: #fff; }
+    .uu-btn--danger:hover { background: #B42318; }
+    .uu-btn--full { flex: 1; justify-content: center; }
+
+    /* ── Overlay ── */
+    .uu-overlay {
+      position: fixed; inset: 0;
+      background: rgba(16,24,40,.55);
+      backdrop-filter: blur(3px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px; z-index: 1000;
+      opacity: 0; pointer-events: none;
+      transition: opacity .2s;
+    }
+    .uu-overlay.is-open { opacity: 1; pointer-events: all; }
+
+    /* ── Modal panel ── */
+    .uu-modal {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 20px 48px -8px rgba(16,24,40,.2), 0 8px 24px -4px rgba(16,24,40,.1);
+      width: 100%; max-width: 480px; position: relative;
+      transform: translateY(10px) scale(.97);
+      transition: transform .22s cubic-bezier(.34,1.56,.64,1), opacity .18s;
+      opacity: 0;
+    }
+    .uu-overlay.is-open .uu-modal { transform: none; opacity: 1; }
+
+    /* ── Modal header ── */
+    .uu-modal__header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 16px;
+      padding: 24px 24px 0;
+    }
+    .uu-modal__header-left { display: flex; align-items: flex-start; gap: 14px; flex: 1; }
+
+    /* Featured icon */
+    .uu-feat-icon {
+      flex-shrink: 0; width: 48px; height: 48px;
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    }
+    .uu-feat-icon--brand { background: #EEF4FF; border: 1px solid #E0EAFF; color: #444CE7; }
+    .uu-feat-icon--error { background: #FEF3F2; border: 1px solid #FEE4E2; color: #D92D20; }
+    .uu-feat-icon--success { background: #ECFDF3; border: 1px solid #DCFAE6; color: #039855; }
+    .uu-feat-icon--warning { background: #FFFAEB; border: 1px solid #FEF0C7; color: #DC6803; }
+
+    .uu-modal__title { font-size: 18px; font-weight: 600; color: #101828; margin-bottom: 4px; text-wrap: balance; }
+    .uu-modal__subtitle { font-size: 14px; color: #667085; line-height: 1.55; text-wrap: pretty; }
+
+    .uu-modal__close {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      border: none; background: transparent; color: #98A2B3;
+      cursor: pointer; transition: background .15s; flex-shrink: 0;
+    }
+    .uu-modal__close:hover { background: #F9FAFB; color: #344054; }
+
+    /* ── Body ── */
+    .uu-modal__body { padding: 20px 24px; }
+
+    /* ── Divider ── */
+    .uu-divider { height: 1px; background: #EAECF0; }
+
+    /* ── Footer ── */
+    .uu-modal__footer {
+      display: flex; align-items: center; gap: 12px;
+      padding: 20px 24px 24px;
+    }
+    .uu-modal__footer--end { justify-content: flex-end; }
+    .uu-modal__footer--center { justify-content: center; }
+
+    /* ── Fields ── */
+    .uu-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .uu-field:last-child { margin-bottom: 0; }
+    .uu-label { font-size: 14px; font-weight: 500; color: #344054; }
+    .uu-input-wrap { position: relative; display: flex; align-items: center; }
+    .uu-input-wrap .uu-icon { position: absolute; left: 14px; color: #98A2B3; pointer-events: none; }
+    .uu-input {
+      width: 100%; height: 44px;
+      border: 1px solid #D0D5DD; border-radius: 8px;
+      font-family: inherit; font-size: 16px; color: #101828;
+      background: #fff; padding: 0 14px; outline: none;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .uu-input--icon { padding-left: 42px; }
+    .uu-input::placeholder { color: #98A2B3; }
+    .uu-input:focus { border-color: #A4BCFD; box-shadow: 0 0 0 4px #EEF4FF; }
+
+    /* ── Dropzone ── */
+    .uu-dropzone {
+      border: 1.5px dashed #D0D5DD; border-radius: 12px;
+      padding: 28px 20px; text-align: center; cursor: pointer;
+      transition: border-color .15s, background .15s;
+    }
+    .uu-dropzone:hover { border-color: #A4BCFD; background: #EEF4FF; }
+    .uu-dropzone__icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: #F9FAFB; border: 1px solid #EAECF0;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px; color: #344054;
+    }
+    .uu-dropzone__cta { font-size: 14px; font-weight: 600; color: #444CE7; }
+    .uu-dropzone__cta span { font-weight: 400; color: #667085; }
+    .uu-dropzone__meta { font-size: 12px; color: #667085; margin-top: 2px; }
+
+    /* ── Info banner ── */
+    .uu-banner {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 12px 14px; border-radius: 10px;
+      background: #EEF4FF; border: 1px solid #E0EAFF;
+      color: #3538CD; font-size: 13px; margin-bottom: 16px;
+    }
+    .uu-banner__icon { flex-shrink: 0; color: #444CE7; margin-top: 1px; }
+    .uu-banner b { font-weight: 600; }
+
+    /* ── Centered modal ── */
+    .uu-modal--centered .uu-modal__header { flex-direction: column; align-items: center; text-align: center; padding-top: 32px; }
+    .uu-modal--centered .uu-modal__header-left { flex-direction: column; align-items: center; }
+    .uu-modal--centered .uu-modal__footer { justify-content: center; }
+
+    /* ── Chip tag ── */
+    .uu-chip {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #F9FAFB; border: 1px solid #EAECF0;
+      border-radius: 20px; padding: 4px 12px 4px 4px;
+    }
+    .uu-chip__avatar {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .uu-chip__name { font-size: 13px; font-weight: 500; color: #344054; }
+
+    /* ── Stat row ── */
+    .uu-stat-row {
+      background: #F9FAFB; border: 1px solid #EAECF0;
+      border-radius: 10px; padding: 14px 18px;
+      display: flex; justify-content: space-between;
+      font-size: 14px; margin-top: 4px;
+    }
+    .uu-stat-row__label { color: #667085; }
+    .uu-stat-row__value { font-weight: 600; font-family: monospace; color: #101828; }
+  </style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<header class="demo-header">
+  <p class="demo-header__label">Thickness × Untitled UI</p>
+  <h1 class="demo-header__title">Modal Components</h1>
+  <p class="demo-header__sub">6 variants · Icons từ Untitled UI · Tokens Thickness DS</p>
+</header>
+
+<!-- TRIGGER GRID -->
+<div class="demo-grid">
+  <div class="trigger-card">
+    <span class="trigger-card__label">Form</span>
+    <span class="trigger-card__title">Edit Profile</span>
+    <button class="uu-btn uu-btn--primary" onclick="openModal('m-profile')">
+      <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="M20 21c0-1.396 0-2.093-.172-2.661a4 4 0 0 0-2.667-2.667C16.593 15.5 15.896 15.5 14.5 15.5h-5c-1.396 0-2.093 0-2.661.172a4 4 0 0 0-2.667 2.667C4 18.907 4 19.604 4 21M16.5 7.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z"/></svg>
+      Open Modal
+    </button>
+  </div>
+  <div class="trigger-card">
+    <span class="trigger-card__label">Upload</span>
+    <span class="trigger-card__title">Upload File</span>
+    <button class="uu-btn uu-btn--primary" onclick="openModal('m-upload')">
+      <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="M21 15v1.2c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311C18.72 21 17.88 21 16.2 21H7.8c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311C3 18.72 3 17.88 3 16.2V15m14-7-5-5m0 0L7 8m5-5v12"/></svg>
+      Open Modal
+    </button>
+  </div>
+  <div class="trigger-card">
+    <span class="trigger-card__label">Danger</span>
+    <span class="trigger-card__title">Delete Item</span>
+    <button class="uu-btn uu-btn--danger" onclick="openModal('m-delete')">
+      <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="M16 6v-.8c0-1.12 0-1.68-.218-2.108a2 2 0 0 0-.874-.874C14.48 2 13.92 2 12.8 2h-1.6c-1.12 0-1.68 0-2.108.218a2 2 0 0 0-.874.874C8 3.52 8 4.08 8 5.2V6m2 5.5v5m4-5v5M3 6h18m-2 0v11.2c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311C16.72 22 15.88 22 14.2 22H9.8c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311C5 19.72 5 18.88 5 17.2V6"/></svg>
+      Open Modal
+    </button>
+  </div>
+  <div class="trigger-card">
+    <span class="trigger-card__label">Success</span>
+    <span class="trigger-card__title">Payment Complete</span>
+    <button class="uu-btn uu-btn--primary" onclick="openModal('m-success')">
+      <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="m7.5 12 3 3 6-6m5.5 3c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z"/></svg>
+      Open Modal
+    </button>
+  </div>
+  <div class="trigger-card">
+    <span class="trigger-card__label">Alert</span>
+    <span class="trigger-card__title">Session Expired</span>
+    <button class="uu-btn uu-btn--secondary" onclick="openModal('m-alert')">
+      <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="M12 8v4m0 4h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z"/></svg>
+      Open Modal
+    </button>
+  </div>
+  <div class="trigger-card">
+    <span class="trigger-card__label">Invite</span>
+    <span class="trigger-card__title">Invite Member</span>
+    <button class="uu-btn uu-btn--primary" onclick="openModal('m-invite')">
+      <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="m2 7 8.165 5.715c.661.463.992.695 1.351.784a2 2 0 0 0 .968 0c.36-.09.69-.32 1.351-.784L22 7M6.8 20h10.4c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.311-1.311C22 17.72 22 16.88 22 15.2V8.8c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311C19.72 4 18.88 4 17.2 4H6.8c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.311 1.311C2 6.28 2 7.12 2 8.8v6.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311C4.28 20 5.12 20 6.8 20Z"/></svg>
+      Open Modal
+    </button>
+  </div>
+</div>
+
+
+<!-- ═══ MODAL 1 — Edit Profile ═══ -->
+<div class="uu-overlay" id="m-profile" role="dialog" aria-modal="true">
+  <div class="uu-modal">
+    <div class="uu-modal__header">
+      <div class="uu-modal__header-left">
+        <div class="uu-feat-icon uu-feat-icon--brand">
+          <svg class="uu-icon uu-icon--24" viewBox="0 0 24 24"><path d="M20 21c0-1.396 0-2.093-.172-2.661a4 4 0 0 0-2.667-2.667C16.593 15.5 15.896 15.5 14.5 15.5h-5c-1.396 0-2.093 0-2.661.172a4 4 0 0 0-2.667 2.667C4 18.907 4 19.604 4 21M16.5 7.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z" stroke="currentColor"/></svg>
+        </div>
+        <div>
+          <h2 class="uu-modal__title">Edit Profile</h2>
+          <p class="uu-modal__subtitle">Update your personal information and settings.</p>
+        </div>
+      </div>
+      <button class="uu-modal__close" onclick="closeModal('m-profile')">
+        <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor"/></svg>
+      </button>
+    </div>
+    <div class="uu-modal__body">
+      <div class="uu-field">
+        <label class="uu-label" for="p-name">Full Name</label>
+        <div class="uu-input-wrap">
+          <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="M20 21c0-1.396 0-2.093-.172-2.661a4 4 0 0 0-2.667-2.667C16.593 15.5 15.896 15.5 14.5 15.5h-5c-1.396 0-2.093 0-2.661.172a4 4 0 0 0-2.667 2.667C4 18.907 4 19.604 4 21M16.5 7.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z" stroke="currentColor"/></svg>
+          <input class="uu-input uu-input--icon" id="p-name" type="text" placeholder="Nguyễn Văn A" />
+        </div>
+      </div>
+      <div class="uu-field">
+        <label class="uu-label" for="p-email">Email Address</label>
+        <div class="uu-input-wrap">
+          <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="m2 7 8.165 5.715c.661.463.992.695 1.351.784a2 2 0 0 0 .968 0c.36-.09.69-.32 1.351-.784L22 7M6.8 20h10.4c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.311-1.311C22 17.72 22 16.88 22 15.2V8.8c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311C19.72 4 18.88 4 17.2 4H6.8c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.311 1.311C2 6.28 2 7.12 2 8.8v6.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311C4.28 20 5.12 20 6.8 20Z" stroke="currentColor"/></svg>
+          <input class="uu-input uu-input--icon" id="p-email" type="email" placeholder="you@example.com" />
+        </div>
+      </div>
+      <div class="uu-field">
+        <label class="uu-label" for="p-pass">New Password</label>
+        <div class="uu-input-wrap">
+          <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="M17 10V8A5 5 0 0 0 7 8v2m5 4.5v2M8.8 21h6.4c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.311-1.311C20 18.72 20 17.88 20 16.2v-1.4c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311C17.72 10 16.88 10 15.2 10H8.8c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.311 1.311C4 12.28 4 13.12 4 14.8v1.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311C6.28 21 7.12 21 8.8 21Z" stroke="currentColor"/></svg>
+          <input class="uu-input uu-input--icon" id="p-pass" type="password" placeholder="Leave blank to keep current" />
+        </div>
+      </div>
+    </div>
+    <div class="uu-divider"></div>
+    <div class="uu-modal__footer uu-modal__footer--end">
+      <button class="uu-btn uu-btn--secondary" onclick="closeModal('m-profile')">Cancel</button>
+      <button class="uu-btn uu-btn--primary">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ MODAL 2 — Upload ═══ -->
+<div class="uu-overlay" id="m-upload" role="dialog" aria-modal="true">
+  <div class="uu-modal">
+    <div class="uu-modal__header">
+      <div class="uu-modal__header-left">
+        <div class="uu-feat-icon uu-feat-icon--brand">
+          <svg class="uu-icon uu-icon--24" viewBox="0 0 24 24"><path d="M21 15v1.2c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311C18.72 21 17.88 21 16.2 21H7.8c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311C3 18.72 3 17.88 3 16.2V15m14-7-5-5m0 0L7 8m5-5v12" stroke="currentColor"/></svg>
+        </div>
+        <div>
+          <h2 class="uu-modal__title">Upload File</h2>
+          <p class="uu-modal__subtitle">PNG, JPG, PDF up to 10 MB. Files are private by&nbsp;default.</p>
+        </div>
+      </div>
+      <button class="uu-modal__close" onclick="closeModal('m-upload')">
+        <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor"/></svg>
+      </button>
+    </div>
+    <div class="uu-modal__body">
+      <div class="uu-banner">
+        <svg class="uu-icon uu-icon--16 uu-banner__icon" viewBox="0 0 24 24"><path d="M12 16v-4m0-4h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z" stroke="currentColor"/></svg>
+        <div><b>Files are scanned for security</b> — uploads are checked automatically before being made available.</div>
+      </div>
+      <div class="uu-dropzone">
+        <div class="uu-dropzone__icon">
+          <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24"><path d="M21 15v1.2c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311C18.72 21 17.88 21 16.2 21H7.8c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311C3 18.72 3 17.88 3 16.2V15m14-7-5-5m0 0L7 8m5-5v12" stroke="currentColor"/></svg>
+        </div>
+        <p class="uu-dropzone__cta">Click to upload <span>or drag & drop</span></p>
+        <p class="uu-dropzone__meta">PNG, JPG, GIF up to 10 MB</p>
+      </div>
+    </div>
+    <div class="uu-divider"></div>
+    <div class="uu-modal__footer">
+      <button class="uu-btn uu-btn--secondary uu-btn--full" onclick="closeModal('m-upload')">Cancel</button>
+      <button class="uu-btn uu-btn--primary uu-btn--full">
+        <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="M21 15v1.2c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311C18.72 21 17.88 21 16.2 21H7.8c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311C3 18.72 3 17.88 3 16.2V15m14-7-5-5m0 0L7 8m5-5v12" stroke="currentColor"/></svg>
+        Upload
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ MODAL 3 — Delete ═══ -->
+<div class="uu-overlay" id="m-delete" role="dialog" aria-modal="true">
+  <div class="uu-modal">
+    <div class="uu-modal__header">
+      <div class="uu-modal__header-left">
+        <div class="uu-feat-icon uu-feat-icon--error">
+          <svg class="uu-icon uu-icon--24" viewBox="0 0 24 24"><path d="M16 6v-.8c0-1.12 0-1.68-.218-2.108a2 2 0 0 0-.874-.874C14.48 2 13.92 2 12.8 2h-1.6c-1.12 0-1.68 0-2.108.218a2 2 0 0 0-.874.874C8 3.52 8 4.08 8 5.2V6m2 5.5v5m4-5v5M3 6h18m-2 0v11.2c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311C16.72 22 15.88 22 14.2 22H9.8c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311C5 19.72 5 18.88 5 17.2V6" stroke="currentColor"/></svg>
+        </div>
+        <div>
+          <h2 class="uu-modal__title">Delete Item</h2>
+          <p class="uu-modal__subtitle">Are you sure you want to delete <strong>"Project Alpha"</strong>? This action cannot be undone and all data will be&nbsp;lost.</p>
+        </div>
+      </div>
+      <button class="uu-modal__close" onclick="closeModal('m-delete')">
+        <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor"/></svg>
+      </button>
+    </div>
+    <div class="uu-divider" style="margin-top:20px;"></div>
+    <div class="uu-modal__footer">
+      <button class="uu-btn uu-btn--secondary uu-btn--full" onclick="closeModal('m-delete')">Cancel</button>
+      <button class="uu-btn uu-btn--danger uu-btn--full">
+        <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="M16 6v-.8c0-1.12 0-1.68-.218-2.108a2 2 0 0 0-.874-.874C14.48 2 13.92 2 12.8 2h-1.6c-1.12 0-1.68 0-2.108.218a2 2 0 0 0-.874.874C8 3.52 8 4.08 8 5.2V6m2 5.5v5m4-5v5M3 6h18m-2 0v11.2c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311C16.72 22 15.88 22 14.2 22H9.8c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311C5 19.72 5 18.88 5 17.2V6" stroke="currentColor"/></svg>
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ MODAL 4 — Success ═══ -->
+<div class="uu-overlay" id="m-success" role="dialog" aria-modal="true">
+  <div class="uu-modal uu-modal--centered">
+    <button class="uu-modal__close" style="position:absolute;top:16px;right:16px;" onclick="closeModal('m-success')">
+      <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor"/></svg>
+    </button>
+    <div class="uu-modal__header">
+      <div class="uu-modal__header-left">
+        <div class="uu-feat-icon uu-feat-icon--success" style="width:56px;height:56px;border-radius:12px;">
+          <svg class="uu-icon uu-icon--24" viewBox="0 0 24 24"><path d="m7.5 12 3 3 6-6m5.5 3c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z" stroke="currentColor"/></svg>
+        </div>
+        <div>
+          <h2 class="uu-modal__title" style="font-size:20px;">Payment Successful!</h2>
+          <p class="uu-modal__subtitle">Your payment of <strong>$149.00</strong> has been processed. A receipt was sent to your email&nbsp;address.</p>
+        </div>
+      </div>
+    </div>
+    <div class="uu-modal__body" style="padding-top:0;">
+      <div class="uu-stat-row">
+        <span class="uu-stat-row__label">Transaction ID</span>
+        <span class="uu-stat-row__value">#TXN-2024-8821</span>
+      </div>
+    </div>
+    <div class="uu-divider"></div>
+    <div class="uu-modal__footer uu-modal__footer--center">
+      <button class="uu-btn uu-btn--secondary" onclick="closeModal('m-success')">Back to Dashboard</button>
+      <button class="uu-btn uu-btn--primary">
+        <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="M21 15v1.2c0 1.68 0 2.52-.327 3.162a3 3 0 0 1-1.311 1.311C18.72 21 17.88 21 16.2 21H7.8c-1.68 0-2.52 0-3.162-.327a3 3 0 0 1-1.311-1.311C3 18.72 3 17.88 3 16.2V15m14-7-5-5m0 0L7 8m5-5v12" stroke="currentColor"/></svg>
+        Download Receipt
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ MODAL 5 — Alert ═══ -->
+<div class="uu-overlay" id="m-alert" role="dialog" aria-modal="true">
+  <div class="uu-modal uu-modal--centered">
+    <div class="uu-modal__header">
+      <div class="uu-modal__header-left">
+        <div class="uu-feat-icon uu-feat-icon--warning" style="width:56px;height:56px;border-radius:12px;">
+          <svg class="uu-icon uu-icon--24" viewBox="0 0 24 24"><path d="M12 8v4m0 4h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z" stroke="currentColor"/></svg>
+        </div>
+        <div>
+          <h2 class="uu-modal__title" style="font-size:20px;">Session Expired</h2>
+          <p class="uu-modal__subtitle">Your session timed out due to inactivity. Please log in again to continue where you left&nbsp;off.</p>
+        </div>
+      </div>
+    </div>
+    <div class="uu-divider" style="margin-top:20px;"></div>
+    <div class="uu-modal__footer uu-modal__footer--center">
+      <button class="uu-btn uu-btn--secondary" onclick="closeModal('m-alert')">Maybe Later</button>
+      <button class="uu-btn uu-btn--primary">
+        <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="M17 10V8A5 5 0 0 0 7 8v2m5 4.5v2M8.8 21h6.4c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.311-1.311C20 18.72 20 17.88 20 16.2v-1.4c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311C17.72 10 16.88 10 15.2 10H8.8c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.311 1.311C4 12.28 4 13.12 4 14.8v1.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311C6.28 21 7.12 21 8.8 21Z" stroke="currentColor"/></svg>
+        Log In Again
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ MODAL 6 — Invite ═══ -->
+<div class="uu-overlay" id="m-invite" role="dialog" aria-modal="true">
+  <div class="uu-modal">
+    <div class="uu-modal__header">
+      <div class="uu-modal__header-left">
+        <div class="uu-feat-icon uu-feat-icon--brand">
+          <svg class="uu-icon uu-icon--24" viewBox="0 0 24 24"><path d="m2 7 8.165 5.715c.661.463.992.695 1.351.784a2 2 0 0 0 .968 0c.36-.09.69-.32 1.351-.784L22 7M6.8 20h10.4c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.311-1.311C22 17.72 22 16.88 22 15.2V8.8c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311C19.72 4 18.88 4 17.2 4H6.8c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.311 1.311C2 6.28 2 7.12 2 8.8v6.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311C4.28 20 5.12 20 6.8 20Z" stroke="currentColor"/></svg>
+        </div>
+        <div>
+          <h2 class="uu-modal__title">Invite Team Member</h2>
+          <p class="uu-modal__subtitle">Send an invite to collaborate on this&nbsp;project.</p>
+        </div>
+      </div>
+      <button class="uu-modal__close" onclick="closeModal('m-invite')">
+        <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor"/></svg>
+      </button>
+    </div>
+    <div class="uu-modal__body">
+      <div class="uu-field">
+        <label class="uu-label" for="inv-email">Email Address</label>
+        <div class="uu-input-wrap">
+          <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="m2 7 8.165 5.715c.661.463.992.695 1.351.784a2 2 0 0 0 .968 0c.36-.09.69-.32 1.351-.784L22 7M6.8 20h10.4c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.311-1.311C22 17.72 22 16.88 22 15.2V8.8c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311C19.72 4 18.88 4 17.2 4H6.8c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.311 1.311C2 6.28 2 7.12 2 8.8v6.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311C4.28 20 5.12 20 6.8 20Z" stroke="currentColor"/></svg>
+          <input class="uu-input uu-input--icon" id="inv-email" type="email" placeholder="colleague@company.com" />
+        </div>
+      </div>
+      <div>
+        <p class="uu-label" style="margin-bottom:10px;">Already in this project</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <div class="uu-chip">
+            <div class="uu-chip__avatar" style="background:#EEF4FF;color:#444CE7;">
+              <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="M20 21c0-1.396 0-2.093-.172-2.661a4 4 0 0 0-2.667-2.667C16.593 15.5 15.896 15.5 14.5 15.5h-5c-1.396 0-2.093 0-2.661.172a4 4 0 0 0-2.667 2.667C4 18.907 4 19.604 4 21M16.5 7.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z" stroke="currentColor"/></svg>
+            </div>
+            <span class="uu-chip__name">Minh Tuyen</span>
+          </div>
+          <div class="uu-chip">
+            <div class="uu-chip__avatar" style="background:#FEF3F2;color:#D92D20;">
+              <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="M20 21c0-1.396 0-2.093-.172-2.661a4 4 0 0 0-2.667-2.667C16.593 15.5 15.896 15.5 14.5 15.5h-5c-1.396 0-2.093 0-2.661.172a4 4 0 0 0-2.667 2.667C4 18.907 4 19.604 4 21M16.5 7.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z" stroke="currentColor"/></svg>
+            </div>
+            <span class="uu-chip__name">Lan Anh</span>
+          </div>
+          <div class="uu-chip">
+            <div class="uu-chip__avatar" style="background:#ECFDF3;color:#039855;">
+              <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="M20 21c0-1.396 0-2.093-.172-2.661a4 4 0 0 0-2.667-2.667C16.593 15.5 15.896 15.5 14.5 15.5h-5c-1.396 0-2.093 0-2.661.172a4 4 0 0 0-2.667 2.667C4 18.907 4 19.604 4 21M16.5 7.5a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z" stroke="currentColor"/></svg>
+            </div>
+            <span class="uu-chip__name">Thanh Hà</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="uu-divider"></div>
+    <div class="uu-modal__footer">
+      <button class="uu-btn uu-btn--secondary uu-btn--full" onclick="closeModal('m-invite')">Cancel</button>
+      <button class="uu-btn uu-btn--primary uu-btn--full">
+        <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24"><path d="m2 7 8.165 5.715c.661.463.992.695 1.351.784a2 2 0 0 0 .968 0c.36-.09.69-.32 1.351-.784L22 7M6.8 20h10.4c1.68 0 2.52 0 3.162-.327a3 3 0 0 0 1.311-1.311C22 17.72 22 16.88 22 15.2V8.8c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311C19.72 4 18.88 4 17.2 4H6.8c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.311 1.311C2 6.28 2 7.12 2 8.8v6.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311C4.28 20 5.12 20 6.8 20Z" stroke="currentColor"/></svg>
+        Send Invite
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function openModal(id) {
+    document.getElementById(id).classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.uu-overlay').forEach(o => {
+    o.addEventListener('click', e => { if (e.target === o) closeModal(o.id); });
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape')
+      document.querySelectorAll('.uu-overlay.is-open').forEach(o => closeModal(o.id));
+  });
+</script>
+</body>
+</html>

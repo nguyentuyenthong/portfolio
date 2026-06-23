@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Metric Card — Thickness · Untitled UI</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../_shared/demo-shell.css" />
+  <link rel="stylesheet" href="../_shared/icon.css" />
+  <link rel="stylesheet" href="metric.css" />
+  <style>
+    .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--spacing-xl); margin-bottom: var(--spacing-6xl); }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Metric Card</h1>
+    <p class="demo-page__meta">Untitled UI · Application/Metrics · type × trend</p>
+
+    <div class="demo-toolbar">
+      <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" id="theme-toggle">Light / Dark</button>
+    </div>
+
+    <h2 style="font-size:var(--font-size-text-lg);color:var(--text-primary);margin:0 0 var(--spacing-lg)">Type: simple</h2>
+    <div class="metric-grid">
+      <div class="uu-metric" data-uu-trend="positive" data-uu-type="simple">
+        <div class="uu-metric__top">
+          <p class="uu-metric__title">Total revenue</p>
+          <button class="uu-metric__more" aria-label="More"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm0-7a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm0 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path></svg></button>
+        </div>
+        <div class="uu-metric__bottom">
+          <p class="uu-metric__value">$72,540</p>
+          <span class="uu-metric__change"><span class="uu-metric__change-badge"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5m0 0-7 7m7-7 7 7"></path></svg>12%</span></span>
+        </div>
+      </div>
+      <div class="uu-metric" data-uu-trend="negative" data-uu-type="simple">
+        <div class="uu-metric__top">
+          <p class="uu-metric__title">Churn rate</p>
+          <button class="uu-metric__more" aria-label="More"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm0-7a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm0 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path></svg></button>
+        </div>
+        <div class="uu-metric__bottom">
+          <p class="uu-metric__value">4.8%</p>
+          <span class="uu-metric__change"><span class="uu-metric__change-badge"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14m0 0 7-7m-7 7-7-7"></path></svg>2%</span></span>
+        </div>
+      </div>
+      <div class="uu-metric" data-uu-trend="positive" data-uu-type="simple">
+        <div class="uu-metric__top">
+          <p class="uu-metric__title">Active users</p>
+        </div>
+        <div class="uu-metric__bottom">
+          <p class="uu-metric__value">8,236</p>
+          <span class="uu-metric__change"><span class="uu-metric__change-badge"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5m0 0-7 7m7-7 7 7"></path></svg>9%</span> vs last month</span>
+        </div>
+      </div>
+    </div>
+
+    <h2 style="font-size:var(--font-size-text-lg);color:var(--text-primary);margin:0 0 var(--spacing-lg)">Type: icon</h2>
+    <div class="metric-grid">
+      <div class="uu-metric" data-uu-trend="positive" data-uu-type="icon">
+        <div class="uu-metric__top">
+          <span class="uu-metric__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m22 7-7.869 7.869c-.396.396-.594.594-.822.668a1 1 0 0 1-.618 0c-.228-.074-.426-.272-.822-.668L9.13 12.13c-.396-.396-.594-.594-.822-.668a1 1 0 0 0-.618 0c-.228.074-.426.272-.822.668L2 17M22 7h-7m7 0v7"></path></svg></span>
+          <button class="uu-metric__more" aria-label="More"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm0-7a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm0 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path></svg></button>
+        </div>
+        <div>
+          <p class="uu-metric__title" style="margin-bottom:var(--spacing-md)">Monthly recurring revenue</p>
+          <div class="uu-metric__bottom">
+            <p class="uu-metric__value">$24,980</p>
+            <span class="uu-metric__change"><span class="uu-metric__change-badge"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 19V5m0 0-7 7m7-7 7 7"></path></svg>15%</span></span>
+          </div>
+        </div>
+      </div>
+      <div class="uu-metric" data-uu-trend="negative" data-uu-type="icon">
+        <div class="uu-metric__top">
+          <span class="uu-metric__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m22 17-7.869-7.869c-.396-.396-.594-.594-.822-.668a1 1 0 0 0-.618 0c-.228.074-.426.272-.822.668L9.13 11.87c-.396.396-.594.594-.822.668a1 1 0 0 1-.618 0c-.228-.074-.426-.272-.822-.668L2 7m20 10h-7m7 0v-7"></path></svg></span>
+          <button class="uu-metric__more" aria-label="More"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm0-7a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm0 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path></svg></button>
+        </div>
+        <div>
+          <p class="uu-metric__title" style="margin-bottom:var(--spacing-md)">Refund requests</p>
+          <div class="uu-metric__bottom">
+            <p class="uu-metric__value">126</p>
+            <span class="uu-metric__change"><span class="uu-metric__change-badge"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14m0 0 7-7m-7 7-7-7"></path></svg>7%</span> vs last month</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+    });
+  </script>
+</body>
+</html>

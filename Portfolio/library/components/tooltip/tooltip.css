@@ -1,0 +1,40 @@
+/**
+ * Tooltip — untitleduico/react → components/base/tooltip/tooltip.tsx
+ */
+
+.uu-tooltip-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.uu-tooltip-wrap[data-uu-tip]::after {
+  content: attr(data-uu-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-tooltip);
+  max-width: 20rem;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  background: var(--brand-900);
+  color: var(--text-on-solid);
+  font-size: var(--font-size-text-xs);
+  font-weight: 600;
+  line-height: 1.25;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  box-shadow: var(--shadow-lg);
+}
+
+.uu-tooltip-wrap[data-uu-tip]:hover::after,
+.uu-tooltip-wrap[data-uu-tip]:focus-within::after {
+  opacity: 1;
+}
+
+.uu-tooltip-wrap[data-uu-desc]::before {
+  content: attr(data-uu-desc);
+  display: none;
+}

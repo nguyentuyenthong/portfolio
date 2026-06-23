@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="vi" class="light-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Kết quả — Case study AVN-TT: nhanh hơn 64% mỗi phiếu, ít gọi hơn 70%, đã lên production toàn quốc và tái dùng pattern cho 3 module." />
+  <title>AVN-TT · Kết quả — Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../Portfolio/library/foundations/thickness.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/foundations/base.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/_shared/icon.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/button/button.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/site-nav/site-nav.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/hero-section/hero-section.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/section-header/section-header.css" />
+  <link rel="stylesheet" href="../../Portfolio/styles/portfolio.css" />
+  <link rel="stylesheet" href="../../Portfolio/styles/case-study.css" />
+</head>
+<body>
+  <div class="case-page portfolio-page">
+
+    <header class="uu-site-nav portfolio-shell portfolio-nav--floating" id="top">
+      <a class="uu-site-nav__brand portfolio-nav__brand" href="../../Portfolio/index.html">
+        <img class="portfolio-nav__logo" src="../../Portfolio/assets/images/banners/Logo-thickness1.svg" alt="Nguyen Tuyen Thong" width="193" height="47" decoding="async" />
+      </a>
+      <button type="button" class="uu-site-nav__menu-btn" aria-label="Mở menu" aria-expanded="false" id="nav-toggle">
+        <svg class="uu-icon uu-icon--24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <nav aria-label="Điều hướng chính">
+        <ul class="uu-site-nav__links" id="nav-links">
+          <li><a class="uu-site-nav__link" href="../../Portfolio/index.html">Trang chủ</a></li>
+          <li><a class="uu-site-nav__link" href="../../Portfolio/index.html#projects">Dự án</a></li>
+          <li><a class="uu-site-nav__link" href="../../Portfolio/index.html#contact">Liên hệ</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+
+      <nav class="case-tabs portfolio-shell" aria-label="Các phần của case study">
+        <div class="case-tabs__scroll">
+          <div class="uu-button-group" data-uu-size="sm">
+            <a href="01-summary.html"  class="uu-button-group__item">Tổng quan</a>
+            <a href="02-problem.html"  class="uu-button-group__item">Vấn đề</a>
+            <a href="03-research.html" class="uu-button-group__item">Nghiên cứu</a>
+            <a href="04-design.html"   class="uu-button-group__item">Thiết kế</a>
+            <a href="05-results.html"  class="uu-button-group__item is-selected" aria-current="page">Kết quả</a>
+          </div>
+        </div>
+      </nav>
+
+      <section class="uu-hero portfolio-hero portfolio-hero--centered portfolio-shell case-hero" aria-labelledby="case-title">
+        <a href="../../Portfolio/index.html#case-avn-tt" class="case-hero__back" aria-label="Quay lại portfolio">
+          <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Quay lại portfolio
+        </a>
+        <div class="portfolio-hero__content">
+          <h1 class="portfolio-hero__headline" id="case-title">Case study: Kiểm tra tồn kho</h1>
+        </div>
+      </section>
+
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="results" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">05</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Kết quả</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <div class="case-impact-snapshot">
+              <div class="case-impact-snapshot__item">
+                <span class="case-impact-snapshot__value">~64%</span>
+                <p class="case-impact-snapshot__label">Nhanh hơn mỗi phiếu — ~5 phút so với ~14 phút (pilot 2 tuần)</p>
+              </div>
+              <div class="case-impact-snapshot__item">
+                <span class="case-impact-snapshot__value">~70%</span>
+                <p class="case-impact-snapshot__label">Ít cuộc gọi hỏi trạng thái đến văn phòng hơn (pilot 2 tuần)</p>
+              </div>
+              <div class="case-impact-snapshot__item">
+                <span class="case-impact-snapshot__value">~40%</span>
+                <p class="case-impact-snapshot__label">Ít lỗi nhập số lượng hơn — loại bỏ bước chép tay từ giấy</p>
+              </div>
+              <div class="case-impact-snapshot__item">
+                <span class="case-impact-snapshot__value">3 module</span>
+                <p class="case-impact-snapshot__label">Dùng chung một pattern — thiết kế một lần, áp dụng&nbsp;nhiều nơi</p>
+              </div>
+            </div>
+            <p class="case-data-table__disclaimer">Số liệu từ pilot nội bộ 2 tuần và các buổi usability test với đội BA + 3 nhân viên field sales. Analytics production chưa được cài đặt tại thời điểm pilot.</p>
+          </div>
+
+          <div class="case-block">
+            <p class="case-kicker">Timeline 8 tháng</p>
+            <div class="case-timeline">
+              <div class="case-timeline__item">
+                <div class="case-timeline__dot">T1–2</div>
+                <p class="case-timeline__month">Khám phá</p>
+                <p class="case-timeline__event">Workshop BA · phỏng vấn nhân viên · lập bản đồ IA. PM/PO duyệt mở rộng phạm vi.</p>
+              </div>
+              <div class="case-timeline__item">
+                <div class="case-timeline__dot">T3–4</div>
+                <p class="case-timeline__month">Thiết kế</p>
+                <p class="case-timeline__event">2 vòng wireframe → hi-fi trên DS AVN-TT. Usability test nội bộ với 3 nhân viên.</p>
+                <p class="case-timeline__metric">Chốt 17 màn hình</p>
+              </div>
+              <div class="case-timeline__item">
+                <div class="case-timeline__dot">T5–6</div>
+                <p class="case-timeline__month">Ra mắt</p>
+                <p class="case-timeline__event">Bàn giao dev → pilot 2 tuần với đội TT Biên Hòa 2 → production toàn quốc.</p>
+                <p class="case-timeline__metric">Nhanh hơn 64% · ít gọi hơn 70%</p>
+              </div>
+              <div class="case-timeline__item">
+                <div class="case-timeline__dot">T7–8</div>
+                <p class="case-timeline__month">Mở rộng</p>
+                <p class="case-timeline__event">Áp dụng pattern cho 2 module khác qua AI-assisted swap. Giao web CRM song song.</p>
+                <p class="case-timeline__metric">3 module · 1 pattern</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-block">
+            <div class="case-outlook">
+              <div class="case-outlook__col case-outlook__col--reflect">
+                <div class="case-outlook__head">
+                  <span class="case-outlook__badge" aria-hidden="true">
+                    <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <p class="case-outlook__title">Nếu làm lại</p>
+                </div>
+                <ul class="case-outlook__list">
+                  <li>
+                    <strong>Cài analytics sớm hơn</strong>
+                    <span>Funnel cơ bản (tạo → nộp → duyệt) khi ra mắt sẽ cho tín hiệu liên tục mà không tốn chi phí.</span>
+                  </li>
+                  <li>
+                    <strong>Test luồng từ chối nhiều hơn</strong>
+                    <span>Hầu hết pilot test happy path; các edge case chỉ lộ ra ở review BA cuối sprint.</span>
+                  </li>
+                  <li>
+                    <strong>Chốt KPI từ kickoff</strong>
+                    <span>Mục tiêu thời gian và số cuộc gọi được đặt không chính thức — thỏa thuận rõ với PM từ đầu sẽ làm câu chuyện ra mắt chắc hơn.</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="case-outlook__col case-outlook__col--next">
+                <div class="case-outlook__head">
+                  <span class="case-outlook__badge case-outlook__badge--next" aria-hidden="true">
+                    <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <p class="case-outlook__title">Bước tiếp theo</p>
+                </div>
+                <ul class="case-outlook__list">
+                  <li>
+                    <strong>Thông báo push</strong>
+                    <span>Hiện nhân viên phải tự vào app kiểm tra trạng thái sau khi nộp.</span>
+                  </li>
+                  <li>
+                    <strong>Nhập sản phẩm offline</strong>
+                    <span>Lưu cục bộ tại kho sóng yếu, đồng bộ khi có mạng trở lại.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-block">
+            <div class="uu-hero__actions case-actions">
+              <a href="https://www.figma.com/design/keQ5P29dy2VkAh88yzJA9M/AVN-TT-Project--Tablet-?node-id=5719-234788" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" target="_blank" rel="noopener noreferrer">
+                <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5M15 3h6v6M10 14 21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Xem trên Figma
+              </a>
+              <a href="../../Portfolio/index.html#case-avn-tt" class="uu-button" data-uu-size="md" data-uu-hierarchy="primary">Quay lại portfolio</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="case-page-actions portfolio-shell">
+        <div class="uu-hero__actions case-actions">
+          <a href="04-design.html" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray">
+            <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Thiết kế
+          </a>
+          <a href="../../Portfolio/index.html#case-avn-tt" class="uu-button" data-uu-size="md" data-uu-hierarchy="primary">
+            Quay lại portfolio
+          </a>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="../../Portfolio/source-code/scripts/orphan-guard.js"></script>
+  <script src="../../Portfolio/source-code/scripts/case-study.js"></script>
+</body>
+</html>

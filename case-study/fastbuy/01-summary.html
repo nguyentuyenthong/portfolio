@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi" class="light-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Tổng quan case study Fastbuy — Mobile app & ERP dashboard: CRM, tồn kho, giá và design system thống nhất." />
+  <title>Fastbuy · Tổng quan — Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../Portfolio/library/foundations/thickness.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/foundations/base.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/_shared/icon.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/button/button.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/hero-section/hero-section.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/section-header/section-header.css" />
+  <link rel="stylesheet" href="../../Portfolio/styles/portfolio.css" />
+  <link rel="stylesheet" href="../../Portfolio/styles/case-study.css" />
+</head>
+<body>
+  <div class="case-page portfolio-page case-page--no-site-nav">
+
+    <main>
+
+      <nav class="case-tabs portfolio-shell case-tabs--toolbar" aria-label="Các phần của case study">
+        <a href="../../Portfolio/index.html#case-fastbuy" class="uu-button case-tabs__back" data-uu-size="md" data-uu-hierarchy="primary-gray" aria-label="Quay lại portfolio">
+          <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Quay lại portfolio
+        </a>
+        <div class="case-tabs__scroll">
+          <div class="uu-button-group" data-uu-size="sm">
+            <a href="01-summary.html" class="uu-button-group__item is-selected" aria-current="page">Tổng quan</a>
+          </div>
+        </div>
+      </nav>
+
+      <section class="uu-hero portfolio-hero portfolio-hero--centered portfolio-shell case-hero" aria-labelledby="case-title">
+        <div class="portfolio-hero__content">
+          <h1 class="portfolio-hero__headline" id="case-title">Mobile App &amp; CRM Dashboard</h1>
+        </div>
+      </section>
+
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="summary" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">01</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Tổng quan</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <figure class="case-figure case-figure--plain">
+              <img
+                src="../../Portfolio/assets/images/banners/fastbuy-herobanner.png"
+                alt="Fastbuy — Mobile app và ERP dashboard: CRM, tồn kho, giá và quản trị nội bộ"
+                width="1200"
+                height="750"
+                loading="eager"
+                decoding="async"
+              />
+            </figure>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Trước &amp; sau</h3>
+            <div class="case-data-table-wrap">
+              <table class="case-data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Khía cạnh</th>
+                    <th scope="col">Trước</th>
+                    <th scope="col">Sau</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Luồng vận hành</strong></td>
+                    <td>Sáu module nghiệp vụ rời nhau — CRM, tồn kho, giá, phân quyền, nhân sự, tra cứu nội bộ — mỗi nơi một giao diện</td>
+                    <td class="case-data-table__highlight">Một hệ sinh thái web + mobile · luồng thống nhất, giảm độ phức tạp giữa app khách hàng và ERP nội bộ</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Đồng bộ dữ liệu</strong></td>
+                    <td>Cập nhật thủ công giữa app và dashboard — dễ lệch tồn kho, giá và trạng thái đơn</td>
+                    <td class="case-data-table__highlight">Nguồn dữ liệu tập trung trên ERP · phản ánh real-time lên mobile app</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Design &amp; component</strong></td>
+                    <td>UI không nhất quán giữa web ERP và app mobile — dev build lại pattern tương tự nhiều lần</td>
+                    <td class="case-data-table__highlight">Design system dùng chung · component tái sử dụng xuyên suốt web và mobile</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Phân quyền &amp; admin</strong></td>
+                    <td>Thiết lập quyền rải rác, khó kiểm soát ai truy cập module nào</td>
+                    <td class="case-data-table__highlight">Access control tập trung · quản trị nhân viên và thông tin nội bộ trên cùng nền tảng</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <script src="../../Portfolio/source-code/scripts/orphan-guard.js"></script>
+  <script src="../../Portfolio/source-code/scripts/case-study.js"></script>
+</body>
+</html>

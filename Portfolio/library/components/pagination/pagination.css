@@ -1,0 +1,430 @@
+/**
+ * Pagination — Untitled UI (untitleduico/react)
+ * application/pagination/pagination.tsx · pagination-dot.tsx · pagination-line.tsx
+ */
+
+@import url("../button/button.css");
+@import url("../_shared/icon.css");
+
+/* ─── Root ─────────────────────────────────────────────────── */
+.uu-pagination {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Prevent label wrapping inside tight containers */
+.uu-pagination .uu-button {
+  white-space: nowrap;
+}
+
+/* ─── Shared page number (36×36) ───────────────────────────── */
+.uu-pagination__pages {
+  display: none;
+  align-items: center;
+  gap: 2px;
+}
+
+.uu-pagination__page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-medium);
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+}
+
+.uu-pagination__page:hover {
+  background: var(--brand-50);
+  color: var(--brand-700);
+}
+
+.uu-pagination__page[aria-current="page"] {
+  background: var(--brand-50);
+  color: var(--brand-700);
+}
+
+.uu-pagination__ellipsis {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-text-sm);
+}
+
+.uu-pagination__mobile-label {
+  font-size: var(--font-size-text-sm);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.uu-pagination__mobile-label strong {
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+}
+
+/* ─── Card default (mobile-first footer) ───────────────────── */
+.uu-pagination--card-default {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 36px 1fr 36px;
+  align-items: center;
+  gap: var(--spacing-md);
+  border-top: var(--width-border-thin) solid var(--border-primary);
+  padding: 12px 16px;
+}
+
+.uu-pagination--card-default .uu-pagination__pages {
+  display: none;
+}
+
+.uu-pagination--card-default .uu-pagination__mobile-label,
+.uu-pagination--card-default .uu-pagination__pages {
+  justify-self: center;
+}
+
+.uu-pagination--card-default .uu-pagination__mobile-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.uu-pagination--card-default .uu-pagination__icon-btn {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  padding: 0 !important;
+}
+
+/* ─── Card advanced center (table / desktop) ─────────────── */
+.uu-pagination--card-advanced {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--spacing-lg);
+  border-top: var(--width-border-thin) solid var(--border-primary);
+  padding: 12px 24px 16px;
+}
+
+.uu-pagination--card-advanced .uu-pagination__left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  justify-self: start;
+  min-width: 0;
+}
+
+.uu-pagination--card-advanced .uu-pagination__mobile-label {
+  display: none;
+}
+
+.uu-pagination--card-advanced .uu-pagination__pages {
+  display: flex;
+}
+
+.uu-pagination__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.uu-pagination__meta-input {
+  width: 2.25rem;
+  padding: var(--spacing-md);
+  border: var(--width-border-thin) solid var(--field-border-default);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-text-sm);
+  text-align: center;
+  background: var(--field-default);
+  color: var(--text-primary);
+}
+
+.uu-pagination__meta-select {
+  padding: var(--spacing-md) var(--spacing-xl) var(--spacing-md) var(--spacing-lg);
+  border: var(--width-border-thin) solid var(--field-border-default);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-text-sm);
+  background: var(--field-default);
+  color: var(--text-primary);
+  appearance: none;
+}
+
+.uu-pagination--card-advanced .uu-pagination__meta-select {
+  padding-top: 0.375rem;
+  padding-bottom: 0.375rem;
+}
+
+.uu-pagination__select-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.uu-pagination__select-chevron {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  color: var(--icon-secondary);
+}
+
+.uu-pagination__icon-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0 !important;
+  min-width: 36px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.uu-pagination__icon-btn .uu-icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.5;
+}
+
+.uu-pagination__nav-group {
+  gap: 10px;
+}
+
+.uu-pagination__pages {
+  gap: 8px;
+}
+
+.uu-pagination__page {
+  min-width: unset;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border-radius: var(--radius-full);
+  color: var(--text-tertiary);
+}
+
+.uu-pagination__page[aria-current="page"] {
+  background: var(--gray-100);
+  color: var(--text-secondary);
+}
+
+.uu-pagination__nav-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: nowrap;
+}
+
+.uu-pagination__nav-group .uu-pagination__pages {
+  display: flex;
+}
+
+.uu-pagination__pages {
+  flex-wrap: nowrap;
+}
+
+.uu-pagination--card-advanced .uu-pagination__center {
+  display: flex;
+  justify-self: center;
+  grid-column: 2;
+  min-width: 0;
+}
+
+.uu-pagination--card-advanced .uu-pagination__mobile-label {
+  grid-column: 2;
+  justify-self: center;
+}
+
+.uu-pagination--card-advanced .uu-pagination__right {
+  display: flex;
+  justify-self: end;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.uu-pagination--card-advanced .uu-pagination__mobile-prev,
+.uu-pagination--card-advanced .uu-pagination__mobile-next {
+  display: none;
+}
+
+/* Screenshot spec: right side is Rows/page (no summary) */
+
+/* ─── Dot (carousel / swipe) ───────────────────────────────── */
+.uu-pagination--dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.uu-pagination--dot[data-uu-size="lg"] {
+  gap: 16px;
+}
+
+.uu-pagination--dot__item {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--gray-300);
+  cursor: pointer;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.uu-pagination--dot[data-uu-size="lg"] .uu-pagination--dot__item {
+  width: 10px;
+  height: 10px;
+}
+
+.uu-pagination--dot__item[aria-current="true"] {
+  background: var(--brand-600);
+}
+
+.uu-pagination--dot[data-uu-framed="true"] {
+  padding: 8px;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--white) 90%, transparent);
+  box-shadow: var(--shadow-md);
+}
+
+.uu-pagination--dot[data-uu-size="lg"][data-uu-framed="true"] {
+  padding: 12px;
+}
+
+/* ─── Line (carousel / swipe) ──────────────────────────────── */
+.uu-pagination--line {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.uu-pagination--line[data-uu-size="lg"] {
+  gap: 12px;
+}
+
+.uu-pagination--line__item {
+  flex: 1;
+  height: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--gray-300);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.uu-pagination--line[data-uu-size="lg"] .uu-pagination--line__item {
+  height: 8px;
+}
+
+.uu-pagination--line__item[aria-current="true"] {
+  background: var(--brand-600);
+}
+
+.uu-pagination--line[data-uu-framed="true"] {
+  padding: 8px;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--white) 90%, transparent);
+  box-shadow: var(--shadow-md);
+}
+
+/* ─── Carousel shell (demo) ────────────────────────────────── */
+.uu-carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--gray-100);
+}
+
+.uu-carousel__track {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+
+.uu-carousel__slide {
+  flex: 0 0 100%;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-text-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-tertiary);
+}
+
+.uu-carousel__dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.uu-carousel__line {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Desktop: card default shows page numbers */
+@media (min-width: 768px) {
+  .uu-pagination--card-default .uu-pagination__pages {
+    display: flex;
+  }
+
+  .uu-pagination--card-default .uu-pagination__mobile-label {
+    display: none;
+  }
+
+  .uu-pagination--card-default {
+    padding: 12px 24px 16px;
+  }
+}
+
+/* Mobile: card advanced collapses to card-default pattern */
+@media (max-width: 767px) {
+  .uu-pagination--card-advanced {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+  }
+
+  .uu-pagination--card-advanced .uu-pagination__left,
+  .uu-pagination--card-advanced .uu-pagination__center,
+  .uu-pagination--card-advanced .uu-pagination__right {
+    display: none;
+  }
+
+  .uu-pagination--card-advanced .uu-pagination__mobile-label {
+    display: block;
+    flex: 1;
+    text-align: center;
+  }
+
+  .uu-pagination--card-advanced .uu-pagination__mobile-prev,
+  .uu-pagination--card-advanced .uu-pagination__mobile-next {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 768px) {
+  .uu-pagination--card-advanced .uu-pagination__mobile-prev,
+  .uu-pagination--card-advanced .uu-pagination__mobile-next {
+    display: none;
+  }
+}

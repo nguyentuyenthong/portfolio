@@ -1,0 +1,78 @@
+/* Shell chung cho *-demo.html — không chứa style component */
+.demo-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-4xl) var(--spacing-3xl);
+}
+
+.demo-page__back {
+  font-size: var(--font-size-text-sm);
+  margin-bottom: var(--spacing-3xl);
+}
+
+.demo-page__back a {
+  color: var(--text-brand);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+}
+
+.demo-page__title {
+  font-size: var(--font-size-display-xs);
+  line-height: var(--line-height-display-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-md);
+}
+
+.demo-page__meta {
+  font-size: var(--font-size-text-sm);
+  color: var(--text-tertiary);
+  margin: 0 0 var(--spacing-4xl);
+  font-family: var(--font-family-mono);
+}
+
+.demo-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: var(--spacing-6xl);
+  font-size: var(--font-size-text-sm);
+}
+
+.demo-matrix caption {
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  padding: var(--spacing-lg) 0;
+  caption-side: top;
+}
+
+.demo-matrix th {
+  text-align: left;
+  padding: var(--spacing-lg);
+  background: var(--background-secondary);
+  color: var(--text-tertiary);
+  font-size: var(--font-size-text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-caps);
+  border-bottom: var(--width-border-thin) solid var(--border-primary);
+}
+
+.demo-matrix td {
+  padding: var(--spacing-xl);
+  border-bottom: var(--width-border-thin) solid var(--border-tertiary);
+  vertical-align: middle;
+}
+
+.demo-matrix td:first-child {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-text-xs);
+  color: var(--text-secondary);
+  background: var(--background-secondary);
+  width: 12rem;
+}
+
+.demo-toolbar {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-4xl);
+}

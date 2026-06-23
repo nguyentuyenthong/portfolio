@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thickness DS â€” Component Index</title>
+  <link rel="stylesheet" href="../foundations/thickness.css" />
+  <link rel="stylesheet" href="../foundations/base.css" />
+  <link rel="stylesheet" href="../components/_shared/demo-shell.css" />
+  <style>
+    .index-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--spacing-xl);
+    }
+    .index-card {
+      display: block;
+      padding: var(--spacing-xl);
+      border: var(--width-border-thin) solid var(--border-tertiary);
+      border-radius: var(--radius-lg);
+      background: var(--surface-default);
+      text-decoration: none;
+      color: var(--text-primary);
+      transition: border-color var(--duration-fast) var(--ease-default);
+    }
+    .index-card:hover {
+      border-color: var(--brand-300);
+    }
+    .index-card__title {
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-text-md);
+      margin: 0 0 var(--spacing-xs);
+    }
+    .index-card__meta {
+      font-size: var(--font-size-text-xs);
+      color: var(--text-tertiary);
+      font-family: var(--font-family-mono);
+    }
+    .index-section h2 {
+      font-size: var(--font-size-text-lg);
+      margin: var(--spacing-5xl) 0 var(--spacing-xl);
+      color: var(--text-secondary);
+    }
+    .index-badge {
+      display: inline-block;
+      font-size: var(--font-size-text-xs);
+      padding: 2px var(--spacing-md);
+      border-radius: var(--radius-full);
+      background: var(--brand-50);
+      color: var(--brand-700);
+      margin-left: var(--spacing-md);
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <h1 class="demo-page__title">Thickness Design System</h1>
+    <p class="demo-page__meta">Untitled UI â†’ Thickness Â· Inter Â· --brand-600 #444CE7 Â· <a href="../../AGENTS.md" style="color:var(--text-brand)">AGENTS.md</a></p>
+
+    <section class="index-section">
+      <h2>Base components</h2>
+      <div class="index-grid">
+        <a class="index-card" href="../components/button/button-demo.html"><span class="index-card__title">Button</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/utility-button/utility-button-demo.html"><span class="index-card__title">Utility Button</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/input/input-demo.html"><span class="index-card__title">Input</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/textarea/textarea-demo.html"><span class="index-card__title">Textarea</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/checkbox/checkbox-demo.html"><span class="index-card__title">Checkbox</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/radio/radio-demo.html"><span class="index-card__title">Radio</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/toggle/toggle-demo.html"><span class="index-card__title">Toggle</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/select/select-demo.html"><span class="index-card__title">Select</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/dropdown/dropdown-demo.html"><span class="index-card__title">Dropdown</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/tooltip/tooltip-demo.html"><span class="index-card__title">Tooltip</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/badge/badge-demo.html"><span class="index-card__title">Badge</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/tag/tag-demo.html"><span class="index-card__title">Tag</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/avatar/avatar-demo.html"><span class="index-card__title">Avatar</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/progress/progress-demo.html"><span class="index-card__title">Progress</span><span class="index-card__meta">generated</span></a>
+      </div>
+    </section>
+
+    <section class="index-section">
+      <h2>Application</h2>
+      <div class="index-grid">
+        <a class="index-card" href="../components/pagination/pagination-demo.html"><span class="index-card__title">Pagination</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/table/table-demo.html"><span class="index-card__title">Table</span><span class="index-card__meta">generated</span></a>
+        <a class="index-card" href="../components/section-header/section-header-demo.html"><span class="index-card__title">Section Header</span><span class="index-card__meta">generated</span></a>
+      </div>
+    </section>
+
+    <section class="index-section">
+      <h2>Portfolio patterns</h2>
+      <div class="index-grid">
+        <a class="index-card" href="../../index.html"><span class="index-card__title">Full Portfolio</span><span class="index-card__meta">site-nav Â· hero Â· card Â· footer</span></a>
+      </div>
+    </section>
+
+    <section class="index-section">
+      <h2>Icons &amp; agents</h2>
+      <div class="index-grid">
+        <a class="index-card" href="../components/_shared/icons/icons-demo.html"><span class="index-card__title">Icon Gallery</span><span class="index-card__meta">registry.json</span></a>
+        <a class="index-card" href="../components/registry.index.json"><span class="index-card__title">Registry Index</span><span class="index-card__meta">JSON</span></a>
+        <a class="index-card" href="../rules/README.md"><span class="index-card__title">Rules</span><span class="index-card__meta">guardrails</span></a>
+        <a class="index-card" href="../rules/typography-map.md"><span class="index-card__title">Typography Map</span><span class="index-card__meta">Tailwind â†’ Thickness</span></a>
+      </div>
+    </section>
+
+    <section class="index-section">
+      <h2>Typography utilities</h2>
+      <p class="demo-page__meta"><code>.uu-text-sm</code> Â· <code>.uu-display-md</code> Â· <code>.uu-tabular-nums</code> â€” <code>foundations/tokens/typography/utilities.css</code></p>
+    </section>
+
+    <section class="index-section">
+      <h2>Prototype shells<span class="index-badge">desktop / mobile</span></h2>
+      <p class="demo-page__meta">Skills: <code>.cursor/skills/thickness-desktop-prototype</code> Â· <code>thickness-mobile-prototype</code></p>
+    </section>
+  </div>
+</body>
+</html>

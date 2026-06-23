@@ -1,0 +1,225 @@
+/**
+ * Thickness — Tier 1: Primitives
+ * Nguồn: Untitled UI FREE v2.0 — Figma Colors (node 1525:271581)
+ * https://www.figma.com/design/iIaJsj0vXT0bbWyp4PACu9/…?node-id=1525-271581
+ *
+ * Branding (multi-brand): chỉ sửa `brand-*` — neo tại brand-600 = #444CE7 (Indigo Untitled).
+ * Scale = ramp Indigo Untitled UI (tách khỏi error đỏ).
+ * `blue-*` = palette Untitled Blue (utility), không còn là branding.
+ */
+
+:root {
+  /* ─── Base ─────────────────────────────────────────────────── */
+  --white: #ffffff;
+  --black: #000000;
+
+  /* ─── Gray (25–900 từ Figma; 950 = extension cho dark shell) ─ */
+  --gray-25: #fdfdfd;
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-200: #e9eaeb;
+  --gray-300: #d5d7da;
+  --gray-400: #a4a7ae;
+  --gray-500: #717680;
+  --gray-600: #535862;
+  --gray-700: #414651;
+  --gray-800: #252b37;
+  --gray-900: #181d27;
+  --gray-950: #0a0d12;
+
+  /* ─── Brand / Branding — Thickness (Indigo #444CE7 @ 600) ─── */
+  --brand-25: #f5f8ff;
+  --brand-50: #eef4ff;
+  --brand-100: #e0eaff;
+  --brand-200: #c7d7fe;
+  --brand-300: #a4bcfd;
+  --brand-400: #8098f9;
+  --brand-500: #6172f3;
+  --brand-600: #444ce7;
+  --brand-700: #3538cd;
+  --brand-800: #2d31a6;
+  --brand-900: #2d3282;
+  --brand-950: #1f2358;
+
+  /* Alias Figma collection "Branding" → cùng brand-* */
+  --branding-25: var(--brand-25);
+  --branding-50: var(--brand-50);
+  --branding-100: var(--brand-100);
+  --branding-200: var(--brand-200);
+  --branding-300: var(--brand-300);
+  --branding-400: var(--brand-400);
+  --branding-500: var(--brand-500);
+  --branding-600: var(--brand-600);
+  --branding-700: var(--brand-700);
+  --branding-800: var(--brand-800);
+  --branding-900: var(--brand-900);
+  --branding-950: var(--brand-950);
+
+  /* ─── Purple — Untitled kit Brand/* (Figma default, giữ cố định) ─ */
+  --purple-25: #fcfaff;
+  --purple-50: #f9f5ff;
+  --purple-100: #f4ebff;
+  --purple-200: #e9d7fe;
+  --purple-300: #d6bbfb;
+  --purple-400: #b692f6;
+  --purple-500: #9e77ed;
+  --purple-600: #7f56d9;
+  --purple-700: #6941c6;
+  --purple-800: #53389e;
+  --purple-900: #42307d;
+  --purple-950: #2c1c5f;
+
+  /* ─── Success ───────────────────────────────────────────────── */
+  --success-25: #f6fef9;
+  --success-50: #ecfdf3;
+  --success-100: #d1fadf;
+  --success-200: #a6f4c5;
+  --success-300: #6ce9a6;
+  --success-400: #32d583;
+  --success-500: #12b76a;
+  --success-600: #039855;
+  --success-700: #027a48;
+  --success-800: #05603a;
+  --success-900: #054f31;
+  --success-950: #053321;
+
+  /* ─── Warning ───────────────────────────────────────────────── */
+  --warning-25: #fffcf5;
+  --warning-50: #fffaeb;
+  --warning-100: #fef0c7;
+  --warning-200: #fedf89;
+  --warning-300: #fec84b;
+  --warning-400: #fdb022;
+  --warning-500: #f79009;
+  --warning-600: #dc6803;
+  --warning-700: #b54708;
+  --warning-800: #93370d;
+  --warning-900: #7a2e0e;
+  --warning-950: #4e1d09;
+
+  /* ─── Error ─────────────────────────────────────────────────── */
+  --error-25: #fffbfa;
+  --error-50: #fef3f2;
+  --error-100: #fee4e2;
+  --error-200: #fecdca;
+  --error-300: #fda29b;
+  --error-400: #f97066;
+  --error-500: #f04438;
+  --error-600: #d92d20;
+  --error-700: #b42318;
+  --error-800: #912018;
+  --error-900: #7a271a;
+  --error-950: #55160c;
+
+  /* ─── Info (Blue light/*) ───────────────────────────────────── */
+  --info-25: #f5fbff;
+  --info-50: #f0f9ff;
+  --info-100: #e0f2fe;
+  --info-200: #b9e6fe;
+  --info-300: #7cd4fd;
+  --info-400: #36bffa;
+  --info-500: #0ba5ec;
+  --info-600: #0086c9;
+  --info-700: #026aa2;
+  --info-800: #065986;
+  --info-900: #0b4a6f;
+  --info-950: #062c41;
+
+  /* ─── Blue gray ─────────────────────────────────────────────── */
+  --blue-gray-25: #fdfdfd;
+  --blue-gray-50: #f8f9fc;
+  --blue-gray-100: #eaecf5;
+  --blue-gray-200: #d5d9eb;
+  --blue-gray-300: #afb5d9;
+  --blue-gray-400: #717bbc;
+  --blue-gray-500: #4e5ba6;
+  --blue-gray-600: #3e4784;
+  --blue-gray-700: #363f72;
+  --blue-gray-800: #293056;
+  --blue-gray-900: #101323;
+  --blue-gray-950: #0a0c14;
+
+  /* ─── Blue light ────────────────────────────────────────────── */
+  --blue-light-25: #f5fbff;
+  --blue-light-50: #f0f9ff;
+  --blue-light-100: #e0f2fe;
+  --blue-light-200: #b9e6fe;
+  --blue-light-300: #7cd4fd;
+  --blue-light-400: #36bffa;
+  --blue-light-500: #0ba5ec;
+  --blue-light-600: #0086c9;
+  --blue-light-700: #026aa2;
+  --blue-light-800: #065986;
+  --blue-light-900: #0b4a6f;
+  --blue-light-950: #062c41;
+
+  /* ─── Blue — Untitled utility (không dùng làm branding) ───── */
+  --blue-25: #f5faff;
+  --blue-50: #eff8ff;
+  --blue-100: #d1e9ff;
+  --blue-200: #b2ddff;
+  --blue-300: #84caff;
+  --blue-400: #53b1fd;
+  --blue-500: #2e90fa;
+  --blue-600: #1570ef;
+  --blue-700: #175cd3;
+  --blue-800: #1849a9;
+  --blue-900: #194185;
+  --blue-950: #102a56;
+
+  /* ─── Indigo ────────────────────────────────────────────────── */
+  --indigo-25: #f5f8ff;
+  --indigo-50: #eef4ff;
+  --indigo-100: #e0eaff;
+  --indigo-200: #c7d7fe;
+  --indigo-300: #a4bcfd;
+  --indigo-400: #8098f9;
+  --indigo-500: #6172f3;
+  --indigo-600: #444ce7;
+  --indigo-700: #3538cd;
+  --indigo-800: #2d31a6;
+  --indigo-900: #2d3282;
+  --indigo-950: #1f2358;
+
+  /* ─── Pink ──────────────────────────────────────────────────── */
+  --pink-25: #fef6fb;
+  --pink-50: #fdf2fa;
+  --pink-100: #fce7f6;
+  --pink-200: #fcceee;
+  --pink-300: #faa7e0;
+  --pink-400: #f670c7;
+  --pink-500: #ee46bc;
+  --pink-600: #dd2590;
+  --pink-700: #c11574;
+  --pink-800: #9e165f;
+  --pink-900: #851651;
+  --pink-950: #4e0d30;
+
+  /* ─── Rose (Figma: Rosé) ────────────────────────────────────── */
+  --rose-25: #fff5f6;
+  --rose-50: #fff1f3;
+  --rose-100: #ffe4e8;
+  --rose-200: #fecdd6;
+  --rose-300: #fea3b4;
+  --rose-400: #fd6f8e;
+  --rose-500: #f63d68;
+  --rose-600: #e31b54;
+  --rose-700: #c01048;
+  --rose-800: #a11043;
+  --rose-900: #89123e;
+  --rose-950: #510b24;
+
+  /* ─── Orange ────────────────────────────────────────────────── */
+  --orange-25: #fffaf5;
+  --orange-50: #fff6ed;
+  --orange-100: #ffead5;
+  --orange-200: #fddcab;
+  --orange-300: #feb273;
+  --orange-400: #fd853a;
+  --orange-500: #fb6514;
+  --orange-600: #ec4a0a;
+  --orange-700: #c4320a;
+  --orange-800: #9c2a10;
+  --orange-900: #7e2410;
+  --orange-950: #511c10;
+}

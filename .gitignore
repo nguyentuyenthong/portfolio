@@ -1,0 +1,9 @@
+# Internal — not part of the public site
+_backups/
+.cursor/
+skills/
+rules/
+STRUCTURE.md
+DEPLOY-GITHUB.md
+.DS_Store
+Thumbs.db

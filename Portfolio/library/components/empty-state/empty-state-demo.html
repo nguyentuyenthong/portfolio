@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Empty State — Thickness · Untitled UI</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../_shared/demo-shell.css" />
+  <link rel="stylesheet" href="../_shared/icon.css" />
+  <link rel="stylesheet" href="../button/button.css" />
+  <link rel="stylesheet" href="empty-state.css" />
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Empty State</h1>
+    <p class="demo-page__meta">Untitled UI · Application/EmptyState · size sm × md × lg</p>
+
+    <div class="demo-toolbar">
+      <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" id="theme-toggle">Light / Dark</button>
+    </div>
+
+    <table class="demo-matrix">
+      <caption>Size · featured icon + title + description + actions</caption>
+      <thead><tr><th>Size</th><th>Empty state</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>sm</td>
+          <td>
+            <div class="uu-empty-state" data-uu-size="sm">
+              <div class="uu-empty-state__header">
+                <span class="uu-empty-state__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m21 21-3.5-3.5m2.5-6a8.5 8.5 0 1 1-17 0 8.5 8.5 0 0 1 17 0Z"></path></svg></span>
+              </div>
+              <div class="uu-empty-state__content">
+                <p class="uu-empty-state__title">No results found</p>
+                <p class="uu-empty-state__text">Try adjusting your search or filters.</p>
+              </div>
+              <div class="uu-empty-state__footer">
+                <button class="uu-button" data-uu-size="sm" data-uu-hierarchy="secondary-gray">Clear search</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>md</td>
+          <td>
+            <div class="uu-empty-state" data-uu-size="md">
+              <div class="uu-empty-state__header">
+                <span class="uu-empty-state__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 11H8m2 4H8m8-8H8m12 5V6.8c0-1.68 0-2.52-.327-3.162a3 3 0 0 0-1.311-1.311C17.72 2 16.88 2 15.2 2H8.8c-1.68 0-2.52 0-3.162.327a3 3 0 0 0-1.311 1.311C4 4.28 4 5.12 4 6.8v10.4c0 1.68 0 2.52.327 3.162a3 3 0 0 0 1.311 1.311C6.28 22 7.12 22 8.8 22H12m4-6 5 5m0-5-5 5"></path></svg></span>
+              </div>
+              <div class="uu-empty-state__content">
+                <p class="uu-empty-state__title">No projects yet</p>
+                <p class="uu-empty-state__text">Get started by creating your first project. You can invite your team afterwards.</p>
+              </div>
+              <div class="uu-empty-state__footer">
+                <button class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray">Learn more</button>
+                <button class="uu-button" data-uu-size="md" data-uu-hierarchy="primary">New project</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>lg</td>
+          <td>
+            <div class="uu-empty-state" data-uu-size="lg">
+              <div class="uu-empty-state__header">
+                <span class="uu-empty-state__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m21 21-3.5-3.5m2.5-6a8.5 8.5 0 1 1-17 0 8.5 8.5 0 0 1 17 0Z"></path></svg></span>
+              </div>
+              <div class="uu-empty-state__content">
+                <p class="uu-empty-state__title">No campaigns running</p>
+                <p class="uu-empty-state__text">Launch your first campaign to start reaching customers and tracking performance in real time.</p>
+              </div>
+              <div class="uu-empty-state__footer">
+                <button class="uu-button" data-uu-size="lg" data-uu-hierarchy="secondary-gray">Import data</button>
+                <button class="uu-button" data-uu-size="lg" data-uu-hierarchy="primary">Create campaign</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+    });
+  </script>
+</body>
+</html>

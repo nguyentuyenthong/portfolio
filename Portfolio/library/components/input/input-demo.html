@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Input — Thickness · Untitled UI</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../_shared/demo-shell.css" />
+  <link rel="stylesheet" href="input.css" />
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Input</h1>
+    <p class="demo-page__meta">Source: <code>untitleduico/react</code> · <code>components/base/input/input.tsx</code></p>
+
+    <div class="demo-toolbar">
+      <button type="button" class="demo-theme-btn" id="theme-toggle">Light / Dark</button>
+    </div>
+
+    <table class="demo-matrix">
+      <caption>Variant × State</caption>
+      <thead>
+        <tr><th>State</th><th>sm</th><th>md</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Default</td>
+          <td>
+            <div class="uu-field uu-input" data-uu-size="sm">
+              <label class="uu-label">Email<span class="uu-label__required">*</span></label>
+              <div class="uu-control"><input class="uu-control__input" type="email" placeholder="you@company.com" /></div>
+              <span class="uu-hint">This is a hint text to help user.</span>
+            </div>
+          </td>
+          <td>
+            <div class="uu-field uu-input" data-uu-size="md">
+              <label class="uu-label">Email<span class="uu-label__required">*</span></label>
+              <div class="uu-control"><input class="uu-control__input" type="email" placeholder="you@company.com" /></div>
+              <span class="uu-hint">This is a hint text to help user.</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Invalid</td>
+          <td colspan="2">
+            <div class="uu-field uu-input uu-field--invalid" data-uu-size="md">
+              <label class="uu-label">Email<span class="uu-label__required">*</span></label>
+              <div class="uu-control"><input class="uu-control__input" type="email" value="invalid@" aria-invalid="true" /></div>
+              <span class="uu-hint">This is an error message.</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Disabled</td>
+          <td colspan="2">
+            <div class="uu-field uu-input uu-field--disabled" data-uu-size="md">
+              <label class="uu-label">Email</label>
+              <div class="uu-control"><input class="uu-control__input" type="email" disabled placeholder="you@company.com" /></div>
+              <span class="uu-hint">This is a hint text to help user.</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+    });
+  </script>
+</body>
+</html>

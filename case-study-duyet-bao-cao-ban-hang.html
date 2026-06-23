@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Study — Flow duyệt báo cáo bán hàng</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Thickness design tokens */
+    --brand:#444ce7;--brand-ink:#3538cd;--brand-50:#eef4ff;--brand-100:#e0eaff;
+    --useful:#444ce7;--useful-10:#eef4ff;
+    --positive:#039855;--positive-10:#ecfdf3;--positive-70:#027a48;
+    --careful:#dc6803;--careful-10:#fffaeb;--careful-70:#b54708;
+    --danger:#d92d20;--danger-10:#fef3f2;--danger-70:#b42318;
+    --text:#181d27;--text-soft:#414651;--text-mute:#717680;--line:#e9eaeb;--line-soft:#f5f5f5;
+    --surface:#ffffff;--bg:#fafafa;--bg-deep:#181d27;--radius:14px;
+    --shadow:0 1px 3px rgba(10,13,18,.1),0 1px 2px rgba(10,13,18,.06);--shadow-lg:0 20px 48px rgba(16,24,40,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter Tight','Roboto',system-ui,Segoe UI,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,h4{font-family:'Inter Tight',sans-serif;color:#111827;line-height:1.2;letter-spacing:-.02em}
+  a{color:var(--brand);text-decoration:none}
+
+  nav.casenav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.78);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid var(--line)}
+  .casenav__inner{display:flex;align-items:center;gap:16px;height:66px}
+  .backbtn{display:inline-flex;align-items:center;gap:8px;flex:none;font-family:'Inter Tight';font-weight:600;font-size:13.5px;color:#fff;background:var(--text);border:1px solid var(--text);border-radius:10px;padding:9px 14px;text-decoration:none;transition:filter .15s,transform .05s}
+  .backbtn:hover{filter:brightness(1.25)}
+  .backbtn:active{transform:translateY(1px)}
+  .backbtn svg{width:16px;height:16px}
+  .tabscroll{flex:1;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;display:flex;justify-content:flex-end}
+  .tabscroll::-webkit-scrollbar{display:none}
+  .tabgroup{display:inline-flex;gap:3px;background:var(--line-soft);border:1px solid var(--line);border-radius:12px;padding:4px}
+  .tabitem{font-family:'Inter Tight';font-weight:600;font-size:13.5px;color:var(--text-soft);padding:8px 14px;border-radius:9px;white-space:nowrap;text-decoration:none;transition:background .15s,color .15s,box-shadow .15s}
+  .tabitem:hover{color:var(--text)}
+  .tabitem.is-active{background:#fff;color:var(--brand-ink);box-shadow:0 1px 2px rgba(10,13,18,.1)}
+  @media(max-width:760px){.tabscroll{justify-content:flex-start}.backbtn span{display:none}.casenav__inner{height:60px}}
+
+  .hero{position:relative;overflow:hidden;background:#f4f6fc;color:var(--text)}
+  .hero__bg{position:absolute;inset:-12%;z-index:0;filter:blur(72px);opacity:.92}
+  .hero__bg .blob{position:absolute;display:block;border-radius:50%}
+  .hero__bg .b1{width:460px;height:460px;left:-70px;top:-150px;background:#6172f3;opacity:.55}
+  .hero__bg .b2{width:520px;height:520px;right:-90px;top:-170px;background:#444ce7;opacity:.5}
+  .hero__bg .b3{width:440px;height:440px;left:28%;bottom:-260px;background:#a4bcfd;opacity:.6}
+  .hero__bg .b4{width:300px;height:300px;right:16%;bottom:-150px;background:#c7d7fe;opacity:.7}
+  .hero__bg .b5{width:230px;height:230px;left:6%;top:30%;background:#8098f9;opacity:.4}
+  .hero__veil{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(255,255,255,.38) 0%,rgba(248,249,253,.72) 100%);backdrop-filter:blur(34px) saturate(130%);-webkit-backdrop-filter:blur(34px) saturate(130%)}
+  .hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line);z-index:2}
+  .hero .wrap{position:relative;z-index:2;padding:88px 24px 96px}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-ink);background:rgba(255,255,255,.78);border:1px solid var(--brand-100);box-shadow:0 1px 2px rgba(10,13,18,.05);padding:7px 14px;border-radius:999px}
+  .hero h1{color:var(--text);font-size:clamp(34px,5.4vw,58px);font-weight:800;margin:22px 0 18px;max-width:20ch;text-wrap:balance}
+  .hero p.lead{font-size:clamp(16px,2.2vw,20px);color:var(--text-soft);max-width:60ch}
+  .hero .meta{display:flex;flex-wrap:wrap;gap:30px;margin-top:42px}
+  .hero .meta div{min-width:120px}
+  .hero .meta span{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-mute);margin-bottom:6px}
+  .hero .meta strong{font-size:15px;color:var(--text);font-weight:600}
+
+  section{padding:74px 0;scroll-margin-top:82px}
+  section.alt{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .kicker{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .kicker .n{font-variant-numeric:tabular-nums;color:var(--text-mute);font-weight:600}
+  section h2{font-size:clamp(26px,3.4vw,38px);font-weight:700;margin-bottom:18px;max-width:22ch}
+  section p.body{font-size:17px;color:#475467;max-width:68ch;margin-bottom:16px}
+  .lead-block p{font-size:18px;color:#475467;max-width:70ch}
+
+  .grid{display:grid;gap:20px}
+  .g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+  @media(max-width:820px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+  .card h3{font-size:18px;margin-bottom:8px}
+  .card p{font-size:15px;color:var(--text-soft)}
+  .card .ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;font-size:20px;margin-bottom:16px}
+
+  .pill{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:999px;line-height:1}
+  .pill.b-useful{background:var(--brand-50);color:var(--brand-ink)}
+  .pill.b-careful{background:var(--careful-10);color:var(--careful-70)}
+  .pill.b-positive{background:var(--positive-10);color:var(--positive-70)}
+  .pill.b-danger{background:var(--danger-10);color:var(--danger-70)}
+  .pill.b-off{background:var(--line-soft);color:var(--text-mute)}
+
+  .callout{border-radius:var(--radius);padding:26px 28px;display:flex;gap:18px;align-items:flex-start}
+  .callout.warn{background:var(--careful-10);border:1px solid #fedf89}
+  .callout.good{background:var(--positive-10);border:1px solid #a6f4c5}
+  .callout.bad{background:var(--danger-10);border:1px solid #fecdca}
+  .callout .big{font-size:26px;line-height:1}
+  .callout h3{margin-bottom:6px}
+  .callout p{color:#475467;font-size:15.5px}
+
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:820px){.flow{grid-template-columns:1fr}}
+  .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;position:relative}
+  .step .num{width:30px;height:30px;border-radius:9px;background:var(--brand);color:#fff;font-weight:700;display:grid;place-items:center;font-size:14px;margin-bottom:13px}
+  .step h4{font-size:15.5px;margin-bottom:6px}
+  .step p{font-size:13.5px;color:var(--text-soft)}
+
+  .mock{font-family:'Roboto',sans-serif;background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:var(--shadow-lg)}
+  .mock-bar{display:flex;align-items:center;gap:7px;padding:11px 15px;background:#f7f8fa;border-bottom:1px solid var(--line)}
+  .mock-bar i{width:11px;height:11px;border-radius:50%;display:inline-block}
+  .mock-bar .r{background:#ff5f57}.mock-bar .y{background:#febc2e}.mock-bar .g{background:#28c840}
+  .mock-bar .ttl{margin-left:10px;font-size:12px;color:#98a2b3}
+  .mock-body{padding:22px}
+  .mh{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+  .mh h4{font-size:17px;color:#1d2433;font-weight:600;font-family:'Inter Tight'}
+  .m-card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px;background:#fff}
+  .m-label{font-size:12px;color:var(--text-mute)}
+  .field{border:1px solid var(--line);border-radius:9px;padding:10px 12px;font-size:13.5px;color:var(--text-soft);background:#fff}
+
+  .btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;padding:9px 15px;border-radius:9px;border:1px solid transparent;cursor:default;font-family:'Inter Tight'}
+  .btn-primary{background:var(--brand);color:#fff}
+  .btn-ghost{background:#fff;border-color:var(--line);color:var(--text)}
+  .btn-approve{background:var(--positive-10);color:var(--positive-70);border-color:#a6f4c5}
+  .btn-danger{background:var(--danger);color:#fff}
+  .btn-muted{background:#eceef1;color:#9aa1ad}
+
+  .tbl{width:100%;border-collapse:collapse;font-size:13px}
+  .tbl th{text-align:left;font-size:11px;letter-spacing:.04em;color:var(--text-mute);text-transform:uppercase;padding:10px 8px;border-bottom:1px solid var(--line);font-weight:600}
+  .tbl td{padding:13px 8px;border-bottom:1px solid var(--line-soft);color:#344054;vertical-align:middle}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl .rep{color:var(--brand);font-weight:600}
+  .tbl .acts{display:flex;gap:8px;justify-content:flex-end}
+
+  .ck{display:flex;align-items:center;gap:12px;padding:14px 0;font-family:'Inter Tight'}
+  .box{width:22px;height:22px;border-radius:6px;border:2px solid #cbd5e1;flex:none}
+  .box.on{background:var(--brand);border-color:var(--brand);position:relative}
+  .box.on:after{content:"✓";color:#fff;font-size:13px;position:absolute;inset:0;display:grid;place-items:center}
+  .ck strong{font-size:14.5px;color:#1d2433}
+  .appr{display:flex;gap:13px;padding:15px 0;border-top:1px solid var(--line-soft)}
+  .av{width:30px;height:30px;border-radius:50%;background:var(--line-soft);flex:none;display:grid;place-items:center;color:var(--text-mute);font-size:12px}
+  .appr .who{font-size:14px;color:#1d2433;font-weight:600;font-family:'Inter Tight'}
+  .appr .st{font-size:12.5px;color:var(--text-soft);margin-top:3px}
+  .appr .time{margin-left:auto;font-size:11.5px;color:var(--text-mute);white-space:nowrap}
+  .note-banner{display:flex;gap:10px;align-items:flex-start;border-radius:10px;padding:13px 15px;font-size:13px;margin:6px 0 4px}
+  .note-banner.good{background:var(--positive-10);color:var(--positive-70)}
+
+  figure{margin:0}
+  .fig-cap{font-size:13.5px;color:var(--text-mute);text-align:center;margin-top:14px;font-style:italic}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+  @media(max-width:820px){.two-col{grid-template-columns:1fr;gap:24px}}
+
+  .legend{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  @media(max-width:600px){.legend{grid-template-columns:1fr}}
+  .legend .row{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+  .legend .row p{font-size:13.5px;color:var(--text-soft)}
+
+  .metric{text-align:center}
+  .metric .num{font-size:clamp(34px,5vw,48px);font-weight:800;color:var(--brand);font-family:'Inter Tight';line-height:1}
+  .metric p{font-size:14px;color:var(--text-soft);margin-top:8px}
+
+  .tag-list{display:flex;flex-wrap:wrap;gap:9px}
+  .tag{font-size:13px;font-weight:500;color:#475467;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 14px}
+
+  footer{background:var(--bg-deep);color:#9aa6c4;padding:46px 0;text-align:center;font-size:14px}
+  footer strong{color:#fff}
+
+  /* ===== INTERACTIVE PROTOTYPE ===== */
+  .proto-note{display:flex;align-items:center;gap:12px;flex-wrap:wrap;background:var(--brand-50);border:1px solid var(--brand-100);color:var(--brand-ink);border-radius:12px;padding:12px 16px;font-size:13.5px;margin-top:26px}
+  .btn.live{cursor:pointer;transition:filter .15s,transform .05s}
+  .btn.live:hover{filter:brightness(.96)}
+  .btn.live:active{transform:translateY(1px)}
+  select.field,input.field,textarea.field{font-family:'Roboto',sans-serif;width:100%;color:var(--text);outline:none;background-color:#fff}
+  select.field{cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 12px center}
+  .field:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(23,92,211,.12)}
+  textarea.field{resize:vertical;min-height:64px;line-height:1.5}
+  .tbl tbody tr{transition:background .12s}
+  .tbl tbody tr:hover{background:#f7f9fc}
+  .tbl .rep.live{cursor:pointer}
+  .tbl .rep.live:hover{text-decoration:underline}
+  .tbl-foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:14px;font-size:12.5px;color:var(--text-soft)}
+  .pager{display:flex;align-items:center;gap:6px}
+  .pgbtn{width:30px;height:30px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer;font-size:13px;color:var(--text);display:grid;place-items:center}
+  .pgbtn:disabled{opacity:.4;cursor:not-allowed}
+  .pgcur{min-width:54px;text-align:center;border:1px solid var(--line);border-radius:8px;height:30px;display:grid;place-items:center}
+  .empty{text-align:center;color:var(--text-mute);padding:30px 0;font-size:14px}
+  .modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(2px);display:none;align-items:flex-start;justify-content:center;z-index:200;padding:40px 16px;overflow-y:auto}
+  .modal-overlay.show{display:flex}
+  .modal{background:#fff;border-radius:16px;width:100%;max-width:680px;box-shadow:var(--shadow-lg);font-family:'Roboto',sans-serif;animation:pop .18s ease}
+  @keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--line)}
+  .modal-head h4{font-family:'Inter Tight';font-size:18px;color:#1d2433}
+  .modal-x{cursor:pointer;color:#98a2b3;font-size:20px;line-height:1;background:none;border:none}
+  .modal-body{padding:22px}
+  .modal-foot{display:flex;gap:10px;justify-content:flex-end;padding:16px 22px;border-top:1px solid var(--line);flex-wrap:wrap}
+  input[type=checkbox]{width:20px;height:20px;accent-color:var(--brand);cursor:pointer;flex:none}
+  .role-tag{display:inline-flex;align-items:center;gap:7px;background:#eef4ff;color:var(--brand);font-weight:600;font-size:12.5px;padding:6px 12px;border-radius:999px;font-family:'Inter Tight'}
+  .offline-box{background:#fafbfc;border:1px dashed var(--line);border-radius:10px;padding:14px;margin-top:10px}
+  .toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(20px);background:#0f1322;color:#fff;padding:13px 20px;border-radius:12px;font-size:14px;font-family:'Inter Tight';opacity:0;pointer-events:none;transition:all .25s;z-index:300;box-shadow:var(--shadow-lg);display:flex;align-items:center;gap:10px}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* ===== FIGMA SCREENSHOTS ===== */
+  .shotwrap{margin-top:28px}
+  .shot{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-lg);background:#fff}
+  .shot img{display:block;width:100%;height:auto}
+  .shot-ph{min-height:230px;display:none;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:40px 24px;color:var(--text-soft);background:repeating-linear-gradient(45deg,#fafbfc,#fafbfc 12px,#f3f5f8 12px,#f3f5f8 24px)}
+  .shot-ph strong{font-size:15px;color:#475467;font-family:'Inter Tight'}
+  .shot-ph span{font-size:13px;max-width:46ch}
+  .shot-ph code{background:#eef0f3;padding:2px 7px;border-radius:6px;font-size:12.5px;color:#1e40af}
+  .shot-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:28px}
+  @media(max-width:820px){.shot-grid{grid-template-columns:1fr}}
+  .shot-grid .shotwrap{margin-top:0}
+</style>
+</head>
+<body>
+
+<nav class="casenav">
+  <div class="wrap casenav__inner">
+    <a class="backbtn" href="Portfolio/index.html#case-sales-report" aria-label="Quay lại portfolio">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Quay lại portfolio</span>
+    </a>
+    <div class="tabscroll">
+      <div class="tabgroup" role="tablist" aria-label="Các phần của case study">
+        <a class="tabitem is-active" href="#overview" data-spy="overview">Tổng quan</a>
+        <a class="tabitem" href="#prototype" data-spy="prototype">Prototype</a>
+        <a class="tabitem" href="#problem" data-spy="problem">Vấn đề</a>
+        <a class="tabitem" href="#solution" data-spy="solution">Giải pháp</a>
+        <a class="tabitem" href="#outcome" data-spy="outcome">Kết quả</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span><span class="blob b4"></span><span class="blob b5"></span>
+  </div>
+  <div class="hero__veil" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="eyebrow">UX Case Study · B2B SaaS</span>
+    <h1>Flow duyệt báo cáo bán hàng nhiều cấp — và bài toán “người&nbsp;duyệt&nbsp;vắng&nbsp;mặt”</h1>
+    <p class="lead">Thiết kế luồng phê duyệt tuần tự cho 2 nhân viên bán hàng và 1 quản lý. Khi một người duyệt nghỉ phép/nghỉ ốm giữa chừng, cả quy trình bị treo. Mình thiết kế một cơ chế “đánh dấu offline & duyệt giùm” gọn nhẹ để báo cáo không bao giờ kẹt.</p>
+    <div class="meta">
+      <div><span>Vai trò</span><strong>Product / UX Designer</strong></div>
+      <div><span>Nền tảng</span><strong>Web app (Desktop)</strong></div>
+      <div><span>Công cụ</span><strong>Figma · Design System</strong></div>
+      <div><span>Phạm vi</span><strong>Flow + UI + States</strong></div>
+    </div>
+  </div>
+</header>
+
+<section id="overview">
+  <div class="wrap">
+    <div class="kicker"><span class="n">01</span> Tổng quan</div>
+    <h2>Một quy trình duyệt tưởng đơn giản, nhưng dễ “đứng hình”</h2>
+    <div class="lead-block">
+      <p>Client cần một luồng để duyệt các <strong>báo cáo bán hàng (BCBH)</strong> theo ngày. Mỗi báo cáo phải được kiểm tra tuần tự: <strong>Nhân viên bán hàng 1 → Nhân viên bán hàng 2 → Quản lý</strong>. Chỉ khi đủ cả ba mắt xích đồng ý thì báo cáo mới được coi là hoàn tất.</p>
+    </div>
+    <div class="grid g3" style="margin-top:32px">
+      <div class="card">
+        <div class="ic" style="background:var(--brand-50);color:var(--brand-ink)">⛓️</div>
+        <h3>Duyệt tuần tự</h3>
+        <p>Báo cáo đi theo đúng thứ tự người 1 → người 2 → quản lý. Người sau chỉ thấy lượt mình khi người trước đã xong.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:var(--positive-10);color:var(--positive-70)">👁️</div>
+        <h3>Minh bạch tiến độ</h3>
+        <p>Mỗi báo cáo hiển thị tiến độ duyệt (vd 1/2, 2/2) và lịch sử ai đã duyệt, lúc nào, ghi chú gì.</p>
+      </div>
+      <div class="card">
+        <div class="ic" style="background:var(--careful-10);color:var(--careful-70)">⚠️</div>
+        <h3>Rủi ro tắc nghẽn</h3>
+        <p>Chuỗi tuần tự rất dễ vỡ: chỉ cần một người nghỉ giữa chừng là toàn bộ báo cáo bị treo vô thời hạn.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker"><span class="n">02</span> Brief từ client</div>
+    <h2>Yêu cầu gốc</h2>
+    <div class="two-col">
+      <div>
+        <p class="body">“Mình muốn tạo một flow duyệt các báo cáo bán hàng. Sẽ có <strong>2 nhân viên bán hàng (NVBH)</strong> cùng kiểm tra theo thứ tự: người 1 xem và duyệt, chuyển cho người 2 xem và duyệt, sau đó gửi lên cấp quản lý cuối cùng xem và duyệt là hoàn thành.”</p>
+        <p class="body">Nói cách khác, đây là một <strong>approval chain 3 cấp</strong> với điều kiện bắt buộc tuần tự — đề cao tính kiểm soát và truy vết, vì báo cáo bán hàng ảnh hưởng trực tiếp tới số liệu doanh thu.</p>
+      </div>
+      <div class="grid" style="gap:14px">
+        <div class="callout good"><span class="big">①</span><div><h3>NVBH 1 — Trần Thị B</h3><p>Người khởi tạo, kiểm tra & duyệt đầu tiên, rồi chuyển tiếp.</p></div></div>
+        <div class="callout good"><span class="big">②</span><div><h3>NVBH 2 — Trần Thị C</h3><p>Kiểm tra chéo, duyệt rồi gửi lên quản lý.</p></div></div>
+        <div class="callout good"><span class="big">③</span><div><h3>Quản lý — Phạm Minh D</h3><p>Cấp duyệt cuối. Duyệt = hoàn tất, hoặc từ chối.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="prototype">
+  <div class="wrap">
+    <div class="kicker"><span class="n">03</span> Màn hình điều phối · Prototype tương tác</div>
+    <h2>Danh sách báo cáo — thử trực tiếp như đang dùng thật</h2>
+    <p class="body">Điểm bắt đầu là một bảng danh sách. Mình ưu tiên hai cột “sống còn”: <strong>Tiến độ duyệt</strong> (đã có bao nhiêu / cần bao nhiêu chữ ký) và <strong>Trạng thái</strong>, để người dùng quét nhanh báo cáo nào đang chờ mình. Bảng dưới đây <strong>chạy thật</strong> — hãy lọc, bấm “Xem”, “Duyệt”, tick offline và đi hết một luồng.</p>
+
+    <div class="proto-note">▶ <strong>Prototype tương tác</strong> — lọc, bấm <strong>Xem</strong>/<strong>Duyệt</strong>, tick “offline” và đi trọn một luồng duyệt như đang dùng thật. Dữ liệu là giả lập. <button class="btn btn-ghost live" id="resetData" style="margin-left:auto">↺ Reset dữ liệu</button></div>
+    <div class="mock" style="margin-top:16px">
+      <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span class="ttl">Quản lý báo cáo bán hàng — live</span></div>
+      <div class="mock-body">
+        <div class="mh"><h4>Quản lý báo cáo bán hàng</h4><button class="btn btn-primary live" id="applyBtn">⚙ Áp dụng</button></div>
+        <div class="grid g3" style="gap:12px;margin-bottom:18px">
+          <div><div class="m-label" style="margin-bottom:6px">Tên đội</div><select class="field live" id="fTeam"></select></div>
+          <div><div class="m-label" style="margin-bottom:6px">Tên báo cáo</div><input class="field live" id="fName" placeholder="Tìm theo tên báo cáo…"></div>
+          <div><div class="m-label" style="margin-bottom:6px">Trạng thái</div><select class="field live" id="fStatus">
+            <option value="">Tất cả trạng thái</option><option>Chờ duyệt</option><option>Đang duyệt</option><option>Hoàn tất</option><option>Từ chối</option>
+          </select></div>
+        </div>
+        <table class="tbl">
+          <thead><tr><th>#</th><th>Tên báo cáo</th><th>Tên đội</th><th>Tiến độ duyệt</th><th>Trạng thái</th><th style="text-align:right">Thao tác</th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table>
+        <div class="tbl-foot">
+          <div class="pager">
+            <button class="pgbtn" id="pgFirst">«</button><button class="pgbtn" id="pgPrev">‹</button>
+            <span class="pgcur" id="pgCur">1 / 1</span>
+            <button class="pgbtn" id="pgNext">›</button><button class="pgbtn" id="pgLast">»</button>
+          </div>
+          <div>Page size
+            <select class="field live" id="pageSize" style="display:inline-block;width:auto;padding:6px 30px 6px 10px;margin:0 6px"><option>5</option><option>10</option></select>
+            · <span id="countInfo"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="fig-cap">Prototype tương tác với dữ liệu giả lập — thử lọc và đi hết một luồng duyệt (NVBH 1 → NVBH 2 → Quản lý).</p>
+
+    <figure class="shotwrap">
+      <div class="shot">
+        <img src="sales-report-shots/01-list.png" alt="Màn danh sách báo cáo bán hàng trong Figma" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="shot-ph"><strong>Ảnh Figma sẽ hiển thị ở đây</strong><span>Export frame “Quản lý báo cáo bán hàng” từ Figma → lưu thành <code>sales-report-shots/01-list.png</code></span></div>
+      </div>
+      <figcaption class="fig-cap">Ảnh thật từ Figma — màn danh sách báo cáo (final UI).</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="alt" id="problem">
+  <div class="wrap">
+    <div class="kicker"><span class="n">04</span> Vấn đề phát sinh</div>
+    <h2>Điều gì xảy ra nếu một người duyệt… không đi làm?</h2>
+    <p class="body">Khi review flow, mình tự đặt câu hỏi: chuỗi tuần tự bắt buộc đủ cả 2 NVBH. Vậy nếu giữa quá trình duyệt, <strong>một trong hai NVBH bị bệnh, nghỉ phép hoặc nghỉ đột xuất</strong> thì sao?</p>
+    <div class="callout warn" style="margin:24px 0">
+      <span class="big">⛔</span>
+      <div>
+        <h3>Báo cáo bị treo vô thời hạn</h3>
+        <p>Người 1 đã duyệt xong nhưng không thể chuyển tiếp, vì hệ thống vẫn “chờ” chữ ký của người 2. Báo cáo kẹt ở giữa chuỗi — không lên được quản lý, không ai biết phải làm gì, và số liệu trễ hạn.</p>
+      </div>
+    </div>
+    <p class="body">Đây là kiểu lỗi không xuất hiện trên happy path nhưng chắc chắn xảy ra trong vận hành thực tế. Bỏ qua nó đồng nghĩa với việc đẩy rủi ro cho người dùng cuối.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker"><span class="n">05</span> Cân nhắc hướng đi</div>
+    <h2>Mình đã cân các phương án trước khi chọn</h2>
+    <div class="grid g3" style="margin-top:26px">
+      <div class="card">
+        <h3 style="color:var(--text-soft)">A. Bỏ tuần tự</h3>
+        <p style="margin:10px 0 14px">Cho cả 2 NVBH duyệt song song.</p>
+        <span class="pill b-danger">Loại</span>
+        <p style="margin-top:12px;font-size:13.5px">Mất tính kiểm tra chéo theo thứ tự mà client yêu cầu.</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--text-soft)">B. Admin can thiệp</h3>
+        <p style="margin:10px 0 14px">Báo treo → admin gỡ thủ công.</p>
+        <span class="pill b-danger">Loại</span>
+        <p style="margin-top:12px;font-size:13.5px">Phụ thuộc người ngoài luồng, chậm và không truy vết được.</p>
+      </div>
+      <div class="card" style="border-color:var(--positive);box-shadow:0 0 0 1px var(--positive)">
+        <h3 style="color:var(--positive-70)">C. Đánh dấu offline & duyệt giùm</h3>
+        <p style="margin:10px 0 14px">Người đang duyệt tự xử lý ngay tại chỗ.</p>
+        <span class="pill b-positive">✓ Đã chọn</span>
+        <p style="margin-top:12px;font-size:13.5px">Giữ nguyên chuỗi, không cần người ngoài, vẫn lưu lý do đầy đủ.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="solution">
+  <div class="wrap">
+    <div class="kicker"><span class="n">06</span> Giải pháp</div>
+    <h2>Một checkbox nhỏ giải quyết một bottleneck lớn</h2>
+    <div class="two-col">
+      <div>
+        <p class="body">Mình thêm một lựa chọn ngay trên hàng của người duyệt đang bị vắng:</p>
+        <div class="callout good" style="margin:18px 0">
+          <span class="big">☑</span>
+          <div>
+            <h3>“Nhân viên này không trực tuyến (nghỉ phép, nghỉ ốm…)”</h3>
+            <p>Khi một NVBH ở trạng thái <strong>Vắng mặt / offline</strong>, người còn lại tick vào ô này, nhập lý do, rồi <strong>duyệt giùm và gửi thẳng lên quản lý</strong>.</p>
+          </div>
+        </div>
+        <p class="body">Hệ thống đưa ra hướng dẫn ngay tại chỗ — không cần đào tài liệu: <em>“Nếu User ‘NVKD Trần Thị C’ không khả dụng, tick chọn ‘Bỏ qua’ tại trạng thái của người đó và nhập lý do.”</em></p>
+        <p class="body">Quan trọng: mọi lượt duyệt giùm đều được <strong>ghi lại lý do và đánh dấu rõ là “vắng mặt”</strong>, nên không làm mất tính minh bạch — quản lý cuối vẫn thấy đầy đủ bối cảnh trước khi duyệt.</p>
+      </div>
+      <figure>
+        <div class="mock">
+          <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span class="ttl">Thông tin báo cáo — duyệt giùm</span></div>
+          <div class="mock-body">
+            <div class="ck"><span class="box on"></span><strong>Tôi xác nhận đã kiểm tra và duyệt báo cáo này</strong></div>
+            <div class="m-label" style="margin:8px 0 6px">Ghi chú</div>
+            <div class="field" style="margin-bottom:14px">Oke</div>
+            <div class="note-banner good">✓ &nbsp;<span><strong>Bạn đã duyệt thành công.</strong> Nếu User “NVKD Trần Thị C” không khả dụng, tick chọn “Bỏ qua” và nhập lý do.</span></div>
+            <div class="appr">
+              <div class="av">B</div>
+              <div><div class="who">NVKD Trần Thị B — NVBH 1 <span style="color:var(--brand)">(Bạn)</span></div>
+                <div class="st">Trạng thái: <span style="color:var(--careful)">Chờ duyệt</span> · Ghi chú: Oke</div></div>
+              <div class="time">17:09 · 5/1</div>
+            </div>
+            <div class="appr" style="background:#fafbfc;border-radius:10px;padding:14px 12px">
+              <div class="av">C</div>
+              <div style="flex:1">
+                <div class="who">NVKD Trần Thị C — NVBH 2 <span class="pill b-off" style="margin-left:4px">Vắng mặt</span></div>
+                <div class="ck" style="padding:10px 0 8px"><span class="box on" style="width:20px;height:20px"></span><span style="font-size:13px;color:#344054">Nhân viên này không trực tuyến (nghỉ phép, nghỉ ốm..)</span></div>
+                <div class="field" style="font-size:12.5px">Xác nhận giùm vì user nghỉ phép</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px">
+              <span class="btn btn-ghost">Hoàn tất và quay lại</span>
+              <span class="btn btn-primary">Chuyển lên quản lý</span>
+            </div>
+          </div>
+        </div>
+        <p class="fig-cap">Khi NVBH 2 vắng mặt: tick offline → nhập lý do → chuyển thẳng lên quản lý.</p>
+      </figure>
+    </div>
+
+    <figure class="shotwrap">
+      <div class="shot">
+        <img src="sales-report-shots/02-nvbh1-offline.png" alt="NVBH 1 xem, duyệt và xử lý khi NVBH 2 offline trong Figma" loading="lazy">
+      </div>
+      <figcaption class="fig-cap">Ảnh thật từ Figma — bước NVBH 1: duyệt, và khi NVBH 2 vắng mặt thì tick “không trực tuyến”, nhập lý do, chuyển thẳng lên quản lý.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker"><span class="n">07</span> Toàn bộ flow</div>
+    <h2>Hai nhánh, một đích đến</h2>
+    <p class="body">Flow được thiết kế để <strong>luôn về đích</strong> dù người duyệt có mặt hay không. Dưới đây là bốn bước của nhánh thường, và nhánh rẽ khi có người vắng.</p>
+
+    <h3 style="margin:30px 0 16px;font-size:19px">Nhánh thường (đủ người)</h3>
+    <div class="flow">
+      <div class="step"><div class="num">1</div><h4>NVBH 1 duyệt</h4><p>Tick xác nhận, ghi chú, duyệt. Trạng thái → <em>Đã duyệt</em>.</p></div>
+      <div class="step"><div class="num">2</div><h4>NVBH 2 duyệt</h4><p>Đến lượt người 2 kiểm tra chéo và duyệt.</p></div>
+      <div class="step"><div class="num">3</div><h4>Chuyển lên quản lý</h4><p>Đủ 2/2 → gửi lên cấp quản lý cuối.</p></div>
+      <div class="step"><div class="num">4</div><h4>Quản lý duyệt</h4><p>Duyệt → <strong>hoàn tất</strong>, hoặc từ chối kèm lý do.</p></div>
+    </div>
+
+    <h3 style="margin:36px 0 16px;font-size:19px">Nhánh rẽ (một NVBH vắng)</h3>
+    <div class="flow" style="grid-template-columns:repeat(3,1fr)">
+      <div class="step" style="border-color:#fedf89;background:var(--careful-10)"><div class="num" style="background:var(--careful)">!</div><h4>Phát hiện vắng mặt</h4><p>NVBH 2 ở trạng thái offline / vắng mặt.</p></div>
+      <div class="step" style="border-color:var(--positive);background:#f6fdfb"><div class="num" style="background:var(--positive)">✓</div><h4>Duyệt giùm có lý do</h4><p>NVBH 1 tick offline, nhập lý do, duyệt thay.</p></div>
+      <div class="step"><div class="num">→</div><h4>Lên thẳng quản lý</h4><p>Bỏ qua bước chờ, gửi lên quản lý duyệt như thường.</p></div>
+    </div>
+
+    <div class="two-col" style="margin-top:48px">
+      <figure>
+        <div class="mock">
+          <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span class="ttl">Chi tiết tiến trình duyệt</span></div>
+          <div class="mock-body">
+            <div class="mh"><h4>Chi tiết tiến trình duyệt</h4><span style="color:#98a2b3">✕</span></div>
+            <div class="appr" style="border-top:none"><div class="av" style="background:var(--positive-10);color:var(--positive-70)">✓</div>
+              <div><div class="who">NVKD Trần Thị B — NVBH 1</div><div class="st">Trạng thái: <span style="color:var(--positive-70)">Đã duyệt</span> · Ghi chú: Oke</div></div><div class="time">17:09 · 5/1</div></div>
+            <div class="appr"><div class="av" style="background:var(--positive-10);color:var(--positive-70)">✓</div>
+              <div><div class="who">NVKD Trần Thị C — NVBH 2</div><div class="st">Trạng thái: <span style="color:var(--positive-70)">Đã duyệt</span> · Ghi chú: Xác nhận, đồng ý</div></div><div class="time">17:36 · 5/1</div></div>
+            <div class="appr"><div class="av">D</div>
+              <div><div class="who">QL Phạm Minh D — Quản lý <span style="color:var(--brand)">(Bạn)</span></div><div class="st">Trạng thái: <span style="color:var(--careful)">Chờ duyệt</span></div></div><div class="time">Chưa duyệt</div></div>
+            <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px">
+              <span class="btn btn-ghost">Hủy bỏ</span><span class="btn btn-primary">Xác nhận</span>
+            </div>
+          </div>
+        </div>
+        <p class="fig-cap">Tiến trình duyệt dạng timeline — ai, lúc nào, ghi chú gì.</p>
+      </figure>
+      <figure>
+        <div class="mock">
+          <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span class="ttl">Cấp quản lý — duyệt / từ chối</span></div>
+          <div class="mock-body">
+            <div class="ck"><span class="box"></span><strong>Tôi xác nhận đã kiểm tra và duyệt báo cáo này</strong></div>
+            <div class="m-label" style="margin:8px 0 6px">Ghi chú</div>
+            <div class="field" style="margin-bottom:14px;color:var(--text-mute)">Nhập nội dung ghi chú…</div>
+            <div style="display:flex;gap:10px;justify-content:flex-end;margin-bottom:8px">
+              <span class="btn btn-danger">Từ chối</span><span class="btn btn-muted">Duyệt báo cáo</span>
+            </div>
+            <div class="appr"><div class="av" style="background:var(--positive-10);color:var(--positive-70)">✓</div><div><div class="who">NVKD Trần Thị B — NVBH 1</div><div class="st">Đã duyệt · Oke</div></div></div>
+            <div class="appr"><div class="av" style="background:var(--positive-10);color:var(--positive-70)">✓</div><div><div class="who">NVKD Trần Thị C — NVBH 2</div><div class="st">Đã duyệt · Xác nhận, đồng ý</div></div></div>
+            <div class="appr"><div class="av">D</div><div><div class="who">QL Phạm Minh D — Quản lý <span style="color:var(--brand)">(Bạn)</span></div><div class="st">Trạng thái: <span style="color:var(--careful)">Chờ duyệt</span></div></div></div>
+          </div>
+        </div>
+        <p class="fig-cap">Màn quản lý: nút Duyệt chỉ bật khi đã tick xác nhận.</p>
+      </figure>
+    </div>
+
+    <figure class="shotwrap">
+      <div class="shot"><img src="sales-report-shots/03-overview.png" alt="Toàn cảnh các màn trong flow duyệt báo cáo" loading="lazy"></div>
+      <figcaption class="fig-cap">Ảnh thật từ Figma — toàn cảnh các màn trong flow.</figcaption>
+    </figure>
+    <figure class="shotwrap">
+      <div class="shot"><img src="sales-report-shots/04-nvbh2-escalate.png" alt="NVBH 2 duyệt và chuyển cấp lên quản lý" loading="lazy"></div>
+      <figcaption class="fig-cap">Bước NVBH 2: duyệt rồi xác nhận chuyển cấp lên quản lý.</figcaption>
+    </figure>
+    <figure class="shotwrap">
+      <div class="shot"><img src="sales-report-shots/05-manager.png" alt="Cấp quản lý xem, duyệt hoặc từ chối" loading="lazy"></div>
+      <figcaption class="fig-cap">Bước Quản lý: xem, duyệt (hoàn tất) hoặc từ chối kèm lý do.</figcaption>
+    </figure>
+    <figure class="shotwrap">
+      <div class="shot"><img src="sales-report-shots/06-progress.png" alt="Modal chi tiết tiến trình duyệt" loading="lazy"></div>
+      <figcaption class="fig-cap">Modal “Chi tiết tiến trình duyệt” — timeline ai duyệt, lúc nào, ghi chú gì.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="kicker"><span class="n">08</span> Hệ thống trạng thái</div>
+    <h2>Năm trạng thái, mỗi cái một màu rõ nghĩa</h2>
+    <p class="body">Để người dùng đọc tình huống chỉ trong một liếc mắt, mình ánh xạ mỗi trạng thái sang một màu semantic của design system.</p>
+    <div class="legend" style="margin-top:24px">
+      <div class="row"><span class="pill b-careful">● Chờ duyệt</span><p>Chưa tới lượt hoặc chưa ai xử lý.</p></div>
+      <div class="row"><span class="pill b-useful">● Đang duyệt</span><p>Đã có người duyệt, đang đi trong chuỗi.</p></div>
+      <div class="row"><span class="pill b-positive">● Đã duyệt</span><p>Mắt xích này đã đồng ý.</p></div>
+      <div class="row"><span class="pill b-off">● Vắng mặt</span><p>Offline — được duyệt giùm kèm lý do.</p></div>
+      <div class="row"><span class="pill b-danger">● Từ chối</span><p>Quản lý trả lại, kèm lý do cụ thể.</p></div>
+      <div class="row"><span class="pill b-positive">● Hoàn tất</span><p>Đủ cả 3 cấp — báo cáo chốt.</p></div>
+    </div>
+    <div class="callout bad" style="margin-top:26px">
+      <span class="big">✕</span>
+      <div><h3 style="color:var(--danger)">Trạng thái “Từ chối” có lối thoát</h3>
+      <p>Khi quản lý từ chối, lý do được lưu công khai (vd: “Từ chối do bị sai số lượng sản phẩm”) để NVBH biết chính xác cần sửa gì — thay vì chỉ thấy báo cáo bị trả về.</p></div>
+    </div>
+
+    <div class="shot-grid">
+      <figure class="shotwrap">
+        <div class="shot"><img src="sales-report-shots/08-home-approved.png" alt="Danh sách với báo cáo trạng thái Hoàn thành" loading="lazy"></div>
+        <figcaption class="fig-cap">Trạng thái “Hoàn thành” hiển thị trên danh sách (final UI).</figcaption>
+      </figure>
+      <figure class="shotwrap">
+        <div class="shot"><img src="sales-report-shots/09-home-rejected.png" alt="Danh sách với báo cáo trạng thái Từ chối" loading="lazy"></div>
+        <figcaption class="fig-cap">Trạng thái “Từ chối” hiển thị trên danh sách (final UI).</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="outcome">
+  <div class="wrap">
+    <div class="kicker"><span class="n">09</span> Kết quả & nguyên tắc</div>
+    <h2>Thiết kế cho cả ngày đẹp trời lẫn ngày có người nghỉ ốm</h2>
+    <div class="grid g3" style="margin:8px 0 36px">
+      <div class="metric card"><div class="num">0</div><p>báo cáo bị treo vì người duyệt vắng mặt</p></div>
+      <div class="metric card"><div class="num">3→2</div><p>số chữ ký tối thiểu khi có người offline, vẫn đủ truy vết</p></div>
+      <div class="metric card"><div class="num">100%</div><p>lượt duyệt giùm đều lưu lý do & đánh dấu rõ</p></div>
+    </div>
+    <div class="grid g2">
+      <div class="card"><h3>① Edge case là một phần của thiết kế</h3><p style="margin-top:8px">Bottleneck “người vắng” không nằm trong brief, nhưng là thứ chắc chắn xảy ra. Chủ động đề xuất giải pháp giúp sản phẩm bền hơn khi ra vận hành.</p></div>
+      <div class="card"><h3>② Linh hoạt mà không mất kiểm soát</h3><p style="margin-top:8px">Cho phép bỏ qua một bước, nhưng buộc ghi lý do và đánh dấu rõ. Tốc độ không phải đánh đổi bằng minh bạch.</p></div>
+      <div class="card"><h3>③ Hướng dẫn ngay tại chỗ</h3><p style="margin-top:8px">Banner gợi ý xuất hiện đúng lúc người dùng cần, thay vì giấu trong tài liệu — giảm phụ thuộc đào tạo.</p></div>
+      <div class="card"><h3>④ Bám design system</h3><p style="margin-top:8px">Màu semantic, spacing và component đều lấy từ token có sẵn, nên flow mới khớp liền với phần còn lại của sản phẩm.</p></div>
+    </div>
+    <div style="margin-top:36px">
+      <div class="m-label" style="margin-bottom:10px">Đóng góp của mình</div>
+      <div class="tag-list">
+        <span class="tag">Phân tích flow & edge case</span>
+        <span class="tag">Đề xuất giải pháp offline</span>
+        <span class="tag">Thiết kế UI các màn hình</span>
+        <span class="tag">Hệ thống trạng thái</span>
+        <span class="tag">Microcopy & hướng dẫn</span>
+        <span class="tag">Áp design system / tokens</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Case study — Flow duyệt báo cáo bán hàng</strong></p>
+    <p style="margin-top:8px">Thiết kế bởi Thickness · Product / UX Designer · Figma Design System</p>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="overlay"><div class="modal" id="modal"></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var STATUS={cho:{t:'Chờ duyệt',c:'b-careful'},duyet:{t:'Đã duyệt',c:'b-positive'},vang:{t:'Vắng mặt',c:'b-off'},tuchoi:{t:'Từ chối',c:'b-danger'}};
+  function stamp(){var d=new Date();function p(n){return String(n).padStart(2,'0');}return p(d.getHours())+':'+p(d.getMinutes())+' '+p(d.getDate())+'/'+p(d.getMonth()+1);}
+  function R(date,team,n1,no1,n2,no2,m,nom){return{name:'BCBH ngày '+date,team:team,date:date,
+    nv1:{name:'Trần Thị B',role:'NVBH 1',status:n1,note:no1||'',time:n1!=='cho'?'17:09 5/1':''},
+    nv2:{name:'Trần Thị C',role:'NVBH 2',status:n2,note:no2||'',offline:n2==='vang',time:n2!=='cho'?'17:36 5/1':''},
+    mgr:{name:'Phạm Minh D',role:'Quản lý',status:m,note:nom||'',time:m!=='cho'?'09:22 6/1':''}};}
+  function SEED(){return[
+    R('04/01/2026','Đội SG 01','duyet','Oke','duyet','Xác nhận, đồng ý','cho'),
+    R('03/01/2026','Đội SG 02','duyet','Số liệu ổn','cho','','cho'),
+    R('02/01/2026','Đội SG 03','cho','','cho','','cho'),
+    R('01/01/2026','Đội SG 04','duyet','Đã rà soát','cho','','cho'),
+    R('31/12/2025','Đội SG 01','duyet','Oke','duyet','Đồng ý','duyet','Duyệt và hoàn tất'),
+    R('30/12/2025','Đội SG 02','duyet','Oke','duyet','Ok','tuchoi','Từ chối do bị sai số lượng sản phẩm'),
+    R('29/12/2025','Đội SG 05','duyet','Oke','vang','Xác nhận giùm vì user nghỉ phép','cho'),
+    R('28/12/2025','Đội SG 03','cho','','cho','','cho'),
+    R('27/12/2025','Đội SG 04','duyet','Đã kiểm tra','duyet','Đồng ý','cho'),
+    R('26/12/2025','Đội SG 05','duyet','Oke','cho','','cho'),
+    R('25/12/2025','Đội SG 01','cho','','cho','','cho')
+  ];}
+  var data=SEED();
+  function isDone(s){return s==='duyet'||s==='vang';}
+  function overall(r){
+    if(r.mgr.status==='tuchoi')return{t:'Từ chối',c:'b-danger'};
+    if(r.mgr.status==='duyet')return{t:'Hoàn tất',c:'b-positive'};
+    var p=(isDone(r.nv1.status)?1:0)+(isDone(r.nv2.status)?1:0);
+    return p===0?{t:'Chờ duyệt',c:'b-careful'}:{t:'Đang duyệt',c:'b-useful'};
+  }
+  function progress(r){return ((isDone(r.nv1.status)?1:0)+(isDone(r.nv2.status)?1:0))+'/2';}
+  function nextActor(r){
+    if(r.nv1.status==='cho')return'nv1';
+    if(r.nv2.status==='cho')return'nv2';
+    if(r.mgr.status==='cho')return'mgr';
+    return null;
+  }
+  function $(id){return document.getElementById(id);}
+  var tbody=$('tbody'),fTeam=$('fTeam'),fName=$('fName'),fStatus=$('fStatus'),pageSizeSel=$('pageSize');
+  var page=1;
+  var teamSet={},teams=[];
+  SEED().forEach(function(r){if(!teamSet[r.team]){teamSet[r.team]=1;teams.push(r.team);}});
+  teams.sort();
+  fTeam.innerHTML='<option value="">Tất cả đội</option>'+teams.map(function(t){return'<option>'+t+'</option>';}).join('');
+  function filtered(){
+    return data.filter(function(r){
+      if(fTeam.value&&r.team!==fTeam.value)return false;
+      if(fName.value&&r.name.toLowerCase().indexOf(fName.value.toLowerCase())<0)return false;
+      if(fStatus.value&&overall(r).t!==fStatus.value)return false;
+      return true;
+    });
+  }
+  function render(){
+    var rows=filtered();var ps=+pageSizeSel.value;var pages=Math.max(1,Math.ceil(rows.length/ps));
+    if(page>pages)page=pages;
+    var slice=rows.slice((page-1)*ps,(page-1)*ps+ps);
+    tbody.innerHTML = slice.length? slice.map(function(r){
+      var idx=data.indexOf(r);var ov=overall(r);var dz=nextActor(r)===null;
+      return '<tr>'+
+        '<td>'+(idx+1)+'</td>'+
+        '<td class="rep live" data-view="'+idx+'">'+r.name+'</td>'+
+        '<td>'+r.team+'</td>'+
+        '<td>'+progress(r)+'</td>'+
+        '<td><span class="pill '+ov.c+'">● '+ov.t+'</span></td>'+
+        '<td><div class="acts">'+
+          '<button class="btn btn-ghost live" data-view="'+idx+'">👁 Xem</button>'+
+          '<button class="btn '+(dz?'btn-muted':'btn-approve')+' live" data-act="'+idx+'" '+(dz?'disabled style="cursor:not-allowed"':'')+'>✓ Duyệt</button>'+
+        '</div></td></tr>';
+    }).join('') : '<tr><td colspan="6" class="empty">Không có báo cáo phù hợp bộ lọc.</td></tr>';
+    $('pgCur').textContent=page+' / '+pages;
+    $('countInfo').textContent='Hiển thị '+slice.length+' / '+rows.length+' báo cáo';
+    $('pgFirst').disabled=$('pgPrev').disabled=page<=1;
+    $('pgLast').disabled=$('pgNext').disabled=page>=pages;
+  }
+  var tT;function toast(msg){var el=$('toast');el.textContent='✓ '+msg;el.classList.add('show');clearTimeout(tT);tT=setTimeout(function(){el.classList.remove('show');},2600);}
+  var overlay=$('overlay'),modal=$('modal');
+  function closeModal(){overlay.classList.remove('show');modal.innerHTML='';}
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeModal();});
+  function personRow(p,you){
+    var s=STATUS[p.status];
+    var avBg=isDone(p.status)?'background:var(--positive-10);color:var(--positive-70)':(p.status==='tuchoi'?'background:var(--danger-10);color:var(--danger)':'');
+    var avTxt=(p.status==='duyet'||p.status==='vang')?'✓':(p.status==='tuchoi'?'✕':p.name.slice(-1));
+    return '<div class="appr">'+
+      '<div class="av" style="'+avBg+'">'+avTxt+'</div>'+
+      '<div style="flex:1"><div class="who">'+p.name+' — '+p.role+(you?' <span style="color:var(--brand)">(Bạn)</span>':'')+'</div>'+
+      '<div class="st">Trạng thái: <span class="pill '+s.c+'" style="padding:2px 8px">'+s.t+'</span>'+(p.note?' · Ghi chú: '+p.note:'')+'</div></div>'+
+      '<div class="time">'+(p.time||'Chưa duyệt')+'</div></div>';
+  }
+  function viewModal(idx){
+    var r=data[idx];
+    modal.innerHTML='<div class="modal-head"><h4>Chi tiết tiến trình duyệt</h4><button class="modal-x" id="mx">✕</button></div>'+
+    '<div class="modal-body">'+
+      '<div class="m-card"><div class="m-label">Tên báo cáo</div><div style="font-weight:600;color:#1d2433;margin-top:2px">'+r.name+'</div>'+
+        '<div class="m-label" style="margin-top:8px">Đội: '+r.team+' · Tiến độ: '+progress(r)+'</div></div>'+
+      personRow(r.nv1)+personRow(r.nv2)+personRow(r.mgr)+
+    '</div>'+
+    '<div class="modal-foot"><button class="btn btn-ghost live" id="mc">Đóng</button></div>';
+    overlay.classList.add('show');
+    $('mx').onclick=$('mc').onclick=closeModal;
+  }
+  function actModal(idx){
+    var actor=nextActor(data[idx]);
+    if(actor==='mgr')return mgrPanel(idx);
+    return nvbhPanel(idx,actor);
+  }
+  function applyOffline(r,otherKey){
+    var off=document.getElementById('off');
+    if(off&&off.checked){var reason=(document.getElementById('offReason').value||'').trim()||'Duyệt giùm do nhân viên vắng mặt';
+      r[otherKey].status='vang';r[otherKey].note=reason;r[otherKey].offline=true;r[otherKey].time=stamp();}
+  }
+  function nvbhPanel(idx,actor){
+    var r=data[idx];var me=r[actor];var otherKey=actor==='nv1'?'nv2':'nv1';var other=r[otherKey];
+    var otherPending=other.status==='cho';
+    modal.innerHTML='<div class="modal-head"><h4>Thông tin báo cáo</h4><button class="modal-x" id="mx">✕</button></div>'+
+    '<div class="modal-body">'+
+      '<div class="m-card"><div class="m-label">Tên báo cáo</div><div style="font-weight:600;color:#1d2433">'+r.name+'</div>'+
+        '<div class="m-label" style="margin-top:6px">Ngày tạo: '+r.date+' · Đội: '+r.team+'</div></div>'+
+      '<div style="margin:6px 0 14px"><span class="role-tag">👤 Bạn đang thao tác với vai trò: '+me.role+'</span></div>'+
+      '<label class="ck" style="cursor:pointer"><input type="checkbox" id="cfm"> <strong>Tôi xác nhận đã kiểm tra và duyệt báo cáo này</strong></label>'+
+      '<div class="m-label" style="margin:8px 0 6px">Ghi chú</div>'+
+      '<textarea class="field" id="note" placeholder="Nhập nội dung ghi chú…"></textarea>'+
+      '<div style="margin-top:16px">'+
+        personRow(me,true)+
+        '<div style="border-top:1px solid var(--line-soft);padding-top:6px">'+
+          personRow(other)+
+          (otherPending?'<div class="offline-box">'+
+             '<label class="ck" style="padding:0;cursor:pointer"><input type="checkbox" id="off"> <span style="font-size:13px;color:#344054">Nhân viên này không trực tuyến (nghỉ phép, nghỉ ốm..)</span></label>'+
+             '<textarea class="field" id="offReason" style="margin-top:10px;display:none" placeholder="Nhập lý do duyệt giùm…"></textarea>'+
+           '</div>':'')+
+        '</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="modal-foot">'+
+      '<button class="btn btn-ghost live" id="saveBtn">Hoàn tất và quay lại</button>'+
+      '<button class="btn btn-primary live" id="sendBtn">Chuyển lên quản lý</button>'+
+    '</div>';
+    overlay.classList.add('show');
+    $('mx').onclick=closeModal;
+    var off=$('off');if(off){off.onchange=function(){$('offReason').style.display=off.checked?'block':'none';};}
+    $('saveBtn').onclick=function(){
+      if(!$('cfm').checked){toast('Hãy tick xác nhận trước khi lưu');return;}
+      me.status='duyet';me.note=($('note').value||'').trim()||'Đã duyệt';me.time=stamp();
+      applyOffline(r,otherKey);
+      closeModal();render();toast('Đã lưu phê duyệt của '+me.role);
+    };
+    $('sendBtn').onclick=function(){
+      if(!$('cfm').checked){toast('Hãy tick xác nhận trước khi duyệt');return;}
+      me.status='duyet';me.note=($('note').value||'').trim()||'Đã duyệt';me.time=stamp();
+      applyOffline(r,otherKey);
+      if(other.status==='cho'){render();toast('Người '+other.role+' chưa duyệt — tick “offline” nếu họ vắng mặt');return;}
+      closeModal();render();toast('Đã chuyển báo cáo lên cấp quản lý');
+    };
+  }
+  function mgrPanel(idx){
+    var r=data[idx];
+    modal.innerHTML='<div class="modal-head"><h4>Thông tin báo cáo — cấp quản lý</h4><button class="modal-x" id="mx">✕</button></div>'+
+    '<div class="modal-body">'+
+      '<div class="m-card"><div class="m-label">Tên báo cáo</div><div style="font-weight:600;color:#1d2433">'+r.name+'</div>'+
+        '<div class="m-label" style="margin-top:6px">Ngày tạo: '+r.date+' · Đội: '+r.team+' · Tiến độ: '+progress(r)+'</div></div>'+
+      '<div style="margin:6px 0 14px"><span class="role-tag">👤 Bạn đang thao tác với vai trò: Quản lý</span></div>'+
+      '<label class="ck" style="cursor:pointer"><input type="checkbox" id="cfm"> <strong>Tôi xác nhận đã kiểm tra và duyệt báo cáo này</strong></label>'+
+      '<div class="m-label" style="margin:8px 0 6px">Ghi chú</div>'+
+      '<textarea class="field" id="note" placeholder="Nhập nội dung ghi chú… (bắt buộc khi từ chối)"></textarea>'+
+      '<div style="margin-top:16px">'+personRow(r.nv1)+personRow(r.nv2)+'</div>'+
+    '</div>'+
+    '<div class="modal-foot">'+
+      '<button class="btn btn-danger live" id="rejBtn">Từ chối</button>'+
+      '<button class="btn btn-primary live" id="appBtn">Duyệt báo cáo</button>'+
+    '</div>';
+    overlay.classList.add('show');
+    $('mx').onclick=closeModal;
+    $('appBtn').onclick=function(){
+      if(!$('cfm').checked){toast('Hãy tick xác nhận trước khi duyệt');return;}
+      r.mgr.status='duyet';r.mgr.note=($('note').value||'').trim()||'Duyệt và hoàn tất';r.mgr.time=stamp();
+      closeModal();render();toast('Báo cáo đã được duyệt — Hoàn tất 🎉');
+    };
+    $('rejBtn').onclick=function(){
+      var n=($('note').value||'').trim();if(!n){toast('Nhập lý do từ chối trước khi từ chối');return;}
+      r.mgr.status='tuchoi';r.mgr.note=n;r.mgr.time=stamp();
+      closeModal();render();toast('Đã từ chối báo cáo');
+    };
+  }
+  tbody.addEventListener('click',function(e){
+    var a=e.target.closest('[data-act]');var v=e.target.closest('[data-view]');
+    if(a&&!a.disabled){actModal(+a.getAttribute('data-act'));return;}
+    if(v){viewModal(+v.getAttribute('data-view'));}
+  });
+  [fTeam,fStatus,pageSizeSel].forEach(function(el){el.addEventListener('change',function(){page=1;render();});});
+  fName.addEventListener('input',function(){page=1;render();});
+  $('applyBtn').onclick=function(){page=1;render();toast('Đã áp dụng bộ lọc');};
+  $('pgFirst').onclick=function(){page=1;render();};
+  $('pgPrev').onclick=function(){page--;render();};
+  $('pgNext').onclick=function(){page++;render();};
+  $('pgLast').onclick=function(){var ps=+pageSizeSel.value;page=Math.max(1,Math.ceil(filtered().length/ps));render();};
+  $('resetData').onclick=function(){data=SEED();page=1;render();toast('Đã reset dữ liệu giả lập');};
+  render();
+})();
+</script>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tabitem'));
+  if(!tabs.length)return;
+  var secs=tabs.map(function(t){return document.getElementById(t.getAttribute('data-spy'));});
+  function onScroll(){
+    var y=window.pageYOffset+140,idx=0;
+    for(var i=0;i<secs.length;i++){if(secs[i]&&secs[i].offsetTop<=y)idx=i;}
+    tabs.forEach(function(t,i){t.classList.toggle('is-active',i===idx);});
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+/**
+ * Textarea — untitleduico/react → components/base/textarea/textarea.tsx
+ */
+
+@import url("../_shared/field.css");
+
+.uu-textarea .uu-control {
+  align-items: stretch;
+}
+
+.uu-textarea .uu-control__input {
+  resize: vertical;
+  min-height: 5rem;
+  padding: var(--spacing-lg);
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+}
+
+.uu-textarea[data-uu-size="md"] .uu-control__input {
+  padding: var(--spacing-lg) 14px;
+  font-size: var(--font-size-text-md);
+  line-height: var(--line-height-text-md);
+}

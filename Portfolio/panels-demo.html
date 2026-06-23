@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi" class="light-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo · Panel bo góc trên nền đen (Framer-style)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="library/foundations/thickness.css" />
+  <link rel="stylesheet" href="library/foundations/base.css" />
+  <style>
+    /* ===== Demo tokens — bám DS, chỉ panel-radius nới rộng cho hợp visual Framer ===== */
+    :root {
+      --frame-bg: var(--gray-950);          /* nền đen bao ngoài (#0a0d12) */
+      --frame-gap: var(--spacing-md);         /* 8px — margin viền + khe giữa section */
+      --panel-radius: 20px; /* radius section */
+      --panel-pad: clamp(var(--spacing-4xl), 6vw, var(--spacing-9xl));
+    }
+
+    body {
+      margin: 0;
+      background: var(--frame-bg);
+      color: var(--text-primary);
+      font-family: var(--font-family, Inter, system-ui, sans-serif);
+      padding: var(--frame-gap);             /* đen lộ quanh viền */
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .demo-tag {
+      margin: var(--spacing-2xl) 0 var(--spacing-lg);
+      padding-inline: var(--spacing-md);
+      color: var(--gray-400, #94a3b8);
+      font-size: var(--font-size-text-sm);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ============ CÁCH A — Framed panels (xếp dọc, khe đen) ============ */
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: var(--frame-gap);
+      width: 100%;            /* tràn rộng — chỉ chừa 8px viền của body */
+    }
+
+    .panel {
+      border-radius: var(--panel-radius);
+      padding: var(--panel-pad);
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
+    /* mỗi panel một nền khác nhau để thấy rõ ranh giới section */
+    .panel--light  { background: #ffffff; color: var(--gray-900, #101828); }
+    .panel--tint   { background: var(--brand-50, #eef4ff); color: var(--gray-900, #101828); }
+    .panel--dark   { background: var(--gray-900, #101828); color: #fff; }
+
+    .panel__eyebrow {
+      margin: 0 0 var(--spacing-lg);
+      font-size: var(--font-size-text-sm);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+    .panel__title {
+      margin: 0;
+      font-size: clamp(var(--font-size-display-sm), 5vw, var(--font-size-display-md));
+      line-height: 1.1;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+    .panel__body {
+      margin: var(--spacing-xl) 0 0;
+      max-width: 38rem;
+      font-size: var(--font-size-text-lg);
+      line-height: var(--line-height-text-lg);
+      opacity: 0.85;
+    }
+
+    .cards {
+      margin-top: var(--spacing-4xl);
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      gap: var(--spacing-xl);
+    }
+    .card {
+      padding: var(--spacing-3xl);
+      border-radius: var(--radius-2xl);
+      background: color-mix(in srgb, currentColor 6%, transparent);
+    }
+    .card h3 { margin: 0 0 var(--spacing-sm); font-size: var(--font-size-text-xl); }
+    .card p  { margin: 0; opacity: 0.75; font-size: var(--font-size-text-md); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      margin-top: var(--spacing-3xl);
+      padding: var(--spacing-lg) var(--spacing-2xl);
+      border-radius: var(--radius-full);
+      background: var(--brand-600, #444ce7);
+      color: #fff;
+      font-weight: 600;
+      font-size: var(--font-size-text-md);
+      text-decoration: none;
+    }
+
+    /* ============ CÁCH B — Sticky stack (cuộn đè chồng) ============ */
+    .sticky-stack { width: 100%; margin: var(--frame-gap) 0 0; }
+    .sticky-stack .panel {
+      position: sticky;
+      top: var(--frame-gap);
+      /* chỉ bo góc trên để panel sau trượt phủ panel trước */
+      border-radius: var(--panel-radius) var(--panel-radius) 0 0;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-bottom: var(--frame-gap);
+      box-shadow: 0 -16px 40px rgba(0 0 0 / 0.25);
+    }
+    /* khoảng trống cuối để panel cuối cũng cuộn lên được */
+    .sticky-spacer { height: 40vh; }
+  </style>
+</head>
+<body>
+
+  <!-- ============ CÁCH A ============ -->
+  <p class="demo-tag">Cách A · Framed panels — 3 khối bo góc, khe đen 8px</p>
+  <div class="stack">
+
+    <section class="panel panel--light">
+      <p class="panel__eyebrow">Portfolio</p>
+      <h1 class="panel__title">Hello, I'm Thong.<br />Senior UI/UX &amp; Design Systems.</h1>
+      <p class="panel__body">Nền đen của body lộ ra quanh viền và giữa các panel. Mỗi panel là một khối bo góc có nền riêng — mắt nhìn vào là tách bạch từng section.</p>
+      <a class="btn" href="#">Download resume</a>
+    </section>
+
+    <section class="panel panel--tint">
+      <p class="panel__eyebrow">Work</p>
+      <h2 class="panel__title">Feature projects</h2>
+      <div class="cards">
+        <div class="card"><h3>AVN-TT</h3><p>Enterprise platform — DMS / SaaS, complex workflows.</p></div>
+        <div class="card"><h3>Fastbuy</h3><p>Mobile app + ERP, unified design system.</p></div>
+        <div class="card"><h3>Saudistay</h3><p>Hotel booking, RTL &amp; localization.</p></div>
+      </div>
+    </section>
+
+    <section class="panel panel--dark">
+      <p class="panel__eyebrow">Contact</p>
+      <h2 class="panel__title">Let's build something meaningful together.</h2>
+      <p class="panel__body">Panel nền tối đặt cuối — chứng minh bạn đổi nền tùy ý mà khung đen vẫn giữ nhịp.</p>
+      <a class="btn" href="#">Book a short call</a>
+    </section>
+
+  </div>
+
+  <!-- ============ CÁCH B ============ -->
+  <p class="demo-tag">Cách B · Sticky stack — cuộn xuống để panel sau trượt đè (bo góc trên)</p>
+  <div class="sticky-stack">
+    <section class="panel panel--light">
+      <p class="panel__eyebrow">01</p>
+      <h2 class="panel__title">Panel 1 dính đỉnh</h2>
+      <p class="panel__body">Cuộn tiếp để thấy panel kế tiếp với góc bo trên trượt phủ lên panel này.</p>
+    </section>
+    <section class="panel panel--tint">
+      <p class="panel__eyebrow">02</p>
+      <h2 class="panel__title">Panel 2 trượt đè</h2>
+      <p class="panel__body">Hiệu ứng "chồng thẻ" rất hay gặp trên các site Framer.</p>
+    </section>
+    <section class="panel panel--dark">
+      <p class="panel__eyebrow">03</p>
+      <h2 class="panel__title">Panel 3 chốt cuối</h2>
+      <p class="panel__body">Mỗi panel position: sticky; top: 8px; bo góc trên + đổ bóng trên để tạo chiều sâu.</p>
+    </section>
+    <div class="sticky-spacer"></div>
+  </div>
+
+</body>
+</html>

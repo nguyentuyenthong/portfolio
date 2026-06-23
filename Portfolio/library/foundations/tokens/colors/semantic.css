@@ -1,0 +1,84 @@
+/**
+ * Thickness — Tier 2: Semantic colors (Light — mặc định)
+ * Component & prototype CHỈ dùng token role trong file này (màu sắc).
+ * Dark mode: `colors/dark-mode.css` ghi đè khi `.dark-mode`.
+ */
+
+:root {
+  /* ─── Background ───────────────────────────────────────────── */
+  --background-primary: var(--gray-25);
+  --background-secondary: var(--gray-50);
+  --background-tertiary: var(--gray-100);
+  --background-brand: var(--brand-600);
+  --background-brand-subtle: var(--brand-50);
+  --background-brand-solid: var(--brand-600);
+
+  --surface-default: var(--white);
+  --surface-raised: var(--white);
+  --surface-overlay: var(--white);
+  --surface-sunken: var(--gray-50);
+
+  --background-success-subtle: var(--success-50);
+  --background-warning-subtle: var(--warning-50);
+  --background-error-subtle: var(--error-50);
+  --background-info-subtle: var(--info-50);
+
+  /* ─── Field (form controls) ────────────────────────────────── */
+  --field-default: var(--white);
+  --field-hover: var(--gray-50);
+  --field-disabled: var(--gray-50);
+  --field-brand: var(--brand-600);
+
+  --field-border-default: var(--gray-300);
+  --field-border-hover: var(--gray-400);
+  --field-border-focus: var(--brand-500);
+  --field-border-disabled: var(--gray-200);
+  --field-border-error: var(--error-500);
+
+  /* ─── Text ─────────────────────────────────────────────────── */
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-tertiary: var(--gray-600);
+  --text-placeholder: var(--gray-500);
+  --text-disabled: var(--gray-400);
+  --text-on-brand: var(--white);
+  --text-on-solid: var(--white);
+  --text-on-light: var(--gray-900);
+  --text-brand: var(--brand-700);
+  --text-brand-secondary: var(--brand-600);
+
+  --text-success: var(--success-700);
+  --text-warning: var(--warning-700);
+  --text-error: var(--error-700);
+  --text-info: var(--info-700);
+
+  /* ─── Icons ────────────────────────────────────────────────── */
+  --icon-primary: var(--gray-700);
+  --icon-secondary: var(--gray-500);
+  --icon-tertiary: var(--gray-400);
+  --icon-disabled: var(--gray-300);
+  --icon-on-brand: var(--white);
+  --icon-on-solid: var(--white);
+  --icon-on-light: var(--gray-700);
+  --icon-brand: var(--brand-600);
+  --icon-brand-secondary: var(--brand-500);
+
+  --icon-success: var(--success-600);
+  --icon-warning: var(--warning-600);
+  --icon-error: var(--error-600);
+  --icon-info: var(--info-600);
+
+  /* ─── Border (color) ───────────────────────────────────────── */
+  --border-primary: var(--gray-200);
+  --border-secondary: var(--gray-300);
+  --border-tertiary: var(--gray-100);
+  --border-brand: var(--brand-500);
+  --border-brand-solid: var(--brand-600);
+  --border-focus: var(--brand-500);
+  --border-disabled: var(--gray-200);
+
+  --border-success: var(--success-300);
+  --border-warning: var(--warning-300);
+  --border-error: var(--error-300);
+  --border-info: var(--info-300);
+}

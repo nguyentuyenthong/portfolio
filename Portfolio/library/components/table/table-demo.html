@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tables — Thickness · Untitled UI</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../_shared/demo-shell.css" />
+  <link rel="stylesheet" href="table.css" />
+  <style>
+    .demo-grid { display: grid; gap: var(--spacing-4xl); }
+    .demo-frame { max-width: 960px; }
+    .demo-frame--mobile { max-width: 428px; }
+    .demo-label { margin: 0 0 var(--spacing-md); font-size: var(--font-size-text-sm); color: var(--text-tertiary); }
+    .demo-stack { display: grid; gap: var(--spacing-2xl); }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/foundation-preview/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Tables</h1>
+    <p class="demo-page__meta">Untitled UI · <a href="https://www.untitledui.com/react/components/tables">docs</a> · Table + Pagination</p>
+
+    <div class="demo-toolbar">
+      <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" id="theme-toggle">Light / Dark</button>
+    </div>
+
+    <div class="demo-grid">
+      <!-- Desktop md -->
+      <section class="demo-frame">
+        <p class="demo-label"><strong>Desktop</strong> · md · divider line · footer pagination dùng component đã gene</p>
+        <section class="uu-table-card" data-uu-size="md" aria-label="Table card">
+          <header class="uu-table-card__header">
+            <div class="uu-table-card__title-wrap">
+              <div class="uu-table-card__title-row">
+                <h2 class="uu-table-card__title">Team members</h2>
+                <span class="uu-badge" data-uu-color="gray" data-uu-type="pill" data-uu-size="sm">100 users</span>
+              </div>
+              <p class="uu-table-card__desc">Manage your team members and their account permissions.</p>
+            </div>
+            <div class="uu-table-card__trailing">
+              <button type="button" class="uu-utility-btn" data-uu-size="sm" data-uu-color="secondary" aria-label="More options">
+                <svg class="uu-icon uu-icon--20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M10 10.833a.833.833 0 1 0 0-1.666.833.833 0 0 0 0 1.666ZM15 10.833a.833.833 0 1 0 0-1.666.833.833 0 0 0 0 1.666ZM5 10.833a.833.833 0 1 0 0-1.666.833.833 0 0 0 0 1.666Z" fill="currentColor"/>
+                </svg>
+              </button>
+            </div>
+          </header>
+
+          <div class="uu-table-scroll">
+            <table class="uu-table" role="table" aria-label="Team members">
+              <thead class="uu-table__head">
+                <tr class="uu-table__head-row">
+                  <th class="uu-table__th uu-table__th--select">
+                    <label class="uu-checkbox uu-checkbox--md" aria-label="Select all">
+                      <input class="uu-checkbox__input" type="checkbox" />
+                      <span class="uu-checkbox__box">
+                        <svg class="uu-checkbox__mark" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M10 3L4.5 8.5 2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                    </label>
+                  </th>
+                  <th class="uu-table__th">
+                    <span class="uu-table__th-sort">Name
+                      <svg class="uu-icon uu-icon--14 uu-table__sort-icon" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 3v8M7 11l3-3M7 11 4 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </span>
+                  </th>
+                  <th class="uu-table__th">Status</th>
+                  <th class="uu-table__th">Role</th>
+                  <th class="uu-table__th">Email</th>
+                  <th class="uu-table__th">Teams</th>
+                  <th class="uu-table__th" style="text-align:right;padding-right:16px">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="uu-table__row">
+                  <td class="uu-table__td uu-table__td--select">
+                    <label class="uu-checkbox uu-checkbox--md" aria-label="Select row 1">
+                      <input class="uu-checkbox__input" type="checkbox" />
+                      <span class="uu-checkbox__box">
+                        <svg class="uu-checkbox__mark" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M10 3L4.5 8.5 2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                    </label>
+                  </td>
+                  <td class="uu-table__td">
+                    <div class="uu-table__cell-primary">
+                      <span class="uu-avatar" data-uu-size="sm" aria-hidden="true">OL</span>
+                      <div class="uu-table__cell-primary-text">
+                        <strong>Olivia Rhye</strong>
+                        <span>@olivia</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="uu-table__td">
+                    <span class="uu-badge" data-uu-color="success" data-uu-type="pill" data-uu-size="sm"><span class="uu-badge__dot"></span>Active</span>
+                  </td>
+                  <td class="uu-table__td">Product Designer</td>
+                  <td class="uu-table__td">olivia@untitledui.com</td>
+                  <td class="uu-table__td">
+                    <span class="uu-badge" data-uu-color="brand" data-uu-type="pill" data-uu-size="sm">Design</span>
+                    <span class="uu-badge" data-uu-color="gray" data-uu-type="pill" data-uu-size="sm">Product</span>
+                  </td>
+                  <td class="uu-table__td" style="padding-right:16px">
+                    <div class="uu-table__actions">
+                      <button type="button" class="uu-utility-btn" data-uu-size="xs" data-uu-color="tertiary" aria-label="Delete">
+                        <svg class="uu-icon uu-icon--20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 7.5v7M12 7.5v7M4 5h12M7 5l1-1h4l1 1M6 5v11.5A1.5 1.5 0 0 0 7.5 18h5A1.5 1.5 0 0 0 14 16.5V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <button type="button" class="uu-utility-btn" data-uu-size="xs" data-uu-color="tertiary" aria-label="Edit">
+                        <svg class="uu-icon uu-icon--20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M14.167 3.333a2.357 2.357 0 0 1 3.333 3.334L7.5 16.667 3.333 17.5 4.167 13.333 14.167 3.333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="uu-table__row">
+                  <td class="uu-table__td uu-table__td--select">
+                    <label class="uu-checkbox uu-checkbox--md" aria-label="Select row 2">
+                      <input class="uu-checkbox__input" type="checkbox" checked />
+                      <span class="uu-checkbox__box">
+                        <svg class="uu-checkbox__mark" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M10 3L4.5 8.5 2 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </span>
+                    </label>
+                  </td>
+                  <td class="uu-table__td">
+                    <div class="uu-table__cell-primary">
+                      <span class="uu-avatar" data-uu-size="sm" aria-hidden="true">PH</span>
+                      <div class="uu-table__cell-primary-text">
+                        <strong>Phoenix Baker</strong>
+                        <span>@phoenix</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="uu-table__td">
+                    <span class="uu-badge" data-uu-color="gray" data-uu-type="pill" data-uu-size="sm"><span class="uu-badge__dot"></span>Inactive</span>
+                  </td>
+                  <td class="uu-table__td">Product Manager</td>
+                  <td class="uu-table__td">phoenix@untitledui.com</td>
+                  <td class="uu-table__td">
+                    <span class="uu-badge" data-uu-color="gray" data-uu-type="pill" data-uu-size="sm">Product</span>
+                  </td>
+                  <td class="uu-table__td" style="padding-right:16px">
+                    <div class="uu-table__actions">
+                      <button type="button" class="uu-utility-btn" data-uu-size="xs" data-uu-color="tertiary" aria-label="Delete">
+                        <svg class="uu-icon uu-icon--20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 7.5v7M12 7.5v7M4 5h12M7 5l1-1h4l1 1M6 5v11.5A1.5 1.5 0 0 0 7.5 18h5A1.5 1.5 0 0 0 14 16.5V5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                      <button type="button" class="uu-utility-btn" data-uu-size="xs" data-uu-color="tertiary" aria-label="Edit">
+                        <svg class="uu-icon uu-icon--20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M14.167 3.333a2.357 2.357 0 0 1 3.333 3.334L7.5 16.667 3.333 17.5 4.167 13.333 14.167 3.333Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <footer class="uu-table-card__footer">
+            <nav class="uu-pagination uu-pagination--card-advanced" aria-label="Phân trang">
+              <div class="uu-pagination__left">
+                <div class="uu-pagination__meta">
+                  Page
+                  <input type="text" class="uu-pagination__meta-input" value="1" inputmode="numeric" aria-label="Trang hiện tại" />
+                  of 10
+                </div>
+              </div>
+
+              <span class="uu-pagination__mobile-label">Page <strong>1</strong> of <strong>10</strong></span>
+
+              <div class="uu-pagination__center">
+                <div class="uu-pagination__nav-group">
+                  <button type="button" class="uu-button uu-pagination__icon-btn" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="Trang đầu" disabled>
+                    <svg class="uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M11 12L7 8l4-4M5 12L1 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <button type="button" class="uu-button uu-pagination__icon-btn" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="Trang trước" disabled>
+                    <svg class="uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <div class="uu-pagination__pages">
+                    <button type="button" class="uu-pagination__page" aria-current="page">1</button>
+                    <button type="button" class="uu-pagination__page">2</button>
+                    <button type="button" class="uu-pagination__page">3</button>
+                    <button type="button" class="uu-pagination__page">4</button>
+                    <button type="button" class="uu-pagination__page">5</button>
+                    <span class="uu-pagination__ellipsis" aria-hidden="true">…</span>
+                    <button type="button" class="uu-pagination__page">10</button>
+                  </div>
+                  <button type="button" class="uu-button uu-pagination__icon-btn" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="Trang sau">
+                    <svg class="uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 12l4-4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <button type="button" class="uu-button uu-pagination__icon-btn" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="Trang cuối">
+                    <svg class="uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M5 12l4-4-4-4M11 12l4-4-4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="uu-pagination__right">
+                <div class="uu-pagination__meta">
+                  Rows per page
+                  <span class="uu-pagination__select-wrap">
+                    <select class="uu-pagination__meta-select" aria-label="Số dòng mỗi trang">
+                      <option>5</option>
+                      <option selected>10</option>
+                      <option>25</option>
+                      <option>50</option>
+                      <option>100</option>
+                    </select>
+                    <svg class="uu-pagination__select-chevron uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                  </span>
+                </div>
+              </div>
+            </nav>
+          </footer>
+        </section>
+      </section>
+
+      <!-- Mobile frame -->
+      <section class="demo-frame demo-frame--mobile">
+        <p class="demo-label"><strong>Mobile</strong> · scroll ngang table + pagination tự fallback (không tràn frame)</p>
+        <section class="uu-table-card" data-uu-size="sm">
+          <header class="uu-table-card__header">
+            <div class="uu-table-card__title-wrap">
+              <div class="uu-table-card__title-row">
+                <h2 class="uu-table-card__title">Invoices</h2>
+                <span class="uu-badge" data-uu-color="gray" data-uu-type="pill" data-uu-size="sm">24</span>
+              </div>
+              <p class="uu-table-card__desc">Recent invoices and payment status.</p>
+            </div>
+          </header>
+          <div class="uu-table-scroll">
+            <table class="uu-table" role="table" aria-label="Invoices">
+              <thead class="uu-table__head">
+                <tr class="uu-table__head-row">
+                  <th class="uu-table__th">Invoice</th>
+                  <th class="uu-table__th">Amount</th>
+                  <th class="uu-table__th">Status</th>
+                  <th class="uu-table__th">Date</th>
+                </tr>
+              </thead>
+              <tbody data-uu-alt="true">
+                <tr class="uu-table__row">
+                  <td class="uu-table__td"><strong style="color:var(--text-primary);font-weight:var(--font-weight-medium)">INV-1001</strong></td>
+                  <td class="uu-table__td">$1,200.00</td>
+                  <td class="uu-table__td"><span class="uu-badge" data-uu-color="success" data-uu-type="pill" data-uu-size="sm"><span class="uu-badge__dot"></span>Paid</span></td>
+                  <td class="uu-table__td">Jan 12, 2026</td>
+                </tr>
+                <tr class="uu-table__row">
+                  <td class="uu-table__td"><strong style="color:var(--text-primary);font-weight:var(--font-weight-medium)">INV-1002</strong></td>
+                  <td class="uu-table__td">$340.00</td>
+                  <td class="uu-table__td"><span class="uu-badge" data-uu-color="warning" data-uu-type="pill" data-uu-size="sm"><span class="uu-badge__dot"></span>Pending</span></td>
+                  <td class="uu-table__td">Jan 08, 2026</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <footer class="uu-table-card__footer">
+            <!-- Mobile: dùng same advanced markup, CSS pagination sẽ tự co về prev/page/next -->
+            <nav class="uu-pagination uu-pagination--card-advanced" aria-label="Phân trang">
+              <div class="uu-pagination__left">
+                <div class="uu-pagination__meta">Page <input type="text" class="uu-pagination__meta-input" value="1" inputmode="numeric" aria-label="Trang hiện tại" /> of 10</div>
+              </div>
+              <span class="uu-pagination__mobile-label">Page <strong>1</strong> of <strong>10</strong></span>
+              <div class="uu-pagination__center">
+                <div class="uu-pagination__nav-group">
+                  <button type="button" class="uu-button uu-pagination__icon-btn" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="Trang trước">
+                    <svg class="uu-icon uu-icon--20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M12.5 15L7.5 10l5-5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                  <button type="button" class="uu-button uu-pagination__icon-btn" data-uu-size="sm" data-uu-hierarchy="secondary-gray" aria-label="Trang sau">
+                    <svg class="uu-icon uu-icon--20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 15l5-5-5-5" stroke="currentColor" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </button>
+                </div>
+              </div>
+              <div class="uu-pagination__right">
+                <div class="uu-pagination__meta">Rows per page <span class="uu-pagination__select-wrap"><select class="uu-pagination__meta-select" aria-label="Số dòng mỗi trang"><option selected>10</option><option>25</option><option>50</option></select><svg class="uu-pagination__select-chevron uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></div>
+              </div>
+            </nav>
+          </footer>
+        </section>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+    });
+  </script>
+</body>
+</html>
+

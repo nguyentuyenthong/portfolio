@@ -1,0 +1,91 @@
+/**
+ * Thickness — Dark mode (opt-in)
+ */
+
+.dark-mode {
+  color-scheme: dark;
+
+  --gray-25: #fafafa;
+  --gray-50: #f7f7f7;
+  --gray-100: #f0f0f1;
+  --gray-200: #ececed;
+  --gray-300: #cecfd2;
+  --gray-400: #94969c;
+  --gray-500: #85888e;
+  --gray-600: #61646c;
+  --gray-700: #333741;
+  --gray-800: #1f242f;
+  --gray-900: #161b26;
+  --gray-950: #0c111d;
+
+  --brand-300: #a4bcfd;
+  --brand-400: #8098f9;
+  --brand-500: #6172f3;
+  --brand-600: #6172f3;
+  --brand-700: #8098f9;
+
+  --success-500: #47cd89;
+  --success-600: #17b26a;
+  --warning-500: #fdb022;
+  --error-500: #f97066;
+  --info-500: #53b1fd;
+
+  --background-primary: var(--gray-950);
+  --background-secondary: var(--gray-900);
+  --background-tertiary: var(--gray-800);
+
+  --surface-default: var(--gray-900);
+  --surface-raised: var(--gray-800);
+  --surface-overlay: var(--gray-800);
+  --surface-sunken: var(--gray-950);
+
+  --background-brand-subtle: var(--brand-950);
+  --background-success-subtle: var(--success-950);
+  --background-warning-subtle: var(--warning-950);
+  --background-error-subtle: var(--error-950);
+  --background-info-subtle: var(--info-950);
+
+  --field-default: var(--gray-900);
+  --field-hover: var(--gray-800);
+  --field-disabled: var(--gray-800);
+  --field-border-default: var(--gray-700);
+  --field-border-hover: var(--gray-600);
+  --field-border-disabled: var(--gray-700);
+
+  --text-primary: var(--gray-50);
+  --text-secondary: var(--gray-300);
+  --text-tertiary: var(--gray-400);
+  --text-placeholder: var(--gray-500);
+  --text-disabled: var(--gray-600);
+  --text-on-solid: var(--white);
+  --text-on-light: var(--gray-50);
+  --icon-on-solid: var(--white);
+  --icon-on-light: var(--gray-300);
+  --text-brand: var(--brand-300);
+  --text-brand-secondary: var(--brand-400);
+
+  --text-success: var(--success-400);
+  --text-warning: var(--warning-400);
+  --text-error: var(--error-400);
+  --text-info: var(--info-400);
+
+  --icon-primary: var(--gray-300);
+  --icon-secondary: var(--gray-400);
+  --icon-tertiary: var(--gray-500);
+  --icon-disabled: var(--gray-600);
+  --icon-brand: var(--brand-400);
+  --icon-brand-secondary: var(--brand-300);
+
+  --border-primary: var(--gray-800);
+  --border-secondary: var(--gray-700);
+  --border-tertiary: var(--gray-800);
+  --border-disabled: var(--gray-700);
+
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 12px 0 rgb(0 0 0 / 0.45);
+  --shadow-lg: 0 12px 24px -4px rgb(0 0 0 / 0.5);
+  --shadow-xl: 0 20px 32px -8px rgb(0 0 0 / 0.55);
+  --shadow-2xl: 0 24px 48px -12px rgb(0 0 0 / 0.6);
+  --shadow-3xl: 0 32px 64px -12px rgb(0 0 0 / 0.65);
+}

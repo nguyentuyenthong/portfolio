@@ -1,0 +1,113 @@
+/**
+ * Dropdown — untitleduico/react → components/base/dropdown/dropdown.tsx
+ * Spacing: title→item 4px · item↔item 0 · section—divider—section: 4+4px
+ */
+
+.uu-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.uu-dropdown__menu {
+  display: flex;
+  flex-direction: column;
+  min-width: 12rem;
+  padding: 6px;
+  margin: var(--spacing-xs) 0 0;
+  list-style: none;
+  border-radius: var(--radius-md);
+  background: var(--surface-default);
+  border: var(--width-border-thin) solid var(--border-primary);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Section stack */
+.uu-dropdown__section {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.uu-dropdown__section + .uu-dropdown__section {
+  margin-top: var(--spacing-lg); /* 12px — item cuối → title section kế (không divider) */
+}
+
+.uu-dropdown__title {
+  margin: 0 0 var(--spacing-xs); /* 4px → item đầu */
+  padding: 0 10px;
+  font-size: 0.625rem; /* 10px */
+  font-weight: 600;
+  line-height: 1rem;
+  color: var(--gray-400);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  user-select: none;
+}
+
+.uu-dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  width: 100%;
+  margin: 0;
+  padding: var(--spacing-md) 10px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: var(--font-size-text-sm); /* 14px */
+  font-weight: 500;
+  line-height: 1.25rem;
+  text-align: left;
+  color: var(--text-secondary);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+}
+
+/* Giữa các item: 0px */
+.uu-dropdown__item + .uu-dropdown__item {
+  margin-top: 0;
+}
+
+.uu-dropdown__item:hover,
+.uu-dropdown__item:focus-visible {
+  background: var(--background-brand-subtle);
+  color: var(--text-brand);
+  outline: none;
+}
+
+.uu-dropdown__item[aria-selected="true"],
+.uu-dropdown__item.is-active {
+  background: var(--brand-50);
+  color: var(--brand-700);
+}
+
+.uu-dropdown__item--disabled,
+.uu-dropdown__item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Divider: section₁ — 4px — line — 4px — section₂ */
+.uu-dropdown__divider {
+  flex-shrink: 0;
+  height: 1px;
+  margin: var(--spacing-xs) 0;
+  padding: 0;
+  border: none;
+  background: var(--border-primary);
+}
+
+.uu-dropdown__divider + .uu-dropdown__section {
+  margin-top: 0;
+}
+
+/* Flat list (legacy): ul > li item, không section */
+.uu-dropdown__menu:where(ul) > .uu-dropdown__item + .uu-dropdown__item {
+  margin-top: 0;
+}
+
+.uu-dropdown__menu:where(ul) > .uu-dropdown__divider {
+  margin: var(--spacing-xs) 0;
+}

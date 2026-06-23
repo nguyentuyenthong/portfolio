@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alert — Thickness · Untitled UI</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../_shared/demo-shell.css" />
+  <link rel="stylesheet" href="../_shared/icon.css" />
+  <link rel="stylesheet" href="alert.css" />
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Alert</h1>
+    <p class="demo-page__meta">Untitled UI · Application/Alerts · color × icon × actions × dismiss</p>
+
+    <div class="demo-toolbar">
+      <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" id="theme-toggle">Light / Dark</button>
+    </div>
+
+    <table class="demo-matrix">
+      <caption>Color · icon + title + text + actions + dismiss</caption>
+      <thead><tr><th>Color</th><th>Alert</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>gray</td>
+          <td>
+            <div class="uu-alert" data-uu-color="gray" role="status">
+              <span class="uu-alert__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v4m0 4h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z"></path></svg></span>
+              <div class="uu-alert__body">
+                <p class="uu-alert__title">We've just released an update</p>
+                <p class="uu-alert__text">Check out the new dashboard widgets in your settings panel.</p>
+                <div class="uu-alert__actions"><button type="button">Dismiss</button><a href="#">View changes</a></div>
+              </div>
+              <button type="button" class="uu-alert__close" aria-label="Close"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>brand</td>
+          <td>
+            <div class="uu-alert" data-uu-color="brand" role="status">
+              <span class="uu-alert__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16v-4m0-4h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z"></path></svg></span>
+              <div class="uu-alert__body">
+                <p class="uu-alert__title">Your trial ends in 7 days</p>
+                <p class="uu-alert__text">Upgrade now to keep access to all premium features.</p>
+                <div class="uu-alert__actions"><button type="button">Maybe later</button><a href="#">Upgrade plan</a></div>
+              </div>
+              <button type="button" class="uu-alert__close" aria-label="Close"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>success</td>
+          <td>
+            <div class="uu-alert" data-uu-color="success" role="status">
+              <span class="uu-alert__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7.5 12 3 3 6-6m5.5 3c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z"></path></svg></span>
+              <div class="uu-alert__body">
+                <p class="uu-alert__title">Payment successful</p>
+                <p class="uu-alert__text">Your invoice has been paid. A receipt was sent to your email.</p>
+                <div class="uu-alert__actions"><button type="button">Dismiss</button><a href="#">View receipt</a></div>
+              </div>
+              <button type="button" class="uu-alert__close" aria-label="Close"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>warning</td>
+          <td>
+            <div class="uu-alert" data-uu-color="warning" role="status">
+              <span class="uu-alert__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.615 3.892 2.39 18.098c-.456.788-.684 1.182-.65 1.506a1 1 0 0 0 .406.705c.263.191.718.191 1.629.191h16.45c.91 0 1.365 0 1.628-.191a1 1 0 0 0 .407-.705c.034-.324-.195-.718-.65-1.506L13.383 3.892c-.454-.785-.681-1.178-.978-1.31a1 1 0 0 0-.813 0c-.296.132-.523.525-.978 1.31Z"></path></svg></span>
+              <div class="uu-alert__body">
+                <p class="uu-alert__title">Storage almost full</p>
+                <p class="uu-alert__text">You've used 90% of your storage. Free up space or upgrade.</p>
+                <div class="uu-alert__actions"><button type="button">Dismiss</button><a href="#">Manage storage</a></div>
+              </div>
+              <button type="button" class="uu-alert__close" aria-label="Close"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>error</td>
+          <td>
+            <div class="uu-alert" data-uu-color="error" role="alert">
+              <span class="uu-alert__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v4m0 4h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z"></path></svg></span>
+              <div class="uu-alert__body">
+                <p class="uu-alert__title">There was a problem with your request</p>
+                <p class="uu-alert__text">We couldn't process your payment. Please check your card details.</p>
+                <div class="uu-alert__actions"><button type="button">Dismiss</button><a href="#">Try again</a></div>
+              </div>
+              <button type="button" class="uu-alert__close" aria-label="Close"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>info</td>
+          <td>
+            <div class="uu-alert" data-uu-color="info" role="status">
+              <span class="uu-alert__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16v-4m0-4h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z"></path></svg></span>
+              <div class="uu-alert__body">
+                <p class="uu-alert__title">Scheduled maintenance</p>
+                <p class="uu-alert__text">Our services will be unavailable on Sunday 2:00–4:00 AM UTC.</p>
+              </div>
+              <button type="button" class="uu-alert__close" aria-label="Close"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="demo-matrix">
+      <caption>Minimal · icon + title (không actions, không dismiss)</caption>
+      <thead><tr><th>Color</th><th>Alert</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>success</td>
+          <td>
+            <div class="uu-alert" data-uu-color="success" role="status">
+              <span class="uu-alert__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7.5 12 3 3 6-6m5.5 3c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z"></path></svg></span>
+              <div class="uu-alert__body"><p class="uu-alert__title">Changes saved successfully</p></div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+/**
+ * Alert — Untitled UI → Thickness tokens
+ * Inline feedback banner. Card trắng + icon màu + viền theo color.
+ * Source: Untitled UI Application/Alerts
+ */
+
+.uu-alert {
+  --uu-alert-shadow-xs: 0 1px 2px 0 rgba(10, 13, 18, 0.05);
+  display: flex;
+  gap: var(--spacing-lg); /* 12px */
+  box-sizing: border-box;
+  padding: var(--spacing-xl); /* 16px */
+  border: var(--width-border-thin) solid var(--border-secondary);
+  border-radius: var(--radius-xl); /* 12px */
+  background-color: var(--surface-default);
+  box-shadow: var(--uu-alert-shadow-xs);
+  font-family: var(--font-family);
+}
+
+.uu-alert__icon {
+  flex-shrink: 0;
+  color: var(--icon-secondary);
+}
+
+.uu-alert__icon .uu-icon,
+.uu-alert__icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.uu-alert__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs); /* 4px */
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.uu-alert__title {
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.uu-alert__text {
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.uu-alert__actions {
+  display: flex;
+  gap: var(--spacing-lg); /* 12px */
+  margin-top: var(--spacing-md); /* 8px */
+}
+
+.uu-alert__actions a,
+.uu-alert__actions button {
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.uu-alert__close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin: -6px -6px 0 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--icon-tertiary);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.uu-alert__close:hover {
+  background-color: var(--background-secondary);
+  color: var(--icon-secondary);
+}
+
+.uu-alert__close .uu-icon,
+.uu-alert__close svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+/* ─── Color variants ─────────────────────────────────────────── */
+.uu-alert[data-uu-color="gray"] {
+  border-color: var(--border-secondary);
+}
+.uu-alert[data-uu-color="gray"] .uu-alert__icon {
+  color: var(--icon-secondary);
+}
+
+.uu-alert[data-uu-color="brand"] {
+  border-color: var(--border-brand);
+}
+.uu-alert[data-uu-color="brand"] .uu-alert__icon {
+  color: var(--icon-brand);
+}
+.uu-alert[data-uu-color="brand"] .uu-alert__actions a,
+.uu-alert[data-uu-color="brand"] .uu-alert__actions button {
+  color: var(--text-brand);
+}
+
+.uu-alert[data-uu-color="success"] {
+  border-color: var(--border-success);
+}
+.uu-alert[data-uu-color="success"] .uu-alert__icon {
+  color: var(--icon-success);
+}
+.uu-alert[data-uu-color="success"] .uu-alert__actions a,
+.uu-alert[data-uu-color="success"] .uu-alert__actions button {
+  color: var(--text-success);
+}
+
+.uu-alert[data-uu-color="warning"] {
+  border-color: var(--border-warning);
+}
+.uu-alert[data-uu-color="warning"] .uu-alert__icon {
+  color: var(--icon-warning);
+}
+.uu-alert[data-uu-color="warning"] .uu-alert__actions a,
+.uu-alert[data-uu-color="warning"] .uu-alert__actions button {
+  color: var(--text-warning);
+}
+
+.uu-alert[data-uu-color="error"] {
+  border-color: var(--border-error);
+}
+.uu-alert[data-uu-color="error"] .uu-alert__icon {
+  color: var(--icon-error);
+}
+.uu-alert[data-uu-color="error"] .uu-alert__actions a,
+.uu-alert[data-uu-color="error"] .uu-alert__actions button {
+  color: var(--text-error);
+}
+
+.uu-alert[data-uu-color="info"] {
+  border-color: var(--border-info);
+}
+.uu-alert[data-uu-color="info"] .uu-alert__icon {
+  color: var(--icon-info);
+}
+.uu-alert[data-uu-color="info"] .uu-alert__actions a,
+.uu-alert[data-uu-color="info"] .uu-alert__actions button {
+  color: var(--text-info);
+}

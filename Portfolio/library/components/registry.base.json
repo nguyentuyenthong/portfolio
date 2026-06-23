@@ -1,0 +1,283 @@
+﻿{
+  "$description": "MVP Base components — source: github.com/untitleduico/react",
+  "meta": {
+    "source": "https://www.untitledui.com/react/components",
+    "github": "https://github.com/untitleduico/react",
+    "workflow": "Read .tsx → library/rules/component-workflow.md + typography-map.md → HTML prototype",
+    "handoff": "Designer/Dev đọc {name}.md; {name}.css chỉ để *-demo.html chạy trong browser",
+    "rules": "library/rules/README.md",
+    "typographyMap": "library/rules/typography-map.md",
+    "index": "library/components/registry.index.json",
+    "catalog": "library/components/registry.catalog.json",
+    "icons": "library/components/_shared/icons/registry.json",
+    "skills": ".cursor/skills/thickness-library/SKILL.md"
+  },
+  "components": [
+    {
+      "key": "buttons",
+      "priority": 1,
+      "status": "generated",
+      "reactPath": "components/base/buttons/button.tsx",
+      "artifacts": {
+        "specMd": "components/button/button.md",
+        "demoHtml": "components/button/button-demo.html"
+      }
+    },
+    {
+      "key": "inputs",
+      "priority": 2,
+      "status": "generated",
+      "reactPath": "components/base/input/input.tsx",
+      "artifacts": {
+        "specMd": "components/input/input.md",
+        "demoHtml": "components/input/input-demo.html"
+      }
+    },
+    {
+      "key": "textareas",
+      "priority": 3,
+      "status": "generated",
+      "reactPath": "components/base/textarea/textarea.tsx",
+      "artifacts": {
+        "specMd": "components/textarea/textarea.md",
+        "demoHtml": "components/textarea/textarea-demo.html"
+      }
+    },
+    {
+      "key": "checkboxes",
+      "priority": 4,
+      "status": "generated",
+      "reactPath": "components/base/checkbox/checkbox.tsx",
+      "artifacts": {
+        "specMd": "components/checkbox/checkbox.md",
+        "demoHtml": "components/checkbox/checkbox-demo.html"
+      }
+    },
+    {
+      "key": "radio-buttons",
+      "priority": 5,
+      "status": "generated",
+      "reactPath": "components/base/radio-buttons/radio-buttons.tsx",
+      "artifacts": {
+        "specMd": "components/radio/radio.md",
+        "demoHtml": "components/radio/radio-demo.html"
+      }
+    },
+    {
+      "key": "toggles",
+      "priority": 6,
+      "status": "generated",
+      "reactPath": "components/base/toggle/toggle.tsx",
+      "artifacts": {
+        "specMd": "components/toggle/toggle.md",
+        "demoHtml": "components/toggle/toggle-demo.html"
+      }
+    },
+    {
+      "key": "select",
+      "priority": 7,
+      "status": "generated",
+      "reactPath": "components/base/select/select.tsx",
+      "artifacts": {
+        "specMd": "components/select/select.md",
+        "demoHtml": "components/select/select-demo.html"
+      }
+    },
+    {
+      "key": "dropdowns",
+      "priority": 8,
+      "status": "generated",
+      "reactPath": "components/base/dropdown/dropdown.tsx",
+      "artifacts": {
+        "specMd": "components/dropdown/dropdown.md",
+        "demoHtml": "components/dropdown/dropdown-demo.html"
+      }
+    },
+    {
+      "key": "utility-buttons",
+      "priority": 9,
+      "status": "generated",
+      "reactPath": "components/base/buttons/button-utility.tsx",
+      "artifacts": {
+        "specMd": "components/utility-button/utility-button.md",
+        "demoHtml": "components/utility-button/utility-button-demo.html"
+      }
+    },
+    {
+      "key": "tooltips",
+      "priority": 10,
+      "status": "generated",
+      "reactPath": "components/base/tooltip/tooltip.tsx",
+      "artifacts": {
+        "specMd": "components/tooltip/tooltip.md",
+        "demoHtml": "components/tooltip/tooltip-demo.html"
+      }
+    },
+    {
+      "key": "badges",
+      "priority": 11,
+      "status": "generated",
+      "reactPath": "components/base/badges/badges.tsx",
+      "artifacts": {
+        "specMd": "components/badge/badge.md",
+        "demoHtml": "components/badge/badge-demo.html",
+        "rules": "rules/tags-and-badges.md",
+        "note": "Sizes sm/md/lg — 12/14/16px"
+      }
+    },
+    {
+      "key": "tags",
+      "priority": 12,
+      "status": "generated",
+      "reactPath": "components/base/tags/tags.tsx",
+      "artifacts": {
+        "specMd": "components/tag/tag.md",
+        "demoHtml": "components/tag/tag-demo.html",
+        "rules": "rules/tags-and-badges.md",
+        "note": "Sizes + Close X only; brand/gray"
+      }
+    },
+    {
+      "key": "avatars",
+      "priority": 13,
+      "status": "generated",
+      "reactPath": "components/base/avatar/avatar.tsx",
+      "artifacts": {
+        "specMd": "components/avatar/avatar.md",
+        "demoHtml": "components/avatar/avatar-demo.html"
+      }
+    },
+    {
+      "key": "progress-indicators",
+      "priority": 14,
+      "status": "generated",
+      "reactPath": "components/base/progress-indicators/progress-indicators.tsx",
+      "artifacts": {
+        "specMd": "components/progress/progress.md",
+        "demoHtml": "components/progress/progress-demo.html"
+      }
+    },
+    {
+      "key": "pagination",
+      "priority": 15,
+      "status": "generated",
+      "reactPath": "components/application/pagination/pagination.tsx",
+      "artifacts": {
+        "specMd": "components/pagination/pagination.md",
+        "demoHtml": "components/pagination/pagination-demo.html"
+      }
+    },
+    {
+      "key": "tables",
+      "priority": 16,
+      "status": "generated",
+      "reactPath": "components/application/table/table.tsx",
+      "artifacts": {
+        "specMd": "components/table/table.md",
+        "demoHtml": "components/table/table-demo.html"
+      }
+    },
+    {
+      "key": "section-headers",
+      "priority": 17,
+      "status": "generated",
+      "reactPath": "components/application/table/table.tsx",
+      "artifacts": {
+        "specMd": "components/section-header/section-header.md",
+        "demoHtml": "components/section-header/section-header-demo.html",
+        "note": "2 variants: search input, buttons/button-group — map TableCard.Header"
+      }
+    },
+    {
+      "key": "breadcrumbs",
+      "priority": 18,
+      "status": "generated",
+      "reactPath": "components/base/breadcrumbs/breadcrumbs.tsx",
+      "artifacts": {
+        "specMd": "components/breadcrumb/breadcrumb.md",
+        "demoHtml": null,
+        "note": "CSS ready — demo optional"
+      }
+    },
+    {
+      "key": "modals",
+      "priority": 19,
+      "status": "generated",
+      "reactPath": "components/application/modals/modal.tsx",
+      "artifacts": {
+        "specMd": "components/modal/modal.md",
+        "demoHtml": "components/modal/modal-demo.html"
+      }
+    },
+    {
+      "key": "alerts",
+      "priority": 20,
+      "status": "generated",
+      "reactPath": "components/application/alerts/alerts.tsx",
+      "artifacts": {
+        "specMd": "components/alert/alert.md",
+        "demoHtml": "components/alert/alert-demo.html"
+      }
+    },
+    {
+      "key": "tabs",
+      "priority": 21,
+      "status": "generated",
+      "reactPath": "components/application/tabs/tabs.tsx",
+      "artifacts": {
+        "specMd": "components/tabs/tabs.md",
+        "demoHtml": "components/tabs/tabs-demo.html"
+      }
+    },
+    {
+      "key": "notifications",
+      "priority": 22,
+      "status": "generated",
+      "reactPath": "components/application/notifications/notifications.tsx",
+      "artifacts": {
+        "specMd": "components/notification/notification.md",
+        "demoHtml": "components/notification/notification-demo.html"
+      }
+    },
+    {
+      "key": "empty-states",
+      "priority": 23,
+      "status": "generated",
+      "reactPath": "components/application/empty-state/empty-state.tsx",
+      "artifacts": {
+        "specMd": "components/empty-state/empty-state.md",
+        "demoHtml": "components/empty-state/empty-state-demo.html"
+      }
+    },
+    {
+      "key": "loading-indicators",
+      "priority": 24,
+      "status": "generated",
+      "reactPath": "components/application/loading-indicators/loading-indicator.tsx",
+      "artifacts": {
+        "specMd": "components/loading/loading.md",
+        "demoHtml": "components/loading/loading-demo.html"
+      }
+    },
+    {
+      "key": "file-uploaders",
+      "priority": 25,
+      "status": "generated",
+      "reactPath": "components/application/file-upload/file-upload-base.tsx",
+      "artifacts": {
+        "specMd": "components/file-upload/file-upload.md",
+        "demoHtml": "components/file-upload/file-upload-demo.html"
+      }
+    },
+    {
+      "key": "metrics",
+      "priority": 26,
+      "status": "generated",
+      "reactPath": "components/application/metrics/metrics.tsx",
+      "artifacts": {
+        "specMd": "components/metric/metric.md",
+        "demoHtml": "components/metric/metric-demo.html"
+      }
+    }
+  ]
+}

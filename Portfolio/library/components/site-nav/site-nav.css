@@ -1,0 +1,104 @@
+/**
+ * Site Nav — portfolio / marketing header
+ * Thickness tokens only
+ */
+
+.uu-site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xl);
+  padding: var(--spacing-lg) var(--spacing-3xl);
+  background: color-mix(in srgb, var(--surface-default) 92%, transparent);
+  border-bottom: var(--width-border-thin) solid var(--border-secondary);
+  backdrop-filter: blur(8px);
+}
+
+.uu-site-nav__brand {
+  font-size: var(--font-size-text-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.uu-site-nav__brand:hover {
+  color: var(--text-brand-secondary);
+}
+
+.uu-site-nav__links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2xl);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.uu-site-nav__link {
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: color 0.15s ease;
+}
+
+.uu-site-nav__link:hover,
+.uu-site-nav__link[aria-current="page"] {
+  color: var(--text-brand-secondary);
+}
+
+.uu-site-nav__cta .uu-button {
+  text-transform: uppercase;
+  font-size: var(--font-size-text-xs);
+  letter-spacing: 0.04em;
+}
+
+.uu-site-nav__menu-btn {
+  display: none;
+  padding: var(--spacing-sm);
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .uu-site-nav {
+    padding: var(--spacing-md) var(--spacing-xl);
+  }
+
+  .uu-site-nav__menu-btn {
+    display: flex;
+  }
+
+  .uu-site-nav__links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--spacing-md);
+    background: var(--surface-default);
+    border-bottom: var(--width-border-thin) solid var(--border-secondary);
+  }
+
+  .uu-site-nav[data-uu-menu-open="true"] .uu-site-nav__links {
+    display: flex;
+  }
+
+  .uu-site-nav__link {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  .uu-site-nav__cta {
+    display: none;
+  }
+}

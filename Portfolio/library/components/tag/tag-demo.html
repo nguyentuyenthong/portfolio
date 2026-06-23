@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tag — Thickness · Untitled UI</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../_shared/demo-shell.css" />
+  <link rel="stylesheet" href="tag.css" />
+  <style>
+    .demo-block { margin-bottom: var(--spacing-4xl); }
+    .demo-block h2 {
+      margin: 0 0 var(--spacing-lg);
+      font-size: var(--font-size-text-lg);
+      font-weight: var(--font-weight-semibold);
+    }
+    .demo-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .demo-size-label {
+      width: 2rem;
+      font-size: var(--font-size-text-xs);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-tertiary);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/foundation-preview/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Tag</h1>
+    <p class="demo-page__meta">
+      Untitled UI · <a href="https://www.untitledui.com/react/components/tags">docs</a> ·
+      Chỉ Sizes + Close X · <code>rules/tags-and-badges.md</code>
+    </p>
+
+    <div class="demo-toolbar">
+      <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" id="theme-toggle">Light / Dark</button>
+    </div>
+
+    <section class="demo-block">
+      <h2>Sizes — label only</h2>
+      <div class="demo-row">
+        <span class="demo-size-label">sm</span>
+        <span class="uu-tag" data-uu-size="sm" data-uu-color="brand">12px Label</span>
+        <span class="demo-size-label">md</span>
+        <span class="uu-tag" data-uu-size="md" data-uu-color="brand">14px Label</span>
+        <span class="demo-size-label">lg</span>
+        <span class="uu-tag" data-uu-size="lg" data-uu-color="brand">16px Label</span>
+      </div>
+    </section>
+
+    <section class="demo-block">
+      <h2>Sizes — Close X (branding)</h2>
+      <div class="demo-row">
+        <span class="demo-size-label">sm</span>
+        <span class="uu-tag" data-uu-size="sm" data-uu-color="brand">
+          Filter
+          <button type="button" class="uu-tag__close" aria-label="Xóa">
+            <svg class="uu-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </span>
+        <span class="demo-size-label">md</span>
+        <span class="uu-tag" data-uu-size="md" data-uu-color="brand">
+          Filter
+          <button type="button" class="uu-tag__close" aria-label="Xóa">
+            <svg class="uu-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </span>
+        <span class="demo-size-label">lg</span>
+        <span class="uu-tag" data-uu-size="lg" data-uu-color="brand">
+          Filter
+          <button type="button" class="uu-tag__close" aria-label="Xóa">
+            <svg class="uu-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </button>
+        </span>
+      </div>
+    </section>
+
+    <section class="demo-block">
+      <h2>Tag list — filter row</h2>
+      <div class="uu-tag-list">
+        <span class="uu-tag" data-uu-size="md" data-uu-color="brand">
+          Design
+          <button type="button" class="uu-tag__close" aria-label="Xóa Design"><svg class="uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        </span>
+        <span class="uu-tag" data-uu-size="md" data-uu-color="brand">
+          Product
+          <button type="button" class="uu-tag__close" aria-label="Xóa Product"><svg class="uu-icon uu-icon--16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M12 4L4 12M4 4l8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+        </span>
+        <span class="uu-tag" data-uu-size="md" data-uu-color="gray">Draft</span>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+    });
+  </script>
+</body>
+</html>

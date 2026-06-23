@@ -1,0 +1,123 @@
+/**
+ * Breadcrumb (MDI tab strip) — ERP desktop
+ * Tab liền nhau, không gap; mỗi tab có nút đóng; nút + thêm tab.
+ * Active: chữ/icon đỏ (--error-700) theo mock breadcrumb.
+ */
+
+.uu-breadcrumb {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  flex: 1;
+  background: var(--surface-default);
+}
+
+.uu-breadcrumb__track {
+  display: flex;
+  align-items: stretch;
+  min-width: 0;
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.uu-breadcrumb__track::-webkit-scrollbar {
+  height: 4px;
+}
+
+.uu-breadcrumb__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  flex-shrink: 0;
+  height: 40px;
+  padding: 0 var(--spacing-xl);
+  margin: 0;
+  border: none;
+  border-right: 1px solid var(--border-primary);
+  background: var(--surface-default);
+  color: var(--text-tertiary);
+  font-family: var(--font-family);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-text-sm);
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+}
+
+.uu-breadcrumb__tab:last-of-type {
+  border-right: 1px solid var(--border-primary);
+}
+
+.uu-breadcrumb__tab--active {
+  color: var(--text-brand);
+  font-weight: var(--font-weight-semibold);
+}
+
+.uu-breadcrumb__tab[data-tab-id] {
+  cursor: pointer;
+}
+
+.uu-breadcrumb__tab[data-tab-id]:hover:not(.uu-breadcrumb__tab--active) {
+  color: var(--text-secondary);
+  background: var(--background-primary);
+}
+
+.uu-breadcrumb__label {
+  pointer-events: none;
+}
+
+.uu-breadcrumb__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  border-radius: var(--radius-xs);
+  flex-shrink: 0;
+  line-height: 0;
+  opacity: 0.85;
+}
+
+.uu-breadcrumb__close:hover {
+  opacity: 1;
+  background: var(--background-secondary);
+}
+
+.uu-breadcrumb__close svg {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2;
+}
+
+.uu-breadcrumb__add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  align-self: center;
+  width: 28px;
+  height: 28px;
+  margin: 0 var(--spacing-md);
+  padding: 0;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--gray-100);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-regular);
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.uu-breadcrumb__add:hover {
+  background: var(--gray-200);
+}

@@ -1,0 +1,258 @@
+/**
+ * Table — Untitled UI (untitleduico/react)
+ * Source: components/application/table/table.tsx + table.demo.tsx
+ *
+ * Gồm 2 lớp:
+ * - TableCard: khung card (header + table + footer)
+ * - Table: table + head/row/cell
+ */
+
+@import url("../_shared/icon.css");
+@import url("../checkbox/checkbox.css");
+@import url("../badge/badge.css");
+@import url("../avatar/avatar.css");
+@import url("../utility-button/utility-button.css");
+@import url("../pagination/pagination.css");
+
+/* ─── Card wrapper ─────────────────────────────────────────── */
+.uu-table-card {
+  background: var(--surface-default);
+  border: var(--width-border-thin) solid var(--border-secondary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xs);
+  overflow: hidden;
+}
+
+.uu-table-card[data-uu-size="sm"] .uu-table-card__header {
+  padding: 16px 16px;
+}
+
+.uu-table-card[data-uu-size="md"] .uu-table-card__header {
+  padding: 20px 16px;
+}
+
+@media (min-width: 768px) {
+  .uu-table-card[data-uu-size="sm"] .uu-table-card__header {
+    padding: 16px 20px;
+  }
+  .uu-table-card[data-uu-size="md"] .uu-table-card__header {
+    padding: 20px 24px;
+  }
+}
+
+.uu-table-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-bottom: var(--width-border-thin) solid var(--border-secondary);
+}
+
+@media (min-width: 768px) {
+  .uu-table-card__header {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.uu-table-card__title-wrap {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.uu-table-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.uu-table-card__title {
+  margin: 0;
+  font-size: var(--font-size-text-md);
+  line-height: var(--line-height-text-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.uu-table-card__desc {
+  margin: 0;
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+  color: var(--text-tertiary);
+}
+
+.uu-table-card__trailing {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ─── Table scroll container ───────────────────────────────── */
+.uu-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.uu-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 720px; /* desktop table; mobile sẽ scroll */
+}
+
+/* ─── Head ─────────────────────────────────────────────────── */
+.uu-table__head {
+  background: var(--background-secondary);
+}
+
+.uu-table__head-row {
+  height: 44px;
+}
+
+.uu-table-card[data-uu-size="sm"] .uu-table__head-row {
+  height: 36px;
+}
+
+.uu-table__th,
+.uu-table__td {
+  padding: 16px 24px;
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+}
+
+.uu-table-card[data-uu-size="sm"] .uu-table__th,
+.uu-table-card[data-uu-size="sm"] .uu-table__td {
+  padding: 12px 20px;
+}
+
+.uu-table__th {
+  text-align: left;
+  font-size: var(--font-size-text-xs);
+  letter-spacing: var(--letter-spacing-caps);
+  text-transform: uppercase;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-tertiary);
+  border-bottom: var(--width-border-thin) solid var(--border-secondary);
+  white-space: nowrap;
+}
+
+.uu-table__th--select,
+.uu-table__td--select {
+  width: 44px;
+  padding-left: 16px;
+  padding-right: 0;
+}
+
+.uu-table-card[data-uu-size="sm"] .uu-table__th--select,
+.uu-table-card[data-uu-size="sm"] .uu-table__td--select {
+  width: 36px;
+}
+
+.uu-table__th-sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.uu-table__sort-icon {
+  color: var(--icon-tertiary);
+}
+
+/* ─── Body rows ─────────────────────────────────────────────── */
+.uu-table__row {
+  height: 72px; /* md: h-18 */
+}
+
+.uu-table-card[data-uu-size="sm"] .uu-table__row {
+  height: 56px; /* sm: h-14 */
+}
+
+.uu-table__td {
+  color: var(--text-tertiary);
+  border-bottom: var(--width-border-thin) solid var(--border-secondary);
+  vertical-align: middle;
+  background: var(--surface-default);
+}
+
+.uu-table__row:hover .uu-table__td {
+  background: var(--background-secondary);
+}
+
+.uu-table__row[data-uu-alt="true"]:nth-child(odd) .uu-table__td {
+  background: var(--background-secondary);
+}
+
+.uu-table__cell-primary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.uu-table__cell-primary-text {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.uu-table__cell-primary-text strong {
+  display: block;
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-text-sm);
+}
+
+.uu-table a,
+.uu-table-card a:not(.uu-button) {
+  color: var(--text-brand-secondary);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+}
+
+.uu-table a:hover,
+.uu-table-card a:not(.uu-button):hover {
+  color: var(--text-brand);
+  text-decoration: underline;
+}
+
+.uu-table__cell-primary-text span {
+  display: block;
+  color: var(--text-tertiary);
+  font-size: var(--font-size-text-sm);
+}
+
+.uu-table__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2px;
+}
+
+/* ─── Footer (pagination) ───────────────────────────────────── */
+.uu-table-card__footer {
+  background: var(--surface-default);
+}
+
+.uu-table-card__footer .uu-pagination--card-advanced,
+.uu-table-card__footer .uu-pagination--card-default {
+  border-top: var(--width-border-thin) solid var(--border-secondary);
+}
+
+/* Numeric columns — typography-map: tabular-nums */
+.uu-table__td--numeric,
+.uu-table__td[data-uu-align="right"] {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+/* Mobile table card: reduce min-width so it doesn't overflow the frame */
+@media (max-width: 480px) {
+  .uu-table {
+    min-width: 640px;
+  }
+}
+

@@ -1,0 +1,150 @@
+/**
+ * Tag — Untitled UI (untitleduico/react)
+ * components/base/tags/tags.tsx · base-components/tag-close-x.tsx
+ * Chỉ: Sizes (sm/md/lg) + Close X — không count/checkbox/avatar/dot
+ */
+
+@import url("../_shared/icon.css");
+
+.uu-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  border-radius: var(--radius-md);
+  background: var(--surface-default);
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-xs);
+  border: var(--width-border-thin) solid var(--border-secondary);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+  white-space: nowrap;
+  transition:
+    background 0.1s ease,
+    border-color 0.1s ease,
+    color 0.1s ease,
+    box-shadow 0.1s ease;
+}
+
+/* Branding — Thickness Indigo */
+.uu-tag[data-uu-color="brand"] {
+  background: var(--brand-50);
+  color: var(--brand-700);
+  border-color: var(--brand-200);
+}
+
+.uu-tag[data-uu-color="gray"] {
+  background: var(--gray-50);
+  color: var(--gray-700);
+  border-color: var(--gray-200);
+}
+
+.uu-tag:hover:not(:has(.uu-tag__close:disabled)) {
+  border-color: var(--brand-300);
+}
+
+.uu-tag[data-uu-color="brand"]:hover {
+  background: var(--brand-100);
+  border-color: var(--brand-300);
+}
+
+/* ─── Sizes ─────────────────────────────────────────────────── */
+.uu-tag[data-uu-size="sm"] {
+  padding: 3px 8px;
+  font-size: 0.75rem; /* 12px — text-xs */
+  line-height: 1.125rem;
+}
+
+.uu-tag[data-uu-size="md"] {
+  padding: 2px 9px;
+  font-size: 0.875rem; /* 14px — text-sm */
+  line-height: 1.25rem;
+}
+
+.uu-tag[data-uu-size="lg"] {
+  padding: 4px 10px;
+  font-size: 1rem; /* 16px — text-md */
+  line-height: 1.5rem;
+}
+
+/* Extra padding when Close X */
+.uu-tag:has(.uu-tag__close)[data-uu-size="sm"] {
+  padding-right: 4px;
+}
+
+.uu-tag:has(.uu-tag__close)[data-uu-size="md"] {
+  padding-right: 4px;
+}
+
+.uu-tag:has(.uu-tag__close)[data-uu-size="lg"] {
+  padding-right: 4px;
+}
+
+/* ─── Close X ───────────────────────────────────────────────── */
+.uu-tag__close {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  color: var(--icon-tertiary);
+  cursor: pointer;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.uu-tag__close:hover {
+  background: var(--brand-100);
+  color: var(--brand-600);
+}
+
+.uu-tag__close:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 1px;
+}
+
+.uu-tag__close:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.uu-tag[data-uu-size="sm"] .uu-tag__close {
+  padding: 2px;
+}
+
+.uu-tag[data-uu-size="sm"] .uu-tag__close .uu-icon {
+  width: 10px;
+  height: 10px;
+  stroke-width: 2.5;
+}
+
+.uu-tag[data-uu-size="md"] .uu-tag__close {
+  padding: 2px;
+}
+
+.uu-tag[data-uu-size="md"] .uu-tag__close .uu-icon {
+  width: 12px;
+  height: 12px;
+  stroke-width: 2.5;
+}
+
+.uu-tag[data-uu-size="lg"] .uu-tag__close {
+  padding: 3px;
+}
+
+.uu-tag[data-uu-size="lg"] .uu-tag__close .uu-icon {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.5;
+}
+
+/* ─── Tag list (filter row) ─────────────────────────────────── */
+.uu-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}

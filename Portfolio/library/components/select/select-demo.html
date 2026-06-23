@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Select — Thickness</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../_shared/demo-shell.css" />
+  <link rel="stylesheet" href="select.css" />
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Select</h1>
+    <div class="uu-field uu-select" data-uu-size="md" tabindex="0">
+      <label class="uu-label">Team member</label>
+      <div class="uu-control">
+        <button type="button" class="uu-select__trigger" aria-haspopup="listbox">
+          <span class="uu-select__placeholder">Select team member</span>
+          <svg class="uu-select__chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+      <ul class="uu-select__menu" role="listbox">
+        <li class="uu-select__option" role="option">Olivia Rhye</li>
+        <li class="uu-select__option" role="option">Phoenix Baker</li>
+        <li class="uu-select__option" role="option">Lana Steiner</li>
+      </ul>
+      <span class="uu-hint">This is a hint text to help user.</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dropdown — Thickness</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../button/button.css" />
+  <link rel="stylesheet" href="dropdown.css" />
+  <style>
+    .demo-page { max-width: 720px; margin: 0 auto; padding: 2rem; }
+    .demo-page__back a { color: var(--text-brand); }
+    .demo-stack { display: flex; flex-direction: column; gap: 2.5rem; margin-top: 1.5rem; }
+    .demo-block h2 { font-size: 0.875rem; font-weight: 600; color: var(--text-tertiary); margin: 0 0 0.75rem; }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/index.html">← Component index</a></p>
+    <h1>Dropdown</h1>
+
+    <div class="demo-stack">
+      <div class="demo-block">
+        <h2>Section + title + divider</h2>
+        <div class="uu-dropdown">
+          <div class="uu-dropdown__menu" role="menu" aria-label="Menu tài khoản">
+            <div class="uu-dropdown__section">
+              <p class="uu-dropdown__title">Tài khoản</p>
+              <button type="button" class="uu-dropdown__item" role="menuitem">Xem hồ sơ</button>
+              <button type="button" class="uu-dropdown__item" role="menuitem" aria-selected="true">Cài đặt</button>
+            </div>
+            <hr class="uu-dropdown__divider" />
+            <div class="uu-dropdown__section">
+              <p class="uu-dropdown__title">Workspace</p>
+              <button type="button" class="uu-dropdown__item" role="menuitem">Chuyển team</button>
+              <button type="button" class="uu-dropdown__item" role="menuitem">Mời thành viên</button>
+            </div>
+            <hr class="uu-dropdown__divider" />
+            <div class="uu-dropdown__section">
+              <button type="button" class="uu-dropdown__item" role="menuitem">Đăng xuất</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-block">
+        <h2>Hai section liền nhau (8px, không divider)</h2>
+        <div class="uu-dropdown">
+          <div class="uu-dropdown__menu" role="menu">
+            <div class="uu-dropdown__section">
+              <p class="uu-dropdown__title">Thao tác</p>
+              <button type="button" class="uu-dropdown__item" role="menuitem">Sao chép</button>
+              <button type="button" class="uu-dropdown__item" role="menuitem">Chỉnh sửa</button>
+            </div>
+            <div class="uu-dropdown__section">
+              <button type="button" class="uu-dropdown__item uu-dropdown__item--disabled" role="menuitem" disabled>Xóa (disabled)</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

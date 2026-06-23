@@ -1,0 +1,246 @@
+/**
+ * File Upload — Untitled UI (Application/FileUpload) → Thickness tokens
+ * Dropzone + file list item (progress bar). States: uploading · complete · failed.
+ */
+
+.uu-file-upload {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl); /* 16px */
+  font-family: var(--font-family);
+}
+
+/* ─── Drop zone ──────────────────────────────────────────────── */
+.uu-file-upload__dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg); /* 12px */
+  box-sizing: border-box;
+  padding: var(--spacing-xl) var(--spacing-3xl); /* 16px 24px */
+  border-radius: var(--radius-xl); /* 12px */
+  background-color: var(--surface-default);
+  box-shadow: inset 0 0 0 1px var(--border-secondary);
+  color: var(--text-tertiary);
+  text-align: center;
+  transition: box-shadow 0.1s linear, background-color 0.1s linear;
+}
+.uu-file-upload__dropzone.is-dragging {
+  box-shadow: inset 0 0 0 2px var(--border-brand);
+}
+.uu-file-upload__dropzone[data-uu-disabled="true"] {
+  background-color: var(--background-secondary);
+  cursor: not-allowed;
+}
+
+/* Featured icon */
+.uu-file-upload__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-default);
+  box-shadow: 0 1px 2px 0 rgba(10, 13, 18, 0.05), inset 0 0 0 1px var(--border-primary);
+  color: var(--icon-secondary);
+}
+.uu-file-upload__icon .uu-icon,
+.uu-file-upload__icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.uu-file-upload__prompt {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs); /* 4px */
+}
+.uu-file-upload__cta {
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+  color: var(--text-tertiary);
+}
+.uu-file-upload__cta button {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-brand);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.uu-file-upload__hint {
+  font-size: var(--font-size-text-xs);
+  line-height: var(--line-height-text-xs);
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+/* ─── File list ──────────────────────────────────────────────── */
+.uu-file-upload__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg); /* 12px */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.uu-file-item {
+  position: relative;
+  display: flex;
+  gap: var(--spacing-lg); /* 12px */
+  box-sizing: border-box;
+  padding: var(--spacing-xl); /* 16px */
+  border-radius: var(--radius-xl);
+  background-color: var(--surface-default);
+  box-shadow: inset 0 0 0 1px var(--border-secondary);
+}
+.uu-file-item[data-uu-state="failed"] {
+  box-shadow: inset 0 0 0 2px var(--border-error);
+}
+
+/* File type icon block */
+.uu-file-item__icon {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background-color: var(--background-secondary);
+  color: var(--icon-secondary);
+}
+.uu-file-item__icon .uu-icon,
+.uu-file-item__icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.uu-file-item__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.uu-file-item__head {
+  display: flex;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+.uu-file-item__info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.uu-file-item__name {
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.uu-file-item__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md); /* 8px */
+  margin-top: var(--spacing-xxs);
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+  color: var(--text-tertiary);
+}
+.uu-file-item__sep {
+  width: 1px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background-color: var(--border-primary);
+}
+.uu-file-item__status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-weight: var(--font-weight-medium);
+}
+.uu-file-item__status .uu-icon,
+.uu-file-item__status svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2.5;
+}
+.uu-file-item[data-uu-state="complete"] .uu-file-item__status { color: var(--text-success); }
+.uu-file-item[data-uu-state="uploading"] .uu-file-item__status { color: var(--text-quaternary); }
+.uu-file-item[data-uu-state="failed"] .uu-file-item__status { color: var(--text-error); }
+
+.uu-file-item__delete {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin: -8px -8px 0 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--icon-tertiary);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.uu-file-item__delete:hover {
+  background-color: var(--background-secondary);
+  color: var(--icon-secondary);
+}
+.uu-file-item__delete .uu-icon,
+.uu-file-item__delete svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+
+/* Progress bar */
+.uu-file-item__progress {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg); /* 12px */
+  margin-top: var(--spacing-xs);
+  width: 100%;
+}
+.uu-progress-track {
+  flex: 1 1 auto;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background-color: var(--background-tertiary);
+  overflow: hidden;
+}
+.uu-progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background-color: var(--brand-600);
+  transition: width 0.2s ease;
+}
+.uu-progress-value {
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.uu-file-item__retry {
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-error);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}

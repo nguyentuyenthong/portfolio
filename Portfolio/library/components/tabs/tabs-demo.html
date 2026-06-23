@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tabs — Thickness · Untitled UI</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../_shared/demo-shell.css" />
+  <link rel="stylesheet" href="../_shared/icon.css" />
+  <link rel="stylesheet" href="tabs.css" />
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Tabs</h1>
+    <p class="demo-page__meta">Untitled UI · Application/Tabs · type × size · selected = aria-selected="true"</p>
+
+    <div class="demo-toolbar">
+      <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" id="theme-toggle">Light / Dark</button>
+    </div>
+
+    <table class="demo-matrix">
+      <caption>Type · size sm · selected = "My details"</caption>
+      <thead><tr><th>Type</th><th>Tab list</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>button-brand</td>
+          <td>
+            <div class="uu-tab-list" role="tablist" data-uu-type="button-brand" data-uu-size="sm">
+              <button class="uu-tab" role="tab" aria-selected="true">My details</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Profile</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Password</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Team</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>button-gray</td>
+          <td>
+            <div class="uu-tab-list" role="tablist" data-uu-type="button-gray" data-uu-size="sm">
+              <button class="uu-tab" role="tab" aria-selected="true">My details</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Profile</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Password</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>button-border</td>
+          <td>
+            <div class="uu-tab-list" role="tablist" data-uu-type="button-border" data-uu-size="sm">
+              <button class="uu-tab" role="tab" aria-selected="true">My details</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Profile</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Password</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>button-minimal</td>
+          <td>
+            <div class="uu-tab-list" role="tablist" data-uu-type="button-minimal" data-uu-size="sm">
+              <button class="uu-tab" role="tab" aria-selected="true">My details</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Profile</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Password</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>underline</td>
+          <td>
+            <div class="uu-tab-list" role="tablist" data-uu-type="underline" data-uu-size="sm">
+              <button class="uu-tab" role="tab" aria-selected="true">My details</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Profile
+                <span class="uu-tab__badge">2</span>
+              </button>
+              <button class="uu-tab" role="tab" aria-selected="false">Password</button>
+              <button class="uu-tab" role="tab" aria-selected="false" disabled>Billing</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="demo-matrix">
+      <caption>Size · type underline</caption>
+      <thead><tr><th>Size</th><th>Tab list</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>sm</td>
+          <td>
+            <div class="uu-tab-list" role="tablist" data-uu-type="underline" data-uu-size="sm">
+              <button class="uu-tab" role="tab" aria-selected="true">Overview</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Analytics</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Reports</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>md</td>
+          <td>
+            <div class="uu-tab-list" role="tablist" data-uu-type="underline" data-uu-size="md">
+              <button class="uu-tab" role="tab" aria-selected="true">Overview</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Analytics</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Reports</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="demo-matrix">
+      <caption>Full width · button-border · md</caption>
+      <thead><tr><th>Variant</th><th>Tab list</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>fullwidth</td>
+          <td>
+            <div class="uu-tab-list" role="tablist" data-uu-type="button-border" data-uu-size="md" data-uu-fullwidth="true">
+              <button class="uu-tab" role="tab" aria-selected="true">Monthly</button>
+              <button class="uu-tab" role="tab" aria-selected="false">Annually</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="uu-tabs">
+      <div class="uu-tab-list" role="tablist" data-uu-type="button-brand" data-uu-size="md" id="live-list">
+        <button class="uu-tab" role="tab" aria-selected="true" data-panel="p1">Overview</button>
+        <button class="uu-tab" role="tab" aria-selected="false" data-panel="p2">Activity</button>
+        <button class="uu-tab" role="tab" aria-selected="false" data-panel="p3">Settings</button>
+      </div>
+      <div class="uu-tab-panel" role="tabpanel" id="p1">Live demo: bấm tab để đổi panel — Overview content.</div>
+      <div class="uu-tab-panel" role="tabpanel" id="p2" hidden>Activity feed content.</div>
+      <div class="uu-tab-panel" role="tabpanel" id="p3" hidden>Settings content.</div>
+    </div>
+  </div>
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+    });
+    const list = document.getElementById("live-list");
+    list.addEventListener("click", (e) => {
+      const tab = e.target.closest(".uu-tab");
+      if (!tab) return;
+      list.querySelectorAll(".uu-tab").forEach((t) => t.setAttribute("aria-selected", "false"));
+      tab.setAttribute("aria-selected", "true");
+      ["p1", "p2", "p3"].forEach((id) => document.getElementById(id).hidden = true);
+      document.getElementById(tab.dataset.panel).hidden = false;
+    });
+  </script>
+</body>
+</html>

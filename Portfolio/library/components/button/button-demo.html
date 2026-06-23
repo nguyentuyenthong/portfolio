@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Button — Thickness · Untitled UI</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../_shared/demo-shell.css" />
+  <link rel="stylesheet" href="button.css" />
+  <style>
+    .demo-callout {
+      padding: var(--spacing-lg) var(--spacing-xl);
+      margin-bottom: var(--spacing-4xl);
+      border-radius: 8px;
+      border: 1px solid var(--brand-200);
+      background: var(--brand-50);
+      color: var(--brand-800);
+      font-size: var(--font-size-text-sm);
+      line-height: var(--line-height-text-sm);
+    }
+    .demo-callout strong { color: var(--brand-700); }
+    .demo-swatch {
+      display: inline-block;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 4px;
+      vertical-align: middle;
+      margin-right: 4px;
+      border: 1px solid var(--gray-300);
+    }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Button</h1>
+    <p class="demo-page__meta">
+      Figma Button <code>1038:34411</code> · _Button base <code>1037:37979</code> · Label: <strong>Button CTA</strong>
+    </p>
+
+    <div class="demo-toolbar">
+      <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" id="theme-toggle">
+        Light / Dark
+      </button>
+    </div>
+
+    <div class="demo-callout">
+      <strong>Secondary color</strong> trong Untitled UI = nền + viền <code>Brand/50</code> (<span class="demo-swatch" style="background:var(--brand-50)"></span><code>--brand-50</code>),
+      <em>không</em> phải nút trắng viền brand đậm. Hover → <code>Brand/100</code>.
+    </div>
+
+    <table class="demo-matrix">
+      <caption>Hierarchy · md · Icon=False · Destructive=False</caption>
+      <thead>
+        <tr>
+          <th>Hierarchy</th>
+          <th>Default (hover thử chuột)</th>
+          <th>Disabled</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>primary</td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="primary">Button CTA</button>
+          </td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="primary" disabled>Button CTA</button>
+          </td>
+        </tr>
+        <tr>
+          <td>secondary-color</td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-color">Button CTA</button>
+          </td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-color" disabled>Button CTA</button>
+          </td>
+        </tr>
+        <tr>
+          <td>secondary-gray</td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray">Button CTA</button>
+          </td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" disabled>Button CTA</button>
+          </td>
+        </tr>
+        <tr>
+          <td>tertiary-color</td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="tertiary-color">Button CTA</button>
+          </td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="tertiary-color" disabled>Button CTA</button>
+          </td>
+        </tr>
+        <tr>
+          <td>tertiary-gray</td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="tertiary-gray">Button CTA</button>
+          </td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="tertiary-gray" disabled>Button CTA</button>
+          </td>
+        </tr>
+        <tr>
+          <td>link-color</td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="link-color">Button CTA</button>
+          </td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="link-color" disabled>Button CTA</button>
+          </td>
+        </tr>
+        <tr>
+          <td>link-gray</td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="link-gray">Button CTA</button>
+          </td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="link-gray" disabled>Button CTA</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="demo-matrix">
+      <caption>Destructive · md</caption>
+      <thead>
+        <tr>
+          <th>Hierarchy</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>primary</td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="primary" data-uu-destructive="true">Button CTA</button>
+          </td>
+        </tr>
+        <tr>
+          <td>secondary-color</td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-color" data-uu-destructive="true">Button CTA</button>
+          </td>
+        </tr>
+        <tr>
+          <td>secondary-gray</td>
+          <td>
+            <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" data-uu-destructive="true">Button CTA</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="demo-matrix">
+      <caption>Size · primary · Default</caption>
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>Button</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>sm</td>
+          <td><button type="button" class="uu-button" data-uu-size="sm" data-uu-hierarchy="primary">Button CTA</button></td>
+        </tr>
+        <tr>
+          <td>md</td>
+          <td><button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="primary">Button CTA</button></td>
+        </tr>
+        <tr>
+          <td>lg</td>
+          <td><button type="button" class="uu-button" data-uu-size="lg" data-uu-hierarchy="primary">Button CTA</button></td>
+        </tr>
+        <tr>
+          <td>xl</td>
+          <td><button type="button" class="uu-button" data-uu-size="xl" data-uu-hierarchy="primary">Button CTA</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+    });
+  </script>
+</body>
+</html>

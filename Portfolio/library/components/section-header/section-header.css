@@ -1,0 +1,266 @@
+/**
+ * Section Header — Untitled UI
+ * Map từ TableCard.Header + table.demo (search / buttons trailing)
+ * Docs: https://www.untitledui.com/react/components/section-headers
+ */
+
+@import url("../button/button.css");
+@import url("../input/input.css");
+@import url("../badge/badge.css");
+@import url("../_shared/icon.css");
+
+/* ─── Root ───────────────────────────────────────────────────── */
+.uu-section-header {
+  position: relative;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-xl);
+  border-bottom: var(--width-border-thin) solid var(--border-secondary);
+  background: var(--surface-default);
+  padding: 16px;
+}
+
+@media (min-width: 768px) {
+  .uu-section-header {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 20px 24px;
+  }
+}
+
+.uu-section-header[data-uu-size="sm"] {
+  padding: 16px;
+}
+
+@media (min-width: 768px) {
+  .uu-section-header[data-uu-size="sm"] {
+    padding: 16px 20px;
+  }
+}
+
+/* ─── Leading (title block) ──────────────────────────────────── */
+.uu-section-header__leading {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.uu-section-header__title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  min-width: 0;
+}
+
+.uu-section-header__title {
+  margin: 0;
+  font-size: var(--font-size-text-md);
+  line-height: var(--line-height-text-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.uu-section-header__desc {
+  margin: 0;
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+  color: var(--text-tertiary);
+}
+
+/* ─── Trailing actions ───────────────────────────────────────── */
+.uu-section-header__actions {
+  display: flex;
+  width: 100%;
+  flex-shrink: 0;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  .uu-section-header__actions {
+    width: auto;
+    justify-content: flex-end;
+  }
+}
+
+/* Search variant */
+.uu-section-header--search .uu-section-header__actions {
+  flex-wrap: wrap;
+}
+
+.uu-section-header__search {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .uu-section-header__search {
+    flex: 0 1 17.5rem; /* Untitled w-70 */
+    max-width: 17.5rem;
+  }
+}
+
+/* Compact search: no label/hint in header */
+.uu-section-header .uu-section-header__search.uu-field {
+  gap: 0;
+  max-width: none;
+}
+
+.uu-section-header .uu-section-header__search .uu-control {
+  position: relative;
+}
+
+.uu-section-header .uu-section-header__search .uu-control--with-icon .uu-control__input {
+  padding-left: 2.25rem;
+  padding-right: 3rem;
+}
+
+.uu-section-header__search-kbd {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: none;
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+  border: var(--width-border-thin) solid var(--border-secondary);
+  background: var(--surface-default);
+  font-size: var(--font-size-text-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-tertiary);
+  line-height: var(--line-height-text-xs);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .uu-section-header__search-kbd {
+    display: inline-flex;
+  }
+}
+
+/* Buttons variant */
+.uu-section-header__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .uu-section-header__buttons {
+    width: auto;
+    flex-wrap: nowrap;
+  }
+}
+
+/* Hide button-group when layout=buttons; hide buttons when layout=button-group */
+.uu-section-header__actions[data-uu-actions-layout="buttons"] .uu-button-group {
+  display: none;
+}
+
+.uu-section-header__actions[data-uu-actions-layout="button-group"] .uu-section-header__buttons {
+  display: none;
+}
+
+/* ─── Button group (Untitled base/button-group) ─────────────── */
+.uu-button-group {
+  display: inline-flex;
+  align-items: stretch;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xs);
+}
+
+.uu-button-group__item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  padding: 8px 14px;
+  border: var(--width-border-thin) solid var(--field-border-default);
+  background: var(--field-default);
+  font-family: var(--font-family);
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-text-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.1s, color 0.1s;
+}
+
+.uu-button-group__item + .uu-button-group__item {
+  margin-left: -1px;
+}
+
+.uu-button-group__item:first-child {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.uu-button-group__item:last-child {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.uu-button-group__item:only-child {
+  border-radius: var(--radius-md);
+}
+
+.uu-button-group__item:hover:not(:disabled) {
+  background: var(--field-hover);
+  color: var(--text-primary);
+  z-index: 1;
+}
+
+.uu-button-group__item[aria-pressed="true"],
+.uu-button-group__item.is-selected {
+  background: var(--brand-50);
+  color: var(--brand-700);
+  border-color: var(--brand-200);
+  z-index: 1;
+}
+
+.uu-button-group__item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.uu-button-group[data-uu-size="sm"] .uu-button-group__item {
+  padding: 8px 12px;
+  font-size: var(--font-size-text-sm);
+}
+
+/* Mobile: full-width actions stack */
+@media (max-width: 767px) {
+  .uu-section-header--buttons .uu-section-header__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .uu-section-header--buttons .uu-section-header__buttons,
+  .uu-section-header--buttons .uu-button-group {
+    width: 100%;
+  }
+
+  .uu-section-header--buttons .uu-button-group {
+    display: flex;
+  }
+
+  .uu-section-header--buttons .uu-button-group__item {
+    flex: 1;
+  }
+
+  .uu-section-header--search .uu-section-header__actions .uu-button {
+    width: 100%;
+  }
+}

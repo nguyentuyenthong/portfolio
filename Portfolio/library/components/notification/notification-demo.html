@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Notification — Thickness · Untitled UI</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../_shared/demo-shell.css" />
+  <link rel="stylesheet" href="../_shared/icon.css" />
+  <link rel="stylesheet" href="notification.css" />
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Notification (Toast)</h1>
+    <p class="demo-page__meta">Untitled UI · Application/Notifications · color × featured icon × actions</p>
+
+    <div class="demo-toolbar">
+      <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" id="theme-toggle">Light / Dark</button>
+    </div>
+
+    <table class="demo-matrix">
+      <caption>Color · featured icon + title + text + 2 actions + dismiss</caption>
+      <thead><tr><th>Color</th><th>Toast</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>success</td>
+          <td>
+            <div class="uu-notification" data-uu-color="success" role="status">
+              <span class="uu-notification__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m7.5 12 3 3 6-6m5.5 3c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z"></path></svg></span>
+              <div class="uu-notification__body">
+                <p class="uu-notification__title">Successfully saved!</p>
+                <p class="uu-notification__text">Your changes have been saved to the cloud.</p>
+                <div class="uu-notification__actions"><button type="button">Dismiss</button><button type="button" class="is-primary">View changes</button></div>
+              </div>
+              <button type="button" class="uu-notification__close" aria-label="Close"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>error</td>
+          <td>
+            <div class="uu-notification" data-uu-color="error" role="alert">
+              <span class="uu-notification__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v4m0 4h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z"></path></svg></span>
+              <div class="uu-notification__body">
+                <p class="uu-notification__title">Upload failed</p>
+                <p class="uu-notification__text">Something went wrong. Please try uploading the file again.</p>
+                <div class="uu-notification__actions"><button type="button">Dismiss</button><button type="button" class="is-primary">Try again</button></div>
+              </div>
+              <button type="button" class="uu-notification__close" aria-label="Close"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>warning</td>
+          <td>
+            <div class="uu-notification" data-uu-color="warning" role="status">
+              <span class="uu-notification__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 9v4m0 4h.01M10.615 3.892 2.39 18.098c-.456.788-.684 1.182-.65 1.506a1 1 0 0 0 .406.705c.263.191.718.191 1.629.191h16.45c.91 0 1.365 0 1.628-.191a1 1 0 0 0 .407-.705c.034-.324-.195-.718-.65-1.506L13.383 3.892c-.454-.785-.681-1.178-.978-1.31a1 1 0 0 0-.813 0c-.296.132-.523.525-.978 1.31Z"></path></svg></span>
+              <div class="uu-notification__body">
+                <p class="uu-notification__title">Your password will expire soon</p>
+                <p class="uu-notification__text">Update it within 3 days to avoid losing access.</p>
+                <div class="uu-notification__actions"><button type="button">Dismiss</button><button type="button" class="is-primary">Update password</button></div>
+              </div>
+              <button type="button" class="uu-notification__close" aria-label="Close"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>brand</td>
+          <td>
+            <div class="uu-notification" data-uu-color="brand" role="status">
+              <span class="uu-notification__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16v-4m0-4h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z"></path></svg></span>
+              <div class="uu-notification__body">
+                <p class="uu-notification__title">New feature available</p>
+                <p class="uu-notification__text">Try the redesigned analytics dashboard now.</p>
+                <div class="uu-notification__actions"><button type="button">Dismiss</button><button type="button" class="is-primary">Take a look</button></div>
+              </div>
+              <button type="button" class="uu-notification__close" aria-label="Close"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>gray (minimal)</td>
+          <td>
+            <div class="uu-notification" data-uu-color="gray" role="status">
+              <span class="uu-notification__icon"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16v-4m0-4h.01M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2s10 4.477 10 10Z"></path></svg></span>
+              <div class="uu-notification__body">
+                <p class="uu-notification__title">Sync complete</p>
+                <p class="uu-notification__text">All your devices are now up to date.</p>
+              </div>
+              <button type="button" class="uu-notification__close" aria-label="Close"><svg class="uu-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"></path></svg></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+    });
+    document.querySelectorAll(".uu-notification__close").forEach((btn) =>
+      btn.addEventListener("click", (e) => e.currentTarget.closest(".uu-notification").style.display = "none"));
+  </script>
+</body>
+</html>

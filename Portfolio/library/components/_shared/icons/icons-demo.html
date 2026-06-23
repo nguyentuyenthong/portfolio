@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Icons — Thickness · Untitled UI</title>
+  <link rel="stylesheet" href="../../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../../foundations/base.css" />
+  <link rel="stylesheet" href="../demo-shell.css" />
+  <link rel="stylesheet" href="../icon.css" />
+  <style>
+    .icon-search {
+      width: 100%;
+      max-width: 28rem;
+      margin-bottom: var(--spacing-xl);
+    }
+    .icon-meta {
+      font-size: var(--font-size-text-sm);
+      color: var(--text-tertiary);
+      margin: 0 0 var(--spacing-4xl);
+    }
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-6xl);
+    }
+    .icon-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg);
+      border: var(--width-border-thin) solid var(--border-tertiary);
+      border-radius: var(--radius-md);
+      background: var(--surface-default);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .icon-card:hover {
+      border-color: var(--border-brand);
+      background: var(--brand-50);
+    }
+    .icon-card__name {
+      font-size: 0.625rem;
+      font-family: var(--font-family-mono);
+      color: var(--text-tertiary);
+      text-align: center;
+      word-break: break-word;
+      line-height: 1.3;
+    }
+    .icon-empty {
+      padding: var(--spacing-4xl);
+      color: var(--text-tertiary);
+      font-size: var(--font-size-text-sm);
+    }
+    .icon-toast {
+      position: fixed;
+      bottom: var(--spacing-3xl);
+      left: 50%;
+      transform: translateX(-50%);
+      padding: var(--spacing-md) var(--spacing-xl);
+      border-radius: var(--radius-md);
+      background: var(--gray-900);
+      color: var(--white);
+      font-size: var(--font-size-text-sm);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      z-index: var(--z-toast);
+    }
+    .icon-toast.is-visible { opacity: 1; }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../break-point/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Untitled UI Icons</h1>
+    <p class="icon-meta" id="icon-meta">Đang tải…</p>
+
+    <input
+      type="search"
+      class="icon-search uu-input"
+      id="icon-search"
+      placeholder="Tìm icon — ví dụ: Search, Alert, User, Package…"
+      autocomplete="off"
+    />
+
+    <div class="icon-grid" id="icon-grid" aria-live="polite"></div>
+    <p class="icon-empty" id="icon-empty" hidden>Không tìm thấy icon.</p>
+  </div>
+
+  <p class="icon-toast" id="icon-toast" role="status"></p>
+
+  <script type="module">
+    import { loadRegistry, listIconNames } from './icons.js';
+
+    const grid = document.getElementById('icon-grid');
+    const search = document.getElementById('icon-search');
+    const metaEl = document.getElementById('icon-meta');
+    const emptyEl = document.getElementById('icon-empty');
+    const toast = document.getElementById('icon-toast');
+
+    const data = await loadRegistry();
+    const allNames = await listIconNames();
+
+    metaEl.textContent = `${data.meta?.count || allNames.length} icon line · MIT · @untitledui/icons · sync ${data.meta?.syncedAt || '—'}`;
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('is-visible');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(() => toast.classList.remove('is-visible'), 1600);
+    }
+
+    function render(names) {
+      if (!names.length) {
+        grid.innerHTML = '';
+        emptyEl.hidden = false;
+        return;
+      }
+      emptyEl.hidden = true;
+      grid.innerHTML = names.map((k) => {
+        const e = data.icons[k];
+        return `<button type="button" class="icon-card" data-name="${k}" title="Copy: ${k}">${e.snippet}<span class="icon-card__name">${k}</span></button>`;
+      }).join('');
+    }
+
+    function filter(q) {
+      const query = q.trim().toLowerCase();
+      if (!query) return render(allNames.slice(0, 120));
+      const matches = allNames.filter((n) => n.toLowerCase().includes(query));
+      render(matches.slice(0, 120));
+    }
+
+    search.addEventListener('input', () => filter(search.value));
+    grid.addEventListener('click', (event) => {
+      const card = event.target.closest('.icon-card');
+      if (!card) return;
+      const name = card.dataset.name;
+      navigator.clipboard?.writeText(name);
+      showToast(`Đã copy: ${name}`);
+    });
+
+    filter('');
+  </script>
+</body>
+</html>

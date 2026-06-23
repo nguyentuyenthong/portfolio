@@ -1,0 +1,143 @@
+/**
+ * Notification (Toast) — Untitled UI → Thickness tokens
+ * Card nổi (shadow-lg) + featured icon + title + text + actions + close.
+ * Source: Untitled UI Application/Notifications
+ */
+
+.uu-notification {
+  --uu-toast-shadow-lg: 0 12px 16px -4px rgba(10, 13, 18, 0.08),
+    0 4px 6px -2px rgba(10, 13, 18, 0.03);
+  display: flex;
+  gap: var(--spacing-xl); /* 16px */
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 400px;
+  padding: var(--spacing-xl);
+  border: var(--width-border-thin) solid var(--border-primary);
+  border-radius: var(--radius-xl); /* 12px */
+  background-color: var(--surface-overlay);
+  box-shadow: var(--uu-toast-shadow-lg);
+  font-family: var(--font-family);
+}
+
+/* Featured icon (circle, modern double-ring) */
+.uu-notification__icon {
+  position: relative;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  background-color: var(--surface-default);
+  box-shadow: 0 0 0 1px var(--border-primary),
+    0 0 0 6px var(--background-secondary);
+  color: var(--icon-secondary);
+}
+
+.uu-notification__icon .uu-icon,
+.uu-notification__icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.uu-notification__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs); /* 4px */
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.uu-notification__title {
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.uu-notification__text {
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-tertiary);
+  margin: 0;
+}
+
+.uu-notification__actions {
+  display: flex;
+  gap: var(--spacing-lg); /* 12px */
+  margin-top: var(--spacing-md); /* 8px */
+}
+
+.uu-notification__actions a,
+.uu-notification__actions button {
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+.uu-notification__actions a.is-primary,
+.uu-notification__actions button.is-primary {
+  color: var(--text-brand);
+}
+
+.uu-notification__close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  margin: -6px -6px 0 0;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--icon-tertiary);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.uu-notification__close:hover {
+  background-color: var(--background-secondary);
+  color: var(--icon-secondary);
+}
+.uu-notification__close .uu-icon,
+.uu-notification__close svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+/* ─── Color variants → featured icon ─────────────────────────── */
+.uu-notification[data-uu-color="brand"] .uu-notification__icon {
+  color: var(--icon-brand);
+  box-shadow: 0 0 0 1px var(--border-brand), 0 0 0 6px var(--background-brand-subtle);
+}
+.uu-notification[data-uu-color="success"] .uu-notification__icon {
+  color: var(--icon-success);
+  box-shadow: 0 0 0 1px var(--border-success), 0 0 0 6px var(--background-success-subtle);
+}
+.uu-notification[data-uu-color="warning"] .uu-notification__icon {
+  color: var(--icon-warning);
+  box-shadow: 0 0 0 1px var(--border-warning), 0 0 0 6px var(--background-warning-subtle);
+}
+.uu-notification[data-uu-color="error"] .uu-notification__icon {
+  color: var(--icon-error);
+  box-shadow: 0 0 0 1px var(--border-error), 0 0 0 6px var(--background-error-subtle);
+}
+.uu-notification[data-uu-color="info"] .uu-notification__icon {
+  color: var(--icon-info);
+  box-shadow: 0 0 0 1px var(--border-info), 0 0 0 6px var(--background-info-subtle);
+}

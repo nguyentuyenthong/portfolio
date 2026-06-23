@@ -1,0 +1,56 @@
+/**
+ * Hero Section — portfolio landing
+ */
+
+.uu-hero {
+  display: grid;
+  gap: var(--spacing-3xl);
+  padding: var(--spacing-6xl) var(--spacing-3xl) var(--spacing-5xl);
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.uu-hero__eyebrow {
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-brand-secondary);
+  letter-spacing: 0.02em;
+}
+
+.uu-hero__title {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, var(--font-size-display-lg));
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  max-width: 18ch;
+}
+
+.uu-hero__subtitle {
+  margin: 0;
+  font-size: clamp(1.125rem, 2.5vw, var(--font-size-text-xl));
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 42rem;
+}
+
+.uu-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  align-items: center;
+}
+
+.uu-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+  .uu-hero {
+    padding: var(--spacing-4xl) var(--spacing-xl) var(--spacing-3xl);
+  }
+}

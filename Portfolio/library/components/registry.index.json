@@ -1,0 +1,44 @@
+﻿{
+  "$description": "Unified index — agent đọc file này trước",
+  "meta": {
+    "designSystem": "Thickness",
+    "source": "untitleduico/react",
+    "brand": "--brand-600 #444CE7",
+    "font": "Inter",
+    "rules": "library/rules/README.md",
+    "tokenMap": "library/foundations/token-map.md",
+    "typographyMap": "library/rules/typography-map.md",
+    "typographyUtilities": "library/foundations/tokens/typography/utilities.css",
+    "icons": "library/components/_shared/icons/registry.json",
+    "skills": {
+      "designSystem": ".cursor/skills/thickness-library/SKILL.md",
+      "desktopPrototype": ".cursor/skills/thickness-desktop-prototype/SKILL.md",
+      "mobilePrototype": ".cursor/skills/thickness-mobile-prototype/SKILL.md"
+    }
+  },
+  "workflow": {
+    "order": [
+      "1. Đọc registry.index.json + guardrails",
+      "2. Liệt kê component cần cho UI",
+      "3. Component chưa generated → component-workflow",
+      "4. Đọc .tsx Untitled → typography-map cho mọi class text-* font-* tracking-*",
+      "5. Chọn skill desktop HOẶC mobile",
+      "6. Ghép page: uu-* + token Thickness + icons registry"
+    ],
+    "forbidden": [
+      "Tailwind class trong HTML output",
+      "Component/CSS ngoài library/components",
+      "Hardcode px/color/font",
+      "Font khác Inter"
+    ]
+  },
+  "registries": {
+    "base": "library/components/registry.base.json",
+    "portfolio": "library/components/registry.portfolio.json",
+    "catalog": "library/components/registry.catalog.json"
+  },
+  "generatedCount": {
+    "base": 26,
+    "portfolioPatterns": 4
+  }
+}

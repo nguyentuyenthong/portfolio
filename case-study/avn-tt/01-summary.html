@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="vi" class="light-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Tổng quan case study AVN-TT — Kiểm tra tồn kho mobile: 64% nhanh hơn, 2.000+ nhân viên, pattern tái sử dụng cho 3 module." />
+  <title>AVN-TT · Tổng quan — Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../Portfolio/library/foundations/thickness.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/foundations/base.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/_shared/icon.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/button/button.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/site-nav/site-nav.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/hero-section/hero-section.css" />
+  <link rel="stylesheet" href="../../Portfolio/library/components/section-header/section-header.css" />
+  <link rel="stylesheet" href="../../Portfolio/styles/portfolio.css" />
+  <link rel="stylesheet" href="../../Portfolio/styles/case-study.css" />
+</head>
+<body>
+  <div class="case-page portfolio-page">
+
+    <header class="uu-site-nav portfolio-shell portfolio-nav--floating" id="top">
+      <a class="uu-site-nav__brand portfolio-nav__brand" href="../../Portfolio/index.html">
+        <img class="portfolio-nav__logo" src="../../Portfolio/assets/images/banners/Logo-thickness1.svg" alt="Nguyen Tuyen Thong" width="193" height="47" decoding="async" />
+      </a>
+      <button type="button" class="uu-site-nav__menu-btn" aria-label="Mở menu" aria-expanded="false" id="nav-toggle">
+        <svg class="uu-icon uu-icon--24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <nav aria-label="Điều hướng chính">
+        <ul class="uu-site-nav__links" id="nav-links">
+          <li><a class="uu-site-nav__link" href="../../Portfolio/index.html">Trang chủ</a></li>
+          <li><a class="uu-site-nav__link" href="../../Portfolio/index.html#projects">Dự án</a></li>
+          <li><a class="uu-site-nav__link" href="../../Portfolio/index.html#contact">Liên hệ</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+
+      <nav class="case-tabs portfolio-shell" aria-label="Các phần của case study">
+        <div class="case-tabs__scroll">
+          <div class="uu-button-group" data-uu-size="sm">
+            <a href="01-summary.html"  class="uu-button-group__item is-selected" aria-current="page">Tổng quan</a>
+            <a href="02-problem.html"  class="uu-button-group__item">Vấn đề</a>
+            <a href="03-research.html" class="uu-button-group__item">Nghiên cứu</a>
+            <a href="04-design.html"   class="uu-button-group__item">Thiết kế</a>
+            <a href="05-results.html"  class="uu-button-group__item">Kết quả</a>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero -->
+      <section class="uu-hero portfolio-hero portfolio-hero--centered portfolio-shell case-hero" aria-labelledby="case-title">
+        <a href="../../Portfolio/index.html#case-avn-tt" class="case-hero__back" aria-label="Quay lại portfolio">
+          <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Quay lại portfolio
+        </a>
+        <div class="portfolio-hero__content">
+          <h1 class="portfolio-hero__headline" id="case-title">Case study: Kiểm tra tồn kho</h1>
+        </div>
+      </section>
+
+      <!-- Nội dung chính -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="summary" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">01</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Tổng quan</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <figure class="case-figure case-figure--plain">
+              <img
+                src="../../Portfolio/assets/images/banners/Container.png"
+                alt="Tóm tắt dự án: Role, Duration, Platform, Team size và Tools"
+                width="1200"
+                height="420"
+                loading="eager"
+                decoding="async"
+              />
+            </figure>
+
+          </div>
+
+          <!-- Before / After -->
+          <div class="case-block">
+            <p class="case-kicker">Trước &amp; sau</p>
+            <div class="case-data-table-wrap">
+              <table class="case-data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Khía cạnh</th>
+                    <th scope="col">Trước</th>
+                    <th scope="col">Sau</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Thời gian hoàn thành</strong></td>
+                    <td>Ghi tay → nhập lại trên máy → ~14 phút mỗi phiếu</td>
+                    <td class="case-data-table__highlight">~5 phút · một luồng mobile: danh sách → tạo → nhập SKU → chọn người duyệt → theo dõi</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Xác nhận sau khi nộp</strong></td>
+                    <td>Không có — nhân viên gọi điện văn phòng để xác nhận phiếu tồn tại</td>
+                    <td class="case-data-table__highlight">Badge trạng thái cập nhật real-time ngay trên màn hình danh sách</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Ngữ cảnh duyệt</strong></td>
+                    <td>Người duyệt không thấy ghi chú của cấp trước — phải gọi điện trước khi duyệt</td>
+                    <td class="case-data-table__highlight">Toàn bộ lịch sử duyệt hiển thị cho mọi vai trò trên một màn hình</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Nhập số lượng SKU</strong></td>
+                    <td>Ghi tay trên giấy tại kho → về văn phòng nhập lại máy tính</td>
+                    <td class="case-data-table__highlight">Nhập trực tiếp trên điện thoại tại kho · tồn kho hệ thống hiển thị cạnh số thực đếm</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="case-page-actions portfolio-shell">
+        <div class="uu-hero__actions case-actions">
+          <a href="02-problem.html" class="uu-button" data-uu-size="md" data-uu-hierarchy="primary">
+            Tiếp theo: Vấn đề
+            <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="../../Portfolio/source-code/scripts/orphan-guard.js"></script>
+  <script src="../../Portfolio/source-code/scripts/case-study.js"></script>
+</body>
+</html>

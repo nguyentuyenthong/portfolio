@@ -1,0 +1,50 @@
+/**
+ * Avatar — untitleduico/react → components/base/avatar/avatar.tsx
+ */
+
+.uu-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: var(--radius-full);
+  background: var(--gray-100);
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+
+.uu-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.uu-avatar[data-uu-size="xs"] { width: 1.5rem; height: 1.5rem; font-size: var(--font-size-text-xs); }
+.uu-avatar[data-uu-size="sm"] { width: 2rem; height: 2rem; font-size: var(--font-size-text-sm); }
+.uu-avatar[data-uu-size="md"] { width: 2.5rem; height: 2.5rem; font-size: var(--font-size-text-md); }
+.uu-avatar[data-uu-size="lg"] { width: 3rem; height: 3rem; font-size: var(--font-size-text-lg); }
+.uu-avatar[data-uu-size="xl"] { width: 3.5rem; height: 3.5rem; font-size: var(--font-size-text-xl); }
+
+.uu-avatar[data-uu-border="true"] {
+  outline: 2px solid var(--surface-default);
+  outline-offset: -2px;
+}
+
+.uu-avatar__status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+  height: 25%;
+  min-width: 6px;
+  min-height: 6px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--white);
+  background: var(--success-500);
+}
+
+.uu-avatar__status[data-status="offline"] {
+  background: var(--gray-400);
+}

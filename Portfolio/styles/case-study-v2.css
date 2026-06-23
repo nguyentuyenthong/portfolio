@@ -1,0 +1,65 @@
+/* ============================================================
+   Case study v2 — clarity pass (johndobie-inspired)
+   Mục tiêu: nhìn vào là phân biệt được section ↔ block ↔ element.
+   Hai đòn bẩy:
+     1) Type hierarchy: section title TRỘI hơn block sub-heading.
+     2) Spacing cascade gấp đôi: 16px (trong block) → 32px (giữa block)
+        → 64px (giữa section).
+   Loaded AFTER case-study.css. Scope .case-page (chỉ link ở v2).
+   Token only — không hardcode px/màu.
+   ============================================================ */
+
+/* ── 1. Section ↔ section: tách thật rộng (64px) ─────────────
+   main flex gap = --section-gap; công thức (X − section-gap) khử
+   gap mặc định và đặt net = X. */
+.case-page main > .case-section + .case-section {
+  margin-block-start: calc(var(--spacing-7xl) - var(--section-gap)); /* net 64px */
+}
+
+/* ── 2. Mỗi section là một nhóm rõ ràng ──────────────────────
+   header và content cách nhau 32px, đều nhịp với block-gap. */
+.case-page .uu-section.case-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4xl); /* header ↔ content = 32px */
+}
+
+/* Triệt margin cũ của header để không cộng dồn với flex gap */
+.case-page .portfolio-section__header.case-section-head {
+  margin: 0;
+}
+
+/* ── 3. Type hierarchy ───────────────────────────────────────
+   Section title (h2) = display-sm 30px → mốc neo của section.
+   Block sub-heading (h3 .case-kicker) = text-xl 20px → rõ ràng
+   là con của section. Chênh 30↔20 giúp mắt gom nhóm tức thì. */
+.case-page .case-section-head .uu-section__title {
+  font-size: var(--font-size-display-sm);
+  line-height: var(--line-height-display-sm);
+  letter-spacing: -0.022em;
+}
+
+.case-page .case-kicker,
+.case-page .case-deliverables__title,
+.case-page .case-stakeholder-card__role {
+  font-size: var(--font-size-text-xl);
+  line-height: var(--line-height-text-xl);
+  letter-spacing: -0.01em;
+}
+
+/* ── 4. Block ↔ block trong cùng section: 32px ───────────────*/
+.case-page .portfolio-section__content {
+  gap: var(--spacing-4xl);
+}
+
+/* ── 5. Trong một block: bó sát (16px) ───────────────────────
+   heading ôm lấy nội dung (đoạn văn, bảng, grid) của nó. */
+.case-page .case-block {
+  gap: var(--spacing-xl);
+}
+
+/* ── 6. Tinh chỉnh nhỏ: disclaimer & figcaption tách nhẹ khỏi
+   khối phía trên bằng nhịp nhỏ, vẫn thuộc cùng block. */
+.case-page .case-data-table__disclaimer {
+  margin-top: var(--spacing-lg);
+}

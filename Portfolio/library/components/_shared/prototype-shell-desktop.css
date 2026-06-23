@@ -1,0 +1,61 @@
+/**
+ * Desktop prototype shell — Thickness
+ * Rules: library/rules/prototype.md (Desktop)
+ */
+
+.prototype-device--desktop {
+  min-height: 100vh;
+  background: var(--background-primary);
+}
+
+.prototype-shell--desktop {
+  width: min(72rem, 100% - 2 * var(--spacing-3xl));
+  margin-inline: auto;
+  padding-block: var(--spacing-4xl);
+}
+
+.prototype-frame--desktop {
+  max-width: var(--width-container-xl);
+  margin-inline: auto;
+  border: var(--width-border-thin) solid var(--border-tertiary);
+  border-radius: var(--radius-xl);
+  background: var(--surface-default);
+  box-shadow: 0 1px 3px rgba(10, 13, 18, 0.08);
+  overflow: hidden;
+}
+
+.prototype-device-label--desktop {
+  font-size: var(--font-size-text-xs);
+  font-family: var(--font-family-mono);
+  color: var(--text-tertiary);
+  text-align: center;
+  padding: var(--spacing-md);
+  border-bottom: var(--width-border-thin) solid var(--border-tertiary);
+  background: var(--background-secondary);
+}
+
+/* Desktop grid helpers */
+.prototype-grid--3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-3xl);
+}
+
+.prototype-grid--2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-3xl);
+}
+
+.prototype-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-4xl);
+  align-items: center;
+}
+
+@media (max-width: 1023px) {
+  .prototype-grid--3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

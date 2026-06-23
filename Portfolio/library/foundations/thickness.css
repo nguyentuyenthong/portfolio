@@ -1,0 +1,9 @@
+/**
+ * Thickness — entry CSS (tokens)
+ * Canonical path: foundations/thickness.css
+ */
+@import url("./tokens/colors/primitives.css");
+@import url("./tokens/colors/semantic.css");
+@import url("./tokens/numbers/semantic.css");
+@import url("./tokens/colors/theme.css");
+@import url("./tokens/numbers/global.css");

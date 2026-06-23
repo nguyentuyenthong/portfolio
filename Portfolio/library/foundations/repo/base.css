@@ -1,0 +1,43 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family-body, Inter, system-ui, sans-serif);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  background: var(--background-primary);
+  color: var(--text-primary);
+}
+
+/* Orphan words — library/rules/typography.md */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.uu-section__title,
+.case-kicker,
+.case-deliverables__title,
+.case-stakeholder-card__role,
+.portfolio-hero__headline,
+.uu-site-footer__cta-title {
+  text-wrap: balance;
+}
+
+p,
+li,
+.uu-section__body,
+.uu-section__label,
+.case-list__title,
+figcaption,
+.uu-button-group__item {
+  text-wrap: pretty;
+}
+

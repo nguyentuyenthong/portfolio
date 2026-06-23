@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Badge — Thickness · Untitled UI</title>
+  <link rel="stylesheet" href="../../foundations/thickness.css" />
+  <link rel="stylesheet" href="../../foundations/base.css" />
+  <link rel="stylesheet" href="../_shared/demo-shell.css" />
+  <link rel="stylesheet" href="badge.css" />
+  <style>
+    .demo-matrix { width: 100%; border-collapse: collapse; font-size: var(--font-size-text-sm); margin-bottom: var(--spacing-4xl); }
+    .demo-matrix th, .demo-matrix td { padding: var(--spacing-lg); border-bottom: var(--width-border-thin) solid var(--border-tertiary); vertical-align: middle; }
+    .demo-matrix th { text-align: left; color: var(--text-tertiary); font-size: var(--font-size-text-xs); text-transform: uppercase; }
+    .demo-matrix td:first-child { font-weight: var(--font-weight-medium); color: var(--text-secondary); width: 4rem; }
+    .demo-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  </style>
+</head>
+<body class="light-mode">
+  <div class="demo-page">
+    <p class="demo-page__back"><a href="../../demo/foundation-preview/index.html">← Component index</a></p>
+    <h1 class="demo-page__title">Badge</h1>
+    <p class="demo-page__meta">
+      Untitled UI · <code>rules/tags-and-badges.md</code> — sm 12px · md 14px · lg 16px
+    </p>
+
+    <div class="demo-toolbar">
+      <button type="button" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" id="theme-toggle">Light / Dark</button>
+    </div>
+
+    <table class="demo-matrix">
+      <caption>Size × color (pill + dot)</caption>
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>gray</th>
+          <th>brand</th>
+          <th>success</th>
+          <th>warning</th>
+          <th>error</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>sm</td>
+          <td colspan="5">
+            <div class="demo-row">
+              <span class="uu-badge" data-uu-type="pill" data-uu-size="sm" data-uu-color="gray">Label</span>
+              <span class="uu-badge" data-uu-type="pill" data-uu-size="sm" data-uu-color="brand">Brand</span>
+              <span class="uu-badge" data-uu-type="pill" data-uu-size="sm" data-uu-color="success"><span class="uu-badge__dot"></span>Active</span>
+              <span class="uu-badge" data-uu-type="pill" data-uu-size="sm" data-uu-color="warning"><span class="uu-badge__dot"></span>Pending</span>
+              <span class="uu-badge" data-uu-type="pill" data-uu-size="sm" data-uu-color="error">Error</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>md</td>
+          <td colspan="5">
+            <div class="demo-row">
+              <span class="uu-badge" data-uu-type="pill" data-uu-size="md" data-uu-color="gray">Label</span>
+              <span class="uu-badge" data-uu-type="pill" data-uu-size="md" data-uu-color="brand">Brand</span>
+              <span class="uu-badge" data-uu-type="pill" data-uu-size="md" data-uu-color="success"><span class="uu-badge__dot"></span>Active</span>
+              <span class="uu-badge" data-uu-type="pill" data-uu-size="md" data-uu-color="warning"><span class="uu-badge__dot"></span>Pending</span>
+              <span class="uu-badge" data-uu-type="pill" data-uu-size="md" data-uu-color="error">Error</span>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>lg</td>
+          <td colspan="5">
+            <div class="demo-row">
+              <span class="uu-badge" data-uu-type="pill" data-uu-size="lg" data-uu-color="gray">Label</span>
+              <span class="uu-badge" data-uu-type="pill" data-uu-size="lg" data-uu-color="brand">Brand</span>
+              <span class="uu-badge" data-uu-type="pill" data-uu-size="lg" data-uu-color="success"><span class="uu-badge__dot"></span>Active</span>
+              <span class="uu-badge" data-uu-type="badge" data-uu-size="lg" data-uu-color="error">Badge type</span>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      document.body.classList.toggle("light-mode");
+    });
+  </script>
+</body>
+</html>

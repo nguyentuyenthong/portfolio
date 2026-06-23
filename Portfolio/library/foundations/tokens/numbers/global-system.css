@@ -1,0 +1,64 @@
+/**
+ * Thickness — Global foundations (numbers & system)
+ * Motion, z-index, opacity, width, breakpoints, stroke
+ *
+ * Typography đã tách riêng: `foundations/tokens/numbers/font.md`
+ */
+
+:root {
+  /* Stroke / border width (numeric scale) */
+  --stroke-0: 0px;
+  --stroke-1: 1px;
+  --stroke-2: 2px;
+  --stroke-3: 3px;
+  --stroke-4: 4px;
+
+  /* Opacity */
+  --opacity-0: 0;
+  --opacity-5: 0.05;
+  --opacity-10: 0.1;
+  --opacity-20: 0.2;
+  --opacity-30: 0.3;
+  --opacity-40: 0.4;
+  --opacity-50: 0.5;
+  --opacity-60: 0.6;
+  --opacity-70: 0.7;
+  --opacity-80: 0.8;
+  --opacity-90: 0.9;
+  --opacity-100: 1;
+
+  /* Width — border & layout */
+  --width-border-none: var(--stroke-0);
+  --width-border-thin: var(--stroke-1);
+  --width-border-thick: var(--stroke-2);
+  --width-border-heavy: var(--stroke-4);
+
+  --width-container-sm: 640px;
+  --width-container-md: 768px;
+  --width-container-lg: 1024px;
+  --width-container-xl: 1280px;
+  --width-container-2xl: 1536px;
+
+  /* Breakpoints (reference — dùng trong @media hoặc JS) */
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* Motion */
+  --duration-fast: 120ms;
+  --duration-normal: 200ms;
+  --duration-slow: 320ms;
+  --ease-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* Z-index */
+  --z-dropdown: 1000;
+  --z-sticky: 1100;
+  --z-modal: 1300;
+  --z-toast: 1400;
+  --z-tooltip: 1500;
+}

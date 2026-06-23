@@ -1,0 +1,59 @@
+/**
+ * Utility button — untitleduico/react → components/base/buttons/button-utility.tsx
+ */
+
+.uu-utility-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 6px;
+  border: var(--width-border-thin) solid transparent;
+  background: transparent;
+  color: var(--icon-on-light);
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s, box-shadow 0.1s;
+}
+
+.uu-utility-btn svg,
+.uu-utility-btn .uu-icon {
+  color: inherit;
+  stroke: currentColor;
+  fill: none;
+}
+
+.uu-utility-btn:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}
+
+.uu-utility-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.uu-utility-btn[data-uu-color="secondary"] {
+  background: var(--field-default);
+  border-color: var(--field-border-default);
+  box-shadow: var(--shadow-xs);
+}
+
+.uu-utility-btn[data-uu-color="secondary"]:hover:not(:disabled) {
+  background: var(--brand-50);
+  color: var(--icon-brand);
+}
+
+.uu-utility-btn[data-uu-color="tertiary"]:hover:not(:disabled) {
+  background: var(--brand-50);
+  color: var(--icon-brand);
+}
+
+.uu-utility-btn[data-uu-size="xs"] svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.uu-utility-btn[data-uu-size="sm"] svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}

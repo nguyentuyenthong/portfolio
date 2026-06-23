@@ -1,0 +1,72 @@
+﻿{
+  "$description": "Portfolio / Marketing patterns — Thickness DS Wave 1",
+  "meta": {
+    "reference": "https://akbarrizkipratama.framer.website/",
+    "theme": "light",
+    "brand": "--brand-600 #444CE7",
+    "font": "Inter",
+    "reactPath": "react/src/patterns/",
+    "htmlDemo": "../../index.html",
+    "skills": {
+      "designSystem": ".cursor/skills/thickness-library/SKILL.md",
+      "desktop": ".cursor/skills/thickness-desktop-prototype/SKILL.md",
+      "mobile": ".cursor/skills/thickness-mobile-prototype/SKILL.md"
+    }
+  },
+  "patterns": [
+    {
+      "key": "site-nav",
+      "priority": 1,
+      "status": "generated",
+      "artifacts": {
+        "specMd": "components/site-nav/site-nav.md",
+        "css": "components/site-nav/site-nav.css",
+        "demoHtml": "components/site-nav/site-nav-demo.html"
+      }
+    },
+    {
+      "key": "hero-section",
+      "priority": 2,
+      "status": "generated",
+      "artifacts": {
+        "specMd": "components/hero-section/hero-section.md",
+        "css": "components/hero-section/hero-section.css"
+      }
+    },
+    {
+      "key": "project-card",
+      "priority": 3,
+      "status": "generated",
+      "artifacts": {
+        "specMd": "components/project-card/project-card.md",
+        "css": "components/project-card/project-card.css",
+        "demoHtml": "components/project-card/project-card-demo.html"
+      }
+    },
+    {
+      "key": "site-footer",
+      "priority": 4,
+      "status": "generated",
+      "artifacts": {
+        "specMd": "components/site-footer/site-footer.md",
+        "css": "components/site-footer/site-footer.css"
+      }
+    },
+    {
+      "key": "modal",
+      "priority": 5,
+      "status": "planned",
+      "source": "untitled application/modals",
+      "note": "Wave 2 — lightbox case study"
+    }
+  ],
+  "pages": [
+    {
+      "key": "portfolio-showcase",
+      "status": "generated",
+      "html": "demo/portfolio/portfolio.html",
+      "specMd": "demo/portfolio/portfolio.md",
+      "react": "react/src/portfolio/PortfolioPage.tsx"
+    }
+  ]
+}

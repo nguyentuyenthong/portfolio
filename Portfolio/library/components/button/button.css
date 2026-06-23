@@ -1,0 +1,196 @@
+/**
+ * Button — Untitled UI (_Button base) → Thickness tokens
+ * Figma: Button 1038:34411 · _Button base 1037:37979
+ */
+
+.uu-button {
+  --uu-btn-shadow-xs: 0 1px 2px 0 rgba(10, 13, 18, 0.05);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-family: var(--font-family-body, Inter, system-ui, sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.uu-button:focus-visible {
+  outline: none;
+  box-shadow:
+    var(--uu-btn-shadow-xs),
+    0 0 0 4px var(--brand-100);
+}
+
+.uu-button:disabled,
+.uu-button[aria-disabled="true"] {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.uu-button .uu-icon,
+.uu-button svg {
+  color: inherit;
+  stroke: currentColor;
+  fill: none;
+  flex-shrink: 0;
+}
+
+/* Sizes */
+.uu-button[data-uu-size="sm"] {
+  padding: 8px 14px;
+}
+
+.uu-button[data-uu-size="md"] {
+  padding: 10px 16px;
+}
+
+.uu-button[data-uu-size="lg"],
+.uu-button[data-uu-size="xl"] {
+  padding: 12px 20px;
+}
+
+/* Primary */
+.uu-button[data-uu-hierarchy="primary"] {
+  background-color: var(--brand-600);
+  border-color: var(--brand-600);
+  color: var(--text-on-solid);
+  box-shadow: var(--uu-btn-shadow-xs);
+}
+
+.uu-button[data-uu-hierarchy="primary"]:hover:not(:disabled) {
+  background-color: var(--brand-700);
+  border-color: var(--brand-700);
+}
+
+.uu-button[data-uu-hierarchy="primary"]:disabled {
+  background-color: var(--brand-100);
+  border-color: var(--brand-200);
+  color: var(--brand-800);
+}
+
+.uu-button[data-uu-hierarchy="primary"][data-uu-destructive="true"] {
+  background-color: var(--error-600);
+  border-color: var(--error-600);
+  color: var(--text-on-solid);
+}
+
+.uu-button[data-uu-hierarchy="primary"][data-uu-destructive="true"]:hover:not(:disabled) {
+  background-color: var(--error-700);
+  border-color: var(--error-700);
+}
+
+/* Secondary color — fill + stroke Brand/50 (NOT white outline) */
+.uu-button[data-uu-hierarchy="secondary-color"] {
+  background-color: var(--brand-50);
+  border-color: var(--brand-50);
+  color: var(--brand-700);
+  box-shadow: var(--uu-btn-shadow-xs);
+}
+
+.uu-button[data-uu-hierarchy="secondary-color"]:hover:not(:disabled) {
+  background-color: var(--brand-100);
+  border-color: var(--brand-100);
+}
+
+.uu-button[data-uu-hierarchy="secondary-color"][data-uu-destructive="true"] {
+  background-color: var(--error-50);
+  border-color: var(--error-50);
+  color: var(--error-700);
+}
+
+.uu-button[data-uu-hierarchy="secondary-color"][data-uu-destructive="true"]:hover:not(:disabled) {
+  background-color: var(--error-100);
+  border-color: var(--error-100);
+}
+
+/* Secondary gray */
+.uu-button[data-uu-hierarchy="secondary-gray"] {
+  background-color: var(--white);
+  border-color: var(--gray-300);
+  color: var(--text-on-light);
+  box-shadow: var(--uu-btn-shadow-xs);
+}
+
+.uu-button[data-uu-hierarchy="secondary-gray"]:hover:not(:disabled) {
+  background-color: var(--gray-50);
+}
+
+.uu-button[data-uu-hierarchy="secondary-gray"]:disabled {
+  border-color: var(--gray-200);
+  color: var(--gray-400);
+}
+
+.uu-button[data-uu-hierarchy="secondary-gray"][data-uu-destructive="true"] {
+  border-color: var(--error-300);
+  color: var(--error-700);
+}
+
+.uu-button[data-uu-hierarchy="secondary-gray"][data-uu-destructive="true"]:hover:not(:disabled) {
+  background-color: var(--error-50);
+}
+
+/* Tertiary */
+.uu-button[data-uu-hierarchy="tertiary-color"] {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--brand-700);
+  box-shadow: none;
+}
+
+.uu-button[data-uu-hierarchy="tertiary-color"]:hover:not(:disabled) {
+  background-color: var(--brand-50);
+}
+
+.uu-button[data-uu-hierarchy="tertiary-gray"] {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--gray-600);
+  box-shadow: none;
+}
+
+.uu-button[data-uu-hierarchy="tertiary-gray"]:hover:not(:disabled) {
+  background-color: var(--gray-50);
+}
+
+/* Link */
+.uu-button[data-uu-hierarchy="link-color"],
+.uu-button[data-uu-hierarchy="link-gray"] {
+  padding: 0;
+  min-height: auto;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.uu-button[data-uu-hierarchy="link-color"] {
+  color: var(--brand-700);
+}
+
+.uu-button[data-uu-hierarchy="link-color"]:hover:not(:disabled) {
+  color: var(--brand-800);
+}
+
+.uu-button[data-uu-hierarchy="link-gray"] {
+  color: var(--gray-600);
+}
+
+.uu-button[data-uu-hierarchy="link-gray"]:hover:not(:disabled) {
+  color: var(--gray-700);
+}
+
+.uu-button[data-uu-hierarchy="link-color"][data-uu-destructive="true"] {
+  color: var(--error-700);
+}

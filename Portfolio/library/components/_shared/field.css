@@ -1,0 +1,100 @@
+/**
+ * Shared field chrome — Untitled UI Input/Select/Textarea (untitleduico/react)
+ */
+
+.uu-field {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  width: 100%;
+  max-width: 20rem;
+}
+
+.uu-label {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: var(--font-size-text-sm);
+  font-weight: 600;
+  line-height: var(--line-height-text-sm);
+  color: var(--text-secondary);
+  cursor: default;
+}
+
+.uu-label__required {
+  color: var(--brand-600);
+}
+
+.uu-field--invalid .uu-label__required {
+  color: var(--text-error);
+}
+
+.uu-hint {
+  font-size: var(--font-size-text-sm);
+  line-height: var(--line-height-text-sm);
+  color: var(--text-tertiary);
+}
+
+.uu-field--invalid .uu-hint {
+  color: var(--text-error);
+}
+
+/* Control shell (input, select trigger, textarea) */
+.uu-control {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: var(--radius-md);
+  background: var(--field-default);
+  box-shadow: var(--shadow-xs);
+  border: var(--width-border-thin) solid var(--field-border-default);
+  transition:
+    border-color 0.1s linear,
+    box-shadow 0.1s linear;
+}
+
+.uu-control:hover:not(:has(:disabled)) {
+  border-color: var(--field-border-hover);
+}
+
+.uu-control:focus-within {
+  border-width: var(--width-border-thick);
+  border-color: var(--field-border-focus);
+  box-shadow: var(--shadow-xs);
+}
+
+.uu-field--invalid .uu-control {
+  border-color: var(--border-error);
+}
+
+.uu-field--invalid .uu-control:focus-within {
+  border-color: var(--error-500);
+}
+
+.uu-control:has(:disabled),
+.uu-field--disabled .uu-control {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--field-disabled);
+}
+
+.uu-control__input {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-family: inherit;
+  width: 100%;
+}
+
+.uu-control__input::placeholder {
+  color: var(--text-placeholder);
+}
+
+.uu-control__input:disabled {
+  cursor: not-allowed;
+}

@@ -1,0 +1,60 @@
+/**
+ * Input — Untitled UI React (components/base/input/input.tsx)
+ * Source: https://github.com/untitleduico/react
+ */
+
+@import url("../_shared/field.css");
+
+.uu-input .uu-control {
+  position: relative;
+}
+
+.uu-input .uu-control__input {
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-text-sm);
+  font-weight: 400;
+  line-height: var(--line-height-text-sm);
+}
+
+.uu-input[data-uu-size="md"] .uu-control__input {
+  font-size: var(--font-size-text-md);
+  line-height: var(--line-height-text-md);
+}
+
+.uu-input[data-uu-size="lg"] .uu-control__input {
+  padding: 10px 14px;
+  font-size: var(--font-size-text-md);
+}
+
+.uu-input .uu-control--with-icon .uu-control__input {
+  padding-left: 2.25rem;
+}
+
+.uu-input[data-uu-size="md"] .uu-control--with-icon .uu-control__input {
+  padding-left: 2.5rem;
+}
+
+.uu-input[data-uu-size="lg"] .uu-control--with-icon .uu-control__input {
+  padding-left: 2.625rem;
+}
+
+.uu-input__icon {
+  position: absolute;
+  left: var(--spacing-lg);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  color: var(--icon-tertiary);
+  pointer-events: none;
+}
+
+.uu-input[data-uu-size="md"] .uu-input__icon,
+.uu-input[data-uu-size="lg"] .uu-input__icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.uu-input[data-uu-size="lg"] .uu-input__icon {
+  left: 14px;
+}

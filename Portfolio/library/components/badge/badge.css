@@ -1,0 +1,117 @@
+/**
+ * Badge — Untitled UI (untitleduico/react)
+ * components/base/badges/badges.tsx
+ */
+
+.uu-badge {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: max-content;
+  white-space: nowrap;
+  font-weight: var(--font-weight-medium);
+  border: var(--width-border-thin) solid transparent;
+  line-height: 1.5;
+}
+
+.uu-badge[data-uu-type="pill"] {
+  border-radius: var(--radius-full);
+}
+
+.uu-badge[data-uu-type="badge"] {
+  border-radius: var(--radius-sm);
+}
+
+/* ─── Sizes (sm / md / lg) ──────────────────────────────────── */
+.uu-badge[data-uu-size="sm"] {
+  padding: 2px 8px;
+  font-size: 0.75rem; /* 12px */
+  line-height: 1.125rem;
+}
+
+.uu-badge[data-uu-type="badge"][data-uu-size="sm"] {
+  padding: 2px 6px;
+}
+
+.uu-badge[data-uu-size="md"] {
+  padding: 2px 10px;
+  font-size: 0.875rem; /* 14px */
+  line-height: 1.25rem;
+}
+
+.uu-badge[data-uu-type="badge"][data-uu-size="md"] {
+  padding: 2px 8px;
+}
+
+.uu-badge[data-uu-size="lg"] {
+  padding: 4px 12px;
+  font-size: 1rem; /* 16px */
+  line-height: 1.5rem;
+}
+
+.uu-badge[data-uu-type="badge"][data-uu-size="lg"] {
+  padding: 4px 10px;
+  border-radius: var(--radius-md);
+}
+
+/* With dot — gap theo size */
+.uu-badge[data-uu-size="sm"] .uu-badge__dot {
+  margin-right: 4px;
+}
+
+.uu-badge[data-uu-size="md"] .uu-badge__dot {
+  margin-right: 6px;
+}
+
+.uu-badge[data-uu-size="lg"] .uu-badge__dot {
+  margin-right: 6px;
+}
+
+.uu-badge[data-uu-color="gray"] {
+  background: var(--gray-50);
+  color: var(--gray-700);
+  border-color: var(--gray-200);
+}
+
+.uu-badge[data-uu-color="brand"] {
+  background: var(--brand-50);
+  color: var(--brand-700);
+  border-color: var(--brand-200);
+}
+
+.uu-badge[data-uu-color="success"] {
+  background: var(--success-50);
+  color: var(--success-700);
+  border-color: var(--success-200);
+}
+
+.uu-badge[data-uu-color="warning"] {
+  background: var(--warning-50);
+  color: var(--warning-700);
+  border-color: var(--warning-200);
+}
+
+.uu-badge[data-uu-color="error"] {
+  background: var(--error-50);
+  color: var(--error-700);
+  border-color: var(--error-200);
+}
+
+.uu-badge[data-uu-color="info"] {
+  background: var(--info-50);
+  color: var(--info-700);
+  border-color: var(--info-200);
+}
+
+.uu-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  background: currentColor;
+}
+
+.uu-badge[data-uu-size="lg"] .uu-badge__dot {
+  width: 8px;
+  height: 8px;
+}

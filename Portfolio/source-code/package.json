@@ -1,0 +1,15 @@
+{
+  "name": "nguyen-tuyen-thong-portfolio",
+  "private": true,
+  "scripts": {
+    "dev": "npx --yes serve ../.. -l 5173",
+    "start": "npm run dev",
+    "build": "node scripts/build-portfolio.js",
+    "sync:icons": "node ../library/scripts/sync-icons.mjs"
+  },
+  "devDependencies": {
+    "@untitledui/icons": "^0.0.22",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  }
+}

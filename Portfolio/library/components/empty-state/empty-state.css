@@ -1,0 +1,103 @@
+/**
+ * Empty State — Untitled UI (Application/EmptyState) → Thickness tokens
+ * Featured icon + title + description + footer actions. Sizes sm · md · lg.
+ */
+
+.uu-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 32rem; /* max-w-lg */
+  font-family: var(--font-family);
+}
+
+/* Header (featured icon) */
+.uu-empty-state__header {
+  margin-bottom: var(--spacing-xl); /* 16px (sm) */
+}
+.uu-empty-state[data-uu-size="md"] .uu-empty-state__header,
+.uu-empty-state[data-uu-size="lg"] .uu-empty-state__header {
+  margin-bottom: var(--spacing-2xl); /* 20px */
+}
+
+.uu-empty-state__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-lg); /* 10px */
+  background-color: var(--surface-default);
+  box-shadow: 0 1px 2px 0 rgba(10, 13, 18, 0.05), inset 0 0 0 1px var(--border-primary);
+  color: var(--icon-secondary);
+}
+.uu-empty-state[data-uu-size="lg"] .uu-empty-state__icon {
+  width: 56px;
+  height: 56px;
+}
+.uu-empty-state__icon .uu-icon,
+.uu-empty-state__icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+.uu-empty-state[data-uu-size="lg"] .uu-empty-state__icon .uu-icon,
+.uu-empty-state[data-uu-size="lg"] .uu-empty-state__icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Content */
+.uu-empty-state__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs); /* 4px (sm) */
+  max-width: 22rem; /* max-w-88 */
+  margin-bottom: var(--spacing-3xl); /* 24px */
+}
+.uu-empty-state[data-uu-size="md"] .uu-empty-state__content,
+.uu-empty-state[data-uu-size="lg"] .uu-empty-state__content {
+  gap: var(--spacing-md); /* 8px */
+  margin-bottom: var(--spacing-4xl); /* 32px */
+}
+
+.uu-empty-state__title {
+  font-size: var(--font-size-text-md); /* sm = 16px */
+  line-height: var(--line-height-text-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0;
+}
+.uu-empty-state[data-uu-size="md"] .uu-empty-state__title {
+  font-size: var(--font-size-text-lg); /* 18px */
+  line-height: var(--line-height-text-lg);
+}
+.uu-empty-state[data-uu-size="lg"] .uu-empty-state__title {
+  font-size: var(--font-size-text-xl); /* 20px */
+  line-height: var(--line-height-text-xl);
+}
+
+.uu-empty-state__text {
+  font-size: var(--font-size-text-sm); /* sm/md = 14px */
+  line-height: var(--line-height-text-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--text-tertiary);
+  margin: 0;
+}
+.uu-empty-state[data-uu-size="lg"] .uu-empty-state__text {
+  font-size: var(--font-size-text-md); /* 16px */
+  line-height: var(--line-height-text-md);
+}
+
+/* Footer (actions) */
+.uu-empty-state__footer {
+  display: flex;
+  gap: var(--spacing-lg); /* 12px */
+}

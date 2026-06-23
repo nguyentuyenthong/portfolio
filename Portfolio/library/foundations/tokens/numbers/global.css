@@ -1,0 +1,7 @@
+/**
+ * Thickness — Global numbers + typography entry
+ */
+@import url("../typography/font.css");
+@import url("../typography/utilities.css");
+@import url("./global-system.css");
+@import url("./semantic.css");
