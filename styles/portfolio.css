@@ -1061,93 +1061,85 @@ body {
   transform: translateY(0);
 }
 
-/* ── How I think about my work ───────── */
-.pf-thinking__list {
+/* ── How I think about my work ── icon cards ───────── */
+.portfolio-thinking-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.portfolio-thinking-card {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  gap: 64px;
+  padding: 24px;
+  background: #ffffff;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  box-sizing: border-box;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
 }
 
-.pf-thinking__item {
-  border-bottom: var(--width-border-thin) solid var(--border-secondary);
+.portfolio-thinking-card:hover {
+  border-color: #444CE7;
+  box-shadow: 0 12px 30px -16px rgba(68, 76, 231, 0.45);
+  transform: translateY(-4px);
 }
 
-.pf-thinking__item:first-child {
-  border-top: var(--width-border-thin) solid var(--border-secondary);
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-thinking-card {
+    transition: border-color 0.25s ease;
+  }
+  .portfolio-thinking-card:hover {
+    transform: none;
+  }
 }
 
-.pf-thinking__trigger {
+.portfolio-thinking-card__icon {
+  display: block;
+  width: 64px;
+  height: 64px;
+  flex: none;
+}
+
+.portfolio-thinking-card__text {
   display: flex;
-  align-items: center;
-  gap: var(--spacing-xl);
-  padding: var(--spacing-xl) 0;
-  cursor: pointer;
-  list-style: none;
-  user-select: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
 }
 
-.pf-thinking__trigger::-webkit-details-marker { display: none; }
-
-.pf-thinking__num {
-  font-size: var(--font-size-text-sm);
-  font-weight: 400;
-  color: var(--text-tertiary);
-  min-width: 1.75rem;
-  flex-shrink: 0;
-}
-
-.pf-thinking__title {
-  flex: 1;
-  font-size: var(--font-size-text-lg, 1.125rem);
-  font-weight: 500;
-  color: var(--text-primary);
-  line-height: 1.35;
-  transition: color 0.2s ease;
-}
-
-.pf-thinking__item[open] .pf-thinking__title {
-  color: var(--text-brand-secondary);
-}
-
-.pf-thinking__icon {
-  width: 20px;
-  height: 20px;
-  color: var(--text-tertiary);
-  flex-shrink: 0;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
-}
-
-.pf-thinking__item[open] .pf-thinking__icon {
-  transform: rotate(180deg);
-  color: var(--text-brand-secondary);
-}
-
-.pf-thinking__body-wrap {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.38s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.pf-thinking__item[open] .pf-thinking__body-wrap {
-  grid-template-rows: 1fr;
-}
-
-.pf-thinking__body {
+.portfolio-thinking-card__title {
   margin: 0;
-  overflow: hidden;
-  font-size: var(--font-size-text-md);
-  font-weight: 400;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  padding-bottom: var(--spacing-xl);
-  padding-left: calc(1.75rem + var(--spacing-xl));
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity 0.3s ease 0.05s, transform 0.35s cubic-bezier(0.4, 0, 0.2, 1) 0.05s;
+  font-family: 'Inter Tight', var(--font-family-base, system-ui, sans-serif);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 28px;
+  color: #384250;
 }
 
-.pf-thinking__item[open] .pf-thinking__body {
-  opacity: 1;
-  transform: translateY(0);
+.portfolio-thinking-card__body {
+  margin: 0;
+  font-family: 'Inter Tight', var(--font-family-base, system-ui, sans-serif);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6e6f71;
+  text-align: justify;
+}
+
+@media (max-width: 960px) {
+  .portfolio-thinking-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .portfolio-thinking-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 html {
@@ -1314,3 +1306,4 @@ html {
 }
 .pf-cta--primary .uu-icon { width: 20px; height: 20px; }
 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

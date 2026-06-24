@@ -1,14 +1,422 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="light-mode">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="refresh" content="0; url=./Portfolio/index.html" />
-  <link rel="canonical" href="./Portfolio/index.html" />
+  <meta name="description" content="Nguyen Tuyen Thong — Senior UI/UX Designer specializing in Design Systems, SaaS, and ERP products." />
+  <meta property="og:title" content="Nguyen Tuyen Thong — Product &amp; UI/UX Designer" />
+  <meta property="og:description" content="Enterprise Systems · Design Systems · SaaS / ERP · 4+ years experience" />
+  <meta property="og:type" content="website" />
   <title>Nguyen Tuyen Thong — UI/UX Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="library/foundations/thickness.css" />
+  <link rel="stylesheet" href="library/foundations/base.css" />
+  <link rel="stylesheet" href="library/components/_shared/icon.css" />
+  <link rel="stylesheet" href="library/components/button/button.css" />
+  <link rel="stylesheet" href="library/components/tag/tag.css" />
+  <link rel="stylesheet" href="library/components/site-nav/site-nav.css" />
+  <link rel="stylesheet" href="library/components/hero-section/hero-section.css" />
+  <link rel="stylesheet" href="library/components/project-card/project-card.css" />
+  <link rel="stylesheet" href="library/components/site-footer/site-footer.css" />
+  <link rel="stylesheet" href="styles/portfolio.css" />
 </head>
+
 <body>
-  <p>Redirecting to <a href="./Portfolio/index.html">the portfolio</a>…</p>
-  <script>location.replace('./Portfolio/index.html');</script>
+  <div class="portfolio-page">
+    <nav class="pf-scroll-nav" aria-label="Quick navigation" id="scrollNav">
+  <ul class="pf-scroll-nav__list">
+    <li><a class="pf-scroll-nav__link" href="#top">Home</a></li>
+    <li><a class="pf-scroll-nav__link" href="#projects">Project</a></li>
+    <li><a class="pf-scroll-nav__link" href="#experience">Experience</a></li>
+    <li><a class="pf-scroll-nav__link" href="#about">About</a></li>
+    <li><a class="pf-scroll-nav__link" href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+    <header class="uu-site-nav portfolio-shell portfolio-nav--floating" id="top">
+  <a class="uu-site-nav__brand portfolio-nav__brand" href="#top">
+    <img class="portfolio-nav__logo" src="assets/images/banners/Logo-thickness1.svg" alt="Nguyen Tuyen Thong" width="193" height="47" decoding="async" />
+  </a>
+  <button type="button" class="uu-site-nav__menu-btn" aria-label="Open menu" aria-expanded="false" id="nav-toggle">
+    <svg class="uu-icon uu-icon--24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12h18M3 6h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+  <nav aria-label="Main">
+    <ul class="uu-site-nav__links" id="nav-links">
+      <li><a class="uu-site-nav__link" href="#top" aria-current="page">Home</a></li>
+      <li><a class="uu-site-nav__link" href="#projects">Project</a></li>
+      <li><a class="uu-site-nav__link" href="#experience">Experience</a></li>
+      <li><a class="uu-site-nav__link" href="#about">About</a></li>
+      <li><a class="uu-site-nav__link" href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+
+    <main>
+      <section class="uu-hero portfolio-hero portfolio-hero--centered portfolio-shell" id="hero" aria-labelledby="hero-title">
+  <div class="pf-dot-grid" aria-hidden="true"></div>
+
+  <!-- Floating badges -->
+  <span class="pf-float-badge pf-float-badge--1" aria-hidden="true">UX Thinking</span>
+  <span class="pf-float-badge pf-float-badge--2" aria-hidden="true">Atomic Design</span>
+  <span class="pf-float-badge pf-float-badge--3" aria-hidden="true">A/B Testing</span>
+  <span class="pf-float-badge pf-float-badge--5" aria-hidden="true">Prototype</span>
+
+  <div class="portfolio-hero__content">
+    <div class="portfolio-hero__visual" aria-hidden="true">
+      <img
+        class="portfolio-hero__visual-img"
+        src="assets/images/banners/hero-illustration.png"
+        alt=""
+        width="633"
+        height="350"
+        decoding="async"
+      />
+    </div>
+    <div class="pf-open-badge" aria-label="Open to work">
+  <span class="pf-open-badge__dot-wrap" aria-hidden="true">
+    <span class="pf-open-badge__ping"></span>
+    <span class="pf-open-badge__dot"></span>
+  </span>
+  Open to work
+</div>
+
+    <h1 class="portfolio-hero__headline" id="hero-title">
+      <span class="portfolio-hero__headline-primary">
+        Hello, I'm Thong. Delighted to have you explore my portfolio. With 4+ years in SaaS, ERP &amp; e-commerce — I lead
+        <span class="pf-hero-marquee" data-pf-hero-marquee data-pf-word="design-system" aria-live="polite">
+  <span class="pf-hero-marquee__slot">
+    <span class="pf-hero-marquee__text">design system</span>
+  </span>
+</span>
+
+        ,
+      </span>
+      <span class="portfolio-hero__headline-secondary">ship complex workflows, and integrate AI into&nbsp;design ops.</span>
+    </h1>
+    <div class="uu-hero__actions">
+      <a href="#contact" class="pf-cta pf-cta--secondary">Hire me</a>
+      <a href="assets/resume/EN-Resume-Nguyen-Tuyen-Thong.pdf" class="pf-cta pf-cta--primary" download>
+        <span class="pf-cta__label">Download resume</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+      <section class="uu-section portfolio-shell portfolio-section" id="projects" aria-labelledby="projects-title">
+  <header class="portfolio-section__header">
+    <h2 class="uu-section__title" id="projects-title">Feature project</h2>
+  </header>
+
+  <div class="portfolio-section__content">
+    <div class="uu-project-grid portfolio-project-grid">
+      <article class="uu-project-card uu-project-card--interactive pf-card-clickable" id="case-sales-report">
+  <a class="pf-card-link" href="../case-study-duyet-bao-cao-ban-hang.html" aria-label="View Sales Report Approval case study"></a>
+  <div class="uu-project-card__media">
+    <img src="assets/images/banners/sales-report-cover.svg" alt="Sales Report Approval — multi-level review flow with offline-approver handling" width="640" height="400" loading="lazy" decoding="async" />
+  </div>
+  <div class="uu-project-card__body">
+    <div class="uu-project-card__meta">
+      <span class="uu-tag" data-uu-size="sm" data-uu-color="gray">Approval flow</span>
+      <span class="uu-tag" data-uu-size="sm" data-uu-color="gray">B2B SaaS</span>
+    </div>
+    <h3 class="uu-project-card__title">Sales Report Approval — multi-level flow</h3>
+    <p class="uu-project-card__desc">Sequential multi-approver review for sales reports, with a graceful “offline approver” path so a report never gets stuck when someone is on leave.</p>
+  </div>
+</article>
+
+      <article class="uu-project-card uu-project-card--interactive pf-card-clickable" id="case-avn-tt">
+  <a class="pf-card-link" href="../case-study/avn-tt/case-study-avn-tt.html" aria-label="View AVN-TT case study"></a>
+  <div class="uu-project-card__media">
+    <img src="assets/images/banners/avn-tt.png" alt="AVN-TT — eSales SFA mobile app for Ajinomoto distribution" width="640" height="400" loading="lazy" decoding="async" />
+  </div>
+  <div class="uu-project-card__body">
+    <div class="uu-project-card__meta">
+      <span class="uu-tag" data-uu-size="sm" data-uu-color="gray">ERP / DMS</span>
+      <span class="uu-tag" data-uu-size="sm" data-uu-color="gray">SaaS</span>
+    </div>
+    <h3 class="uu-project-card__title">AVN-TT — Ajinomoto enterprise platform</h3>
+    <p class="uu-project-card__desc">End-to-end UX for distribution and sales operations — complex workflows, reporting, and multi-brand theming.</p>
+  </div>
+</article>
+
+      <article class="uu-project-card uu-project-card--interactive pf-card-clickable" id="case-fastbuy">
+  <a class="pf-card-link" href="../case-study/fastbuy/case-study-fastbuy.html" aria-label="View Fastbuy case study"></a>
+  <div class="uu-project-card__media">
+    <img src="assets/images/banners/Fastbuy.png" alt="Fastbuy — ERP order management dashboard on laptop" width="640" height="400" loading="lazy" decoding="async" />
+  </div>
+  <div class="uu-project-card__body">
+    <div class="uu-project-card__meta">
+      <span class="uu-tag" data-uu-size="sm" data-uu-color="gray">Mobile app</span>
+      <span class="uu-tag" data-uu-size="sm" data-uu-color="gray">ERP</span>
+    </div>
+    <h3 class="uu-project-card__title">Fastbuy — Mobile app &amp; ERP system</h3>
+    <p class="uu-project-card__desc">Customer-facing app and internal ERP across CRM, inventory, pricing, and admin — unified design system on web and mobile.</p>
+  </div>
+</article>
+
+    </div>
+  </div>
+</section>
+
+      <section class="portfolio-section portfolio-section--band" id="experience" aria-labelledby="experience-title">
+  <div class="portfolio-shell">
+    <header class="portfolio-section__header">
+      <h2 class="uu-section__title" id="experience-title">Experience</h2>
+    </header>
+
+    <div class="portfolio-section__content">
+      <div class="portfolio-accordion" data-accordion>
+        <details class="portfolio-accordion__item">
+  <summary class="portfolio-accordion__trigger">
+    <div class="portfolio-accordion__top">
+      <span class="portfolio-accordion__role">Senior UI/UX Designer</span>
+      <span class="portfolio-accordion__period">June 2025 – Present</span>
+    </div>
+    <div class="portfolio-accordion__company-wrap"><span class="portfolio-accordion__company">HQSOFT</span></div>
+  </summary>
+  <div class="portfolio-accordion__panel">
+    <h3 class="portfolio-accordion__group">Design System Leadership</h3>
+    <ul class="portfolio-accordion__list">
+      <li>Led the redesign of the organization's design token architecture, establishing a scalable foundation supporting multi-brand theming and light/dark experiences across 3+ SaaS, ERP, and DMS products.</li>
+      <li>Audited and migrated over 200 legacy components into a token-driven ecosystem, significantly improving consistency between design assets and engineering implementation.</li>
+      <li>Defined design standards, component guidelines, and documentation practices that streamlined cross-functional collaboration and reduced onboarding friction for designers and developers.</li>
+      <li>Partnered with engineering teams to bridge design-to-development gaps through standardized variables, naming conventions, and reusable component strategies.</li>
+    </ul>
+    <h3 class="portfolio-accordion__group">Product Design — SaaS, ERP, DMS, E-commerce</h3>
+    <ul class="portfolio-accordion__list">
+      <li>Designed end-to-end experiences for enterprise products involving complex operational workflows, including inventory management, approval systems, internal administration, and reporting modules.</li>
+      <li>Conducted stakeholder workshops, user interviews, and usability evaluations to uncover pain points and identify opportunities for improving task efficiency and usability.</li>
+      <li>Delivered interaction models, high-fidelity prototypes, and implementation-ready specifications to support efficient product delivery cycles.</li>
+    </ul>
+    <h3 class="portfolio-accordion__group">AI-Driven Workflow</h3>
+    <ul class="portfolio-accordion__list">
+      <li>Incorporated AI-assisted workflows into repetitive design activities, including documentation, content structuring, and early-stage ideation, improving execution efficiency and allowing greater focus on strategic design activities.</li>
+    </ul>
+  </div>
+</details>
+
+        <details class="portfolio-accordion__item">
+  <summary class="portfolio-accordion__trigger">
+    <div class="portfolio-accordion__top">
+      <span class="portfolio-accordion__role">Freelance Product Designer</span>
+      <span class="portfolio-accordion__period">March 2024 – May 2025</span>
+    </div>
+    <div class="portfolio-accordion__company-wrap"><span class="portfolio-accordion__company">Fastbuy &amp; Saudistay</span></div>
+  </summary>
+  <div class="portfolio-accordion__panel">
+    <h3 class="portfolio-accordion__group">Fastbuy — Mobile App + ERP System</h3>
+    <ul class="portfolio-accordion__list">
+      <li>Led the end-to-end design of a customer-facing mobile application and an internal ERP platform supporting multiple operational functions.</li>
+      <li>Simplified complex workflows across six business-critical modules, including CRM, inventory management, pricing, access control, employee administration, and internal information retrieval.</li>
+      <li>Collaborated closely with stakeholders to translate business requirements into scalable user experiences, ensuring operational efficiency and reducing workflow complexity.</li>
+      <li>Established a unified design system across web and mobile products, improving consistency and maximizing component reusability throughout the ecosystem.</li>
+    </ul>
+    <h3 class="portfolio-accordion__group">Saudistay — Hotel Booking Platform</h3>
+    <ul class="portfolio-accordion__list">
+      <li>Led the end-to-end UX process for a hotel booking platform targeting the Saudi Arabian market, from discovery and user flow definition to high-fidelity design and prototyping.</li>
+      <li>Conducted market and cultural research to adapt experiences to local behaviors, incorporating RTL principles and regional UX expectations into the product experience.</li>
+      <li>Balanced international usability standards with local conventions to ensure cultural relevance and accessibility.</li>
+    </ul>
+  </div>
+</details>
+
+        <details class="portfolio-accordion__item">
+  <summary class="portfolio-accordion__trigger">
+    <div class="portfolio-accordion__top">
+      <span class="portfolio-accordion__role">UI/UX Designer</span>
+      <span class="portfolio-accordion__period">November 2021 – January 2024</span>
+    </div>
+    <div class="portfolio-accordion__company-wrap"><span class="portfolio-accordion__company">MWG (Mobile World Group)</span></div>
+  </summary>
+  <div class="portfolio-accordion__panel">
+    <h3 class="portfolio-accordion__group">Mini-game &amp; Campaign Landing Pages</h3>
+    <ul class="portfolio-accordion__list">
+      <li>Designed responsive campaign experiences for leading brands including Samsung, Xiaomi, and Bobby, supporting marketing initiatives across web and mobile channels.</li>
+      <li>Collaborated with marketing, development, and business teams to deliver user experiences aligned with both brand objectives and commercial goals.</li>
+      <li>Managed multiple concurrent projects under tight delivery timelines while maintaining usability and visual consistency across platforms.</li>
+    </ul>
+    <h3 class="portfolio-accordion__group">AVAKids — Design System</h3>
+    <ul class="portfolio-accordion__list">
+      <li>Contributed to the establishment of reusable UI foundations, including custom iconography and scalable component libraries.</li>
+      <li>Conducted research into brand perception and target user characteristics to inform design decisions for family-oriented products.</li>
+      <li>Supported the development of a maintainable design ecosystem capable of scaling alongside future product initiatives.</li>
+    </ul>
+  </div>
+</details>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+      <section class="uu-section portfolio-shell portfolio-section" id="about" aria-labelledby="about-title">
+  <header class="portfolio-section__header">
+    <h2 class="uu-section__title" id="about-title">About me</h2>
+  </header>
+
+  <div class="portfolio-section__content">
+    <div class="portfolio-about">
+      <figure class="portfolio-about__media">
+        <img class="portfolio-about__photo" src="assets/images/banners/about-portrait.jpg" alt="Nguyen Tuyen Thong" width="640" height="800" loading="lazy" decoding="async" onerror="this.style.visibility='hidden'" />
+      </figure>
+
+      <div class="portfolio-about__body">
+        <div class="portfolio-about__intro">
+          <p class="portfolio-about__lead">I'm a Senior UI/UX Designer who turns messy enterprise problems into systems teams can actually ship.</p>
+          <p class="portfolio-about__text">Over 4+ years across SaaS, ERP, DMS and e-commerce, I've led design-system work end to end — from token architecture and component audits to research, prototyping, and developer handoff. I care about the decisions most people skip: the empty states, the defaults, the documentation that lets design scale beyond one person's head. I work fast, write a lot, and treat AI as a tool in the loop, never the one making the final call.</p>
+        </div>
+
+        <div class="portfolio-about-card">
+          <div class="portfolio-about-card__group">
+  <h3 class="uu-section__title portfolio-about-card__heading">Core skills</h3>
+  <div class="portfolio-about-card__tags">
+    <span class="uu-tag portfolio-skill-tag" data-uu-size="lg">Design Systems</span>
+    <span class="uu-tag portfolio-skill-tag" data-uu-size="lg">Figma Variables</span>
+    <span class="uu-tag portfolio-skill-tag" data-uu-size="lg">Token Architecture</span>
+    <span class="uu-tag portfolio-skill-tag" data-uu-size="lg">UX Research</span>
+    <span class="uu-tag portfolio-skill-tag" data-uu-size="lg">Prototyping</span>
+    <span class="uu-tag portfolio-skill-tag" data-uu-size="lg">ERP / SaaS UX</span>
+    <span class="uu-tag portfolio-skill-tag" data-uu-size="lg">Mobile App Design</span>
+    <span class="uu-tag portfolio-skill-tag" data-uu-size="lg">RTL / Localization</span>
+    <span class="uu-tag portfolio-skill-tag" data-uu-size="lg">AI Design Ops</span>
+    <span class="uu-tag portfolio-skill-tag" data-uu-size="lg">Agile / Scrum</span>
+  </div>
+</div>
+
+          <div class="portfolio-about-card__group">
+  <h3 class="uu-section__title portfolio-about-card__heading">Tools</h3>
+  <div class="portfolio-about-card__tags">
+    <span class="uu-tag portfolio-skill-tag portfolio-tool-tag">
+      <img class="portfolio-tool-tag__icon" src="assets/images/tools-logo/figma.svg" alt="" width="18" height="18" decoding="async" />
+      Figma
+    </span>
+    <span class="uu-tag portfolio-skill-tag portfolio-tool-tag">
+      <img class="portfolio-tool-tag__icon" src="assets/images/tools-logo/figjam.svg" alt="" width="18" height="18" decoding="async" />
+      FigJam
+    </span>
+    <span class="uu-tag portfolio-skill-tag portfolio-tool-tag">
+      <img class="portfolio-tool-tag__icon" src="assets/images/tools-logo/adobe.png" alt="" width="20" height="20" decoding="async" />
+      Adobe Creative Suite
+    </span>
+    <span class="uu-tag portfolio-skill-tag portfolio-tool-tag">
+      <img class="portfolio-tool-tag__icon" src="assets/images/tools-logo/notion.png" alt="" width="20" height="20" decoding="async" />
+      Notion
+    </span>
+    <span class="uu-tag portfolio-skill-tag portfolio-tool-tag">
+      <img class="portfolio-tool-tag__icon" src="assets/images/tools-logo/cursor.png" alt="" width="20" height="20" decoding="async" />
+      Cursor AI
+    </span>
+    <span class="uu-tag portfolio-skill-tag portfolio-tool-tag">
+      <img class="portfolio-tool-tag__icon" src="assets/images/tools-logo/antigravity.png" alt="" width="20" height="20" decoding="async" />
+      Antigravity
+    </span>
+    <span class="portfolio-tool-tag-group">
+      <span class="uu-tag portfolio-skill-tag portfolio-tool-tag">
+        <img class="portfolio-tool-tag__icon" src="assets/images/tools-logo/codex.png" alt="" width="20" height="20" decoding="async" />
+        CodeX
+      </span>
+      <span class="uu-tag portfolio-skill-tag portfolio-tool-tag">
+        <img class="portfolio-tool-tag__icon" src="assets/images/tools-logo/claude.png" alt="" width="20" height="20" decoding="async" />
+        Claude
+      </span>
+    </span>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <section class="uu-section portfolio-shell portfolio-section" aria-labelledby="thinking-title">
+  <header class="portfolio-section__header">
+    <h2 class="uu-section__title" id="thinking-title">How I think about my work</h2>
+  </header>
+
+  <div class="portfolio-thinking-grid">
+    <article class="portfolio-thinking-card">
+  <img class="portfolio-thinking-card__icon" src="assets/icons/card-1.svg" alt="" width="64" height="64" decoding="async" />
+  <div class="portfolio-thinking-card__text">
+    <p class="portfolio-thinking-card__title">Sketch ugly, decide fast</p>
+    <p class="portfolio-thinking-card__body">Pretty mockups slow teams down. I'd rather make ten rough flows in a day and kill nine of them than spend a week protecting one beautiful idea.</p>
+  </div>
+</article>
+                     
+    <article class="portfolio-thinking-card">
+  <img class="portfolio-thinking-card__icon" src="assets/icons/card-2.svg" alt="" width="64" height="64" decoding="async" />
+  <div class="portfolio-thinking-card__text">
+    <p class="portfolio-thinking-card__title">Designers should write more</p>
+    <p class="portfolio-thinking-card__body">Component docs, decision logs, handoff notes, change rationales. Writing is how design scales beyond one person's head.</p>
+  </div>
+</article>
+                     
+    <article class="portfolio-thinking-card">
+  <img class="portfolio-thinking-card__icon" src="assets/icons/card-3.svg" alt="" width="64" height="64" decoding="async" />
+  <div class="portfolio-thinking-card__text">
+    <p class="portfolio-thinking-card__title">Tokens over taste</p>
+    <p class="portfolio-thinking-card__body">My personal taste isn't a design system. Tokens, rules, and audited components are what let a product feel coherent when ten people are touching it.</p>
+  </div>
+</article>
+                     
+    <article class="portfolio-thinking-card">
+  <img class="portfolio-thinking-card__icon" src="assets/icons/card-4.svg" alt="" width="64" height="64" decoding="async" />
+  <div class="portfolio-thinking-card__text">
+    <p class="portfolio-thinking-card__title">Defaults are decisions</p>
+    <p class="portfolio-thinking-card__body">The empty state, the placeholder copy, the unsorted list order. These aren't details. These are what users meet first, and they're almost always under-designed.</p>
+  </div>
+</article>
+                     
+    <article class="portfolio-thinking-card">
+  <img class="portfolio-thinking-card__icon" src="assets/icons/card-5.svg" alt="" width="64" height="64" decoding="async" />
+  <div class="portfolio-thinking-card__text">
+    <p class="portfolio-thinking-card__title">AI assists, humans decide.</p>
+    <p class="portfolio-thinking-card__body">I use generative tools daily. They're great at first drafts, terrible at final judgment. The interesting work is still mine to do.</p>
+  </div>
+</article>
+                                   
+    <article class="portfolio-thinking-card">
+  <img class="portfolio-thinking-card__icon" src="assets/icons/card-6.svg" alt="" width="64" height="64" decoding="async" />
+  <div class="portfolio-thinking-card__text">
+    <p class="portfolio-thinking-card__title">Question the new shiny thing</p>
+    <p class="portfolio-thinking-card__body">Every quarter there's a tool, a trend, a methodology promising to change everything. Most don't. The work that ages well comes from fundamentals, not fashion.</p>
+  </div>
+</article>
+
+  </div>
+</section>
+                         
+    </main>
+
+    <footer class="uu-site-footer portfolio-footer" id="contact">
+  <div class="portfolio-shell portfolio-footer__inner">
+    <div class="uu-footer-marquee">
+      <div class="uu-footer-marquee__inner">
+        <span class="uu-footer-marquee__dot" aria-hidden="true">✦</span>
+        <p class="uu-footer-marquee__text">Let's build something meaningful together?</p>
+      </div>
+      <p class="uu-footer-marquee__sub">Want these insights applied to your website and brand stack? Strategy turned into shipped outcomes.</p>
+    </div>
+
+    <div class="portfolio-footer__bar">
+      <div class="portfolio-footer__contact">
+        <p class="portfolio-footer__contact-label">Contact</p>
+        <a class="portfolio-footer__contact-meta" href="tel:+84932817675">0932817675</a>
+        <div class="portfolio-footer__contact-row">
+          <a class="portfolio-footer__contact-meta" href="mailto:tuyenthong280199@gmail.com">tuyenthong280199@gmail.com</a>
+          <p class="portfolio-footer__copy">Make with Claude, Cursor, Figma<svg class="uu-footer-heart" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+  </div><!-- /.portfolio-page -->
+
+  <script src="source-code/scripts/hero-marquee.js"></script>
+  <script src="source-code/scripts/portfolio.js"></script>
 </body>
 </html>
