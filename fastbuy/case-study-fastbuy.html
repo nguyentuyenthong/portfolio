@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="vi" class="light-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Case study Fastbuy — Nền tảng web admin thu cũ đổi mới thiết bị (Samsung Trade In Plus): thẩm định, đơn hàng, giá, đối tác và design system thống nhất cho ~10 module." />
+  <title>Fastbuy · Nền tảng thu cũ đổi mới thiết bị — Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../library/foundations/thickness.css" />
+  <link rel="stylesheet" href="../../library/foundations/base.css" />
+  <link rel="stylesheet" href="../../library/components/_shared/icon.css" />
+  <link rel="stylesheet" href="../../library/components/button/button.css" />
+  <link rel="stylesheet" href="../../library/components/hero-section/hero-section.css" />
+  <link rel="stylesheet" href="../../library/components/section-header/section-header.css" />
+  <link rel="stylesheet" href="../../library/components/tabs/tabs.css" />
+  <link rel="stylesheet" href="../../library/components/metric/metric.css" />
+  <link rel="stylesheet" href="../../library/components/table/table.css" />
+  <link rel="stylesheet" href="../../library/components/badge/badge.css" />
+  <link rel="stylesheet" href="../../styles/portfolio.css" />
+  <link rel="stylesheet" href="../../styles/case-study.css" />
+  <link rel="stylesheet" href="../../styles/case-study-v2.css" />
+</head>
+<body>
+  <div class="case-page portfolio-page case-page--no-site-nav">
+
+    <main>
+
+      <nav class="case-tabs portfolio-shell case-tabs--toolbar" aria-label="Các phần của case study" data-case-tabs>
+        <a href="../../index.html#case-fastbuy" class="uu-button case-tabs__back" data-uu-size="md" data-uu-hierarchy="primary-gray" aria-label="Quay lại portfolio">
+          <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Quay lại portfolio
+        </a>
+        <div class="case-tabs__scroll">
+          <div class="uu-button-group" data-uu-size="sm" role="tablist" aria-label="Tabs case study">
+            <button type="button" class="uu-button-group__item is-selected" role="tab" aria-selected="true" aria-controls="summary" data-case-tab="summary">Tổng quan</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="context" data-case-tab="context">Bối cảnh &amp; người dùng</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="scope" data-case-tab="scope">Phạm vi &amp; module</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="system" data-case-tab="system">Hệ thống thiết kế</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="showcase" data-case-tab="showcase">Giao diện &amp; nguyên tắc</button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero -->
+      <section class="uu-hero portfolio-hero portfolio-hero--centered portfolio-shell case-hero" aria-labelledby="case-title">
+        <div class="portfolio-hero__content">
+          <h1 class="portfolio-hero__headline" id="case-title">Fastbuy — Nền tảng thu cũ đổi mới thiết bị</h1>
+        </div>
+      </section>
+
+      <!-- 01 · Tổng quan -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="summary" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">01</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Tổng quan</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <figure class="case-figure case-figure--plain">
+              <img
+                src="../../assets/images/banners/fastbuy-herobanner.png"
+                alt="Fastbuy — màn quản lý thẩm định: thẻ số liệu, bộ lọc và bảng dữ liệu với badge trạng thái"
+                width="1920"
+                height="1228"
+                loading="eager"
+                decoding="async"
+              />
+            </figure>
+          </div>
+
+          <div class="case-block">
+            <dl class="case-hero-facts">
+              <div class="case-hero-facts__item">
+                <dt class="case-hero-facts__label">Vai trò</dt>
+                <dd class="case-hero-facts__value">Product / UX Designer</dd>
+              </div>
+              <div class="case-hero-facts__item">
+                <dt class="case-hero-facts__label">Nền tảng</dt>
+                <dd class="case-hero-facts__value">Web app (Desktop)</dd>
+              </div>
+              <div class="case-hero-facts__item">
+                <dt class="case-hero-facts__label">Công cụ</dt>
+                <dd class="case-hero-facts__value">Figma · Design System</dd>
+              </div>
+              <div class="case-hero-facts__item">
+                <dt class="case-hero-facts__label">Phạm vi</dt>
+                <dd class="case-hero-facts__value">Flow + UI + States</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="case-block">
+            <p class="uu-section__body">Fastbuy là hệ sinh thái <strong>thu cũ đổi mới (trade-in) thiết bị</strong> — vận hành toàn bộ vòng đời từ thẩm định máy cũ, định giá, tạo đơn, đến quản trị đối tác và chương trình <strong>Samsung Trade In Plus</strong>. Đây là một sản phẩm B2B lớn, nhiều vai trò và nhiều module nghiệp vụ kết nối với nhau, nên thử thách chính không nằm ở một màn hình đẹp, mà ở việc giữ cho <strong>cả hệ thống nhất quán và dễ mở rộng</strong> khi số lượng màn hình tăng nhanh.</p>
+            <p class="uu-section__body">Mình tham gia với vai trò thiết kế giao diện và chuẩn hoá hệ thống component — đảm bảo ~10 module tuy khác nghiệp vụ nhưng vẫn nói cùng một “ngôn ngữ thị giác”: cùng bảng dữ liệu, cùng thẻ số liệu, cùng badge trạng thái, cùng bố cục màn chi tiết.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 02 · Bối cảnh & người dùng -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="context" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">02</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Bối cảnh &amp; người dùng</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <p class="uu-section__body">Fastbuy không phải một màn hình — nó là một <strong>hệ thống vận hành</strong> chạy mỗi ngày ở cửa hàng và ở bộ phận đối soát. Khi sản phẩm phình ra ~10 module với hàng trăm màn, thử thách lớn nhất không phải “màn này đẹp không” mà là “cả hệ thống có còn nói cùng một thứ tiếng không”. Đó là nơi một design system tốt tạo ra khác biệt.</p>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Hành trình một đơn trade-in</h3>
+            <p class="uu-section__body">Một đơn đi qua nhiều module nối tiếp. Việc của thiết kế là làm cho các chặng này nối nhau mượt mà — cùng pattern, cùng cách đọc trạng thái — dù mỗi chặng là một nghiệp vụ riêng.</p>
+            <ol class="case-flow-steps">
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Đăng nhập &amp; phân quyền</p>
+                  <p class="uu-section__body">Nhân viên vào hệ thống qua luồng xác thực (đăng nhập, OTP, quên mật khẩu) và thấy đúng module theo vai trò.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Thẩm định máy cũ</p>
+                  <p class="uu-section__body">Nhập IMEI, chấm checklist tình trạng, đính kèm ảnh/video — màn chi tiết nhiều lớp là lõi của cả hệ thống.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Định giá theo bảng giá</p>
+                  <p class="uu-section__body">Hệ thống tra bảng giá theo dòng máy &amp; tình trạng để ra mức thu, có thể chỉnh sửa và sao chép bảng giá.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Tạo &amp; xử lý đơn</p>
+                  <p class="uu-section__body">Đơn trade-in được tạo và chạy theo trạng thái — vận hành theo dõi tiến độ trên cùng pattern dashboard.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Đối soát &amp; đối tác</p>
+                  <p class="uu-section__body">Đơn được đối soát với đối tác/cửa hàng và chương trình Samsung Trade In Plus.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Khuyến mãi &amp; voucher</p>
+                  <p class="uu-section__body">Voucher gắn vào đơn với thời gian áp dụng, số đã dùng/còn lại và trạng thái rõ ràng.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 03 · Phạm vi & module -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="scope" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">03</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Phạm vi &amp; module</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <p class="uu-section__body">Một đơn trade-in đi qua nhiều khâu: khách mang máy cũ → <strong>thẩm định</strong> tình trạng &amp; IMEI → <strong>định giá</strong> theo bảng giá → <strong>tạo đơn</strong> &amp; đối soát → quản trị <strong>đối tác/cửa hàng</strong> và <strong>khuyến mãi</strong>. Mỗi khâu là một module riêng, nhưng đều phải khớp về dữ liệu và thị giác.</p>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Các module chính</h3>
+            <p class="uu-section__body">Các module xếp theo đúng vòng đời một đơn trade-in — từ xác thực, thẩm định, định giá đến tạo đơn &amp; chương trình Samsung Trade In Plus. Bên dưới là nhóm <strong>module nền tảng</strong> dùng chung, nuôi dữ liệu cho cả luồng.</p>
+            <div class="case-flowchart-v2">
+              <div class="case-flowchart-v2__inner">
+                <div class="case-flowchart-v2__row">
+                  <div class="case-flowchart-v2__node case-flowchart-v2__node--start">Đăng nhập / OTP</div>
+                  <div class="case-flowchart-v2__arrow case-flowchart-v2__arrow--brand"></div>
+                  <div class="case-flowchart-v2__node">Quản lý thẩm định</div>
+                  <div class="case-flowchart-v2__arrow case-flowchart-v2__arrow--brand"></div>
+                  <div class="case-flowchart-v2__node">Thiết lập giá</div>
+                  <div class="case-flowchart-v2__arrow case-flowchart-v2__arrow--brand"></div>
+                  <div class="case-flowchart-v2__node">Quản lý đơn hàng</div>
+                  <div class="case-flowchart-v2__arrow case-flowchart-v2__arrow--brand"></div>
+                  <div class="case-flowchart-v2__node case-flowchart-v2__node--end">Samsung Trade In Plus</div>
+                </div>
+                <div class="case-flowchart-v2__vline"></div>
+                <div class="case-flowchart-v2__row">
+                  <div class="case-flowchart-v2__node case-flowchart-v2__node--muted">Quản lý thiết bị</div>
+                  <div class="case-flowchart-v2__gap"></div>
+                  <div class="case-flowchart-v2__node case-flowchart-v2__node--muted">Quản lý voucher</div>
+                  <div class="case-flowchart-v2__gap"></div>
+                  <div class="case-flowchart-v2__node case-flowchart-v2__node--muted">Đối tác &amp; cửa hàng</div>
+                  <div class="case-flowchart-v2__gap"></div>
+                  <div class="case-flowchart-v2__node case-flowchart-v2__node--muted">Quản trị viên</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 04 · Hệ thống thiết kế -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="system" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">04</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Hệ thống thiết kế</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block case-grid-2">
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Thiết kế theo hệ thống, không theo từng màn</h3>
+              <p class="uu-section__body">Với một sản phẩm lớn, dựng đẹp từng màn là chưa đủ. Mình bắt đầu từ các khối lặp lại — bảng dữ liệu, thẻ số liệu, badge trạng thái, bố cục màn chi tiết, empty state — rồi chuẩn hoá thành component để ráp cho mọi module.</p>
+            </article>
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Nhất quán là tính năng</h3>
+              <p class="uu-section__body">Khi 10 module dùng chung một ngôn ngữ thị giác, người dùng học một lần là dùng được mọi nơi, còn đội phát triển thì thêm màn mới nhanh hơn nhiều. Token màu/spacing giữ mọi thứ khớp nhau khi hệ thống phình to.</p>
+            </article>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Một pattern dashboard cho mọi module</h3>
+            <p class="uu-section__body">Cùng một khung — thẻ số liệu mở đầu, bộ lọc, rồi bảng dữ liệu với badge trạng thái — được tái sử dụng từ thẩm định sang đơn hàng, voucher và Samsung Trade In Plus. Chỉ thay cột và chỉ số theo nghiệp vụ, phần còn lại giữ nguyên.</p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/images/banners/fastbuy-orders.png"
+                alt="Fastbuy — màn quản lý đơn hàng Samsung Trade In Plus dùng lại pattern dashboard: thẻ số liệu, bộ lọc và bảng đơn"
+                width="1920"
+                height="1160"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="uu-section__body">Màn đơn hàng Samsung Trade In Plus dùng lại đúng khung dashboard của module thẩm định — chỉ khác dữ liệu.</figcaption>
+            </figure>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Các quyết định thiết kế chính</h3>
+            <section class="uu-table-card" data-uu-size="md" aria-label="Quyết định thiết kế">
+              <div class="uu-table-scroll">
+                <table class="uu-table" role="table" aria-label="Quyết định thiết kế">
+                  <thead class="uu-table__head">
+                    <tr class="uu-table__head-row">
+                      <th class="uu-table__th">Quyết định</th>
+                      <th class="uu-table__th">Lý do</th>
+                      <th class="uu-table__th">Đánh đổi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Một mẫu bảng dữ liệu dùng chung</strong></td>
+                      <td class="uu-table__td">Thẩm định, đơn hàng, voucher, giá… đều là dữ liệu dạng bảng — một pattern giúp quét nhanh và dễ bảo trì</td>
+                      <td class="uu-table__td">Cần cấu hình cột linh hoạt để phù hợp từng nghiệp vụ</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Dashboard mở đầu bằng thẻ số liệu</strong></td>
+                      <td class="uu-table__td">Người vận hành cần thấy ngay tình hình (tổng đơn, thành công, huỷ) trước khi đi vào danh sách</td>
+                      <td class="uu-table__td">Tốn không gian phía trên màn — chấp nhận được vì giá trị quét nhanh</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Bố cục chi tiết theo lớp thông tin</strong></td>
+                      <td class="uu-table__td">Màn thẩm định rất nặng dữ liệu — chia thành thông tin sản phẩm → phân loại → checklist → ảnh/video để đọc theo mạch</td>
+                      <td class="uu-table__td">Màn dài, cần neo/đề mục rõ để không bị lạc</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Hệ màu trạng thái semantic</strong></td>
+                      <td class="uu-table__td">Trạng thái đơn/voucher/thẩm định ánh xạ sang màu cố định để đọc tình huống tức thì</td>
+                      <td class="uu-table__td">Phải giới hạn số trạng thái để bảng màu không bị loãng</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Hệ thống trạng thái dùng chung</h3>
+            <p class="uu-section__body">Đơn hàng, thẩm định, voucher hay bảng giá đều có “tình huống” cần đọc nhanh. Thay vì mỗi module tự đặt màu, mình ánh xạ tất cả về <strong>một bộ badge semantic</strong> — người dùng nhìn màu là hiểu, không cần đọc chữ.</p>
+            <section class="uu-table-card" data-uu-size="md" aria-label="Hệ thống trạng thái">
+              <div class="uu-table-scroll">
+                <table class="uu-table" role="table" aria-label="Hệ thống trạng thái">
+                  <thead class="uu-table__head">
+                    <tr class="uu-table__head-row">
+                      <th class="uu-table__th">Badge</th>
+                      <th class="uu-table__th">Ý nghĩa</th>
+                      <th class="uu-table__th">Ví dụ nơi dùng</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><span class="uu-badge" data-uu-type="pill" data-uu-size="sm" data-uu-color="success"><span class="uu-badge__dot" aria-hidden="true"></span>Thành công</span></td>
+                      <td class="uu-table__td">Hoàn tất, hợp lệ, đang hoạt động</td>
+                      <td class="uu-table__td">Đơn hoàn thành · voucher còn hiệu lực</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><span class="uu-badge" data-uu-type="pill" data-uu-size="sm" data-uu-color="warning"><span class="uu-badge__dot" aria-hidden="true"></span>Đang xử lý</span></td>
+                      <td class="uu-table__td">Chờ thao tác, đang trong quy trình</td>
+                      <td class="uu-table__td">Đơn chờ thẩm định · chờ đối soát</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><span class="uu-badge" data-uu-type="pill" data-uu-size="sm" data-uu-color="brand"><span class="uu-badge__dot" aria-hidden="true"></span>Mới</span></td>
+                      <td class="uu-table__td">Vừa khởi tạo, chưa qua xử lý</td>
+                      <td class="uu-table__td">Phiếu thẩm định mới · đơn mới tạo</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><span class="uu-badge" data-uu-type="pill" data-uu-size="sm" data-uu-color="gray"><span class="uu-badge__dot" aria-hidden="true"></span>Nháp / Ngưng</span></td>
+                      <td class="uu-table__td">Chưa áp dụng, tạm dừng, hết hạn</td>
+                      <td class="uu-table__td">Bảng giá nháp · voucher hết hạn</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><span class="uu-badge" data-uu-type="pill" data-uu-size="sm" data-uu-color="error"><span class="uu-badge__dot" aria-hidden="true"></span>Từ chối / Huỷ</span></td>
+                      <td class="uu-table__td">Bị loại, huỷ bỏ, không hợp lệ</td>
+                      <td class="uu-table__td">Đơn huỷ · phiếu bị từ chối</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">AI trong quy trình làm việc</h3>
+            <p class="uu-section__body">Với khối lượng màn lớn, mình dùng AI để tăng tốc phần lặp lại: rà soát đặt tên frame/layer và đồng bộ component giữa các module, soạn nhanh microcopy cho trạng thái và empty state, đối chiếu nhất quán giữa các bảng. Nhờ vậy, thời gian dồn được cho phần thật sự cần phán đoán thiết kế — cấu trúc thông tin và trải nghiệm tổng thể.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 05 · Giao diện & nguyên tắc -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="showcase" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">05</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Giao diện &amp; nguyên tắc</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <h3 class="case-kicker">Một vài màn tiêu biểu</h3>
+            <p class="uu-section__body">Các màn dưới đây thuộc những nghiệp vụ rất khác nhau, nhưng vẫn dùng chung bố cục, bảng, nút và badge — đó chính là điều design system mang lại cho một sản phẩm lớn.</p>
+            <div class="case-grid-2">
+              <figure class="case-figure">
+                <img
+                  src="../../assets/images/banners/fastbuy-login.png"
+                  alt="Fastbuy — màn đăng nhập với layout xác thực gọn, dùng input và nút của design system"
+                  width="1920"
+                  height="1080"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="uu-section__body">Đăng nhập — điểm vào hệ thống, dùng cùng input &amp; nút với mọi module.</figcaption>
+              </figure>
+              <figure class="case-figure">
+                <img
+                  src="../../assets/images/banners/fastbuy-price.png"
+                  alt="Fastbuy — màn thiết lập giá: bảng giá theo dòng máy và tình trạng"
+                  width="1920"
+                  height="1276"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="uu-section__body">Thiết lập giá — bảng giá theo dòng máy &amp; tình trạng, hỗ trợ chỉnh sửa và sao chép.</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="case-block">
+            <figure class="case-figure">
+              <img
+                src="../../assets/images/banners/fastbuy-voucher.png"
+                alt="Fastbuy — màn quản lý voucher với thời gian áp dụng, tổng phát hành, đã dùng/còn lại và badge trạng thái"
+                width="1920"
+                height="1437"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="uu-section__body">Quản lý voucher — dùng lại pattern dashboard: thẻ số liệu, bộ lọc, bảng dữ liệu và badge trạng thái thống nhất.</figcaption>
+            </figure>
+          </div>
+
+          <div class="case-block">
+            <figure class="case-figure">
+              <img
+                src="../../assets/images/banners/fastbuy-detail.png"
+                alt="Fastbuy — màn chi tiết thẩm định nhiều lớp: thông tin sản phẩm, phân loại, checklist kỹ thuật và ảnh hiện trạng"
+                width="1343"
+                height="3600"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="uu-section__body">Chi tiết thẩm định — màn nặng dữ liệu nhất, được chia lớp thông tin → phân loại → checklist → media để đọc theo một mạch.</figcaption>
+            </figure>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Nguyên tắc rút ra</h3>
+            <div class="case-grid-2">
+              <article class="portfolio-about-card">
+                <h4 class="case-list__title">① Hệ thống trước, màn hình sau</h4>
+                <p class="uu-section__body">Ở sản phẩm lớn, giá trị nằm ở các khối lặp lại được chuẩn hoá — không phải ở một màn lẻ đẹp. Dựng pattern trước giúp mọi màn về sau nhanh và khớp nhau.</p>
+              </article>
+              <article class="portfolio-about-card">
+                <h4 class="case-list__title">② Nhất quán là một tính năng</h4>
+                <p class="uu-section__body">Khi ~10 module nói cùng một ngôn ngữ thị giác, người dùng học một lần dùng được mọi nơi, và đội phát triển thêm màn mới nhanh hơn nhiều.</p>
+              </article>
+              <article class="portfolio-about-card">
+                <h4 class="case-list__title">③ Dữ liệu dày cần cấu trúc, không cần trang trí</h4>
+                <p class="uu-section__body">Màn chi tiết thẩm định được làm rõ bằng phân lớp thông tin và khoảng trắng, thay vì thêm màu hay đường kẻ — đọc nhanh hơn mà vẫn gọn.</p>
+              </article>
+              <article class="portfolio-about-card">
+                <h4 class="case-list__title">④ Token giữ hệ thống khớp khi phình to</h4>
+                <p class="uu-section__body">Màu semantic, spacing và component đều lấy từ token. Nhờ vậy, mỗi module mới ráp vào vẫn khớp liền với phần còn lại của sản phẩm.</p>
+              </article>
+            </div>
+          </div>
+
+          <div class="case-block">
+            <div class="case-outlook">
+              <div class="case-outlook__col case-outlook__col--reflect">
+                <div class="case-outlook__head">
+                  <span class="case-outlook__badge" aria-hidden="true">
+                    <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <p class="case-outlook__title">Nếu làm lại</p>
+                </div>
+                <ul class="case-outlook__list">
+                  <li>
+                    <strong>Lập thư viện component sớm hơn</strong>
+                    <span>Chuẩn hoá bảng và màn chi tiết ngay từ đầu sẽ tiết kiệm nhiều vòng dựng lại khi module tăng nhanh.</span>
+                  </li>
+                  <li>
+                    <strong>Tài liệu trạng thái tập trung</strong>
+                    <span>Một bảng quy ước màu &amp; nhãn trạng thái dùng chung giúp các module mới khỏi “chế” lại.</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="case-outlook__col case-outlook__col--next">
+                <div class="case-outlook__head">
+                  <span class="case-outlook__badge case-outlook__badge--next" aria-hidden="true">
+                    <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <p class="case-outlook__title">Bước tiếp theo</p>
+                </div>
+                <ul class="case-outlook__list">
+                  <li>
+                    <strong>Đồng bộ sang mobile</strong>
+                    <span>Mang pattern bảng &amp; chi tiết xuống app cho nhân viên thẩm định tại cửa hàng.</span>
+                  </li>
+                  <li>
+                    <strong>Bổ sung số liệu thực</strong>
+                    <span>Cài analytics để thay các chỉ số phạm vi bằng kết quả vận hành sau ra mắt.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-block">
+            <div class="uu-hero__actions case-actions">
+              <a href="https://www.figma.com/design/lxMYynxXhxQE6RB3QZqkRV/Th%E1%BB%91ng-Area?node-id=880-27642" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" target="_blank" rel="noopener noreferrer">
+                <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5M15 3h6v6M10 14 21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Xem trên Figma
+              </a>
+              <a href="../../index.html#case-fastbuy" class="uu-button" data-uu-size="md" data-uu-hierarchy="primary-gray">Quay lại portfolio</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <script src="../../source-code/scripts/orphan-guard.js"></script>
+  <script src="../../source-code/scripts/case-study.js"></script>
+</body>
+</html>

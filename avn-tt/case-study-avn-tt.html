@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="vi" class="light-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Case study AVN-TT — Kiểm tra tồn kho: Tổng quan, vấn đề, nghiên cứu, thiết kế và kết quả." />
+  <title>AVN-TT · Kiểm tra tồn kho — Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../library/foundations/thickness.css" />
+  <link rel="stylesheet" href="../../library/foundations/base.css" />
+  <link rel="stylesheet" href="../../library/components/_shared/icon.css" />
+  <link rel="stylesheet" href="../../library/components/button/button.css" />
+  <link rel="stylesheet" href="../../library/components/hero-section/hero-section.css" />
+  <link rel="stylesheet" href="../../library/components/section-header/section-header.css" />
+  <link rel="stylesheet" href="../../library/components/tabs/tabs.css" />
+  <link rel="stylesheet" href="../../library/components/metric/metric.css" />
+  <link rel="stylesheet" href="../../library/components/table/table.css" />
+  <link rel="stylesheet" href="../../styles/portfolio.css" />
+  <link rel="stylesheet" href="../../styles/case-study.css" />
+  <link rel="stylesheet" href="../../styles/case-study-v2.css" />
+</head>
+<body>
+  <div class="case-page portfolio-page case-page--no-site-nav">
+
+    <main>
+
+      <nav class="case-tabs portfolio-shell case-tabs--toolbar" aria-label="Các phần của case study" data-case-tabs>
+        <a href="../../index.html#case-avn-tt" class="uu-button case-tabs__back" data-uu-size="md" data-uu-hierarchy="primary-gray" aria-label="Quay lại portfolio">
+          <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Quay lại portfolio
+        </a>
+        <div class="case-tabs__scroll">
+          <div class="uu-button-group" data-uu-size="sm" role="tablist" aria-label="Tabs case study">
+            <button type="button" class="uu-button-group__item is-selected" role="tab" aria-selected="true" aria-controls="summary" data-case-tab="summary">Tổng quan</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="problem" data-case-tab="problem">Vấn đề</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="research" data-case-tab="research">Nghiên cứu</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="design" data-case-tab="design">Thiết kế</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="results" data-case-tab="results">Kết quả</button>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero -->
+      <section class="uu-hero portfolio-hero portfolio-hero--centered portfolio-shell case-hero" aria-labelledby="case-title">
+        <div class="portfolio-hero__content">
+          <h1 class="portfolio-hero__headline" id="case-title">Case study: Kiểm tra tồn kho</h1>
+        </div>
+      </section>
+
+<section class="uu-section portfolio-shell portfolio-section case-section" id="summary" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">01</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Tổng quan</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <figure class="case-figure case-figure--plain">
+              <img
+                src="../../assets/images/banners/Container.png"
+                alt="Tóm tắt dự án: Role, Duration, Platform, Team size và Tools"
+                width="1200"
+                height="420"
+                loading="eager"
+                decoding="async"
+              />
+            </figure>
+
+          </div>
+
+        </div>
+      </section>
+
+<section class="uu-section portfolio-shell portfolio-section case-section" id="problem" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">02</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Vấn đề &amp; Mục tiêu</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <h3 class="case-kicker">Painpoint</h3>
+            <section class="uu-table-card" data-uu-size="md" aria-label="Painpoint">
+              <div class="uu-table-scroll">
+                <table class="uu-table" role="table" aria-label="Painpoint">
+                  <thead class="uu-table__head">
+                    <tr class="uu-table__head-row">
+                      <th class="uu-table__th">Điểm đau</th>
+                      <th class="uu-table__th">Nguyên nhân gốc</th>
+                      <th class="uu-table__th">Hậu quả</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Thông tin phân tán</strong></td>
+                      <td class="uu-table__td">Dữ liệu phiếu CI nằm rải rác ở 3 màn hình khác nhau — danh sách nhiệm vụ, danh sách chứng từ, màn hình duyệt</td>
+                      <td class="uu-table__td">Cần ít nhất 3 bước điều hướng để kiểm tra một phiếu; nhân viên bị lạc giữa chừng khi đang ở kho</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Không có phản hồi sau khi tạo phiếu</strong></td>
+                      <td class="uu-table__td">Không có xác nhận hoặc hướng dẫn bước tiếp theo sau khi bấm "Lấy hàng &amp; tạo phiếu"</td>
+                      <td class="uu-table__td">Nhân viên gọi văn phòng hai lần về cùng một phiếu — lần xác nhận đã tạo, lần hỏi làm tiếp gì</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Mất ngữ cảnh trong chuỗi duyệt</strong></td>
+                      <td class="uu-table__td">Ghi chú của người duyệt L1 không hiển thị cho L2/L3 trên màn hình xem chi tiết</td>
+                      <td class="uu-table__td">Người duyệt phải gọi lại người nộp trước khi quyết định; dữ liệu mất tin cậy ở các khâu sau</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <div class="case-block case-grid-2">
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Mục tiêu thiết kế</h3>
+              <p class="uu-section__body">Để nhân viên tự xử lý hoàn toàn trên mobile: tạo phiếu tại kho, nhập hàng thực tế ngay tại chỗ, chọn người duyệt, theo dõi đến hoàn tất — không cần gọi văn&nbsp;phòng.</p>
+            </article>
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Mục tiêu kinh doanh</h3>
+              <p class="uu-section__body">Loại bỏ lỗi nhập lại từ giấy ảnh hưởng đến dữ liệu tồn kho đầu nguồn. Mỗi phút tiết kiệm × hàng nghìn đội mỗi ngày = lượng giờ vận hành đáng kể&nbsp;thu hồi.</p>
+            </article>
+          </div>
+
+        </div>
+      </section>
+
+<section class="uu-section portfolio-shell portfolio-section case-section" id="research" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">03</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Nghiên cứu</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <div class="case-grid-3">
+              <div class="case-plain-card">
+                <p class="case-list__title">Thông tin phân tán</p>
+                <p class="uu-section__body">Kiểm tra một phiếu CI cần đi qua 3 màn hình và 7+ thao tác. Không có màn hình tổng hợp — nhân viên thường bị lạc giữa chừng và phải bắt đầu lại từ màn hình nhiệm&nbsp;vụ.</p>
+              </div>
+              <div class="case-plain-card">
+                <p class="case-list__title">Không có phản hồi sau khi tạo phiếu</p>
+                <p class="uu-section__body">Nhân viên không biết thao tác "Lấy hàng" có thành công không. Có người gọi văn phòng hai lần về cùng một phiếu — lần xác nhận phiếu tồn tại, lần hỏi làm tiếp&nbsp;gì.</p>
+              </div>
+              <div class="case-plain-card">
+                <p class="case-list__title">Mất ngữ cảnh trong chuỗi duyệt</p>
+                <p class="uu-section__body">Người duyệt L2 phải gọi người nộp trước khi duyệt vì không thấy ghi chú của L1 trên màn hình xem chi tiết. Gây chậm trễ và làm giảm độ tin cậy của dữ liệu.</p>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </section>
+
+<section class="uu-section portfolio-shell portfolio-section case-section" id="design" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">04</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Thiết kế</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <figure class="case-figure">
+              <img src="../../assets/images/banners/Userflow.png" alt="User flow kiểm tra tồn kho — từ danh sách nhiệm vụ qua tạo phiếu, nhập sản phẩm, chọn người duyệt đến chuỗi duyệt NVBH và nhánh từ chối" width="1200" height="800" loading="lazy" decoding="async" />
+              <figcaption class="uu-section__body">Luồng xác nhận (xanh) và luồng từ chối (cam) cho 3 cấp duyệt.</figcaption>
+            </figure>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Low-fidelity Wireframe</h3>
+            <p class="uu-section__body">Hai vòng wireframe: vòng đầu đặt chuỗi duyệt trên cùng màn chi tiết — nhân viên bỏ qua; vòng hai chuyển xuống dưới các trường nhập, khớp mental model "điền xong rồi gửi". Thứ tự này giữ nguyên đến production.</p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/hifi-lowfi/Kiểm tra tồn kho - Low-fi wireframe.png"
+                alt="Low-fi wireframe kiểm tra tồn kho — dashboard, danh sách chứng từ, thông tin phiếu, xác nhận NVBH, lọc, chọn loại kiểm tồn, danh sách sản phẩm, chọn người duyệt và ghi chú"
+                width="1200"
+                height="820"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="uu-section__body">10 màn hình low-fi chính — từ dashboard và danh sách chứng từ đến nhập SKU, chọn người duyệt và ghi chú.</figcaption>
+            </figure>
+            <p class="uu-section__body"><a href="https://www.figma.com/design/keQ5P29dy2VkAh88yzJA9M/AVN-TT-Project--Tablet-?node-id=5719-234788" target="_blank" rel="noopener noreferrer">Xem wireframe và hi-fi trên Figma →</a></p>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Các quyết định thiết kế chính</h3>
+            <section class="uu-table-card" data-uu-size="md" aria-label="Quyết định thiết kế">
+              <div class="uu-table-scroll">
+                <table class="uu-table" role="table" aria-label="Quyết định thiết kế">
+                  <thead class="uu-table__head">
+                    <tr class="uu-table__head-row">
+                      <th class="uu-table__th">Quyết định</th>
+                      <th class="uu-table__th">Lý do</th>
+                      <th class="uu-table__th">Đánh đổi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Danh sách theo trạng thái, không theo thời gian</strong></td>
+                      <td class="uu-table__td">Nhân viên tìm việc cần xử lý, không tìm mục cũ nhất — xác nhận qua test wireframe đầu tiên</td>
+                      <td class="uu-table__td">Mất thứ tự ngày tháng mà một số supervisor quen dùng</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Bottom sheet xác nhận, không mở màn hình mới</strong></td>
+                      <td class="uu-table__td">Giữ ngữ cảnh kho phía sau; phù hợp với mức độ "nhẹ" của thao tác xác nhận trước khi lấy dữ liệu</td>
+                      <td class="uu-table__td">Cảm giác xác nhận ít "nặng" hơn — chấp nhận được vì không có hành động hủy không được</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Dropdown chọn người duyệt inline, không mở màn hình picker riêng</strong></td>
+                      <td class="uu-table__td">Server trả về 2–5 tên; mở màn hình mới thêm điều hướng không cần thiết với lượng dữ liệu nhỏ</td>
+                      <td class="uu-table__td">Nếu sau này danh sách người duyệt lớn hơn sẽ cần thiết kế lại</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Lịch sử duyệt hiển thị cho mọi vai trò</strong></td>
+                      <td class="uu-table__td">Giải quyết điểm đau "mất ngữ cảnh" mà không cần thêm màn hình lịch sử riêng</td>
+                      <td class="uu-table__td">Màn hình chi tiết dài hơn một chút</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">AI trong quy trình làm việc</h3>
+            <p class="uu-section__body">Dùng Cursor AI để chuyển ghi chú workshop thành outline 17 màn hình có cấu trúc và soạn thảo copy cho dialog xác nhận. BA dùng tiêu chí chấp nhận do AI tạo từ user flow làm chuẩn review sprint — giảm khoảng một nửa câu hỏi qua lại. Khi áp dụng pattern Card + BottomSheet + tab-detail cho hai module khác, tôi dùng Claude Cowork để batch-swap component (đặt lại tên frame, variant và layer chưa đặt tên theo quy mô) — việc vốn mất cả ngày hoàn thành trong một phần nhỏ&nbsp;thời gian.</p>
+          </div>
+
+        </div>
+      </section>
+
+<section class="uu-section portfolio-shell portfolio-section case-section" id="results" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">05</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Kết quả</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <div class="case-impact-snapshot">
+              <div class="uu-metric" data-uu-type="simple" data-uu-trend="positive">
+                <div class="uu-metric__top"><p class="uu-metric__title">Nhanh hơn mỗi phiếu</p></div>
+                <div class="uu-metric__bottom"><p class="uu-metric__value">~64%</p><span class="uu-metric__change">~5 phút so với ~14 phút (pilot 2 tuần)</span></div>
+              </div>
+              <div class="uu-metric" data-uu-type="simple" data-uu-trend="positive">
+                <div class="uu-metric__top"><p class="uu-metric__title">Ít cuộc gọi hỏi trạng thái</p></div>
+                <div class="uu-metric__bottom"><p class="uu-metric__value">~70%</p><span class="uu-metric__change">Cuộc gọi đến văn phòng giảm (pilot 2 tuần)</span></div>
+              </div>
+              <div class="uu-metric" data-uu-type="simple" data-uu-trend="positive">
+                <div class="uu-metric__top"><p class="uu-metric__title">Ít lỗi nhập số lượng</p></div>
+                <div class="uu-metric__bottom"><p class="uu-metric__value">~40%</p><span class="uu-metric__change">Loại bỏ bước chép tay từ giấy</span></div>
+              </div>
+              <div class="uu-metric" data-uu-type="simple">
+                <div class="uu-metric__top"><p class="uu-metric__title">Dùng chung một pattern</p></div>
+                <div class="uu-metric__bottom"><p class="uu-metric__value">3 module</p><span class="uu-metric__change">Thiết kế một lần, áp dụng&nbsp;nhiều nơi</span></div>
+              </div>
+            </div>
+            <p class="case-data-table__disclaimer">Số liệu từ pilot nội bộ 2 tuần và các buổi usability test với đội BA + 3 nhân viên field sales. Analytics production chưa được cài đặt tại thời điểm pilot.</p>
+          </div>
+
+
+          <div class="case-block">
+            <div class="case-outlook">
+              <div class="case-outlook__col case-outlook__col--reflect">
+                <div class="case-outlook__head">
+                  <span class="case-outlook__badge" aria-hidden="true">
+                    <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <p class="case-outlook__title">Nếu làm lại</p>
+                </div>
+                <ul class="case-outlook__list">
+                  <li>
+                    <strong>Cài analytics sớm hơn</strong>
+                    <span>Funnel cơ bản (tạo → nộp → duyệt) khi ra mắt sẽ cho tín hiệu liên tục mà không tốn chi phí.</span>
+                  </li>
+                  <li>
+                    <strong>Test luồng từ chối nhiều hơn</strong>
+                    <span>Hầu hết pilot test happy path; các edge case chỉ lộ ra ở review BA cuối sprint.</span>
+                  </li>
+                  <li>
+                    <strong>Chốt KPI từ kickoff</strong>
+                    <span>Mục tiêu thời gian và số cuộc gọi được đặt không chính thức — thỏa thuận rõ với PM từ đầu sẽ làm câu chuyện ra mắt chắc hơn.</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="case-outlook__col case-outlook__col--next">
+                <div class="case-outlook__head">
+                  <span class="case-outlook__badge case-outlook__badge--next" aria-hidden="true">
+                    <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <p class="case-outlook__title">Bước tiếp theo</p>
+                </div>
+                <ul class="case-outlook__list">
+                  <li>
+                    <strong>Thông báo push</strong>
+                    <span>Hiện nhân viên phải tự vào app kiểm tra trạng thái sau khi nộp.</span>
+                  </li>
+                  <li>
+                    <strong>Nhập sản phẩm offline</strong>
+                    <span>Lưu cục bộ tại kho sóng yếu, đồng bộ khi có mạng trở lại.</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-block">
+            <div class="uu-hero__actions case-actions">
+              <a href="https://www.figma.com/design/keQ5P29dy2VkAh88yzJA9M/AVN-TT-Project--Tablet-?node-id=5719-234788" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" target="_blank" rel="noopener noreferrer">
+                <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5M15 3h6v6M10 14 21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Xem trên Figma
+              </a>
+              <a href="../../index.html#case-avn-tt" class="uu-button" data-uu-size="md" data-uu-hierarchy="primary-gray">Quay lại portfolio</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <script src="../../source-code/scripts/orphan-guard.js"></script>
+  <script src="../../source-code/scripts/case-study.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
