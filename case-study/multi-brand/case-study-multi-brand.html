@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="vi" class="light-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Case study Multi-brand — cấu trúc Parent–Child Design System, token 3 lớp và component Skeleton + Socket để switch brand trong Figma chỉ bằng đổi mode." />
+  <title>Multi-brand Design System — Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../library/foundations/thickness.css" />
+  <link rel="stylesheet" href="../../library/foundations/base.css" />
+  <link rel="stylesheet" href="../../library/components/_shared/icon.css" />
+  <link rel="stylesheet" href="../../library/components/button/button.css" />
+  <link rel="stylesheet" href="../../library/components/hero-section/hero-section.css" />
+  <link rel="stylesheet" href="../../library/components/section-header/section-header.css" />
+  <link rel="stylesheet" href="../../library/components/tabs/tabs.css" />
+  <link rel="stylesheet" href="../../library/components/metric/metric.css" />
+  <link rel="stylesheet" href="../../library/components/table/table.css" />
+  <link rel="stylesheet" href="../../library/components/badge/badge.css" />
+  <link rel="stylesheet" href="../../styles/portfolio.css" />
+  <link rel="stylesheet" href="../../styles/case-study.css" />
+  <link rel="stylesheet" href="../../styles/case-study-v2.css" />
+  <link rel="stylesheet" href="case-study-multi-brand.css" />
+</head>
+<body>
+  <div class="case-page portfolio-page case-page--no-site-nav case-page--multi-brand">
+
+    <nav class="case-tabs case-tabs--toolbar" aria-label="Các phần của case study" data-case-tabs>
+      <div class="case-tabs__inner portfolio-shell">
+        <a href="../../index.html#projects" class="uu-button case-tabs__back" data-uu-size="md" data-uu-hierarchy="primary-gray" aria-label="Quay lại portfolio">
+          <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Quay lại portfolio</span>
+        </a>
+        <div class="case-tabs__scroll">
+          <div class="uu-button-group" data-uu-size="sm" role="tablist" aria-label="Tabs case study">
+            <button type="button" class="uu-button-group__item is-selected" role="tab" aria-selected="true" aria-controls="summary" data-case-tab="summary">Tổng quan</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="tokens" data-case-tab="tokens">Tokens</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="components" data-case-tab="components">Components</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="practice" data-case-tab="practice">Thực hành</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="checklist" data-case-tab="checklist">Checklist</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+
+      <header class="case-mb-top">
+      <div class="case-mb-banner portfolio-shell">
+        <img
+          src="../../assets/images/banners/Architecture%20components%20for%20multi-brand.png"
+          alt="Component architecture for multi-brand — Parent Design System, Child Theming Layer và minh họa Navigation Bar"
+          width="1600"
+          height="2469"
+          loading="eager"
+          decoding="async"
+        />
+        <h1 class="visually-hidden" id="case-title">Cấu trúc Multi-brand cho công ty có nhiều khách hàng</h1>
+      </div>
+      </header>
+
+      <!-- 01 · Tổng quan -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="summary" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">01</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Tổng quan</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <p class="case-mb-lede">HQSOFT vận hành nhiều sản phẩm enterprise cho <strong>nhiều khách hàng cùng lúc</strong> — mỗi brand có palette và icon riêng, nhưng luồng nghiệp vụ gần như giống nhau. Kiến trúc này trả lời: <strong>design once, brand many</strong>.</p>
+          </div>
+
+          <div class="case-block">
+            <dl class="case-hero-facts">
+              <div class="case-hero-facts__item">
+                <dt class="case-hero-facts__label">Đối tượng</dt>
+                <dd class="case-hero-facts__value">Fresher · Junior · Middle Designer</dd>
+              </div>
+              <div class="case-hero-facts__item">
+                <dt class="case-hero-facts__label">Phạm vi</dt>
+                <dd class="case-hero-facts__value">Token 3 lớp · Parent–Child DS · Skeleton + Socket</dd>
+              </div>
+              <div class="case-hero-facts__item">
+                <dt class="case-hero-facts__label">Công cụ</dt>
+                <dd class="case-hero-facts__value">Figma Variables · Modes · Instance swap</dd>
+              </div>
+              <div class="case-hero-facts__item">
+                <dt class="case-hero-facts__label">Mục tiêu</dt>
+                <dd class="case-hero-facts__value">Switch brand bằng mode — không detach, không sửa hex</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="case-block">
+            <blockquote class="case-mb-pullquote">
+              <p>Một bộ component gốc (Parent) + nhiều lớp theme (Child) — switch brand trong Figma chỉ bằng đổi Variable mode, không detach, không sửa hex.</p>
+            </blockquote>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Vấn đề nếu không có kiến trúc</h3>
+            <section class="uu-table-card" data-uu-size="md" aria-label="Vấn đề">
+              <div class="uu-table-scroll">
+                <table class="uu-table" role="table" aria-label="Vấn đề">
+                  <thead class="uu-table__head">
+                    <tr class="uu-table__head-row">
+                      <th class="uu-table__th">Cách làm cũ</th>
+                      <th class="uu-table__th">Hậu quả</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Clone file Figma cho từng brand</td>
+                      <td class="uu-table__td">Bug fix phải sửa N file; drift nhanh</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Hardcode màu <code>#007bff</code> trong component</td>
+                      <td class="uu-table__td">Đổi brand = sửa từng layer</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Tạo component mới cho mỗi khách</td>
+                      <td class="uu-table__td">Thư viện phình, mất consistency</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Detach instance để custom</td>
+                      <td class="uu-table__td">Mất link với DS gốc, không scale</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <div class="case-block case-grid-2">
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Hai trục song song</h3>
+              <p class="uu-section__body"><strong>Token 3 lớp</strong> xử lý màu sắc, spacing, typography — phần “da” (skin).</p>
+              <p class="uu-section__body"><strong>Component Skeleton + Socket</strong> xử lý cấu trúc, icon, số lượng tab — phần “xương” (skeleton).</p>
+            </article>
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Parent &amp; Child</h3>
+              <p class="uu-section__body"><strong>Parent DS</strong> giữ component gốc + API variants, không gắn cứng brand.</p>
+              <p class="uu-section__body"><strong>Child DS</strong> override token và plug icon library riêng — component Parent <strong>không đổi cấu trúc</strong>.</p>
+            </article>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 02 · Tokens -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="tokens" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">02</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Token 3 lớp</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <p class="uu-section__body">Đây là phần quan trọng nhất để <strong>switch brand trong Figma</strong>. Ba collection tách biệt — mỗi lớp một nhiệm vụ. Component <strong>chỉ</strong> bind token lớp Theme.</p>
+          </div>
+
+          <div class="case-block">
+            <figure class="case-figure">
+              <img
+                src="../../assets/images/case-study/multi-brand/02-token-3-layers.png"
+                alt="Kiến trúc Token 3 lớp — Primitive, Base Semantic, Theme"
+                width="1392"
+                height="557"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="uu-section__body">Primitive (kho hex) → Base Semantic (1 mode = 1 brand) → Theme (Light / Dark). Component chỉ dùng lớp Theme.</figcaption>
+            </figure>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Ba lớp token</h3>
+            <section class="uu-table-card" data-uu-size="md" aria-label="Ba lớp token">
+              <div class="uu-table-scroll">
+                <table class="uu-table" role="table" aria-label="Ba lớp token">
+                  <thead class="uu-table__head">
+                    <tr class="uu-table__head-row">
+                      <th class="uu-table__th">Lớp</th>
+                      <th class="uu-table__th">Chứa</th>
+                      <th class="uu-table__th">Mode</th>
+                      <th class="uu-table__th">Ai sửa</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Lớp 1 — Primitive</strong></td>
+                      <td class="uu-table__td">Màu gốc theo hex: <code>color-navy-60</code>, <code>color-green-dark-60</code>…</td>
+                      <td class="uu-table__td">1 mode duy nhất</td>
+                      <td class="uu-table__td">DS Team</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Lớp 2 — Base Semantic</strong></td>
+                      <td class="uu-table__td">Semantic UI: <code>brand-pri</code>, <code>text-primary</code>…</td>
+                      <td class="uu-table__td"><strong>1 mode = 1 brand</strong> ← đổi brand ở đây</td>
+                      <td class="uu-table__td">DS Team + designer set mode</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Lớp 3 — Theme</strong></td>
+                      <td class="uu-table__td">UI token component dùng: <code>Text/Primary</code>, <code>Background/Primary</code>…</td>
+                      <td class="uu-table__td"><strong>Light | Dark</strong></td>
+                      <td class="uu-table__td">Component bind lớp này</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Chuỗi resolve khi render</h3>
+            <ol class="case-flow-steps">
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Component dùng <code>Theme/Text/Primary</code></p>
+                  <p class="uu-section__body">Fill/text trong component luôn trỏ Theme token — không Primitive, không Base Semantic.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Theme mode: Light</p>
+                  <p class="uu-section__body">Chọn nền sáng hoặc tối — độc lập với brand.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Base Semantic mode: KAO</p>
+                  <p class="uu-section__body">Alias <code>color/text/brand-pri</code> → <code>color-green-dark-60</code> (xanh đậm KAO).</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Primitive: <code>color-green-dark-60 = #2D6A4F</code></p>
+                  <p class="uu-section__body">Giá trị hex cuối cùng — chỉ tồn tại ở collection Primitive.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="case-block">
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">⚠️ Ghi nhớ quan trọng</h3>
+              <p class="uu-section__body"><strong>Tất cả component chỉ dùng Theme tokens</strong> — KHÔNG trỏ trực tiếp vào Primitive hay Base Semantic.</p>
+              <p class="uu-section__body">Khi thêm sub-brand mới: chỉ cần <strong>thêm mode trong Base Semantic</strong> — Theme và component không cần đổi.</p>
+              <p class="uu-section__body"><strong>Theme chỉ có Light và Dark — không có brand.</strong> Đây là lỗi phổ biến nhất của fresher/junior.</p>
+            </article>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 03 · Components -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="components" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">03</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Skeleton + Socket</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <p class="uu-section__body">Token xử lý <strong>màu</strong>. Multi-brand còn cần xử lý <strong>icon library khác nhau</strong> và <strong>số tab khác nhau</strong> — đây là vai trò của Skeleton + Socket, minh họa qua Navigation Bar.</p>
+          </div>
+
+          <div class="case-block case-grid-2">
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Parent — Khung xương HQ</h3>
+              <p class="uu-section__body"><code>NavigationBar-HQ/Base-semantic</code> là bản vẽ kỹ thuật: vị trí icon + label cố định, <strong>ổ cắm (socket)</strong> trống chờ icon, màu qua Theme token.</p>
+              <p class="uu-section__body">Variant: số tab (4 / 5 / 6), trạng thái active/inactive.</p>
+            </article>
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Child — Lớp theme</h3>
+              <p class="uu-section__body"><code>NavigationBar-Children/ThemeA</code>: 4 tab, icon line bo tròn, palette Brand A.</p>
+              <p class="uu-section__body"><code>NavigationBar-Children/ThemeB</code>: 6 tab, icon solid góc vuông, palette Brand B.</p>
+            </article>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Cơ chế hoán đổi icon</h3>
+            <ol class="case-flow-steps">
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Ổ cắm đa năng trên khung HQ</p>
+                  <p class="uu-section__body">Vị trí icon là placeholder — không có hình dạng cụ thể, chỉ là slot chờ được lấp đầy.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Brand plug icon library riêng</p>
+                  <p class="uu-section__body">Brand A đưa icon từ thư viện riêng vào socket (Instance swap). HQ không cần biết icon đến từ đâu.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Màu đổi qua Base Semantic mode</p>
+                  <p class="uu-section__body">Thanh nav xanh ngọc (A) hay đỏ tươi (B) — cùng skeleton, khác token mode.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Kết quả sau hoán đổi</h3>
+            <section class="uu-table-card" data-uu-size="md" aria-label="Kết quả NavBar">
+              <div class="uu-table-scroll">
+                <table class="uu-table" role="table" aria-label="Kết quả NavBar">
+                  <thead class="uu-table__head">
+                    <tr class="uu-table__head-row">
+                      <th class="uu-table__th">Thuộc tính</th>
+                      <th class="uu-table__th">Brand A (ThemeA)</th>
+                      <th class="uu-table__th">Brand B (ThemeB)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Màu thanh</strong></td>
+                      <td class="uu-table__td">Xanh ngọc (palette A)</td>
+                      <td class="uu-table__td">Đỏ tươi (palette B)</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Số tab</strong></td>
+                      <td class="uu-table__td">4</td>
+                      <td class="uu-table__td">6</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Icon</strong></td>
+                      <td class="uu-table__td">Line, bo tròn</td>
+                      <td class="uu-table__td">Solid, góc vuông</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Nguồn gốc</strong></td>
+                      <td class="uu-table__td" colspan="2">Cùng <code>HQNavigationBar</code> — HQ cập nhật skeleton → cả hai brand nhận fix</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Ma trận quyết định</h3>
+            <section class="uu-table-card" data-uu-size="md" aria-label="Ma trận quyết định">
+              <div class="uu-table-scroll">
+                <table class="uu-table" role="table" aria-label="Ma trận quyết định">
+                  <thead class="uu-table__head">
+                    <tr class="uu-table__head-row">
+                      <th class="uu-table__th">Mức độ khác biệt</th>
+                      <th class="uu-table__th">Giải pháp</th>
+                      <th class="uu-table__th">Ví dụ</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Chỉ khác màu</td>
+                      <td class="uu-table__td"><strong>Base Semantic mode</strong></td>
+                      <td class="uu-table__td">KAO xanh, ABI vàng</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Khác Light/Dark</td>
+                      <td class="uu-table__td"><strong>Theme mode</strong></td>
+                      <td class="uu-table__td">Cùng brand, nền tối</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Khác icon style</td>
+                      <td class="uu-table__td"><strong>Socket + Instance swap</strong></td>
+                      <td class="uu-table__td">Line vs solid icon</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Khác số tab / layout nhỏ</td>
+                      <td class="uu-table__td"><strong>Variant property</strong></td>
+                      <td class="uu-table__td">NavBar 4 tab vs 6 tab</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Khác cấu trúc lớn</td>
+                      <td class="uu-table__td"><strong>Extend / Child variant</strong></td>
+                      <td class="uu-table__td">Thêm slot badge trên NavBar</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Hoàn toàn khác UX</td>
+                      <td class="uu-table__td"><strong>Component Child riêng</strong> (hiếm)</td>
+                      <td class="uu-table__td">Sidebar thay bottom bar</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <p class="uu-section__body">Nguyên tắc 80/20: <strong>80% custom multi-brand</strong> chỉ cần đổi Base Semantic mode + swap icon.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 04 · Thực hành -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="practice" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">04</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Hướng dẫn thực hành</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <p class="uu-section__body"><strong>Trường hợp:</strong> Dự án có 4 brand — HQSOFT · LIXIL · KAO · ABI.</p>
+          </div>
+
+          <div class="case-block">
+            <figure class="case-figure">
+              <img
+                src="../../assets/images/case-study/multi-brand/03-multi-brand-steps.png"
+                alt="Hướng dẫn multi-brand — 4 bước thêm brand và switch mode trong Figma"
+                width="1440"
+                height="844"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="uu-section__body">4 bước: Primitive → Base Semantic mode → switch brand → switch Light/Dark.</figcaption>
+            </figure>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">4 bước trong Figma</h3>
+            <ol class="case-flow-steps">
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Bước 1 — Thêm palette vào Primitive</p>
+                  <p class="uu-section__body">KAO: <code>color-green-dark-10…100</code>. ABI: <code>color-yellow-light-10…100</code>. Chỉ DS Team thêm palette mới.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Bước 2 — Add mode trong Base Semantic</p>
+                  <p class="uu-section__body">Variables → Base Semantic → [+ Add mode] → đặt tên KAO / ABI. Alias <code>color/text/brand-pri</code> sang primitive tương ứng mỗi mode.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Bước 3 — Switch brand khi design</p>
+                  <p class="uu-section__body">Chọn frame → Variable modes → đổi Base Semantic: HQSOFT → KAO. Màu tự đổi — không detach.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Bước 4 — Switch Light / Dark</p>
+                  <p class="uu-section__body">Đổi Theme mode: Light → Dark. Độc lập với brand.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Lộ trình theo level Designer</h3>
+            <section class="uu-table-card" data-uu-size="md" aria-label="Lộ trình designer">
+              <div class="uu-table-scroll">
+                <table class="uu-table" role="table" aria-label="Lộ trình designer">
+                  <thead class="uu-table__head">
+                    <tr class="uu-table__head-row">
+                      <th class="uu-table__th">Level</th>
+                      <th class="uu-table__th">Cần nắm</th>
+                      <th class="uu-table__th">Bài tập</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Fresher</strong></td>
+                      <td class="uu-table__td">3 lớp token; brand ở Base Semantic; không detach</td>
+                      <td class="uu-table__td">Switch HQSOFT ↔ KAO trên 1 Button; chụp before/after</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Junior</strong></td>
+                      <td class="uu-table__td">Socket + instance swap; variant vs Child component</td>
+                      <td class="uu-table__td">2 NavBar branded từ 1 component gốc; verify màu đồng bộ frame</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Middle</strong></td>
+                      <td class="uu-table__td">Onboard brand mới; audit token compliance</td>
+                      <td class="uu-table__td">Thêm Brand X; matrix 4 brand × 2 theme = 8 combination</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 05 · Checklist -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="checklist" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">05</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Checklist &amp; Anti-patterns</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <h3 class="case-kicker">Anti-patterns — lỗi cần tránh</h3>
+            <section class="uu-table-card" data-uu-size="md" aria-label="Anti-patterns">
+              <div class="uu-table-scroll">
+                <table class="uu-table" role="table" aria-label="Anti-patterns">
+                  <thead class="uu-table__head">
+                    <tr class="uu-table__head-row">
+                      <th class="uu-table__th">❌ Sai</th>
+                      <th class="uu-table__th">✅ Đúng</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Tạo <code>Button-KAO</code>, <code>Button-ABI</code> riêng</td>
+                      <td class="uu-table__td">1 Button + switch Base Semantic mode</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Thêm brand mode vào collection Theme</td>
+                      <td class="uu-table__td">Brand ở Base Semantic; Theme chỉ Light/Dark</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Detach NavBar để đổi màu nhanh</td>
+                      <td class="uu-table__td">Đổi Variable mode trên instance</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Hardcode icon trong component gốc</td>
+                      <td class="uu-table__td">Socket + instance swap theo brand</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td">Clone cả file Figma per client</td>
+                      <td class="uu-table__td">1 file Parent + mode per brand</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Checklist trước khi handoff Dev</h3>
+            <ul class="case-outlook__list">
+              <li><strong>Theme token only</strong><span>Mọi fill/text/stroke bind Theme token — không hex raw trong layer.</span></li>
+              <li><strong>Đúng 2 mode</strong><span>Frame handoff set Base Semantic (brand) + Theme (light/dark).</span></li>
+              <li><strong>Icon socket</strong><span>Dev map được sang <code>icon</code> prop / slot.</span></li>
+              <li><strong>Naming sync</strong><span><code>Text/Primary</code> ↔ <code>--color-text-primary</code>.</span></li>
+              <li><strong>Test 2+ brand</strong><span>Đã verify ít nhất 2 brand trên cùng screen.</span></li>
+            </ul>
+          </div>
+
+          <div class="case-block">
+            <div class="case-outlook">
+              <div class="case-outlook__col case-outlook__col--reflect">
+                <div class="case-outlook__head">
+                  <span class="case-outlook__badge" aria-hidden="true">
+                    <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                  </span>
+                  <p class="case-outlook__title">Tóm tắt một câu</p>
+                </div>
+                <p class="uu-section__body"><strong>Parent DS giữ xương + API; Base Semantic giữ brand; Theme giữ light/dark; Socket giữ icon.</strong> Đổi khách hàng = đổi mode + plug icon — không vẽ lại từ đầu.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-block">
+            <div class="uu-hero__actions case-actions">
+              <a href="https://www.figma.com/design/DLwGliZZryr60igITq1pfS/UI-UX-Self-Learn-Knowledge?node-id=459-8816" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" target="_blank" rel="noopener noreferrer">
+                <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5M15 3h6v6M10 14 21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Xem trên Figma
+              </a>
+              <a href="../../index.html#projects" class="uu-button" data-uu-size="md" data-uu-hierarchy="primary-gray">Quay lại portfolio</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <script src="../../source-code/scripts/orphan-guard.js"></script>
+  <script src="../../source-code/scripts/case-study.js"></script>
+</body>
+</html>

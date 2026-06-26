@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="vi" class="light-mode">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Case study HQSOFT Design System Xspire (Web) — cách mình cấu trúc Foundation & Components, xây token 2 tầng, dark mode và chiến lược component (item-first) tham chiếu Material Design + Tini Design System." />
+  <title>HQSOFT Design System Xspire (Web) — Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../../library/foundations/thickness.css" />
+  <link rel="stylesheet" href="../../library/foundations/base.css" />
+  <link rel="stylesheet" href="../../library/components/_shared/icon.css" />
+  <link rel="stylesheet" href="../../library/components/button/button.css" />
+  <link rel="stylesheet" href="../../library/components/hero-section/hero-section.css" />
+  <link rel="stylesheet" href="../../library/components/section-header/section-header.css" />
+  <link rel="stylesheet" href="../../library/components/tabs/tabs.css" />
+  <link rel="stylesheet" href="../../library/components/metric/metric.css" />
+  <link rel="stylesheet" href="../../library/components/table/table.css" />
+  <link rel="stylesheet" href="../../library/components/badge/badge.css" />
+  <link rel="stylesheet" href="../../styles/portfolio.css" />
+  <link rel="stylesheet" href="../../styles/case-study.css" />
+  <link rel="stylesheet" href="../../styles/case-study-v2.css" />
+</head>
+<body>
+  <div class="case-page portfolio-page case-page--no-site-nav">
+
+    <nav class="case-tabs case-tabs--toolbar" aria-label="Các phần của case study" data-case-tabs>
+      <div class="case-tabs__inner portfolio-shell">
+        <a href="../../index.html#projects" class="uu-button case-tabs__back" data-uu-size="md" data-uu-hierarchy="primary-gray" aria-label="Quay lại portfolio">
+          <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Quay lại portfolio</span>
+        </a>
+        <div class="case-tabs__scroll">
+          <div class="uu-button-group" data-uu-size="sm" role="tablist" aria-label="Tabs case study">
+            <button type="button" class="uu-button-group__item is-selected" role="tab" aria-selected="true" aria-controls="summary" data-case-tab="summary">Tổng quan</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="foundation" data-case-tab="foundation">Foundation</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="tokens" data-case-tab="tokens">Tokens</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="components" data-case-tab="components">Components</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="governance" data-case-tab="governance">Governance</button>
+            <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="outcomes" data-case-tab="outcomes">Kết quả</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+
+      <!-- Hero -->
+      <section class="uu-hero portfolio-hero portfolio-hero--centered portfolio-shell case-hero" aria-labelledby="case-title">
+        <div class="portfolio-hero__content">
+          <h1 class="portfolio-hero__headline" id="case-title">HQSOFT Design System Xspire (Web)</h1>
+        </div>
+      </section>
+
+      <!-- 01 · Tổng quan -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="summary" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">01</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Tổng quan</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <figure class="case-figure case-figure--plain">
+              <img
+                src="../../assets/images/case-study/hqsoft-ds/01-cover.png"
+                alt="HQSOFT Design System Xspire (Web) — cover trong Figma"
+                width="1800"
+                height="900"
+                loading="eager"
+                decoding="async"
+              />
+            </figure>
+          </div>
+
+          <div class="case-block">
+            <dl class="case-hero-facts">
+              <div class="case-hero-facts__item">
+                <dt class="case-hero-facts__label">Vai trò</dt>
+                <dd class="case-hero-facts__value">Senior UI/UX Designer · Design System Owner</dd>
+              </div>
+              <div class="case-hero-facts__item">
+                <dt class="case-hero-facts__label">Phạm vi</dt>
+                <dd class="case-hero-facts__value">Foundation · Tokens · Component library · Documentation</dd>
+              </div>
+              <div class="case-hero-facts__item">
+                <dt class="case-hero-facts__label">Nền tảng</dt>
+                <dd class="case-hero-facts__value">Web app (Desktop-first) · Light/Dark</dd>
+              </div>
+              <div class="case-hero-facts__item">
+                <dt class="case-hero-facts__label">Công cụ</dt>
+                <dd class="case-hero-facts__value">Figma Variables · Styles · Component variants</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="case-block">
+            <p class="uu-section__body">Khi HQSOFT vận hành nhiều sản phẩm enterprise (SaaS/ERP/DMS), vấn đề không còn là “thiếu component” mà là <strong>thiếu một ngôn ngữ thiết kế thống nhất</strong> để thiết kế và kỹ thuật cùng ship nhanh mà vẫn nhất quán.</p>
+            <p class="uu-section__body">Mình xây <strong>HQSOFT Design System Xspire (Web)</strong> theo hướng product-ready: <strong>token 2 tầng</strong> (Parent → Theme), <strong>Light/Dark modes</strong>, chuẩn hoá typography/icon/elevation, và một thư viện component có khả năng scale cho workflow dày dữ liệu.</p>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Tham chiếu &amp; triết lý</h3>
+            <section class="uu-table-card" data-uu-size="md" aria-label="Tham chiếu">
+              <div class="uu-table-scroll">
+                <table class="uu-table" role="table" aria-label="Tham chiếu">
+                  <thead class="uu-table__head">
+                    <tr class="uu-table__head-row">
+                      <th class="uu-table__th">Nguồn</th>
+                      <th class="uu-table__th">Mình học gì</th>
+                      <th class="uu-table__th">Mình áp dụng như thế nào</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Material Design</strong></td>
+                      <td class="uu-table__td">Foundation-first, token hoá color/type/elevation, semantic roles</td>
+                      <td class="uu-table__td">Tách Foundation rõ (Color/Type/Effects/Grids/Units) và triển khai token 2 tầng</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Tini Design System</strong></td>
+                      <td class="uu-table__td">Cấu trúc component có tính “lắp ráp”, đặc biệt là <em>item-first</em></td>
+                      <td class="uu-table__td">Chuẩn hoá <strong>List and item</strong> theo hướng slots + element sets để mở rộng không cần detach</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Bối cảnh enterprise</strong></td>
+                      <td class="uu-table__td">Dữ liệu dày, nhiều trạng thái, nhiều module</td>
+                      <td class="uu-table__td">Ưu tiên rules + defaults + states, giảm “đẹp riêng lẻ”, tăng consistency và maintainability</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 02 · Foundation -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="foundation" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">02</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Foundation</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <p class="uu-section__body">Mình tổ chức file theo thứ tự “foundation trước, component sau”. Đây là cách tránh rơi vào bẫy làm component bằng hex/spacing tuỳ hứng — vì khi đã có token, component chỉ còn là “binding + states”.</p>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Information architecture trong Figma</h3>
+            <figure class="case-figure">
+              <img
+                src="../../assets/images/case-study/hqsoft-ds/02-toc.png"
+                alt="Table of contents — cấu trúc Foundation & Components trong file Figma"
+                width="1600"
+                height="980"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="uu-section__body">Tách rõ Foundation (Color/Type/Icon/Effects/Units/Grids) và Components theo nhóm vai trò (Actions, Communication, Containment, Navigation, Input).</figcaption>
+            </figure>
+          </div>
+
+          <div class="case-block case-grid-2">
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Typography &amp; Icon styles</h3>
+              <p class="uu-section__body">Mình chuẩn hoá text styles theo <strong>type scale</strong> rõ ràng (display/heading/title/body/label). Icon dùng Font Awesome Pro, nhưng ưu tiên SVG khi implement (performance + licensing).</p>
+              <p class="uu-section__body">Điểm quan trọng: naming của text/icon styles đi theo token naming, nên dev map sang code dễ.</p>
+            </article>
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Elevation &amp; Effects</h3>
+              <p class="uu-section__body">Elevation có 5 effect styles (bottom/top levels) để cover card, popover, modal, sticky bars. Mình không để “shadow tự bịa” trong component — shadow là token.</p>
+              <p class="uu-section__body">Nhờ vậy, hệ thống nhìn “cùng một độ sâu” trên mọi module, kể cả khi nhiều team cùng làm.</p>
+            </article>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 03 · Tokens -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="tokens" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">03</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Token architecture</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <p class="uu-section__body">Mình dùng kiến trúc token <strong>2 tầng</strong>:</p>
+            <ul class="case-outlook__list">
+              <li><strong>Parent Tokens</strong><span>giữ giá trị “gốc” (palette/scale) — dùng lại được, không phụ thuộc UI context.</span></li>
+              <li><strong>Theme Tokens</strong><span>là semantic tokens (role-based) — component dùng trực tiếp. Light/Dark chỉ là đổi mode.</span></li>
+            </ul>
+          </div>
+
+          <div class="case-block case-grid-2">
+            <figure class="case-figure">
+              <img
+                src="../../assets/images/case-study/hqsoft-ds/04-color-theme-light.png"
+                alt="Theme tokens — Light mode mapping"
+                width="597"
+                height="1800"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="uu-section__body">Theme tokens (Light) — semantic mapping theo role: primary/surface/background/outline/semantic.</figcaption>
+            </figure>
+            <figure class="case-figure">
+              <img
+                src="../../assets/images/case-study/hqsoft-ds/05-color-theme-dark.png"
+                alt="Theme tokens — Dark mode mapping"
+                width="597"
+                height="1800"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="uu-section__body">Theme tokens (Dark) — giữ nguyên role, đổi mode để đảm bảo contrast trên nền tối.</figcaption>
+            </figure>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Units — spacing &amp; radius</h3>
+            <div class="case-grid-2">
+              <figure class="case-figure">
+                <img
+                  src="../../assets/images/case-study/hqsoft-ds/06-units-parent.png"
+                  alt="Units parent tokens — spacing & radius theo đơn vị 2px"
+                  width="1225"
+                  height="1800"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="uu-section__body">Parent tokens cho spacing/radius dùng base unit 2px (Nx = N×2px).</figcaption>
+              </figure>
+              <figure class="case-figure">
+                <img
+                  src="../../assets/images/case-study/hqsoft-ds/07-units-theme.png"
+                  alt="Units theme tokens — semantic spacing & radius"
+                  width="1206"
+                  height="1800"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <figcaption class="uu-section__body">Theme tokens map trực tiếp để dev dùng nhất quán, tránh “spacing tuỳ hứng”.</figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Quy tắc mình đặt ra (để DS không bị “trôi”)</h3>
+            <section class="uu-table-card" data-uu-size="md" aria-label="Quy tắc token">
+              <div class="uu-table-scroll">
+                <table class="uu-table" role="table" aria-label="Quy tắc token">
+                  <thead class="uu-table__head">
+                    <tr class="uu-table__head-row">
+                      <th class="uu-table__th">Rule</th>
+                      <th class="uu-table__th">Lý do</th>
+                      <th class="uu-table__th">Tác dụng</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Không dùng hex trực tiếp</strong></td>
+                      <td class="uu-table__td">Hex làm component “đóng băng” theo một theme</td>
+                      <td class="uu-table__td">Đổi theme/dark mode không phải sửa từng component</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Semantic tokens là bề mặt API</strong></td>
+                      <td class="uu-table__td">Dev và design cần nói chuyện bằng ngữ nghĩa</td>
+                      <td class="uu-table__td">“Primary/Surface/Outline” rõ ràng hơn “Navy-60”</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>States là token-driven</strong></td>
+                      <td class="uu-table__td">Hover/pressed/disabled không được “tự nghĩ” ở mỗi component</td>
+                      <td class="uu-table__td">Hành vi tương tác nhất quán trên toàn hệ thống</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 04 · Components -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="components" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">04</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Component strategy</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <p class="uu-section__body">Mục tiêu của mình không phải “đủ component cho đẹp”, mà là <strong>đủ khả năng lắp ráp</strong> để chịu được một bài toán rất HQSOFT: <strong>custom theo nhiều khách hàng cùng lúc</strong>.</p>
+            <p class="uu-section__body">Team thường phải làm song song cho nhiều client (ví dụ: ABI, Sabeco, AVN‑TT, PVM, FES, Lixil, …). Mỗi client lại có cách <strong>cấu trúc card</strong>, <strong>mật độ dữ liệu</strong> và <strong>quy ước hiển thị</strong> khác nhau. “Custom” trong thực tế không phải là vẽ lại từ đầu — mà là <strong>swap component này với component khác</strong>, và swap liên tục khi scope thay đổi.</p>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">List and item — “item-first” để sống sót qua multi-client customization</h3>
+            <p class="uu-section__body">Đây là phần mình đào sâu nhất vì nó phản ánh đúng thực tế công ty. Khi cùng một lúc phải phục vụ nhiều client, thứ thay đổi nhiều nhất không phải “button tròn hay vuông” — mà là <strong>cấu trúc dữ liệu trong card/list</strong>: có/không có thumbnail, có/không có leading icon, có thêm trường phụ hay không, có trạng thái chọn (checkbox/radio) hay không, có progress hoặc input inline hay không…</p>
+            <p class="uu-section__body">Nếu mỗi biến thể lại tạo một component mới (hoặc detach instance để sửa), thư viện sẽ phình nhanh và <strong>vỡ tính nhất quán</strong>. Vì vậy mình chọn hướng tham chiếu Tini Design System: <strong>tách “item” ra khỏi “list”</strong> và biến item thành một “khung lắp ráp” có slots + element sets.</p>
+            <figure class="case-figure">
+              <img
+                src="../../assets/images/case-study/hqsoft-ds/10-list-item.png"
+                alt="List and item — cấu trúc item với element variants và slots"
+                width="944"
+                height="1800"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption class="uu-section__body">Một hệ item “lắp ráp”: prefix/content/suffix + subcontent + element sets. Khi custom, team chủ yếu swap element (checkbox/radio/progress/input/chip/icon/…) thay vì tạo item mới.</figcaption>
+            </figure>
+          </div>
+
+          <div class="case-block case-grid-2">
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Bài toán thật: swap liên tục</h3>
+              <p class="uu-section__body">Ở HQSOFT, cùng một module (list khách hàng, list đơn, list tồn kho, list nhiệm vụ…) có thể được “đặt lại format” giữa các client. Có client muốn đọc nhanh theo <strong>2 dòng + badge</strong>, có client cần <strong>3–4 trường dữ liệu</strong> ngay trong item, có client yêu cầu <strong>chọn hàng loạt</strong> (checkbox), có nơi lại dùng <strong>radio</strong> hoặc <strong>input inline</strong>.</p>
+              <p class="uu-section__body">Vì vậy component cần cho phép thay đổi cấu trúc mà không phá layout và không khiến thư viện nở vô kiểm soát.</p>
+            </article>
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Giải pháp: item như “API”</h3>
+              <p class="uu-section__body">Mình coi item như một “API” ổn định: <strong>slots</strong> (Prefix / Content / Suffix / Subcontent) + <strong>element sets</strong> (checkbox/radio/icon/progress/text-field/chip/image…). Khi cần custom, team chỉ cần đổi “tham số” (variant/boolean) hoặc swap element — thay vì tạo component mới.</p>
+              <p class="uu-section__body">Kết quả là designer vẫn dùng instance (không detach), dev cũng map được sang mô hình “props + slots” rất tự nhiên.</p>
+            </article>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Mình thiết kế “khung lắp” như thế nào?</h3>
+            <ol class="case-flow-steps">
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Chốt anatomy ổn định</p>
+                  <p class="uu-section__body">Định nghĩa Prefix / Content / Suffix + Subcontent (left/right). Đây là phần “không đổi” dù client thay layout.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Tách element thành component set</p>
+                  <p class="uu-section__body">Checkbox, radio, progress, text-field, chip, icon… là các element có thể cắm vào slots. Custom chủ yếu là swap các element này.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Thiết kế theo “số lượng”</p>
+                  <p class="uu-section__body">Row/Column theo quantity (1→5) để scale layout dữ liệu mà không tạo hàng chục frame lẻ.</p>
+                </div>
+              </li>
+              <li>
+                <div class="case-flow-steps__content">
+                  <p class="case-list__title">Giữ naming để dev map được</p>
+                  <p class="uu-section__body">Variant đặt theo intent: type/size/quantity/has-prefix/has-suffix… giúp dev đọc và chuyển hoá thành props nhanh.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Những “điểm khó” mình phải xử lý</h3>
+            <section class="uu-table-card" data-uu-size="md" aria-label="Điểm khó & hướng xử lý">
+              <div class="uu-table-scroll">
+                <table class="uu-table" role="table" aria-label="Điểm khó & hướng xử lý">
+                  <thead class="uu-table__head">
+                    <tr class="uu-table__head-row">
+                      <th class="uu-table__th">Tình huống custom</th>
+                      <th class="uu-table__th">Nếu làm “component mới”</th>
+                      <th class="uu-table__th">Hướng mình chọn (swap)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Chọn hàng loạt</strong></td>
+                      <td class="uu-table__td">Sinh ra 1 list item riêng cho checkbox</td>
+                      <td class="uu-table__td">Swap <em>List item/Element</em> sang type=checkbox, giữ nguyên item shell</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Inline input</strong></td>
+                      <td class="uu-table__td">Dễ phải detach để nhét input vào</td>
+                      <td class="uu-table__td">Swap element type=text-field + chọn size md/sm theo density</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Hiển thị trạng thái</strong></td>
+                      <td class="uu-table__td">Mỗi client 1 badge placement khác nhau</td>
+                      <td class="uu-table__td">Đặt badge vào slot suffix/trailing + bật/tắt bằng boolean</td>
+                    </tr>
+                    <tr class="uu-table__row">
+                      <td class="uu-table__td"><strong>Dữ liệu nhiều cột</strong></td>
+                      <td class="uu-table__td">Tạo nhiều layout item khác nhau (khó maintain)</td>
+                      <td class="uu-table__td">Dùng Row/Column quantity=1→5 để “scale” cấu trúc dữ liệu</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+
+          <div class="case-block case-grid-2">
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Nguyên tắc component</h3>
+              <ul class="case-outlook__list">
+                <li><strong>Anatomy &amp; slots rõ</strong><span>Prefix/Content/Suffix là “hợp đồng” để scale mà không phá layout.</span></li>
+                <li><strong>States phải đủ</strong><span>Enabled/hover/pressed/disabled được define theo tokens, tránh “tự nghĩ”.</span></li>
+                <li><strong>Variant naming nhất quán</strong><span>Type/Size/State/Shape… để dev map sang props trực quan.</span></li>
+              </ul>
+            </article>
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Điểm trade-off mình chấp nhận</h3>
+              <ul class="case-outlook__list">
+                <li><strong>Nhiều variants hơn</strong><span>Đổi lại: ít detach, ít override, dễ maintain.</span></li>
+                <li><strong>Đầu tư foundation sớm</strong><span>Đổi lại: scale nhanh cho 3+ sản phẩm mà không “vỡ” style.</span></li>
+                <li><strong>Documentation bắt buộc</strong><span>Đổi lại: onboard nhanh và giảm hỏi-đáp giữa design/dev.</span></li>
+              </ul>
+            </article>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 05 · Governance -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="governance" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">05</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Governance &amp; vận hành</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <p class="uu-section__body">Để DS sống được lâu, mình coi nó như sản phẩm: có cấu trúc page rõ, có release notes, có quy trình thêm component và quy tắc “không được phá token”.</p>
+          </div>
+
+          <div class="case-block case-grid-2">
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Cấu trúc Figma theo vòng đời</h3>
+              <p class="uu-section__body"><strong>FOUNDATIONS</strong> và <strong>COMPONENTS</strong> là vùng stable. Mình tách <strong>SUPPORT</strong> cho asset/phần phụ trợ, và <strong>DRAFT</strong> cho thử nghiệm — để library chính không bị “rác hoá”.</p>
+            </article>
+            <article class="portfolio-about-card">
+              <h3 class="case-kicker">Documentation song song</h3>
+              <p class="uu-section__body">Ngoài Figma, mình duy trì guideline Web: token naming, mapping light/dark, typography/icon sizes, elevation tokens và index component. Mục tiêu là dev có thể implement mà không phải đoán.</p>
+            </article>
+          </div>
+
+          <div class="case-block">
+            <h3 class="case-kicker">Cách mình thêm một component mới</h3>
+            <ol class="case-flow-steps">
+              <li><div class="case-flow-steps__content"><p class="case-list__title">Benchmark</p><p class="uu-section__body">So sánh Material/Tini/Ant… để chọn pattern phù hợp enterprise.</p></div></li>
+              <li><div class="case-flow-steps__content"><p class="case-list__title">Define anatomy + props</p><p class="uu-section__body">Chốt slots/variants/states trước khi vẽ đẹp.</p></div></li>
+              <li><div class="case-flow-steps__content"><p class="case-list__title">Bind tokens</p><p class="uu-section__body">Màu/spacing/radius/elevation đều đi qua tokens (Parent → Theme).</p></div></li>
+              <li><div class="case-flow-steps__content"><p class="case-list__title">Audit states</p><p class="uu-section__body">Enabled/hover/pressed/disabled + edge cases (empty/error/loading).</p></div></li>
+              <li><div class="case-flow-steps__content"><p class="case-list__title">Document &amp; publish</p><p class="uu-section__body">Viết guideline ngắn + ví dụ dùng đúng và sai để team dùng được ngay.</p></div></li>
+            </ol>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 06 · Kết quả -->
+      <section class="uu-section portfolio-shell portfolio-section case-section" id="outcomes" tabindex="-1">
+        <header class="portfolio-section__header case-section-head">
+          <p class="case-section-head__index" aria-hidden="true">06</p>
+          <div class="case-section-head__text">
+            <h2 class="uu-section__title">Kết quả</h2>
+          </div>
+        </header>
+        <div class="portfolio-section__content">
+
+          <div class="case-block">
+            <div class="case-impact-snapshot" aria-label="Tóm tắt kết quả">
+              <div class="case-impact-snapshot__item">
+                <span class="case-impact-snapshot__value">2‑tier tokens</span>
+                <p class="case-impact-snapshot__label">Parent → Theme, hỗ trợ Light/Dark (semantic roles ổn định)</p>
+              </div>
+              <div class="case-impact-snapshot__item">
+                <span class="case-impact-snapshot__value">47 styles</span>
+                <p class="case-impact-snapshot__label">Text + icon font styles, naming nhất quán để dev map nhanh</p>
+              </div>
+              <div class="case-impact-snapshot__item">
+                <span class="case-impact-snapshot__value">5 elevations</span>
+                <p class="case-impact-snapshot__label">Top/Bottom levels cho card, popover, sticky bars, modal</p>
+              </div>
+              <div class="case-impact-snapshot__item">
+                <span class="case-impact-snapshot__value">Item‑first</span>
+                <p class="case-impact-snapshot__label">Custom đa client chủ yếu là swap element, tránh nở component</p>
+              </div>
+            </div>
+            <p class="case-data-table__disclaimer">Các con số dựa trên cấu trúc library trong Figma (styles/tokens/effects) tại thời điểm tổng hợp case study.</p>
+          </div>
+
+          <div class="case-block">
+            <div class="case-outlook">
+              <div class="case-outlook__col case-outlook__col--reflect">
+                <div class="case-outlook__head">
+                  <span class="case-outlook__badge" aria-hidden="true">
+                    <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 3v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <p class="case-outlook__title">Nếu làm lại</p>
+                </div>
+                <ul class="case-outlook__list">
+                  <li><strong>Chốt “API” cho component sớm hơn</strong><span>Đặt rule slots/props từ đầu giúp tránh mở rộng bằng biến thể “lạc” về sau.</span></li>
+                  <li><strong>Chuẩn hoá mapping design→code sớm</strong><span>Code Connect/props mapping giúp dev adopt nhanh hơn và ít lệch hơn.</span></li>
+                </ul>
+              </div>
+              <div class="case-outlook__col case-outlook__col--next">
+                <div class="case-outlook__head">
+                  <span class="case-outlook__badge case-outlook__badge--next" aria-hidden="true">
+                    <svg class="uu-icon uu-icon--16" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                  <p class="case-outlook__title">Bước tiếp theo</p>
+                </div>
+                <ul class="case-outlook__list">
+                  <li><strong>Mở rộng content system</strong><span>Đẩy Languages variables thành bộ microcopy chuẩn cho các flow phổ biến (auth, empty/error, confirm).</span></li>
+                  <li><strong>Audit dark mode toàn bộ components</strong><span>Đảm bảo tất cả component đều bind theme tokens, không còn giá trị “lọt” ra ngoài.</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-block">
+            <div class="uu-hero__actions case-actions">
+              <a href="https://www.figma.com/design/5wO57mOv5R62xRh618Soly/HQSOFT-Design-System--Xspire-?node-id=875-6151" class="uu-button" data-uu-size="md" data-uu-hierarchy="secondary-gray" target="_blank" rel="noopener noreferrer">
+                <svg class="uu-icon uu-icon--20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 13v5a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5M15 3h6v6M10 14 21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Xem trên Figma
+              </a>
+              <a href="../../index.html#projects" class="uu-button" data-uu-size="md" data-uu-hierarchy="primary-gray">Quay lại portfolio</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+  </div>
+
+  <script src="../../source-code/scripts/orphan-guard.js"></script>
+  <script src="../../source-code/scripts/case-study.js"></script>
+</body>
+</html>
+

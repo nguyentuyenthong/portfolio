@@ -1,0 +1,233 @@
+/* Multi-brand case study — clean editorial layout
+   Scope: .case-page--multi-brand only. Token-only spacing & colors. */
+
+.case-page--multi-brand {
+  --case-mb-content-max: 52rem;
+  background: var(--background-primary);
+}
+
+/* ── Banner block (sau header-nav chuẩn) ───────────────────── */
+.case-page--multi-brand .case-mb-top {
+  margin-bottom: calc(var(--spacing-9xl) - var(--section-gap));
+}
+.case-page--multi-brand .case-mb-banner {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+.case-page--multi-brand .case-mb-banner img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-2xl);
+  border: var(--width-border-thin) solid var(--border-tertiary);
+}
+
+/* ── Generous vertical rhythm ──────────────────────────────── */
+.case-page--multi-brand main > .case-section + .case-section {
+  margin-block-start: calc(var(--spacing-9xl) - var(--section-gap));
+}
+
+.case-page--multi-brand .uu-section.case-section {
+  gap: var(--spacing-5xl);
+}
+
+.case-page--multi-brand .portfolio-section__content {
+  gap: var(--spacing-6xl);
+}
+
+.case-page--multi-brand .case-block {
+  gap: var(--spacing-3xl);
+}
+
+.case-page--multi-brand main {
+  padding-bottom: var(--spacing-10xl);
+}
+
+/* ── Typography — editorial, breathable ────────────────────── */
+.case-page--multi-brand .uu-section__body {
+  font-size: var(--font-size-text-lg);
+  line-height: 1.75;
+  color: var(--text-secondary);
+  letter-spacing: -0.01em;
+}
+
+.case-page--multi-brand .uu-section__body strong {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.case-page--multi-brand .case-mb-lede {
+  max-width: var(--case-mb-content-max);
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  line-height: 1.65;
+  letter-spacing: -0.018em;
+  color: var(--text-primary);
+}
+
+.case-page--multi-brand .case-mb-lede strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+.case-page--multi-brand .case-section-head .uu-section__title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.case-page--multi-brand .case-section-head__index {
+  font-size: var(--font-size-text-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.12em;
+  color: var(--text-brand-secondary);
+  opacity: 0.85;
+}
+
+.case-page--multi-brand .case-kicker {
+  font-size: var(--font-size-text-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* ── Meta strip — light cards ──────────────────────────────── */
+.case-page--multi-brand .case-hero-facts {
+  gap: var(--spacing-3xl);
+  padding: var(--spacing-5xl);
+  border: var(--width-border-thin) solid var(--border-tertiary);
+  border-radius: var(--radius-2xl);
+  background: var(--background-secondary);
+}
+
+.case-page--multi-brand .case-hero-facts__label {
+  letter-spacing: 0.1em;
+}
+
+.case-page--multi-brand .case-hero-facts__value {
+  font-size: var(--font-size-text-md);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.5;
+  color: var(--text-primary);
+}
+
+/* ── Cards & figures — softer ─────────────────────────────── */
+.case-page--multi-brand .portfolio-about-card {
+  padding: var(--spacing-5xl);
+  gap: var(--spacing-xl);
+  border-color: var(--border-tertiary);
+  border-radius: var(--radius-2xl);
+  background: var(--surface-default);
+}
+
+.case-page--multi-brand .case-grid-2 {
+  gap: var(--spacing-4xl);
+}
+
+.case-page--multi-brand .case-figure {
+  border: none;
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 1px 3px color-mix(in srgb, var(--gray-900) 6%, transparent),
+              0 8px 32px color-mix(in srgb, var(--gray-900) 4%, transparent);
+}
+
+.case-page--multi-brand .case-figure figcaption {
+  padding: var(--spacing-2xl) var(--spacing-3xl);
+  font-size: var(--font-size-text-md);
+  line-height: 1.6;
+  border-top: var(--width-border-thin) solid var(--border-tertiary);
+  background: var(--background-secondary);
+}
+
+/* ── Flow steps — more air ─────────────────────────────────── */
+.case-page--multi-brand .case-flow-steps {
+  gap: var(--spacing-3xl);
+}
+
+.case-page--multi-brand .case-flow-steps li {
+  padding: var(--spacing-4xl);
+  border-radius: var(--radius-xl);
+  border-color: var(--border-tertiary);
+  background: var(--background-secondary);
+}
+
+.case-page--multi-brand .case-list__title {
+  font-size: var(--font-size-text-lg);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.015em;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ── Tables — lighter ──────────────────────────────────────── */
+.case-page--multi-brand .uu-table-card {
+  border-radius: var(--radius-2xl);
+  border-color: var(--border-tertiary);
+}
+
+.case-page--multi-brand .uu-table__th,
+.case-page--multi-brand .uu-table__td {
+  padding: var(--spacing-2xl) var(--spacing-3xl);
+}
+
+.case-page--multi-brand .uu-table__body .uu-table__td {
+  font-size: var(--font-size-text-md);
+  line-height: 1.55;
+}
+
+/* ── Outlook / checklist ───────────────────────────────────── */
+.case-page--multi-brand .case-outlook {
+  border-radius: var(--radius-2xl);
+  border-color: var(--border-tertiary);
+}
+
+.case-page--multi-brand .case-outlook__list li {
+  gap: var(--spacing-3xl);
+  padding-block: var(--spacing-2xl);
+}
+
+.case-page--multi-brand .case-outlook__list li span {
+  font-size: var(--font-size-text-md);
+  line-height: 1.6;
+}
+
+.case-page--multi-brand .case-actions {
+  padding-top: var(--spacing-4xl);
+}
+
+/* ── Pull quote ────────────────────────────────────────────── */
+.case-page--multi-brand .case-mb-pullquote {
+  margin: 0;
+  padding: var(--spacing-5xl) var(--spacing-6xl);
+  border-left: 3px solid var(--border-brand);
+  border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+  background: color-mix(in srgb, var(--brand-600) 4%, var(--background-secondary));
+}
+
+.case-page--multi-brand .case-mb-pullquote p {
+  margin: 0;
+  font-size: clamp(1.125rem, 2.2vw, 1.5rem);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.55;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+@media (max-width: 768px) {
+  .case-page--multi-brand .case-mb-top {
+    margin-bottom: var(--spacing-6xl);
+  }
+
+  .case-page--multi-brand .case-hero-facts {
+    grid-template-columns: 1fr;
+    padding: var(--spacing-4xl);
+  }
+
+  .case-page--multi-brand .case-mb-pullquote {
+    padding: var(--spacing-4xl);
+  }
+
+  .case-page--multi-brand main > .case-section + .case-section {
+    margin-block-start: calc(var(--spacing-7xl) - var(--section-gap));
+  }
+}
