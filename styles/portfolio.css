@@ -15,10 +15,12 @@ body {
   position: relative;
   z-index: 1;
   min-height: 100vh;
-  --shell-max: 72rem;
-  --shell-gutter: clamp(var(--spacing-xl), 5vw, var(--spacing-3xl));
+  --shell-max: 240rem;
+  --shell-gutter: var(--spacing-9xl);
   --section-gap: var(--spacing-6xl);
   --section-header-gap: var(--spacing-4xl);
+  --heading-content-gap: var(--spacing-4xl);
+  --pf-hero-marquee-cycle: 4.2s;
   /* bottom offset + pill height — keeps footer credit clear of pf-scroll-nav */
   --pf-scroll-nav-reserve: calc(var(--spacing-xl) + 3.25rem);
 }
@@ -32,41 +34,168 @@ body {
 }
 
 .portfolio-page .uu-site-nav.portfolio-shell.portfolio-nav--floating {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 50;
-  width: min(var(--shell-max), 100% - 2 * var(--shell-gutter));
-  margin-inline: auto;
-  margin-top: 16px;
-  margin-bottom: var(--spacing-lg);
-  padding: var(--spacing-lg) var(--spacing-xl);
-  background: transparent;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: var(--spacing-lg) var(--shell-gutter);
+  background: color-mix(in srgb, var(--surface-default) 50%, transparent);
   border-bottom: none;
-  backdrop-filter: none;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
 }
 
 .portfolio-page .uu-site-nav.portfolio-nav--floating[data-uu-menu-open="true"] .uu-site-nav__links {
   border-bottom: none;
+  background: color-mix(in srgb, var(--surface-default) 85%, transparent);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* Mobile nav overlay */
+.portfolio-nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 48;
+  background: color-mix(in srgb, var(--gray-900) 45%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.portfolio-nav-overlay.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.portfolio-nav-open {
+  overflow: hidden;
+}
+
+@media (max-width: 1024px) {
+  .portfolio-page {
+    --shell-gutter: var(--spacing-3xl);
+  }
 }
 
 @media (max-width: 768px) {
+  .portfolio-page {
+    --shell-gutter: var(--spacing-xl);
+    --nav-bar-height: 3.75rem;
+    --section-gap: var(--spacing-5xl);
+    --section-header-gap: var(--spacing-3xl);
+  }
+
   .portfolio-page .uu-site-nav.portfolio-nav--floating {
-    padding: calc(var(--spacing-md) + 4px) var(--spacing-lg);
+    position: sticky;
+    z-index: 52;
+    width: 100%;
+    max-width: 100%;
+    min-height: var(--nav-bar-height);
+    padding: calc(var(--spacing-md) + 4px) var(--shell-gutter);
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  .portfolio-page .uu-site-nav.portfolio-nav--floating .uu-site-nav__brand {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .portfolio-page .uu-site-nav.portfolio-nav--floating .portfolio-nav__logo {
+    height: 1.5rem;
+    width: auto;
+    max-width: min(14rem, 64vw);
+  }
+
+  .portfolio-page .uu-site-nav.portfolio-nav--floating .uu-site-nav__menu-btn {
+    flex: 0 0 auto;
+    padding: var(--spacing-md);
+    margin-right: calc(-1 * var(--spacing-md));
   }
 
   .portfolio-page .uu-site-nav.portfolio-nav--floating[data-uu-menu-open="true"] {
     border-radius: 0;
+    background: color-mix(in srgb, var(--surface-default) 92%, transparent);
   }
 
   .portfolio-page .uu-site-nav.portfolio-nav--floating .uu-site-nav__links {
-    top: 100%;
+    display: none;
+    position: fixed;
+    top: var(--nav-bar-height);
     left: 0;
     right: 0;
-    width: auto;
-    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
-    background: transparent;
+    width: 100%;
+    max-height: calc(100dvh - var(--nav-bar-height));
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-lg) var(--shell-gutter) var(--spacing-2xl);
+    margin: 0;
+    background: var(--surface-default);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     border: none;
-    border-bottom: none;
+    border-bottom: var(--width-border-thin) solid var(--border-secondary);
     border-radius: 0;
+    box-shadow: var(--shadow-lg);
+    z-index: 51;
+  }
+
+  .portfolio-page .uu-site-nav.portfolio-nav--floating[data-uu-menu-open="true"] .uu-site-nav__links {
+    display: flex;
+    background: var(--surface-default);
+  }
+
+  .portfolio-page .uu-site-nav.portfolio-nav--floating .uu-site-nav__link {
+    padding: var(--spacing-lg) var(--spacing-md);
+    border-radius: var(--radius-md);
+  }
+
+  .portfolio-hero__content .uu-hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .portfolio-hero__content .uu-hero__actions .pf-cta {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .portfolio-thinking-card {
+    gap: var(--spacing-4xl);
+    padding: var(--spacing-xl);
+  }
+
+  .portfolio-footer .portfolio-footer__bar {
+    padding-bottom: var(--spacing-6xl);
+  }
+
+  .portfolio-page .uu-hero.portfolio-hero {
+    padding-top: var(--spacing-5xl);
+  }
+
+  .portfolio-hero__visual {
+    --hero-visual-height: 8.5rem;
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .portfolio-hero__headline {
+    margin-bottom: var(--spacing-2xl);
+  }
+
+  .portfolio-section {
+    scroll-margin-top: calc(var(--nav-bar-height) + var(--spacing-md));
   }
 }
 
@@ -114,14 +243,14 @@ body {
 }
 
 .portfolio-section__header {
-  margin-bottom: var(--section-header-gap);
+  margin-bottom: 0;
+}
+
+.portfolio-page .uu-section__title {
+  margin: 0 0 var(--heading-content-gap);
 }
 
 .portfolio-section__header .uu-section__label {
-  margin-bottom: var(--spacing-lg);
-}
-
-.portfolio-section__header .uu-section__title {
   margin-bottom: var(--spacing-lg);
 }
 
@@ -145,12 +274,24 @@ body {
   background: transparent;
 }
 
+#about .portfolio-about-card__group--tools,
+section[aria-labelledby="thinking-title"] {
+  padding-block: var(--spacing-4xl);
+}
+
 .portfolio-page .uu-project-grid.portfolio-project-grid {
-  max-width: 40rem;
+  max-width: none;
   width: 100%;
-  margin-inline: auto;
+  margin-inline: 0;
   padding: 0;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing-2xl);
+}
+
+@media (max-width: 768px) {
+  .portfolio-page .uu-project-grid.portfolio-project-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .portfolio-page .uu-project-card--interactive {
@@ -275,7 +416,7 @@ body {
 
 .portfolio-about-card {
   display: grid;
-  gap: var(--spacing-3xl);
+  gap: var(--spacing-6xl);
   padding: 0;
   border: none;
   border-radius: 0;
@@ -312,7 +453,7 @@ body {
 
 .portfolio-about__body {
   display: grid;
-  gap: var(--spacing-3xl);
+  gap: var(--spacing-7xl);
   align-content: start;
 }
 
@@ -356,11 +497,7 @@ body {
 
 .portfolio-about-card__group {
   display: grid;
-  gap: var(--spacing-xl);
-}
-
-.portfolio-about-card__heading {
-  margin-bottom: 0;
+  gap: 0;
 }
 
 .portfolio-about-card__tags {
@@ -767,26 +904,6 @@ body {
   gap: var(--spacing-xl);
 }
 
-@media (max-width: 768px) {
-  .portfolio-page {
-    --section-gap: var(--spacing-5xl);
-    --section-header-gap: var(--spacing-3xl);
-  }
-
-  .portfolio-page .uu-hero.portfolio-hero {
-    padding-top: var(--spacing-5xl);
-  }
-
-  .portfolio-hero__visual {
-    --hero-visual-height: 8.5rem;
-    margin-bottom: var(--spacing-2xl);
-  }
-
-  .portfolio-hero__headline {
-    margin-bottom: var(--spacing-2xl);
-  }
-}
-
 /* Footer — marquee + bar */
 .portfolio-footer {
   background: transparent;
@@ -800,6 +917,76 @@ body {
 .portfolio-footer .uu-footer-marquee {
   border-bottom: none;
   padding-bottom: 0;
+  overflow-x: clip;
+}
+
+.portfolio-footer .uu-footer-marquee__inner {
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.portfolio-footer .uu-footer-marquee__text {
+  font-size: clamp(var(--font-size-display-xs), 2.5vw, 1.75rem);
+  line-height: var(--line-height-display-xs);
+  letter-spacing: -0.02em;
+  max-width: 100%;
+}
+
+.portfolio-footer .uu-footer-marquee__dot {
+  font-size: clamp(var(--font-size-text-lg), 2vw, 1.5rem);
+}
+
+@keyframes pf-footer-reveal-line-1 {
+  0%   { clip-path: inset(0 100% 0 0); }
+  18%  { clip-path: inset(0 0% 0 0); }
+  84%  { clip-path: inset(0 0% 0 0); }
+  100% { clip-path: inset(0 100% 0 0); }
+}
+
+@keyframes pf-footer-reveal-line-2 {
+  0%   { clip-path: inset(0 100% 0 0); }
+  18%  { clip-path: inset(0 100% 0 0); }
+  36%  { clip-path: inset(0 0% 0 0); }
+  84%  { clip-path: inset(0 0% 0 0); }
+  100% { clip-path: inset(0 100% 0 0); }
+}
+
+@media (max-width: 768px) {
+  .portfolio-footer .uu-footer-marquee__inner {
+    display: block;
+    width: 100%;
+  }
+
+  .portfolio-footer .uu-footer-marquee__text {
+    animation: none;
+    clip-path: none;
+    white-space: normal;
+  }
+
+  .portfolio-footer .uu-footer-marquee__line {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    clip-path: inset(0 100% 0 0);
+    animation: pf-footer-reveal-line-1 calc(var(--pf-hero-marquee-cycle) * 2) cubic-bezier(0.45, 0, 0.25, 1) infinite;
+  }
+
+  .portfolio-footer .uu-footer-marquee__line:nth-child(2) {
+    animation-name: pf-footer-reveal-line-2;
+  }
+
+  .portfolio-footer .uu-footer-marquee__dot {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+  .portfolio-footer .uu-footer-marquee__line {
+    animation: none;
+    clip-path: inset(0 0% 0 0);
+  }
 }
 
 .portfolio-footer .uu-footer-marquee__sub {
@@ -813,6 +1000,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
+  position: relative;
 }
 
 .portfolio-footer__contact-label {
@@ -822,20 +1010,13 @@ body {
   color: var(--text-primary);
 }
 
+.portfolio-footer__contact-label + .uu-tooltip-wrap,
 .portfolio-footer__contact-label + .portfolio-footer__contact-meta {
   margin-top: var(--spacing-xl);
 }
 
-.portfolio-footer__contact-meta + .portfolio-footer__contact-row {
+.portfolio-footer__contact > .uu-tooltip-wrap + .uu-tooltip-wrap {
   margin-top: var(--spacing-xxs);
-}
-
-.portfolio-footer__contact-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-lg);
-  width: 100%;
 }
 
 .portfolio-footer__contact-meta,
@@ -848,12 +1029,21 @@ body {
 }
 
 .portfolio-footer__contact-meta {
-  text-decoration: none;
-  transition: color 0.15s ease;
+  position: relative;
+  display: inline-block;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, currentColor 55%, transparent);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.portfolio-footer__contact-meta::after {
+  display: none;
 }
 
 .portfolio-footer__contact-meta:hover {
-  color: var(--text-secondary);
+  color: var(--text-brand-secondary);
+  text-decoration-color: currentColor;
 }
 
 .portfolio-footer__copy {
@@ -861,7 +1051,35 @@ body {
   align-items: center;
   gap: var(--spacing-xs);
   flex-shrink: 0;
-  text-align: right;
+}
+
+@media (min-width: 769px) {
+  .portfolio-footer__copy {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-align: right;
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-footer__contact {
+    position: static;
+  }
+
+  .portfolio-footer__copy {
+    position: static;
+    width: 100%;
+    margin-top: var(--spacing-6xl);
+    padding-top: var(--spacing-4xl);
+    text-align: left;
+  }
+}
+
+.portfolio-footer .uu-tooltip-wrap[data-uu-tip]::after {
+  top: calc(100% + var(--spacing-sm));
+  bottom: auto;
+  background: var(--gray-900);
 }
 
 .portfolio-footer .portfolio-footer__bar {
@@ -1065,7 +1283,7 @@ body {
 .portfolio-thinking-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  gap: var(--spacing-lg);
 }
 
 .portfolio-thinking-card {
@@ -1160,16 +1378,6 @@ html {
     flex-direction: column;
     align-items: flex-start;
   }
-
-  .portfolio-footer__contact-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--spacing-sm);
-  }
-
-  .portfolio-footer__copy {
-    text-align: left;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1180,7 +1388,9 @@ html {
 }
 
 /* ── Scroll-triggered floating nav ───── */
+/* Tạm ẩn — dùng sticky header blur thay thế */
 .pf-scroll-nav {
+  display: none;
   position: fixed;
   bottom: var(--spacing-xl);
   left: 50%;
@@ -1306,4 +1516,3 @@ html {
 }
 .pf-cta--primary .uu-icon { width: 20px; height: 20px; }
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
