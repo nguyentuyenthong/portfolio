@@ -5,23 +5,48 @@
 /* ── Mobile nav toggle ─────────────────── */
 const navToggle = document.getElementById('nav-toggle');
 const navLinks = document.getElementById('nav-links');
+const navOverlay = document.getElementById('nav-overlay');
 const siteNav = navToggle?.closest('.uu-site-nav');
+
+function setNavOpen(open) {
+  if (!navToggle || !navLinks) return;
+  navLinks.classList.toggle('is-open', open);
+  navToggle.setAttribute('aria-expanded', String(open));
+  if (siteNav) siteNav.dataset.uuMenuOpen = String(open);
+  if (navOverlay) {
+    navOverlay.classList.toggle('is-visible', open);
+    navOverlay.hidden = !open;
+    navOverlay.setAttribute('aria-hidden', String(!open));
+  }
+  document.body.classList.toggle('portfolio-nav-open', open);
+}
 
 if (navToggle && navLinks) {
   navToggle.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('is-open');
-    navToggle.setAttribute('aria-expanded', String(open));
-    if (siteNav) siteNav.dataset.uuMenuOpen = String(open);
+    setNavOpen(!navLinks.classList.contains('is-open'));
+  });
+
+  navOverlay?.addEventListener('click', () => setNavOpen(false));
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && siteNav?.dataset.uuMenuOpen === 'true') {
+      setNavOpen(false);
+    }
   });
 
   navLinks.querySelectorAll('.uu-site-nav__link').forEach((link) => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('is-open');
-      navToggle.setAttribute('aria-expanded', 'false');
-      if (siteNav) siteNav.dataset.uuMenuOpen = 'false';
-    });
+    link.addEventListener('click', () => setNavOpen(false));
   });
 }
+
+/* Home / logo (#top) -> luon cuon len dau trang (header co the o day tren mobile) */
+document.querySelectorAll('a[href="#top"]').forEach((a) => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    setNavOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
 
 /* ── Scroll-triggered floating nav ─────── */
 const scrollNav = document.getElementById('scrollNav');
