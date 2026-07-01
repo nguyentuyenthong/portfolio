@@ -1516,3 +1516,123 @@ html {
 }
 .pf-cta--primary .uu-icon { width: 20px; height: 20px; }
 
+/* ===== MOBILE HEADER v2: sticky bottom + bottom-sheet menu (chi <=768px) ===== */
+  .nav-sheet-close-li { display: none; }
+  /* ===== index-v2 — MOBILE HEADER: sticky bottom + bottom-sheet menu ===== */
+  @media (max-width: 768px) {
+    /* Header -> thanh cố định ở ĐÁY */
+    .portfolio-page .uu-site-nav.portfolio-nav--floating {
+      position: fixed !important;
+      top: auto !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      z-index: 70 !important;
+      border-top: var(--width-border-thin) solid var(--border-secondary);
+      border-bottom: none;
+      background: color-mix(in srgb, var(--surface-default) 90%, transparent);
+    }
+    /* chừa chỗ để nội dung cuối không bị thanh đáy che */
+    .portfolio-page { padding-bottom: calc(var(--nav-bar-height, 3.75rem) + env(safe-area-inset-bottom, 0px)); }
+    /* tránh đụng thanh đáy: ẩn floating scroll-nav trên mobile ở v2 */
+    .pf-scroll-nav { display: none !important; }
+
+    /* Menu = BOTTOM-SHEET trượt từ dưới lên */
+    .portfolio-page .uu-site-nav.portfolio-nav--floating .uu-site-nav__links {
+      display: flex !important;
+      position: fixed !important;
+      top: auto !important;
+      bottom: 0 !important;
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      max-height: 78dvh;
+      overflow-y: auto;
+      flex-direction: column;
+      align-items: flex-end !important;   /* item dồn về PHẢI */
+      gap: 4px !important;   /* cach nhau 4px */
+      margin: 0 !important;
+      padding: 56px var(--shell-gutter) var(--nav-bar-height, 3.75rem) !important;
+      background: var(--surface-default) !important;
+      border: none !important;
+      border-radius: 18px 18px 0 0 !important;
+      box-shadow: 0 -10px 34px -14px rgba(16, 24, 40, 0.35) !important;
+      transform: translateY(100%);
+      transition: transform 0.34s cubic-bezier(0.32, 0.72, 0, 1);
+      pointer-events: none;
+      z-index: 60 !important;
+    }
+    /* trạng thái MỞ: trượt lên */
+    .portfolio-page .uu-site-nav.portfolio-nav--floating[data-uu-menu-open="true"] .uu-site-nav__links {
+      transform: translateY(0) !important;
+      pointer-events: auto;
+    }
+    /* item can phai, chu 16px */
+    .portfolio-page .uu-site-nav__links li {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .portfolio-page .uu-site-nav__links .uu-site-nav__link {
+      width: auto;
+      font-size: 16px !important;
+      line-height: 1.4;
+      text-align: right;
+      padding: 8px 4px !important;
+      border-radius: var(--radius-md);
+    }
+    /* overlay mờ: dưới sheet, trên nội dung */
+    .portfolio-nav-overlay { z-index: 55 !important; }
+
+    /* Hero: đưa "Open to work" lên trên cùng cho đỡ trống (header đã xuống đáy) */
+    .portfolio-page .uu-hero.portfolio-hero {
+      padding-top: var(--spacing-3xl) !important;
+    }
+    .portfolio-hero__content .pf-open-badge {
+      order: -1;
+      margin: 0 0 var(--spacing-xl) !important;
+    }
+
+    /* Footer: bớt khoảng đệm đáy thừa (scroll-nav đã ẩn ở mobile) */
+    .portfolio-footer .portfolio-footer__bar {
+      padding-bottom: var(--spacing-2xl) !important;
+    }
+
+    /* margin-top cho SDT + email = 8px */
+    .portfolio-footer__contact-label + .portfolio-footer__contact-meta,
+    .portfolio-footer__contact-meta + .portfolio-footer__contact-row {
+      margin-top: 8px !important;
+    }
+
+    /* Nut X dong bottom-sheet — goc tren-phai, cach mep 8px */
+    .portfolio-page .uu-site-nav__links .nav-sheet-close-li {
+      display: block;
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: auto;
+      margin: 0;
+      padding: 0;
+      z-index: 3;
+    }
+    .nav-sheet-close {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: var(--background-secondary, #f0f0f1);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .nav-sheet-close:hover { background: var(--gray-200, #e4e7ec); }
+    .nav-sheet-close svg { width: 22px; height: 22px; display: block; }
+  }
+  
