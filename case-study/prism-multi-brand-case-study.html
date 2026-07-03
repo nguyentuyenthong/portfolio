@@ -277,40 +277,42 @@ footer .mono{font-size:11.5px}
   *{transition:none!important;animation:none!important}
 }
 
-/* ===== Case-study nav (back to portfolio + section tabs) ===== */
+/* ===== Case-study nav — mapped to avn-tt toolbar ===== */
 html{scroll-behavior:smooth}
-section[id]{scroll-margin-top:76px}
-.case-nav{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--background) 85%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border-subtle)}
-.case-nav__inner{display:flex;align-items:center;gap:14px;max-width:960px;margin:0 auto;padding:11px 32px}
-.case-nav__back{display:inline-flex;align-items:center;gap:8px;flex:none;font-family:'Inter',sans-serif;font-weight:500;font-size:14px;color:var(--text-primary);text-decoration:none;padding:8px 14px;border:1px solid var(--border);border-radius:999px;background:var(--surface);transition:border-color .15s,background .15s}
-.case-nav__back:hover{border-color:var(--text-secondary)}
-.case-nav__back svg{width:16px;height:16px}
-.case-nav__brand{display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;color:var(--text-primary)}
-.case-nav__tabs{display:flex;align-items:center;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
-.case-nav__tabs::-webkit-scrollbar{display:none}
-.case-nav__tabs a{flex:none;font-family:'Inter',sans-serif;font-size:13.5px;font-weight:500;color:var(--text-secondary);text-decoration:none;white-space:nowrap;padding:7px 11px;border-radius:8px;transition:color .15s,background .15s}
-.case-nav__tabs a:hover{color:var(--text-primary);background:var(--surface)}
-.case-nav__tabs a.is-active{color:var(--text-primary);background:var(--surface)}
-@media(max-width:760px){.case-nav__inner{padding:9px 16px;gap:10px}.case-nav__brand{display:none}.case-nav__back span{display:none}.case-nav__tabs a{padding:6px 9px;font-size:13px}}
+section[id]{scroll-margin-top:82px}
+.case-tabs.case-tabs--toolbar{position:sticky;top:0;left:0;right:0;z-index:50;width:100%;box-sizing:border-box;background:rgba(255,255,255,0.78);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid #e9eaeb}
+.case-tabs__inner{display:flex;align-items:center;gap:16px;height:66px;max-width:1024px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.case-tabs__back{flex:none;display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;line-height:1;color:#fff;background:#181d27;border:1px solid #181d27;border-radius:10px;padding:9px 14px;box-shadow:none;text-decoration:none;transition:filter .15s ease,transform .05s ease}
+.case-tabs__back:hover{filter:brightness(1.25)}
+.case-tabs__back:active{transform:translateY(1px)}
+.case-tabs__back svg{width:16px;height:16px;flex-shrink:0}
+.case-tabs__scroll{flex:1;min-width:0;display:flex;justify-content:flex-end;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.case-tabs__scroll::-webkit-scrollbar{display:none}
+.case-tabs .uu-button-group{display:inline-flex;gap:3px;min-width:min-content;background:#f5f5f5;border:1px solid #e9eaeb;border-radius:12px;padding:4px}
+.case-tabs .uu-button-group__item{font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;line-height:1;color:#414651;background:transparent;border:none;padding:8px 14px;border-radius:9px;white-space:nowrap;cursor:pointer;box-shadow:none;text-decoration:none;transition:background .15s ease,color .15s ease,box-shadow .15s ease}
+.case-tabs .uu-button-group__item:hover{color:#181d27}
+.case-tabs .uu-button-group__item.is-selected{background:#fff;color:#3538cd;box-shadow:0 1px 2px rgba(10,13,18,0.1)}
+@media(max-width:760px){.case-tabs__inner{height:60px;padding:0 20px;gap:10px}.case-tabs__scroll{justify-content:flex-start}.case-tabs__back span{display:none}}
 </style>
 </head>
 <body data-theme="solaris">
 
-<nav class="case-nav" aria-label="Case study navigation">
-  <div class="case-nav__inner">
-    <a class="case-nav__back" href="../index.html#case-prism" aria-label="Quay lại portfolio">
+<nav class="case-tabs case-tabs--toolbar" aria-label="Các phần của case study" data-case-tabs>
+  <div class="case-tabs__inner">
+    <a href="../index.html#case-prism" class="uu-button case-tabs__back" aria-label="Quay lại portfolio">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       <span>Quay lại portfolio</span>
     </a>
-    <span class="case-nav__brand"><span class="prism-mark"><i></i><i></i><i></i></span>Prism</span>
-    <div class="case-nav__tabs">
-      <a href="#problem">Problem</a>
-      <a href="#architecture">Architecture</a>
-      <a href="#rule">What swaps</a>
-      <a href="#demo">Demo</a>
-      <a href="#wcag">WCAG</a>
-      <a href="#playbook">Playbook</a>
-      <a href="#outcome">Outcome</a>
+    <div class="case-tabs__scroll">
+      <div class="uu-button-group" role="tablist" aria-label="Tabs case study">
+        <button type="button" class="uu-button-group__item is-selected" role="tab" aria-selected="true" aria-controls="problem" data-case-tab="problem">Problem</button>
+        <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="architecture" data-case-tab="architecture">Architecture</button>
+        <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="rule" data-case-tab="rule">What swaps</button>
+        <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="demo" data-case-tab="demo">Demo</button>
+        <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="wcag" data-case-tab="wcag">WCAG</button>
+        <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="playbook" data-case-tab="playbook">Playbook</button>
+        <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="outcome" data-case-tab="outcome">Outcome</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -593,14 +595,14 @@ applyTheme("solaris", false);
 
 <script>
 (function(){
-  var wrap=document.querySelector('.case-nav__tabs'); if(!wrap) return;
-  var links=[].slice.call(wrap.querySelectorAll('a')), map={};
-  links.forEach(function(a){var s=document.getElementById(a.getAttribute('href').slice(1)); if(s) map[s.id]=a;});
-  if(!('IntersectionObserver' in window)) return;
-  var obs=new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('is-active');}); if(map[e.target.id]) map[e.target.id].classList.add('is-active'); } });
-  },{rootMargin:'-45% 0px -50% 0px',threshold:0});
-  Object.keys(map).forEach(function(id){obs.observe(document.getElementById(id));});
+  var root=document.querySelector('[data-case-tabs]'); if(!root) return;
+  var tabs=[].slice.call(root.querySelectorAll('[role="tab"]'));
+  function setActive(t){tabs.forEach(function(x){var on=x===t;x.classList.toggle('is-selected',on);x.setAttribute('aria-selected',String(on));});}
+  tabs.forEach(function(tab){tab.addEventListener('click',function(){var sec=document.getElementById(tab.getAttribute('aria-controls'));if(!sec)return;setActive(tab);sec.scrollIntoView({behavior:'smooth',block:'start'});});});
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(es){var v=es.filter(function(e){return e.isIntersecting;}).sort(function(a,b){return b.intersectionRatio-a.intersectionRatio;})[0];if(!v)return;var m=root.querySelector('[data-case-tab="'+v.target.id+'"]');if(m)setActive(m);},{rootMargin:'-30% 0px -55% 0px',threshold:[0,0.25,0.5]});
+    tabs.forEach(function(tab){var sec=document.getElementById(tab.getAttribute('aria-controls'));if(sec)obs.observe(sec);});
+  }
 })();
 </script>
 </body>
