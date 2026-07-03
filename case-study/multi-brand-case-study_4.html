@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-brand × multi-theme color architecture · Design system case study</title>
+<meta name="description" content="A two-dimensional design token architecture: one component library, three brands, light and dark themes. Brand picks the ramp, theme picks the stop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TIER 1 — PRIMITIVES (raw values, no modes, never used in UI)
+   ============================================================ */
+:root{
+  --gray-0:#fbfbfc; --gray-50:#f4f4f6; --gray-100:#e8e8ec; --gray-200:#d9d9df;
+  --gray-400:#9d9da6; --gray-500:#6e6e78; --gray-650:#33333c; --gray-750:#26262e;
+  --gray-850:#1c1c23; --gray-900:#17171c; --gray-925:#131318;
+  --indigo-50:#eef2ff; --indigo-300:#a5b4fc; --indigo-400:#818cf8; --indigo-600:#4f46e5; --indigo-700:#4338ca; --indigo-800:#3730a3; --indigo-950:#26264f;
+  --green-50:#ecfdf5; --green-300:#6ee7b7; --green-400:#34d399; --green-600:#047857; --green-700:#065f46; --green-800:#064e3b; --green-950:#0c2f26;
+  --orange-50:#fff5ee; --orange-300:#fdba74; --orange-400:#fb923c; --orange-600:#c2410c; --orange-700:#9a3412; --orange-800:#7c2d12; --orange-950:#3a2013;
+  --amber-400:#fbbf24; --amber-500:#f59e0b;
+  --sky-400:#38bdf8; --sky-500:#0ea5e9;
+  --lime-400:#a3e635; --lime-500:#84cc16;
+  --emerald-400:#10b981; --red-400:#f87171; --red-500:#dc2626;
+}
+
+/* ============================================================
+   DIMENSION A — BRAND RAMP (collection with 3 modes)
+   Brand picks WHICH ramp. It defines abstract stops only —
+   no UI-facing token lives here.
+   ============================================================ */
+[data-brand="solaris"]{
+  --ramp-50:var(--indigo-50); --ramp-300:var(--indigo-300); --ramp-400:var(--indigo-400);
+  --ramp-600:var(--indigo-600); --ramp-700:var(--indigo-700); --ramp-800:var(--indigo-800);
+  --ramp-950:var(--indigo-950);
+  --accent-on-light:var(--amber-500); --accent-on-dark:var(--amber-400);
+}
+[data-brand="fern"]{
+  --ramp-50:var(--green-50); --ramp-300:var(--green-300); --ramp-400:var(--green-400);
+  --ramp-600:var(--green-600); --ramp-700:var(--green-700); --ramp-800:var(--green-800);
+  --ramp-950:var(--green-950);
+  --accent-on-light:var(--lime-500); --accent-on-dark:var(--lime-400);
+}
+[data-brand="ember"]{
+  --ramp-50:var(--orange-50); --ramp-300:var(--orange-300); --ramp-400:var(--orange-400);
+  --ramp-600:var(--orange-600); --ramp-700:var(--orange-700); --ramp-800:var(--orange-800);
+  --ramp-950:var(--orange-950);
+  --accent-on-light:var(--sky-500); --accent-on-dark:var(--sky-400);
+}
+
+/* ============================================================
+   DIMENSION B — SEMANTICS (collection with 2 theme modes)
+   Theme picks WHICH STOP of the ramp, and flips the base.
+   Every UI-facing token lives here. Components consume
+   ONLY this tier.
+   ============================================================ */
+[data-theme="light"]{
+  --background:var(--gray-0); --surface:var(--gray-50);
+  --border:var(--gray-200); --border-subtle:var(--gray-100);
+  --text-primary:var(--gray-900); --text-secondary:var(--gray-500);
+  --brand-primary:var(--ramp-600);
+  --brand-primary-hover:var(--ramp-700);
+  --brand-primary-pressed:var(--ramp-800);
+  --brand-on-primary:#ffffff;
+  --brand-tint:var(--ramp-50);
+  --brand-accent:var(--accent-on-light);
+  --text-brand:var(--ramp-600);
+  --feedback-success:var(--emerald-400); --feedback-error:var(--red-500); --feedback-warning:var(--amber-500);
+  --ok-text:var(--green-700); --err-text:#b91c1c;
+  --shadow:0 1px 2px rgba(23,23,28,.03);
+}
+[data-theme="dark"]{
+  --background:var(--gray-925); --surface:var(--gray-850);
+  --border:var(--gray-650); --border-subtle:var(--gray-750);
+  --text-primary:var(--gray-50); --text-secondary:var(--gray-400);
+  --brand-primary:var(--ramp-400);
+  --brand-primary-hover:var(--ramp-300);
+  --brand-primary-pressed:var(--ramp-600);
+  --brand-on-primary:var(--gray-900);
+  --brand-tint:var(--ramp-950);
+  --brand-accent:var(--accent-on-dark);
+  --text-brand:var(--ramp-400);
+  --feedback-success:var(--emerald-400); --feedback-error:var(--red-400); --feedback-warning:var(--amber-400);
+  --ok-text:var(--green-400); --err-text:var(--red-400);
+  --shadow:0 1px 2px rgba(0,0,0,.3);
+}
+
+/* ---------- page (all chrome consumes semantics, so the whole
+     case study re-themes — that IS the demo) ---------- */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--background); color:var(--text-primary);
+  line-height:1.65; font-size:16px;
+  -webkit-font-smoothing:antialiased;
+  transition:background .35s,color .35s;
+}
+.grotesk{font-family:'Space Grotesk',sans-serif}
+.mono{font-family:'JetBrains Mono',monospace}
+.wrap{max-width:1024px;margin:0 auto;padding:0 32px}
+
+.topbar{
+  display:flex;align-items:center;gap:10px;
+  padding:18px 32px;border-bottom:1px solid var(--border-subtle);
+  position:sticky;top:0;background:var(--background);z-index:50;
+  transition:background .35s;
+}
+.brand-mark{display:flex;flex:none}
+.brand-mark i{width:12px;height:12px;border-radius:50%;border:2px solid var(--background)}
+.brand-mark i:nth-child(1){background:var(--indigo-500,#6366f1);background:var(--indigo-600)}
+.brand-mark i:nth-child(2){background:var(--green-600);margin-left:-5px}
+.brand-mark i:nth-child(3){background:var(--orange-600);margin-left:-5px}
+.topbar strong{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:.2px}
+.topbar span{color:var(--text-secondary);font-size:13.5px}
+.topbar .case-tag{
+  margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.1em;color:var(--text-secondary);text-transform:uppercase;
+}
+
+.hero{padding:88px 0 56px}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text-secondary);margin-bottom:20px;
+}
+h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:50px;line-height:1.08;font-weight:700;letter-spacing:-1.2px;max-width:860px;
+}
+h1 .h1-swap{color:var(--text-brand);transition:color .35s}
+.hero-sub{margin-top:22px;max-width:680px;color:var(--text-secondary);font-size:18px}
+.meta-row{
+  display:flex;gap:44px;flex-wrap:wrap;margin-top:44px;padding-top:24px;
+  border-top:1px solid var(--border-subtle);
+}
+.meta-row div{font-size:14px}
+.meta-row .k{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-secondary);display:block;margin-bottom:4px;
+}
+
+section{padding:72px 0;border-top:1px solid var(--border-subtle)}
+.sec-head{display:flex;gap:22px;align-items:baseline;margin-bottom:14px}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-secondary);flex:none}
+h2{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;letter-spacing:-.4px}
+.lede{color:var(--text-secondary);max-width:720px;margin-bottom:40px}
+.lede b{color:var(--text-primary)}
+h3{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;margin-bottom:6px}
+
+/* ---------- 02 architecture ---------- */
+.tiers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.tier{border:1px solid var(--border);border-radius:14px;padding:22px;background:var(--background)}
+.tier .tag{
+  display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;
+  padding:4px 9px;border-radius:99px;margin-bottom:14px;letter-spacing:.06em;
+  background:var(--surface);color:var(--text-secondary);
+}
+.tier.t2 .tag{background:var(--brand-tint);color:var(--text-brand)}
+.tier.t3 .tag{background:var(--brand-tint);color:var(--text-brand)}
+.tier p{font-size:14px;color:var(--text-secondary);margin-top:6px}
+.swatch-row{display:flex;gap:4px;margin-top:16px}
+.swatch-row i{height:22px;flex:1;border-radius:5px;border:1px solid rgba(127,127,140,.18)}
+.tier .mono-note{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-secondary);margin-top:12px;line-height:1.7}
+.tier-flow{
+  text-align:center;color:var(--text-secondary);font-size:13px;padding:20px 0 0;
+  font-family:'JetBrains Mono',monospace;
+}
+.mode-math{
+  margin-top:26px;border:1px dashed var(--border);border-radius:12px;
+  padding:16px 20px;font-size:14px;color:var(--text-secondary);max-width:760px;
+}
+.mode-math b{color:var(--text-primary)}
+.mode-math .mono{font-size:12.5px;color:var(--text-brand)}
+
+/* ---------- 03 matrix ---------- */
+.matrix-wrap{border:1px solid var(--border);border-radius:14px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{
+  text-align:left;font-weight:500;color:var(--text-secondary);padding:10px 14px;
+  border-bottom:1px solid var(--border);font-size:12.5px;background:var(--surface);
+}
+td{padding:9px 14px;border-bottom:1px solid var(--border-subtle);font-family:'JetBrains Mono',monospace;font-size:12px}
+tr:last-child td{border-bottom:none}
+td .chip{display:inline-flex;align-items:center;gap:8px}
+td .chip i{width:14px;height:14px;border-radius:4px;border:1px solid rgba(127,127,140,.25);flex:none}
+td.yes{color:var(--text-brand);font-weight:500}
+td.no{color:var(--text-secondary)}
+td .note{font-family:'Inter',sans-serif;color:var(--text-secondary)}
+.matrix-note{font-size:14px;color:var(--text-secondary);margin-top:20px;max-width:720px}
+.matrix-note b{color:var(--text-primary)}
+
+/* ---------- 04 live demo ---------- */
+.demo-shell{border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.switcher{
+  display:flex;gap:22px;align-items:center;flex-wrap:wrap;
+  padding:16px 22px;background:var(--surface);border-bottom:1px solid var(--border-subtle);
+}
+.switch-group{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.switcher .lbl{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-secondary);margin-right:4px;
+}
+.sw-btn{
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:500;
+  padding:8px 16px;border-radius:99px;border:1px solid var(--border);
+  background:var(--background);color:var(--text-primary);cursor:pointer;
+  display:flex;align-items:center;gap:8px;transition:all .15s;
+}
+.sw-btn i{width:12px;height:12px;border-radius:50%;flex:none}
+.sw-btn[data-brand-btn="solaris"] i{background:var(--indigo-600)}
+.sw-btn[data-brand-btn="fern"] i{background:var(--green-600)}
+.sw-btn[data-brand-btn="ember"] i{background:var(--orange-600)}
+.sw-btn.active{border-color:var(--text-primary);box-shadow:0 0 0 1px var(--text-primary)}
+.sw-btn:focus-visible{outline:2px solid var(--brand-primary);outline-offset:2px}
+
+/* Theme toggle — right-aligned switch */
+.theme-toggle-group{margin-left:auto;display:flex;align-items:center;gap:10px}
+.theme-toggle{
+  position:relative;width:64px;height:30px;border-radius:99px;
+  border:1px solid var(--border);background:var(--background);
+  cursor:pointer;padding:0;flex:none;
+  display:inline-flex;align-items:center;
+  transition:background .25s,border-color .25s;
+}
+.theme-toggle:focus-visible{outline:2px solid var(--brand-primary);outline-offset:2px}
+.theme-toggle .tt-icon{
+  width:31px;text-align:center;font-size:13px;line-height:1;
+  color:var(--text-secondary);position:relative;z-index:1;
+  transition:color .25s;user-select:none;
+}
+.theme-toggle .tt-knob{
+  position:absolute;top:2px;left:2px;width:24px;height:24px;border-radius:50%;
+  background:var(--brand-primary);
+  transition:transform .25s ease,background .35s;
+}
+[data-theme="light"] .theme-toggle .tt-icon.sun{color:var(--brand-on-primary)}
+[data-theme="dark"] .theme-toggle .tt-knob{transform:translateX(34px)}
+[data-theme="dark"] .theme-toggle .tt-icon.moon{color:var(--brand-on-primary)}
+
+.mini-app{background:var(--background);padding:28px;display:grid;grid-template-columns:1.2fr .8fr;gap:20px;transition:background .35s}
+.mini-nav{
+  grid-column:1/-1;display:flex;align-items:center;gap:20px;
+  background:var(--brand-primary);color:var(--brand-on-primary);
+  border-radius:12px;padding:13px 20px;transition:background .35s,color .35s;
+}
+.mini-nav .brand-name{font-family:'Space Grotesk',sans-serif;font-weight:700;display:flex;align-items:center;gap:9px;font-size:15px}
+.mini-nav .brand-name i{width:8px;height:8px;border-radius:50%;background:var(--brand-accent);transition:background .35s}
+.mini-nav nav{display:flex;gap:18px;font-size:14px;opacity:.92;margin-left:auto}
+.card{background:var(--surface);border:1px solid var(--border-subtle);border-radius:14px;padding:22px;transition:background .35s}
+.card h4{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;margin-bottom:3px}
+.card .sub{font-size:13px;color:var(--text-secondary)}
+.stat{
+  font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;
+  color:var(--text-brand);margin:12px 0 6px;letter-spacing:-.5px;transition:color .35s;
+}
+.badge{
+  display:inline-block;font-size:12px;font-weight:500;padding:3px 11px;border-radius:99px;
+  background:var(--brand-tint);color:var(--text-brand);transition:all .35s;
+}
+.btn-row{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.btn{font-family:'Inter',sans-serif;font-size:14px;font-weight:500;padding:10px 18px;border-radius:9px;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--brand-primary);color:var(--brand-on-primary);border:none}
+.btn-primary:hover{background:var(--brand-primary-hover)}
+.btn-primary:active{background:var(--brand-primary-pressed)}
+.btn-secondary{background:var(--background);color:var(--text-primary);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--text-secondary)}
+.field{margin-top:16px}
+.field label{font-size:13px;color:var(--text-secondary);display:block;margin-bottom:6px}
+.field input{
+  width:100%;font-family:'Inter',sans-serif;font-size:14px;
+  padding:10px 12px;border-radius:9px;border:1px solid var(--border);
+  background:var(--background);color:var(--text-primary);transition:background .35s;
+}
+.field input::placeholder{color:var(--text-secondary);opacity:.7}
+.field input:focus{outline:2px solid var(--brand-primary);outline-offset:1px;border-color:var(--brand-primary)}
+.alert{
+  margin-top:18px;font-size:13px;border-radius:9px;padding:11px 13px;
+  background:var(--background);border:1px solid var(--border-subtle);
+  border-left:3px solid var(--feedback-success);color:var(--text-secondary);transition:background .35s;
+}
+.alert b{color:var(--text-primary)}
+
+.inspector{background:var(--surface);padding:26px 28px;border-top:1px solid var(--border-subtle);transition:background .35s}
+.inspector h4{
+  font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.1em;margin:20px 0 8px;color:var(--text-secondary);
+}
+.inspector h4:first-child{margin-top:0}
+.inspector h4 .static-note{
+  font-family:'Inter',sans-serif;font-weight:400;text-transform:none;letter-spacing:0;font-size:12px;
+}
+.inspector th{background:transparent}
+tr.changed td{animation:flash 1s ease}
+@keyframes flash{0%{background:var(--brand-tint)}100%{background:transparent}}
+.arrow-dim{color:var(--text-secondary)}
+
+/* ---------- 05 wcag ---------- */
+.wcag-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.wcag-group-label{
+  grid-column:1/-1;font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--text-secondary);
+  margin-top:10px;
+}
+.wcag-group-label:first-child{margin-top:0}
+.wcag-card{border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.wcag-sample{padding:28px 20px;font-weight:600;font-size:16px;text-align:center;font-family:'Space Grotesk',sans-serif}
+.wcag-card.on-dark .wcag-sample{box-shadow:inset 0 0 0 200px transparent}
+.wcag-meta{padding:12px 16px;font-size:13px;background:var(--surface);display:flex;justify-content:space-between;align-items:center;gap:10px}
+.wcag-meta .mono{font-size:11.5px;color:var(--text-secondary)}
+.pass{color:var(--ok-text);font-weight:600;font-size:12.5px}
+.fail{color:var(--err-text);font-weight:600;font-size:12.5px}
+
+/* ---------- 06 playbook ---------- */
+.steps{counter-reset:step;display:flex;flex-direction:column;max-width:760px}
+.step{display:flex;gap:20px;padding:18px 0;border-bottom:1px dashed var(--border-subtle)}
+.step:last-child{border-bottom:none}
+.step::before{
+  counter-increment:step;content:counter(step,decimal-leading-zero);
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-brand);
+  padding-top:3px;flex:none;font-weight:500;transition:color .35s;
+}
+.step p{font-size:14.5px;color:var(--text-secondary)}
+.step b{color:var(--text-primary);display:block;margin-bottom:2px;font-size:15px;font-weight:600}
+
+/* ---------- outcome ---------- */
+.outcome-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;max-width:860px}
+.outcome{border:1px solid var(--border);border-radius:14px;padding:22px}
+.outcome .big{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:var(--text-brand);transition:color .35s}
+.outcome p{font-size:13.5px;color:var(--text-secondary);margin-top:4px}
+
+footer{padding:44px 0 72px;color:var(--text-secondary);font-size:13px;border-top:1px solid var(--border-subtle)}
+footer .mono{font-size:11.5px}
+
+@media (max-width:840px){
+  h1{font-size:36px}
+  .tiers,.mini-app,.wcag-grid,.outcome-grid{grid-template-columns:1fr}
+  .wrap{padding:0 20px}
+  .mini-nav nav{display:none}
+  .meta-row{gap:24px}
+  .matrix-wrap{overflow-x:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body data-brand="solaris" data-theme="light">
+
+<div class="topbar">
+  <span class="brand-mark"><i></i><i></i><i></i></span>
+  <strong>Multi-brand Design System</strong>
+  <span>· Solaris Group (fictional)</span>
+  <span class="case-tag">Case study</span>
+</div>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="eyebrow">Design system architecture · Design tokens · Figma variables</div>
+  <h1>One library. <span class="h1-swap">Three brands.</span> Light &amp; dark. Zero duplicated files.</h1>
+  <p class="hero-sub">A two-dimensional token architecture for Solaris Group, a fictional fintech with three product brands. <b>Brand picks the color ramp; theme picks the stop.</b> Neutrals, text, and feedback are locked across brands — and this page is the working demo: switch either dimension below and the entire case study re-themes itself.</p>
+  <div class="meta-row">
+    <div><span class="k">Role</span>Design system architect</div>
+    <div><span class="k">Scope</span>Token architecture · Multi-brand × multi-theme · WCAG audit</div>
+    <div><span class="k">Stack</span>Figma variables · CSS custom properties</div>
+    <div><span class="k">Type</span>Self-initiated concept</div>
+  </div>
+</div>
+
+<section id="problem">
+  <div class="sec-head"><span class="sec-num">01</span><h2>The problem</h2></div>
+  <p class="lede">Solaris Group runs three products for very different audiences: <b>Solaris</b> (everyday banking), <b>Fern</b> (green savings), and <b>Ember</b> (credit &amp; rewards) — and every product ships both a light and a dark theme. The naive approach is one library per brand per theme: six copies of every component, drifting apart with every edit. The requirement I set: components are built once and never contain a hex value. A brand is a set of values plugged into the same sockets — and a theme is a second, independent set of sockets. The two must never be multiplied together.</p>
+</section>
+
+<section id="architecture">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Two dimensions, three collections</h2></div>
+  <p class="lede">The trap with brand + theme is building one collection with six modes (Solaris-Light, Solaris-Dark, Fern-Light…). Every new brand then costs two columns, every new theme costs three, and someone will eventually "fix" a neutral in one cell. Instead, the dimensions stay orthogonal — each in its own collection, chained by aliases.</p>
+  <div class="tiers">
+    <div class="tier t1">
+      <span class="tag">COLLECTION 1 · PRIMITIVES — NO MODES</span>
+      <h3>Raw palettes</h3>
+      <p>Context-free hex ramps: neutrals plus one ramp per brand and per feedback role. Never applied to UI directly.</p>
+      <div class="swatch-row">
+        <i style="background:#4f46e5"></i><i style="background:#047857"></i>
+        <i style="background:#c2410c"></i><i style="background:#f59e0b"></i>
+        <i style="background:#dc2626"></i><i style="background:#17171c"></i>
+        <i style="background:#f4f4f6"></i>
+      </div>
+      <div class="mono-note">indigo/50–950 · green/50–950<br>orange/50–950 · gray/0–925</div>
+    </div>
+    <div class="tier t2">
+      <span class="tag">COLLECTION 2 · BRAND RAMP — 3 MODES</span>
+      <h3>Brand picks the ramp</h3>
+      <p>Defines only an abstract ramp — brand/ramp/50…950 — re-aliased per brand mode. No background, no text, no button color lives here.</p>
+      <div class="swatch-row">
+        <i style="background:#eef2ff"></i><i style="background:#a5b4fc"></i>
+        <i style="background:#818cf8"></i><i style="background:#4f46e5"></i>
+        <i style="background:#4338ca"></i><i style="background:#3730a3"></i>
+      </div>
+      <div class="mono-note">Solaris → indigo/*<br>Fern → green/* · Ember → orange/*</div>
+    </div>
+    <div class="tier t3">
+      <span class="tag">COLLECTION 3 · SEMANTICS — 2 THEME MODES</span>
+      <h3>Theme picks the stop</h3>
+      <p>Every UI-facing token lives here, base and brand alike. Light aliases brand/primary → ramp/600; Dark → ramp/400. Base flips gray/0 ↔ gray/925. Components consume only this collection.</p>
+      <div class="swatch-row">
+        <i style="background:#fbfbfc"></i><i style="background:#f4f4f6"></i>
+        <i style="background:#d9d9df"></i><i style="background:#131318"></i>
+        <i style="background:#1c1c23"></i><i style="background:#33333c"></i>
+      </div>
+      <div class="mono-note">background · surface · text/*<br>brand/primary · brand/tint · on-primary</div>
+    </div>
+  </div>
+  <div class="tier-flow">primitives ──▶ brand ramp (brand mode) ──▶ semantics (theme mode) ──▶ components (built once)</div>
+  <div class="mode-math">
+    <b>The mode math:</b> 3 brands × 2 themes = <b>6 visual expressions</b>, served by only <span class="mono">3 + 2 = 5 mode columns</span>. In the flattened single-collection approach it would be 6 columns today — and 8 the moment a fourth brand arrives. In Figma, a frame simply carries two independent mode settings: one for the Brand ramp collection, one for the Semantics collection.
+  </div>
+</section>
+
+<section id="matrix">
+  <div class="sec-head"><span class="sec-num">03</span><h2>What moves on which axis</h2></div>
+  <p class="lede">Every token is classified against both dimensions before any theme exists. The matrix is the contract: if a token seems to need a cell it wasn't given, that's a design conversation — not a token edit.</p>
+  <div class="matrix-wrap">
+    <table>
+      <thead>
+        <tr><th style="width:28%">Token</th><th style="width:22%">Changes with brand?</th><th style="width:22%">Changes with theme?</th><th>Why</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>background · surface</td><td class="no">—</td><td class="yes">✓ gray/0 ↔ gray/925</td><td><span class="note">Canvas belongs to the theme, never to a brand</span></td></tr>
+        <tr><td>text/primary · border</td><td class="no">—</td><td class="yes">✓ flips with theme</td><td><span class="note">Readability is theme physics, not identity</span></td></tr>
+        <tr><td>feedback/success · error</td><td class="no">—</td><td class="yes">✓ stop shifts only</td><td><span class="note">System status is never a brand statement</span></td></tr>
+        <tr><td>brand/primary</td><td class="yes">✓ picks the ramp</td><td class="yes">✓ picks the stop (600 ↔ 400)</td><td><span class="note">The only token that answers to both axes</span></td></tr>
+        <tr><td>brand/on-primary</td><td class="no">—</td><td class="yes">✓ white ↔ gray/900</td><td><span class="note">Dark themes lighten the brand fill, so its text must darken</span></td></tr>
+        <tr><td>brand/tint</td><td class="yes">✓ ramp</td><td class="yes">✓ 50 ↔ 950</td><td><span class="note">Soft brand surfaces exist at both ends of the ramp</span></td></tr>
+        <tr><td>brand/accent</td><td class="yes">✓ per brand</td><td class="yes">✓ brighter in dark</td><td><span class="note">Secondary highlight follows both axes</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="matrix-note">Notice the asymmetry: <b>no token changes with brand only</b> once dark mode exists — anything brand-colored must also answer to the theme, because contrast physics differ on dark canvases. This is exactly why brand values are expressed as an abstract ramp instead of a single "brand color".</p>
+</section>
+
+<section id="demo">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Live demo — two independent switches</h2></div>
+  <p class="lede">Same markup, same components, same CSS. The brand switch re-resolves the ramp; the theme switch re-resolves the stops and flips the base. Try Fern × Dark, then Ember × Dark: the neutrals are pixel-identical, only the ramp underneath changed.</p>
+
+  <div class="demo-shell">
+    <div class="switcher">
+      <div class="switch-group" role="group" aria-label="Choose brand">
+        <span class="lbl">Brand mode</span>
+        <button class="sw-btn active" data-brand-btn="solaris"><i></i>Solaris</button>
+        <button class="sw-btn" data-brand-btn="fern"><i></i>Fern</button>
+        <button class="sw-btn" data-brand-btn="ember"><i></i>Ember</button>
+      </div>
+      <div class="theme-toggle-group">
+        <span class="lbl">Theme mode</span>
+        <button class="theme-toggle" id="themeToggle" role="switch" aria-checked="false" aria-label="Switch to dark theme">
+          <span class="tt-icon sun">☀</span><span class="tt-icon moon">☾</span>
+          <span class="tt-knob"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mini-app">
+      <div class="mini-nav">
+        <span class="brand-name"><i></i><span id="brandLabel">Solaris</span></span>
+        <nav><span>Home</span><span>Payments</span><span>Insights</span><span>Settings</span></nav>
+      </div>
+      <div class="card">
+        <h4 id="statTitle">Total balance</h4>
+        <div class="sub">Compared with last month</div>
+        <div class="stat">$12,840</div>
+        <span class="badge">▲ 12.4% this month</span>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="ctaBtn">Send money</button>
+          <button class="btn btn-secondary">Download statement</button>
+        </div>
+        <div class="alert"><b>Sync complete.</b> feedback/success ignores the brand axis in every combination — system status never belongs to a brand.</div>
+      </div>
+      <div class="card">
+        <h4>Find a transaction</h4>
+        <div class="sub">Focus an input — the focus ring uses brand/primary</div>
+        <div class="field">
+          <label for="q">Merchant or reference</label>
+          <input id="q" type="text" placeholder="e.g. Blue Bottle Coffee">
+        </div>
+        <div class="field">
+          <label for="amount">Amount</label>
+          <input id="amount" type="text" placeholder="$0.00">
+        </div>
+      </div>
+    </div>
+
+    <div class="inspector">
+      <h4>Brand-axis tokens — resolution chain <span class="static-note">(rows flash on either switch)</span></h4>
+      <table>
+        <thead><tr><th style="width:26%">Token</th><th>Resolves through</th><th style="width:26%">Value</th></tr></thead>
+        <tbody id="brandRows">
+          <tr data-token="brand-primary"><td>brand/primary</td><td class="alias"></td><td class="val"></td></tr>
+          <tr data-token="brand-primary-hover"><td>brand/primary-hover</td><td class="alias"></td><td class="val"></td></tr>
+          <tr data-token="brand-on-primary"><td>brand/on-primary</td><td class="alias"></td><td class="val"></td></tr>
+          <tr data-token="brand-tint"><td>brand/tint</td><td class="alias"></td><td class="val"></td></tr>
+          <tr data-token="brand-accent"><td>brand/accent</td><td class="alias"></td><td class="val"></td></tr>
+        </tbody>
+      </table>
+      <h4>Theme-axis tokens — flip with light/dark, identical across brands</h4>
+      <table>
+        <thead><tr><th style="width:26%">Token</th><th>Aliases to</th><th style="width:26%">Value</th></tr></thead>
+        <tbody id="themeRows">
+          <tr data-token="background"><td>background</td><td class="alias"></td><td class="val"></td></tr>
+          <tr data-token="surface"><td>surface</td><td class="alias"></td><td class="val"></td></tr>
+          <tr data-token="border"><td>border</td><td class="alias"></td><td class="val"></td></tr>
+          <tr data-token="text-primary"><td>text/primary</td><td class="alias"></td><td class="val"></td></tr>
+        </tbody>
+      </table>
+      <h4>Locked — same in all six combinations</h4>
+      <table>
+        <thead><tr><th style="width:26%">Token</th><th>Aliases to</th><th style="width:26%">Value</th></tr></thead>
+        <tbody>
+          <tr><td>feedback/success</td><td>emerald/400</td><td><span class="chip"><i style="background:#10b981"></i>#10b981</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="wcag">
+  <div class="sec-head"><span class="sec-num">05</span><h2>The accessibility catch — on both axes</h2></div>
+  <p class="lede">Contrast has to be audited <b>per combination</b>. On the brand axis, the tempting shortcut is the hero shade from the logo — white text on Fern's and Ember's hero shades fails WCAG 2.1 AA for normal text (≥ 4.5:1), so light themes alias one step darker. On the theme axis, dark mode lightens the brand fill for legibility on dark canvases — and then <b>white text fails on the brand's own color</b>. That's why brand/on-primary is themed instead of hard-coded white.</p>
+  <div class="wcag-grid">
+    <div class="wcag-group-label">Brand axis · light theme</div>
+    <div class="wcag-card">
+      <div class="wcag-sample" style="background:#10b981;color:#ffffff">Send money</div>
+      <div class="wcag-meta"><span class="mono">white on green/400 (logo shade)</span><span class="fail">2.5 : 1 — fails AA</span></div>
+    </div>
+    <div class="wcag-card">
+      <div class="wcag-sample" style="background:#047857;color:#ffffff">Send money</div>
+      <div class="wcag-meta"><span class="mono">white on green/600 (shipped)</span><span class="pass">5.5 : 1 — passes AA</span></div>
+    </div>
+    <div class="wcag-group-label">Theme axis · dark theme, same brand</div>
+    <div class="wcag-card on-dark">
+      <div class="wcag-sample" style="background:#818cf8;color:#ffffff">Send money</div>
+      <div class="wcag-meta"><span class="mono">white on indigo/400 (dark primary)</span><span class="fail">3.0 : 1 — fails AA</span></div>
+    </div>
+    <div class="wcag-card on-dark">
+      <div class="wcag-sample" style="background:#818cf8;color:#17171c">Send money</div>
+      <div class="wcag-meta"><span class="mono">gray/900 on indigo/400 (shipped)</span><span class="pass">6.0 : 1 — passes AA</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="playbook">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Playbook — extending either axis</h2></div>
+  <div class="steps">
+    <div class="step"><p><b>Add the primitive ramp</b>A new brand starts as a 50–950 ramp in the primitives collection. Nothing else is touched yet.</p></div>
+    <div class="step"><p><b>Audit contrast at both ends</b>Find the stop that clears 4.5:1 under white text (light-theme candidate) and the stop that carries dark text on a dark canvas (dark-theme candidate). Usually ~600 and ~400.</p></div>
+    <div class="step"><p><b>Add one mode to the Brand ramp collection</b>Re-alias brand/ramp/50…950 to the new ramp. One column. The Semantics collection doesn't change at all — it already knows how to read a ramp.</p></div>
+    <div class="step"><p><b>Never multiply the axes</b>A new theme (e.g. high-contrast) is one mode in Semantics; a new brand is one mode in Brand ramp. If you ever find yourself creating a "Fern-Dark" mode, the architecture has been flattened — stop and refactor.</p></div>
+    <div class="step"><p><b>Leave the theme-axis base alone when branding</b>Backgrounds, text and borders have no brand modes, so there is literally nothing to edit. If a brand "needs" its own canvas color, that's a scope conversation, not a token edit.</p></div>
+    <div class="step"><p><b>Set both modes on the outermost frame</b>In Figma the frame carries two independent mode settings — brand and theme. Every nested instance inherits both and re-themes with no detaching.</p></div>
+    <div class="step"><p><b>Re-run WCAG per combination</b>brand/primary × on-primary, tint × text, focus ring × background — for each brand in each theme. Six checks, automated where possible, before publishing.</p></div>
+  </div>
+</section>
+
+<section id="outcome">
+  <div class="sec-head"><span class="sec-num">07</span><h2>Outcome</h2></div>
+  <div class="outcome-grid">
+    <div class="outcome"><div class="big">6 = 3 × 2</div><p>Visual expressions from one library — every brand ships light and dark for free.</p></div>
+    <div class="outcome"><div class="big">5</div><p>Mode columns total (3 brand + 2 theme). Axes add, they never multiply.</p></div>
+    <div class="outcome"><div class="big">AA</div><p>Contrast verified per brand × theme combination — accessibility is part of the theming contract.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>Multi-brand Design System is a self-initiated concept; Solaris, Fern, and Ember are fictional brands created for this study.</p>
+  <p class="mono" style="margin-top:8px">View source: the stylesheet mirrors the architecture — :root holds primitives, [data-brand] holds the ramp collection, [data-theme] holds the semantics collection.</p>
+</footer>
+
+</div>
+
+<script>
+var RAMPS = {
+  "solaris": { label:"Solaris", ramp:"indigo", cta:"Send money", stat:"Total balance",
+    stops:{ "50":"#eef2ff","300":"#a5b4fc","400":"#818cf8","600":"#4f46e5","700":"#4338ca","800":"#3730a3","950":"#26264f" },
+    accent:{ light:["amber/500","#f59e0b"], dark:["amber/400","#fbbf24"] } },
+  "fern": { label:"Fern", ramp:"green", cta:"Add to savings", stat:"Total saved",
+    stops:{ "50":"#ecfdf5","300":"#6ee7b7","400":"#34d399","600":"#047857","700":"#065f46","800":"#064e3b","950":"#0c2f26" },
+    accent:{ light:["lime/500","#84cc16"], dark:["lime/400","#a3e635"] } },
+  "ember": { label:"Ember", ramp:"orange", cta:"Pay card balance", stat:"Rewards earned",
+    stops:{ "50":"#fff5ee","300":"#fdba74","400":"#fb923c","600":"#c2410c","700":"#9a3412","800":"#7c2d12","950":"#3a2013" },
+    accent:{ light:["sky/500","#0ea5e9"], dark:["sky/400","#38bdf8"] } }
+};
+var THEME_BASE = {
+  "light": {
+    "background":["gray/0","#fbfbfc"], "surface":["gray/50","#f4f4f6"],
+    "border":["gray/200","#d9d9df"], "text-primary":["gray/900","#17171c"]
+  },
+  "dark": {
+    "background":["gray/925","#131318"], "surface":["gray/850","#1c1c23"],
+    "border":["gray/650","#33333c"], "text-primary":["gray/50","#f4f4f6"]
+  }
+};
+
+var state = { brand:"solaris", theme:"light" };
+
+function chip(hex){
+  return '<span class="chip"><i style="background:'+hex+'"></i>'+hex+"</span>";
+}
+function flash(tr){
+  tr.classList.remove("changed");
+  void tr.offsetWidth;
+  tr.classList.add("changed");
+}
+
+function render(animate){
+  var b = RAMPS[state.brand];
+  var isDark = state.theme === "dark";
+  var arrow = ' <span class="arrow-dim">→</span> ';
+
+  var rows = {
+    "brand-primary": [
+      "ramp/" + (isDark ? "400" : "600") + arrow + b.ramp + "/" + (isDark ? "400" : "600"),
+      b.stops[isDark ? "400" : "600"]
+    ],
+    "brand-primary-hover": [
+      "ramp/" + (isDark ? "300" : "700") + arrow + b.ramp + "/" + (isDark ? "300" : "700"),
+      b.stops[isDark ? "300" : "700"]
+    ],
+    "brand-on-primary": [
+      isDark ? "gray/900 (dark text on lightened fill)" : "white",
+      isDark ? "#17171c" : "#ffffff"
+    ],
+    "brand-tint": [
+      "ramp/" + (isDark ? "950" : "50") + arrow + b.ramp + "/" + (isDark ? "950" : "50"),
+      b.stops[isDark ? "950" : "50"]
+    ],
+    "brand-accent": [
+      (isDark ? b.accent.dark[0] : b.accent.light[0]),
+      (isDark ? b.accent.dark[1] : b.accent.light[1])
+    ]
+  };
+
+  document.querySelectorAll("#brandRows tr").forEach(function(tr){
+    var d = rows[tr.getAttribute("data-token")];
+    tr.querySelector(".alias").innerHTML = d[0];
+    tr.querySelector(".val").innerHTML = chip(d[1]);
+    if(animate) flash(tr);
+  });
+
+  var base = THEME_BASE[state.theme];
+  document.querySelectorAll("#themeRows tr").forEach(function(tr){
+    var d = base[tr.getAttribute("data-token")];
+    tr.querySelector(".alias").textContent = d[0];
+    tr.querySelector(".val").innerHTML = chip(d[1]);
+    if(animate) flash(tr);
+  });
+
+  document.getElementById("brandLabel").textContent = b.label;
+  document.getElementById("ctaBtn").textContent = b.cta;
+  document.getElementById("statTitle").textContent = b.stat;
+}
+
+document.querySelectorAll("[data-brand-btn]").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    state.brand = btn.getAttribute("data-brand-btn");
+    document.body.setAttribute("data-brand", state.brand);
+    document.querySelectorAll("[data-brand-btn]").forEach(function(x){x.classList.remove("active")});
+    btn.classList.add("active");
+    render(true);
+  });
+});
+var themeToggle = document.getElementById("themeToggle");
+themeToggle.addEventListener("click", function(){
+  state.theme = state.theme === "light" ? "dark" : "light";
+  var isDark = state.theme === "dark";
+  document.body.setAttribute("data-theme", state.theme);
+  themeToggle.setAttribute("aria-checked", isDark ? "true" : "false");
+  themeToggle.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+  render(true);
+});
+
+render(false);
+</script>
+</body>
+</html>
