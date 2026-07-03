@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prism — Multi-brand color architecture · Design system case study</title>
+<meta name="description" content="A design token architecture where one component library serves three brands. Interactive demo: base tokens stay fixed, brand tokens swap per theme.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   TIER 1 — PRIMITIVES (raw values, never used directly in UI)
+   ============================================================ */
+:root{
+  --gray-0:#fbfbfc; --gray-50:#f4f4f6; --gray-100:#e8e8ec; --gray-200:#d9d9df;
+  --gray-400:#9d9da6; --gray-500:#6e6e78; --gray-700:#3c3c44; --gray-900:#17171c;
+  --indigo-50:#eef2ff; --indigo-500:#6366f1; --indigo-600:#4f46e5; --indigo-700:#4338ca; --indigo-800:#3730a3;
+  --green-50:#ecfdf5; --green-400:#10b981; --green-600:#047857; --green-700:#065f46; --green-800:#064e3b;
+  --orange-50:#fff5ee; --orange-400:#f97316; --orange-600:#c2410c; --orange-700:#9a3412; --orange-800:#7c2d12;
+  --amber-500:#f59e0b; --sky-500:#0ea5e9; --lime-500:#84cc16;
+  --red-500:#dc2626; --red-50:#fef2f2;
+
+  /* ============================================================
+     TIER 2 — SEMANTIC BASE (no modes — identical for every brand)
+     ============================================================ */
+  --background: var(--gray-0);
+  --surface: var(--gray-50);
+  --border: var(--gray-200);
+  --border-subtle: var(--gray-100);
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-500);
+  --feedback-error: var(--red-500);
+  --feedback-success: var(--green-400);
+  --feedback-warning: var(--amber-500);
+}
+/* ============================================================
+   TIER 3 — SEMANTIC BRAND (3 modes — the only tier that themes)
+   ============================================================ */
+[data-theme="solaris"]{
+  --brand-primary: var(--indigo-600);
+  --brand-primary-hover: var(--indigo-700);
+  --brand-primary-pressed: var(--indigo-800);
+  --brand-on-primary: #ffffff;
+  --brand-tint: var(--indigo-50);
+  --brand-accent: var(--amber-500);
+  --text-brand: var(--indigo-600);
+}
+[data-theme="fern"]{
+  --brand-primary: var(--green-600);
+  --brand-primary-hover: var(--green-700);
+  --brand-primary-pressed: var(--green-800);
+  --brand-on-primary: #ffffff;
+  --brand-tint: var(--green-50);
+  --brand-accent: var(--lime-500);
+  --text-brand: var(--green-600);
+}
+[data-theme="ember"]{
+  --brand-primary: var(--orange-600);
+  --brand-primary-hover: var(--orange-700);
+  --brand-primary-pressed: var(--orange-800);
+  --brand-on-primary: #ffffff;
+  --brand-tint: var(--orange-50);
+  --brand-accent: var(--sky-500);
+  --text-brand: var(--orange-600);
+}
+
+/* ---------- page ---------- */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--background); color:var(--text-primary);
+  line-height:1.65; font-size:16px;
+  -webkit-font-smoothing:antialiased;
+}
+.grotesk{font-family:'Space Grotesk',sans-serif}
+.mono{font-family:'JetBrains Mono',monospace}
+.wrap{max-width:1024px;margin:0 auto;padding:0 32px}
+
+.topbar{
+  display:flex;align-items:center;gap:10px;
+  padding:18px 32px;border-bottom:1px solid var(--border-subtle);
+  position:sticky;top:0;background:var(--background);z-index:50;
+}
+.prism-mark{display:flex;flex:none}
+.prism-mark i{width:12px;height:12px;border-radius:50%;border:2px solid var(--background)}
+.prism-mark i:nth-child(1){background:var(--indigo-600)}
+.prism-mark i:nth-child(2){background:var(--green-600);margin-left:-5px}
+.prism-mark i:nth-child(3){background:var(--orange-600);margin-left:-5px}
+.topbar strong{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:.2px}
+.topbar span{color:var(--text-secondary);font-size:13.5px}
+.topbar .case-tag{
+  margin-left:auto;font-family:'JetBrains Mono',monospace;font-size:11px;
+  letter-spacing:.1em;color:var(--text-secondary);text-transform:uppercase;
+}
+
+.hero{padding:88px 0 56px}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--text-secondary);margin-bottom:20px;
+}
+h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:52px;line-height:1.08;font-weight:700;letter-spacing:-1.2px;max-width:820px;
+}
+h1 .h1-swap{color:var(--text-brand);transition:color .4s}
+.hero-sub{margin-top:22px;max-width:660px;color:var(--text-secondary);font-size:18px}
+.meta-row{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 44px;margin-top:44px;padding-top:24px;
+  border-top:1px solid var(--border-subtle);
+}
+.meta-row div{font-size:14px}
+.meta-row .k{
+  font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--text-secondary);display:block;margin-bottom:4px;
+}
+
+section{padding:72px 0;border-top:1px solid var(--border-subtle)}
+.sec-head{display:flex;gap:22px;align-items:baseline;margin-bottom:14px}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-secondary);flex:none}
+h2{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;letter-spacing:-.4px}
+.lede{color:var(--text-secondary);max-width:700px;margin-bottom:40px}
+h3{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:700;margin-bottom:6px}
+
+/* ---------- 02 architecture ---------- */
+.tiers{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.tier{border:1px solid var(--border);border-radius:14px;padding:22px;background:var(--background)}
+.tier .tag{
+  display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10.5px;
+  padding:4px 9px;border-radius:99px;margin-bottom:14px;letter-spacing:.06em;
+}
+.tier.t1 .tag{background:var(--surface);color:var(--text-secondary)}
+.tier.t2 .tag{background:var(--green-50);color:var(--green-800)}
+.tier.t3 .tag{background:var(--indigo-50);color:var(--indigo-800)}
+.tier p{font-size:14px;color:var(--text-secondary);margin-top:6px}
+.swatch-row{display:flex;gap:4px;margin-top:16px}
+.swatch-row i{height:22px;flex:1;border-radius:5px;border:1px solid rgba(23,23,28,.06)}
+.tier .mono-note{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text-secondary);margin-top:12px;line-height:1.7}
+.tier-flow{
+  text-align:center;color:var(--text-secondary);font-size:13px;padding:18px 0 0;
+  font-family:'JetBrains Mono',monospace;
+}
+
+/* ---------- 03 keep vs swap ---------- */
+.rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.rule-card{border-radius:14px;padding:26px;border:1px solid var(--border)}
+.rule-card.keep{background:var(--surface)}
+.rule-card.swap{background:var(--indigo-50);border-color:#dfe3fb}
+.rule-card ul{list-style:none;margin-top:16px;display:flex;flex-direction:column;gap:9px}
+.rule-card li{font-family:'JetBrains Mono',monospace;font-size:12.5px;display:flex;align-items:center;gap:10px}
+.rule-card li i{width:14px;height:14px;border-radius:4px;flex:none;border:1px solid rgba(23,23,28,.08)}
+.pill-label{
+  font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.12em;
+}
+.keep .pill-label{color:var(--green-800)}
+.swap .pill-label{color:var(--indigo-800)}
+.rule-note{font-size:14px;color:var(--text-secondary);margin-top:20px;max-width:700px}
+
+/* ---------- 04 live demo ---------- */
+.demo-shell{border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 1px 2px rgba(23,23,28,.03)}
+.switcher{
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+  padding:16px 22px;background:var(--surface);border-bottom:1px solid var(--border-subtle);
+}
+.switcher .lbl{font-size:13px;color:var(--text-secondary);margin-right:8px}
+.theme-btn{
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:500;
+  padding:8px 16px;border-radius:99px;border:1px solid var(--border);
+  background:var(--background);color:var(--text-primary);cursor:pointer;
+  display:flex;align-items:center;gap:8px;transition:all .15s;
+}
+.theme-btn i{width:12px;height:12px;border-radius:50%;flex:none}
+.theme-btn[data-t="solaris"] i{background:var(--indigo-600)}
+.theme-btn[data-t="fern"] i{background:var(--green-600)}
+.theme-btn[data-t="ember"] i{background:var(--orange-600)}
+.theme-btn.active{border-color:var(--text-primary);box-shadow:0 0 0 1px var(--text-primary)}
+.theme-btn:focus-visible{outline:2px solid var(--brand-primary);outline-offset:2px}
+
+.mini-app{background:var(--background);padding:28px;display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+.mini-nav{
+  grid-column:1/-1;display:flex;align-items:center;gap:20px;
+  background:var(--brand-primary);color:var(--brand-on-primary);
+  border-radius:12px;padding:13px 20px;transition:background .4s;
+}
+.mini-nav .brand-name{font-family:'Space Grotesk',sans-serif;font-weight:700;display:flex;align-items:center;gap:9px;font-size:15px}
+.mini-nav .brand-name i{width:8px;height:8px;border-radius:50%;background:var(--brand-accent);transition:background .4s}
+.mini-nav nav{display:flex;gap:18px;font-size:14px;opacity:.92;margin-left:auto}
+.card{background:var(--surface);border:1px solid var(--border-subtle);border-radius:14px;padding:22px}
+.card h4{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:700;margin-bottom:3px}
+.card .sub{font-size:13px;color:var(--text-secondary)}
+.stat{
+  font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;
+  color:var(--text-brand);margin:12px 0 6px;letter-spacing:-.5px;transition:color .4s;
+}
+.badge{
+  display:inline-block;font-size:12px;font-weight:500;padding:3px 11px;border-radius:99px;
+  background:var(--brand-tint);color:var(--brand-primary);transition:all .4s;
+}
+.btn-row{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.btn{font-family:'Inter',sans-serif;font-size:14px;font-weight:500;padding:10px 18px;border-radius:9px;cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--brand-primary);color:var(--brand-on-primary);border:none}
+.btn-primary:hover{background:var(--brand-primary-hover)}
+.btn-primary:active{background:var(--brand-primary-pressed)}
+.btn-secondary{background:var(--background);color:var(--text-primary);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--text-secondary)}
+.field{margin-top:16px}
+.field label{font-size:13px;color:var(--text-secondary);display:block;margin-bottom:6px}
+.field input{
+  width:100%;font-family:'Inter',sans-serif;font-size:14px;
+  padding:10px 12px;border-radius:9px;border:1px solid var(--border);
+  background:var(--background);color:var(--text-primary);
+}
+.field input:focus{outline:2px solid var(--brand-primary);outline-offset:1px;border-color:var(--brand-primary)}
+.alert{
+  margin-top:18px;font-size:13px;border-radius:9px;padding:11px 13px;
+  background:var(--background);border:1px solid var(--border-subtle);
+  border-left:3px solid var(--feedback-success);color:var(--text-secondary);
+}
+.alert b{color:var(--text-primary)}
+
+.inspector{background:var(--surface);padding:26px 28px;border-top:1px solid var(--border-subtle)}
+.inspector h4{
+  font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.1em;margin:18px 0 8px;color:var(--text-secondary);
+}
+.inspector h4:first-child{margin-top:0}
+.inspector h4 .static-note{
+  font-family:'Inter',sans-serif;font-weight:400;text-transform:none;letter-spacing:0;font-size:12px;
+}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;font-weight:500;color:var(--text-secondary);padding:6px 10px;border-bottom:1px solid var(--border);font-size:12.5px}
+td{padding:8px 10px;border-bottom:1px solid var(--border-subtle);font-family:'JetBrains Mono',monospace;font-size:12px}
+td .chip{display:inline-flex;align-items:center;gap:8px}
+td .chip i{width:14px;height:14px;border-radius:4px;border:1px solid rgba(23,23,28,.1);flex:none}
+tr.changed td{animation:flash 1s ease}
+@keyframes flash{0%{background:var(--brand-tint)}100%{background:transparent}}
+
+/* ---------- 05 wcag ---------- */
+.wcag-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.wcag-card{border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.wcag-sample{padding:28px 20px;font-weight:600;font-size:16px;text-align:center;font-family:'Space Grotesk',sans-serif}
+.wcag-meta{padding:12px 16px;font-size:13px;background:var(--surface);display:flex;justify-content:space-between;align-items:center;gap:10px}
+.wcag-meta .mono{font-size:11.5px;color:var(--text-secondary)}
+.pass{color:var(--green-800);font-weight:600;font-size:12.5px}
+.fail{color:#b91c1c;font-weight:600;font-size:12.5px}
+
+/* ---------- 06 playbook ---------- */
+.steps{counter-reset:step;display:flex;flex-direction:column;max-width:760px}
+.step{display:flex;gap:20px;padding:18px 0;border-bottom:1px dashed var(--border-subtle)}
+.step:last-child{border-bottom:none}
+.step::before{
+  counter-increment:step;content:counter(step,decimal-leading-zero);
+  font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text-brand);
+  padding-top:3px;flex:none;font-weight:500;transition:color .4s;
+}
+.step p{font-size:14.5px;color:var(--text-secondary)}
+.step b{color:var(--text-primary);display:block;margin-bottom:2px;font-size:15px;font-weight:600}
+
+/* ---------- outcome ---------- */
+.outcome-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;max-width:860px}
+.outcome{border:1px solid var(--border);border-radius:14px;padding:22px}
+.outcome .big{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:var(--text-brand);transition:color .4s}
+.outcome p{font-size:13.5px;color:var(--text-secondary);margin-top:4px}
+
+footer{padding:44px 0 72px;color:var(--text-secondary);font-size:13px;border-top:1px solid var(--border-subtle)}
+footer .mono{font-size:11.5px}
+
+@media (max-width:840px){
+  h1{font-size:36px}
+  .tiers,.rule-grid,.mini-app,.wcag-grid,.outcome-grid{grid-template-columns:1fr}
+  .wrap{padding:0 20px}
+  .mini-nav nav{display:none}
+  .meta-row{grid-template-columns:1fr;gap:20px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+}
+
+/* ===== Case-study nav — mapped to avn-tt toolbar ===== */
+html{scroll-behavior:smooth}
+section[id]{scroll-margin-top:82px}
+.case-tabs.case-tabs--toolbar{position:sticky;top:0;left:0;right:0;z-index:50;width:100%;box-sizing:border-box;background:rgba(255,255,255,0.78);-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid #e9eaeb}
+.case-tabs__inner{display:flex;align-items:center;gap:16px;height:66px;max-width:1024px;margin:0 auto;padding:0 32px;box-sizing:border-box}
+.case-tabs__back{flex:none;display:inline-flex;align-items:center;gap:8px;font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;line-height:1;color:#fff;background:#181d27;border:1px solid #181d27;border-radius:10px;padding:9px 14px;box-shadow:none;text-decoration:none;transition:filter .15s ease,transform .05s ease}
+.case-tabs__back:hover{filter:brightness(1.25)}
+.case-tabs__back:active{transform:translateY(1px)}
+.case-tabs__back svg{width:16px;height:16px;flex-shrink:0}
+.case-tabs__scroll{flex:1;min-width:0;display:flex;justify-content:flex-end;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.case-tabs__scroll::-webkit-scrollbar{display:none}
+.case-tabs .uu-button-group{display:inline-flex;gap:3px;min-width:min-content;background:#f5f5f5;border:1px solid #e9eaeb;border-radius:12px;padding:4px}
+.case-tabs .uu-button-group__item{font-family:'Inter',sans-serif;font-weight:600;font-size:13.5px;line-height:1;color:#414651;background:transparent;border:none;padding:8px 14px;border-radius:9px;white-space:nowrap;cursor:pointer;box-shadow:none;text-decoration:none;transition:background .15s ease,color .15s ease,box-shadow .15s ease}
+.case-tabs .uu-button-group__item:hover{color:#181d27}
+.case-tabs .uu-button-group__item.is-selected{background:#fff;color:#3538cd;box-shadow:0 1px 2px rgba(10,13,18,0.1)}
+@media(max-width:760px){.case-tabs__inner{height:60px;padding:0 20px;gap:10px}.case-tabs__scroll{justify-content:flex-start}.case-tabs__back span{display:none}}
+</style>
+</head>
+<body data-theme="solaris">
+
+<nav class="case-tabs case-tabs--toolbar" aria-label="Các phần của case study" data-case-tabs>
+  <div class="case-tabs__inner">
+    <a href="../index.html#case-prism" class="uu-button case-tabs__back" aria-label="Quay lại portfolio">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Quay lại portfolio</span>
+    </a>
+    <div class="case-tabs__scroll">
+      <div class="uu-button-group" role="tablist" aria-label="Tabs case study">
+        <button type="button" class="uu-button-group__item is-selected" role="tab" aria-selected="true" aria-controls="problem" data-case-tab="problem">Problem</button>
+        <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="architecture" data-case-tab="architecture">Architecture</button>
+        <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="rule" data-case-tab="rule">What swaps</button>
+        <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="demo" data-case-tab="demo">Demo</button>
+        <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="wcag" data-case-tab="wcag">WCAG</button>
+        <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="playbook" data-case-tab="playbook">Playbook</button>
+        <button type="button" class="uu-button-group__item" role="tab" aria-selected="false" aria-controls="outcome" data-case-tab="outcome">Outcome</button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<div class="hero">
+  <div class="eyebrow">Design system architecture · Design tokens · Figma variables</div>
+  <h1>One library. <span class="h1-swap" id="heroSwap">Three brands.</span></h1>
+  <p class="hero-sub">A multi-brand color token architecture for Solaris Group, a fictional fintech with three product brands. Every neutral, text, and feedback color is locked across brands — only a small set of brand tokens swaps per theme. This page is the working demo: it re-themes itself.</p>
+  <div class="meta-row">
+    <div><span class="k">Role</span>Design system architect</div>
+    <div><span class="k">Scope</span>Token architecture · Theming · WCAG audit</div>
+    <div><span class="k">Stack</span>Figma variables · CSS custom properties</div>
+    <div><span class="k">Type</span>Self-initiated concept</div>
+  </div>
+</div>
+
+<section id="problem">
+  <div class="sec-head"><span class="sec-num">01</span><h2>The problem</h2></div>
+  <p class="lede">Solaris Group runs three products for very different audiences: <b>Solaris</b> (everyday banking), <b>Fern</b> (green savings), and <b>Ember</b> (credit &amp; rewards). The naive approach is one library per brand — same components, hard-coded colors. Every button change then has to be made three times, and the copies inevitably drift apart. The requirement I set: components are built once and never contain a hex value. A brand becomes nothing more than a set of values plugged into the same sockets.</p>
+</section>
+
+<section id="architecture">
+  <div class="sec-head"><span class="sec-num">02</span><h2>Three tiers, one rule</h2></div>
+  <p class="lede">The token system has three tiers. Only the last one has theme modes — that single decision is what makes the whole system safe.</p>
+  <div class="tiers">
+    <div class="tier t1">
+      <span class="tag">TIER 1 · PRIMITIVES — NO MODES</span>
+      <h3>Raw palettes</h3>
+      <p>Context-free hex values: a neutral ramp plus one ramp per brand and per feedback role. Never applied to UI directly.</p>
+      <div class="swatch-row">
+        <i style="background:#4f46e5"></i><i style="background:#047857"></i>
+        <i style="background:#c2410c"></i><i style="background:#f59e0b"></i>
+        <i style="background:#dc2626"></i><i style="background:#17171c"></i>
+        <i style="background:#f4f4f6"></i>
+      </div>
+      <div class="mono-note">indigo/600 · green/600<br>orange/600 · gray/0–900</div>
+    </div>
+    <div class="tier t2">
+      <span class="tag">TIER 2 · SEMANTIC BASE — NO MODES</span>
+      <h3>Shared foundation</h3>
+      <p>Backgrounds, surfaces, borders, text, feedback. This collection has no modes, so no brand can ever bend it — consistency is structural, not disciplinary.</p>
+      <div class="swatch-row">
+        <i style="background:#fbfbfc"></i><i style="background:#f4f4f6"></i>
+        <i style="background:#e8e8ec"></i><i style="background:#d9d9df"></i>
+        <i style="background:#6e6e78"></i><i style="background:#17171c"></i>
+      </div>
+      <div class="mono-note">background · surface · border<br>text/primary · feedback/*</div>
+    </div>
+    <div class="tier t3">
+      <span class="tag">TIER 3 · SEMANTIC BRAND — 3 MODES</span>
+      <h3>Theme tokens</h3>
+      <p>Only the tokens that genuinely carry brand identity. Each mode re-aliases them to a different primitive ramp.</p>
+      <div class="swatch-row">
+        <i style="background:#4f46e5"></i><i style="background:#047857"></i><i style="background:#c2410c"></i>
+      </div>
+      <div class="mono-note">brand/primary · brand/tint<br>brand/accent · text/brand</div>
+    </div>
+  </div>
+  <div class="tier-flow">primitives ──alias──▶ semantics ──apply──▶ components (built once)</div>
+</section>
+
+<section id="rule">
+  <div class="sec-head"><span class="sec-num">03</span><h2>What stays, what swaps</h2></div>
+  <p class="lede">Before any theme exists, every token is sorted into exactly one of two buckets. If a token feels like it belongs to both, that's the signal to split it into two tokens.</p>
+  <div class="rule-grid">
+    <div class="rule-card keep">
+      <div class="pill-label">Locked — semantic base</div>
+      <ul>
+        <li><i style="background:#fbfbfc"></i>background · gray/0</li>
+        <li><i style="background:#f4f4f6"></i>surface · gray/50</li>
+        <li><i style="background:#d9d9df"></i>border · gray/200</li>
+        <li><i style="background:#17171c"></i>text/primary · gray/900</li>
+        <li><i style="background:#6e6e78"></i>text/secondary · gray/500</li>
+        <li><i style="background:#dc2626"></i>feedback/error · red/500</li>
+        <li><i style="background:#10b981"></i>feedback/success · green/400</li>
+        <li><i style="background:#f59e0b"></i>feedback/warning · amber/500</li>
+      </ul>
+    </div>
+    <div class="rule-card swap">
+      <div class="pill-label">Themed — semantic brand</div>
+      <ul>
+        <li><i style="background:#4f46e5"></i>brand/primary — the identity color</li>
+        <li><i style="background:#4338ca"></i>brand/primary-hover / -pressed</li>
+        <li><i style="background:#ffffff;border-color:#9d9da6"></i>brand/on-primary — text on brand fills</li>
+        <li><i style="background:#eef2ff"></i>brand/tint — soft brand surfaces</li>
+        <li><i style="background:#f59e0b"></i>brand/accent — secondary highlight</li>
+        <li><i style="background:#4f46e5"></i>text/brand — brand-colored text</li>
+      </ul>
+    </div>
+  </div>
+  <p class="rule-note">Note that feedback colors live in the locked bucket. A success state is a system status, not a brand statement — if Fern's green were also the success green, error and brand would collide on Ember. Separating them is one of the quiet decisions that keeps the system honest.</p>
+</section>
+
+<section id="demo">
+  <div class="sec-head"><span class="sec-num">04</span><h2>Live demo — switch the brand</h2></div>
+  <p class="lede">Same markup, same components, same CSS. Switching a theme changes one attribute, which re-resolves only the tier-3 tokens. Watch what doesn't move: the page background, card surfaces, borders, body text, and the success alert are pixel-identical across all three brands.</p>
+
+  <div class="demo-shell">
+    <div class="switcher" role="group" aria-label="Choose brand theme">
+      <span class="lbl">Theme mode:</span>
+      <button class="theme-btn active" data-t="solaris"><i></i>Solaris · Banking</button>
+      <button class="theme-btn" data-t="fern"><i></i>Fern · Savings</button>
+      <button class="theme-btn" data-t="ember"><i></i>Ember · Credit</button>
+    </div>
+
+    <div class="mini-app">
+      <div class="mini-nav">
+        <span class="brand-name"><i></i><span id="brandLabel">Solaris</span></span>
+        <nav><span>Home</span><span>Payments</span><span>Insights</span><span>Settings</span></nav>
+      </div>
+      <div class="card">
+        <h4 id="statTitle">Total balance</h4>
+        <div class="sub">Compared with last month</div>
+        <div class="stat">$12,840</div>
+        <span class="badge">▲ 12.4% this month</span>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="ctaBtn">Send money</button>
+          <button class="btn btn-secondary">Download statement</button>
+        </div>
+        <div class="alert"><b>Sync complete.</b> feedback/success is green/400 in every theme — system status never belongs to a brand.</div>
+      </div>
+      <div class="card">
+        <h4>Find a transaction</h4>
+        <div class="sub">Focus an input — the focus ring uses brand/primary</div>
+        <div class="field">
+          <label for="q">Merchant or reference</label>
+          <input id="q" type="text" placeholder="e.g. Blue Bottle Coffee">
+        </div>
+        <div class="field">
+          <label for="amount">Amount</label>
+          <input id="amount" type="text" placeholder="$0.00">
+        </div>
+      </div>
+    </div>
+
+    <div class="inspector">
+      <h4>Themed tokens — resolve per mode <span class="static-note">(rows flash on switch)</span></h4>
+      <table>
+        <thead><tr><th style="width:32%">Token</th><th>Aliases to</th><th style="width:30%">Resolved value</th></tr></thead>
+        <tbody id="brandRows">
+          <tr data-token="brand-primary"><td>brand/primary</td><td class="alias"></td><td class="val"></td></tr>
+          <tr data-token="brand-primary-hover"><td>brand/primary-hover</td><td class="alias"></td><td class="val"></td></tr>
+          <tr data-token="brand-tint"><td>brand/tint</td><td class="alias"></td><td class="val"></td></tr>
+          <tr data-token="brand-accent"><td>brand/accent</td><td class="alias"></td><td class="val"></td></tr>
+          <tr data-token="text-brand"><td>text/brand</td><td class="alias"></td><td class="val"></td></tr>
+        </tbody>
+      </table>
+      <h4>Locked tokens — identical in every mode</h4>
+      <table>
+        <thead><tr><th style="width:32%">Token</th><th>Aliases to</th><th style="width:30%">Value (never changes)</th></tr></thead>
+        <tbody>
+          <tr><td>background</td><td>gray/0</td><td><span class="chip"><i style="background:#fbfbfc"></i>#fbfbfc</span></td></tr>
+          <tr><td>surface</td><td>gray/50</td><td><span class="chip"><i style="background:#f4f4f6"></i>#f4f4f6</span></td></tr>
+          <tr><td>border</td><td>gray/200</td><td><span class="chip"><i style="background:#d9d9df"></i>#d9d9df</span></td></tr>
+          <tr><td>text/primary</td><td>gray/900</td><td><span class="chip"><i style="background:#17171c"></i>#17171c</span></td></tr>
+          <tr><td>feedback/success</td><td>green/400</td><td><span class="chip"><i style="background:#10b981"></i>#10b981</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="wcag">
+  <div class="sec-head"><span class="sec-num">05</span><h2>The accessibility catch</h2></div>
+  <p class="lede">The tempting shortcut when adding a brand is to grab the 500-level "hero" shade of its ramp — the one from the logo. But contrast has to be audited <b>per mode</b>. White text on Fern's and Ember's hero shades fails WCAG 2.1 AA for normal text (minimum 4.5:1), so both themes alias <span class="mono">brand/primary</span> one step darker. This is exactly why brand/primary is an independent token rather than "just use the logo color."</p>
+  <div class="wcag-grid">
+    <div class="wcag-card">
+      <div class="wcag-sample" style="background:#10b981;color:#ffffff">Send money</div>
+      <div class="wcag-meta"><span class="mono">white on green/400 (hero)</span><span class="fail">2.5 : 1 — fails AA</span></div>
+    </div>
+    <div class="wcag-card">
+      <div class="wcag-sample" style="background:#047857;color:#ffffff">Send money</div>
+      <div class="wcag-meta"><span class="mono">white on green/600 (shipped)</span><span class="pass">5.5 : 1 — passes AA</span></div>
+    </div>
+    <div class="wcag-card">
+      <div class="wcag-sample" style="background:#f97316;color:#ffffff">Send money</div>
+      <div class="wcag-meta"><span class="mono">white on orange/400 (hero)</span><span class="fail">2.8 : 1 — fails AA</span></div>
+    </div>
+    <div class="wcag-card">
+      <div class="wcag-sample" style="background:#c2410c;color:#ffffff">Send money</div>
+      <div class="wcag-meta"><span class="mono">white on orange/600 (shipped)</span><span class="pass">5.2 : 1 — passes AA</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="playbook">
+  <div class="sec-head"><span class="sec-num">06</span><h2>Playbook — onboarding a new brand</h2></div>
+  <div class="steps">
+    <div class="step"><p><b>Add the primitive ramp</b>Draw the new brand's 50–800 ramp in the primitives collection. Nothing else is touched yet.</p></div>
+    <div class="step"><p><b>Audit contrast before aliasing</b>Find the shade that clears 4.5:1 against white (or dark) text. That shade — not the logo shade — is the candidate for brand/primary.</p></div>
+    <div class="step"><p><b>Add a mode to the theme collection</b>Duplicate the default mode, then re-alias only the themed rows to the new ramp. In Figma this is one column; in CSS it's one attribute selector.</p></div>
+    <div class="step"><p><b>Leave the base collection alone</b>It has no modes, so there is literally nothing to do. If a brand "needs" a different page background, that's a scope conversation — not a token edit.</p></div>
+    <div class="step"><p><b>Set the mode on the outermost frame</b>Every nested component instance inherits it and re-themes — no detaching, no manual overrides.</p></div>
+    <div class="step"><p><b>Re-run the WCAG checklist per mode</b>brand/primary × on-primary, tint × text, focus ring × background. Only then publish.</p></div>
+  </div>
+</section>
+
+<section id="outcome">
+  <div class="sec-head"><span class="sec-num">07</span><h2>Outcome</h2></div>
+  <div class="outcome-grid">
+    <div class="outcome"><div class="big">1×</div><p>Component library maintained, regardless of how many brands ship on it.</p></div>
+    <div class="outcome"><div class="big">6</div><p>Tokens per theme. Onboarding a brand is a one-column edit, not a redesign.</p></div>
+    <div class="outcome"><div class="big">AA</div><p>Contrast verified per mode — accessibility is part of the theming contract, not an afterthought.</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>Prism Design System is a self-initiated concept; Solaris, Fern, and Ember are fictional brands created for this study.</p>
+  <p class="mono" style="margin-top:8px">View source: the stylesheet mirrors the token architecture — :root holds tiers 1–2, [data-theme] holds tier 3.</p>
+</footer>
+
+</div>
+
+<script>
+const THEMES = {
+  "solaris": {
+    label:"Solaris", hero:"Three brands.", cta:"Send money", stat:"Total balance",
+    rows:{
+      "brand-primary":       ["indigo/600","#4f46e5"],
+      "brand-primary-hover": ["indigo/700","#4338ca"],
+      "brand-tint":          ["indigo/50","#eef2ff"],
+      "brand-accent":        ["amber/500","#f59e0b"],
+      "text-brand":          ["indigo/600","#4f46e5"]
+    }
+  },
+  "fern": {
+    label:"Fern", hero:"Three brands.", cta:"Add to savings", stat:"Total saved",
+    rows:{
+      "brand-primary":       ["green/600","#047857"],
+      "brand-primary-hover": ["green/700","#065f46"],
+      "brand-tint":          ["green/50","#ecfdf5"],
+      "brand-accent":        ["lime/500","#84cc16"],
+      "text-brand":          ["green/600","#047857"]
+    }
+  },
+  "ember": {
+    label:"Ember", hero:"Three brands.", cta:"Pay card balance", stat:"Rewards earned",
+    rows:{
+      "brand-primary":       ["orange/600","#c2410c"],
+      "brand-primary-hover": ["orange/700","#9a3412"],
+      "brand-tint":          ["orange/50","#fff5ee"],
+      "brand-accent":        ["sky/500","#0ea5e9"],
+      "text-brand":          ["orange/600","#c2410c"]
+    }
+  }
+};
+
+function applyTheme(key, animate){
+  const theme = THEMES[key];
+  document.querySelectorAll("#brandRows tr").forEach(function(tr){
+    const d = theme.rows[tr.getAttribute("data-token")];
+    tr.querySelector(".alias").textContent = d[0];
+    tr.querySelector(".val").innerHTML =
+      '<span class="chip"><i style="background:'+d[1]+'"></i>'+d[1]+"</span>";
+    if(animate){
+      tr.classList.remove("changed");
+      void tr.offsetWidth;
+      tr.classList.add("changed");
+    }
+  });
+  document.getElementById("brandLabel").textContent = theme.label;
+  document.getElementById("ctaBtn").textContent = theme.cta;
+  document.getElementById("statTitle").textContent = theme.stat;
+}
+
+document.querySelectorAll(".theme-btn").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    const t = btn.getAttribute("data-t");
+    document.body.setAttribute("data-theme", t);
+    document.querySelectorAll(".theme-btn").forEach(function(b){b.classList.remove("active")});
+    btn.classList.add("active");
+    applyTheme(t, true);
+  });
+});
+
+applyTheme("solaris", false);
+</script>
+
+<script>
+(function(){
+  var root=document.querySelector('[data-case-tabs]'); if(!root) return;
+  var tabs=[].slice.call(root.querySelectorAll('[role="tab"]'));
+  function setActive(t){tabs.forEach(function(x){var on=x===t;x.classList.toggle('is-selected',on);x.setAttribute('aria-selected',String(on));});}
+  tabs.forEach(function(tab){tab.addEventListener('click',function(){var sec=document.getElementById(tab.getAttribute('aria-controls'));if(!sec)return;setActive(tab);sec.scrollIntoView({behavior:'smooth',block:'start'});});});
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(es){var v=es.filter(function(e){return e.isIntersecting;}).sort(function(a,b){return b.intersectionRatio-a.intersectionRatio;})[0];if(!v)return;var m=root.querySelector('[data-case-tab="'+v.target.id+'"]');if(m)setActive(m);},{rootMargin:'-30% 0px -55% 0px',threshold:[0,0.25,0.5]});
+    tabs.forEach(function(tab){var sec=document.getElementById(tab.getAttribute('aria-controls'));if(sec)obs.observe(sec);});
+  }
+})();
+</script>
+</body>
+</html>
