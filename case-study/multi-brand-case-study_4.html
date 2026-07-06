@@ -130,7 +130,7 @@ h1{
 h1 .h1-swap{color:var(--text-brand);transition:color .35s}
 .hero-sub{margin-top:22px;max-width:680px;color:var(--text-secondary);font-size:18px}
 .meta-row{
-  display:flex;gap:44px;flex-wrap:wrap;margin-top:44px;padding-top:24px;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 44px;margin-top:44px;padding-top:24px;
   border-top:1px solid var(--border-subtle);
 }
 .meta-row div{font-size:14px}
@@ -336,7 +336,7 @@ footer .mono{font-size:11.5px}
   .tiers,.mini-app,.wcag-grid,.outcome-grid{grid-template-columns:1fr}
   .wrap{padding:0 20px}
   .mini-nav nav{display:none}
-  .meta-row{gap:24px}
+  .meta-row{grid-template-columns:1fr;gap:20px}
   .matrix-wrap{overflow-x:auto}
 }
 @media (prefers-reduced-motion:reduce){
