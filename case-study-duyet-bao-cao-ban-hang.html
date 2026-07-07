@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Case Study — Flow duyệt báo cáo bán hàng</title>
+<title>Case Study — Sales Report Approval Flow</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -207,17 +207,17 @@
 
 <nav class="casenav">
   <div class="wrap casenav__inner">
-    <a class="backbtn" href="index.html#case-sales-report" aria-label="Quay lại portfolio">
+    <a class="backbtn" href="index.html#case-sales-report" aria-label="Back to portfolio">
       <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span>Quay lại portfolio</span>
+      <span>Back to portfolio</span>
     </a>
     <div class="tabscroll">
-      <div class="tabgroup" role="tablist" aria-label="Các phần của case study">
-        <a class="tabitem is-active" href="#overview" data-spy="overview">Tổng quan</a>
+      <div class="tabgroup" role="tablist" aria-label="Case study sections">
+        <a class="tabitem is-active" href="#overview" data-spy="overview">Overview</a>
         <a class="tabitem" href="#prototype" data-spy="prototype">Prototype</a>
-        <a class="tabitem" href="#problem" data-spy="problem">Vấn đề</a>
-        <a class="tabitem" href="#solution" data-spy="solution">Giải pháp</a>
-        <a class="tabitem" href="#outcome" data-spy="outcome">Kết quả</a>
+        <a class="tabitem" href="#problem" data-spy="problem">Problem</a>
+        <a class="tabitem" href="#solution" data-spy="solution">Solution</a>
+        <a class="tabitem" href="#outcome" data-spy="outcome">Results</a>
       </div>
     </div>
   </div>
@@ -230,39 +230,39 @@
   <div class="hero__veil" aria-hidden="true"></div>
   <div class="wrap">
     <span class="eyebrow">UX Case Study · B2B SaaS</span>
-    <h1>Flow duyệt báo cáo bán hàng nhiều cấp — và bài toán “người&nbsp;duyệt&nbsp;vắng&nbsp;mặt”</h1>
-    <p class="lead">Thiết kế luồng phê duyệt tuần tự cho 2 nhân viên bán hàng và 1 quản lý. Khi một người duyệt nghỉ phép/nghỉ ốm giữa chừng, cả quy trình bị treo. Mình thiết kế một cơ chế “đánh dấu offline & duyệt giùm” gọn nhẹ để báo cáo không bao giờ kẹt.</p>
+    <h1>A multi-level sales-report approval flow — and the “absent&nbsp;approver” problem</h1>
+    <p class="lead">Designing a sequential approval flow for 2 sales reps and 1 manager. When an approver goes on leave or calls in sick midway, the whole process stalls. I designed a lightweight “mark as offline & approve on their behalf” mechanism so reports never get stuck.</p>
     <div class="meta">
-      <div><span>Vai trò</span><strong>Product / UX Designer</strong></div>
-      <div><span>Nền tảng</span><strong>Web app (Desktop)</strong></div>
-      <div><span>Công cụ</span><strong>Figma · Design System</strong></div>
-      <div><span>Phạm vi</span><strong>Flow + UI + States</strong></div>
+      <div><span>Role</span><strong>Product / UX Designer</strong></div>
+      <div><span>Platform</span><strong>Web app (Desktop)</strong></div>
+      <div><span>Tools</span><strong>Figma · Design System</strong></div>
+      <div><span>Scope</span><strong>Flow + UI + States</strong></div>
     </div>
   </div>
 </header>
 
 <section id="overview">
   <div class="wrap">
-    <div class="kicker"><span class="n">01</span> Tổng quan</div>
-    <h2>Một quy trình duyệt tưởng đơn giản, nhưng dễ “đứng hình”</h2>
+    <div class="kicker"><span class="n">01</span> Overview</div>
+    <h2>An approval process that looks simple but freezes easily</h2>
     <div class="lead-block">
-      <p>Client cần một luồng để duyệt các <strong>báo cáo bán hàng (BCBH)</strong> theo ngày. Mỗi báo cáo phải được kiểm tra tuần tự: <strong>Nhân viên bán hàng 1 → Nhân viên bán hàng 2 → Quản lý</strong>. Chỉ khi đủ cả ba mắt xích đồng ý thì báo cáo mới được coi là hoàn tất.</p>
+      <p>The client needed a flow to approve daily <strong>sales reports</strong>. Each report must be reviewed sequentially: <strong>Sales Rep 1 → Sales Rep 2 → Manager</strong>. Only when all three links agree is a report considered complete.</p>
     </div>
     <div class="grid g3" style="margin-top:32px">
       <div class="card">
         <div class="ic" style="background:var(--brand-50);color:var(--brand-ink)">⛓️</div>
-        <h3>Duyệt tuần tự</h3>
-        <p>Báo cáo đi theo đúng thứ tự người 1 → người 2 → quản lý. Người sau chỉ thấy lượt mình khi người trước đã xong.</p>
+        <h3>Sequential approval</h3>
+        <p>A report follows the exact order rep 1 → rep 2 → manager. The next person only sees their turn once the previous one is done.</p>
       </div>
       <div class="card">
         <div class="ic" style="background:var(--positive-10);color:var(--positive-70)">👁️</div>
-        <h3>Minh bạch tiến độ</h3>
-        <p>Mỗi báo cáo hiển thị tiến độ duyệt (vd 1/2, 2/2) và lịch sử ai đã duyệt, lúc nào, ghi chú gì.</p>
+        <h3>Transparent progress</h3>
+        <p>Each report shows approval progress (e.g. 1/2, 2/2) and a history of who approved, when, and with what note.</p>
       </div>
       <div class="card">
         <div class="ic" style="background:var(--careful-10);color:var(--careful-70)">⚠️</div>
-        <h3>Rủi ro tắc nghẽn</h3>
-        <p>Chuỗi tuần tự rất dễ vỡ: chỉ cần một người nghỉ giữa chừng là toàn bộ báo cáo bị treo vô thời hạn.</p>
+        <h3>Bottleneck risk</h3>
+        <p>A sequential chain is fragile: if just one person is out midway, the whole report hangs indefinitely.</p>
       </div>
     </div>
   </div>
@@ -270,17 +270,17 @@
 
 <section class="alt">
   <div class="wrap">
-    <div class="kicker"><span class="n">02</span> Brief từ client</div>
-    <h2>Yêu cầu gốc</h2>
+    <div class="kicker"><span class="n">02</span> Brief from the client</div>
+    <h2>The original requirement</h2>
     <div class="two-col">
       <div>
-        <p class="body">“Mình muốn tạo một flow duyệt các báo cáo bán hàng. Sẽ có <strong>2 nhân viên bán hàng (NVBH)</strong> cùng kiểm tra theo thứ tự: người 1 xem và duyệt, chuyển cho người 2 xem và duyệt, sau đó gửi lên cấp quản lý cuối cùng xem và duyệt là hoàn thành.”</p>
-        <p class="body">Nói cách khác, đây là một <strong>approval chain 3 cấp</strong> với điều kiện bắt buộc tuần tự — đề cao tính kiểm soát và truy vết, vì báo cáo bán hàng ảnh hưởng trực tiếp tới số liệu doanh thu.</p>
+        <p class="body">“I want to create a flow to approve sales reports. There will be <strong>2 sales reps</strong> reviewing in order: rep 1 views and approves, hands off to rep 2 to view and approve, then it goes up to the manager to view and approve as the final step to complete.”</p>
+        <p class="body">In other words, this is a <strong>3-level approval chain</strong> with a mandatory sequential condition — prioritizing control and traceability, because sales reports directly affect revenue figures.</p>
       </div>
       <div class="grid" style="gap:14px">
-        <div class="callout good"><span class="big">①</span><div><h3>NVBH 1 — Trần Thị B</h3><p>Người khởi tạo, kiểm tra & duyệt đầu tiên, rồi chuyển tiếp.</p></div></div>
-        <div class="callout good"><span class="big">②</span><div><h3>NVBH 2 — Trần Thị C</h3><p>Kiểm tra chéo, duyệt rồi gửi lên quản lý.</p></div></div>
-        <div class="callout good"><span class="big">③</span><div><h3>Quản lý — Phạm Minh D</h3><p>Cấp duyệt cuối. Duyệt = hoàn tất, hoặc từ chối.</p></div></div>
+        <div class="callout good"><span class="big">①</span><div><h3>Sales Rep 1 — Tran Thi B</h3><p>The creator; reviews & approves first, then hands off.</p></div></div>
+        <div class="callout good"><span class="big">②</span><div><h3>Sales Rep 2 — Tran Thi C</h3><p>Cross-checks, approves, then sends up to the manager.</p></div></div>
+        <div class="callout good"><span class="big">③</span><div><h3>Manager — Pham Minh D</h3><p>The final approver. Approve = complete, or reject.</p></div></div>
       </div>
     </div>
   </div>
@@ -288,24 +288,24 @@
 
 <section id="prototype">
   <div class="wrap">
-    <div class="kicker"><span class="n">03</span> Màn hình điều phối · Prototype tương tác</div>
-    <h2>Danh sách báo cáo — thử trực tiếp như đang dùng thật</h2>
-    <p class="body">Điểm bắt đầu là một bảng danh sách. Mình ưu tiên hai cột “sống còn”: <strong>Tiến độ duyệt</strong> (đã có bao nhiêu / cần bao nhiêu chữ ký) và <strong>Trạng thái</strong>, để người dùng quét nhanh báo cáo nào đang chờ mình. Bảng dưới đây <strong>chạy thật</strong> — hãy lọc, bấm “Xem”, “Duyệt”, tick offline và đi hết một luồng.</p>
+    <div class="kicker"><span class="n">03</span> Coordination screen · Interactive prototype</div>
+    <h2>Report list — try it live as if it were real</h2>
+    <p class="body">The starting point is a list table. I prioritized two “vital” columns: <strong>Approval progress</strong> (how many of the required signatures are in) and <strong>Status</strong>, so users can quickly scan which reports are waiting on them. The table below <strong>actually works</strong> — filter, click “View”, “Approve”, tick offline and walk through a full flow.</p>
 
-    <div class="proto-note">▶ <strong>Prototype tương tác</strong> — lọc, bấm <strong>Xem</strong>/<strong>Duyệt</strong>, tick “offline” và đi trọn một luồng duyệt như đang dùng thật. Dữ liệu là giả lập. <button class="btn btn-ghost live" id="resetData" style="margin-left:auto">↺ Reset dữ liệu</button></div>
+    <div class="proto-note">▶ <strong>Interactive prototype</strong> — filter, click <strong>View</strong>/<strong>Approve</strong>, tick “offline” and go through a complete approval flow as if it were real. Data is simulated. <button class="btn btn-ghost live" id="resetData" style="margin-left:auto">↺ Reset data</button></div>
     <div class="mock" style="margin-top:16px">
-      <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span class="ttl">Quản lý báo cáo bán hàng — live</span></div>
+      <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span class="ttl">Sales report management — live</span></div>
       <div class="mock-body">
-        <div class="mh"><h4>Quản lý báo cáo bán hàng</h4><button class="btn btn-primary live" id="applyBtn">⚙ Áp dụng</button></div>
+        <div class="mh"><h4>Sales report management</h4><button class="btn btn-primary live" id="applyBtn">⚙ Apply</button></div>
         <div class="grid g3" style="gap:12px;margin-bottom:18px">
-          <div><div class="m-label" style="margin-bottom:6px">Tên đội</div><select class="field live" id="fTeam"></select></div>
-          <div><div class="m-label" style="margin-bottom:6px">Tên báo cáo</div><input class="field live" id="fName" placeholder="Tìm theo tên báo cáo…"></div>
-          <div><div class="m-label" style="margin-bottom:6px">Trạng thái</div><select class="field live" id="fStatus">
-            <option value="">Tất cả trạng thái</option><option>Chờ duyệt</option><option>Đang duyệt</option><option>Hoàn tất</option><option>Từ chối</option>
+          <div><div class="m-label" style="margin-bottom:6px">Team name</div><select class="field live" id="fTeam"></select></div>
+          <div><div class="m-label" style="margin-bottom:6px">Report name</div><input class="field live" id="fName" placeholder="Search by report name…"></div>
+          <div><div class="m-label" style="margin-bottom:6px">Status</div><select class="field live" id="fStatus">
+            <option value="">All statuses</option><option>Pending</option><option>In review</option><option>Completed</option><option>Rejected</option>
           </select></div>
         </div>
         <table class="tbl">
-          <thead><tr><th>#</th><th>Tên báo cáo</th><th>Tên đội</th><th>Tiến độ duyệt</th><th>Trạng thái</th><th style="text-align:right">Thao tác</th></tr></thead>
+          <thead><tr><th>#</th><th>Report name</th><th>Team name</th><th>Approval progress</th><th>Status</th><th style="text-align:right">Actions</th></tr></thead>
           <tbody id="tbody"></tbody>
         </table>
         <div class="tbl-foot">
@@ -321,56 +321,56 @@
         </div>
       </div>
     </div>
-    <p class="fig-cap">Prototype tương tác với dữ liệu giả lập — thử lọc và đi hết một luồng duyệt (NVBH 1 → NVBH 2 → Quản lý).</p>
+    <p class="fig-cap">Interactive prototype with simulated data — try filtering and walk through a full approval flow (Sales Rep 1 → Sales Rep 2 → Manager).</p>
 
     <figure class="shotwrap">
       <div class="shot">
-        <img src="sales-report-shots/01-list.png" alt="Màn danh sách báo cáo bán hàng trong Figma" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
-        <div class="shot-ph"><strong>Ảnh Figma sẽ hiển thị ở đây</strong><span>Export frame “Quản lý báo cáo bán hàng” từ Figma → lưu thành <code>sales-report-shots/01-list.png</code></span></div>
+        <img src="sales-report-shots/01-list.png" alt="Sales report list screen in Figma" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="shot-ph"><strong>Figma image will appear here</strong><span>Export the “Sales report management” frame from Figma → save as <code>sales-report-shots/01-list.png</code></span></div>
       </div>
-      <figcaption class="fig-cap">Ảnh thật từ Figma — màn danh sách báo cáo (final UI).</figcaption>
+      <figcaption class="fig-cap">Real screenshot from Figma — the report list screen (final UI).</figcaption>
     </figure>
   </div>
 </section>
 
 <section class="alt" id="problem">
   <div class="wrap">
-    <div class="kicker"><span class="n">04</span> Vấn đề phát sinh</div>
-    <h2>Điều gì xảy ra nếu một người duyệt… không đi làm?</h2>
-    <p class="body">Khi review flow, mình tự đặt câu hỏi: chuỗi tuần tự bắt buộc đủ cả 2 NVBH. Vậy nếu giữa quá trình duyệt, <strong>một trong hai NVBH bị bệnh, nghỉ phép hoặc nghỉ đột xuất</strong> thì sao?</p>
+    <div class="kicker"><span class="n">04</span> The emerging problem</div>
+    <h2>What happens if an approver… doesn’t show up for work?</h2>
+    <p class="body">While reviewing the flow, I asked myself: the sequential chain requires both sales reps. So what if, midway through approval, <strong>one of the two reps is sick, on leave, or out unexpectedly</strong>?</p>
     <div class="callout warn" style="margin:24px 0">
       <span class="big">⛔</span>
       <div>
-        <h3>Báo cáo bị treo vô thời hạn</h3>
-        <p>Người 1 đã duyệt xong nhưng không thể chuyển tiếp, vì hệ thống vẫn “chờ” chữ ký của người 2. Báo cáo kẹt ở giữa chuỗi — không lên được quản lý, không ai biết phải làm gì, và số liệu trễ hạn.</p>
+        <h3>The report hangs indefinitely</h3>
+        <p>Rep 1 has finished approving but can’t hand off, because the system is still “waiting” for rep 2’s signature. The report is stuck mid-chain — it can’t reach the manager, no one knows what to do, and the numbers run late.</p>
       </div>
     </div>
-    <p class="body">Đây là kiểu lỗi không xuất hiện trên happy path nhưng chắc chắn xảy ra trong vận hành thực tế. Bỏ qua nó đồng nghĩa với việc đẩy rủi ro cho người dùng cuối.</p>
+    <p class="body">This is the kind of failure that doesn’t appear on the happy path but is certain to happen in real operations. Ignoring it means pushing the risk onto end users.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="kicker"><span class="n">05</span> Cân nhắc hướng đi</div>
-    <h2>Mình đã cân các phương án trước khi chọn</h2>
+    <div class="kicker"><span class="n">05</span> Weighing the options</div>
+    <h2>I weighed the options before choosing</h2>
     <div class="grid g3" style="margin-top:26px">
       <div class="card">
-        <h3 style="color:var(--text-soft)">A. Bỏ tuần tự</h3>
-        <p style="margin:10px 0 14px">Cho cả 2 NVBH duyệt song song.</p>
-        <span class="pill b-danger">Loại</span>
-        <p style="margin-top:12px;font-size:13.5px">Mất tính kiểm tra chéo theo thứ tự mà client yêu cầu.</p>
+        <h3 style="color:var(--text-soft)">A. Drop the sequence</h3>
+        <p style="margin:10px 0 14px">Let both reps approve in parallel.</p>
+        <span class="pill b-danger">Rejected</span>
+        <p style="margin-top:12px;font-size:13.5px">Loses the ordered cross-check the client asked for.</p>
       </div>
       <div class="card">
-        <h3 style="color:var(--text-soft)">B. Admin can thiệp</h3>
-        <p style="margin:10px 0 14px">Báo treo → admin gỡ thủ công.</p>
-        <span class="pill b-danger">Loại</span>
-        <p style="margin-top:12px;font-size:13.5px">Phụ thuộc người ngoài luồng, chậm và không truy vết được.</p>
+        <h3 style="color:var(--text-soft)">B. Admin intervention</h3>
+        <p style="margin:10px 0 14px">Report hangs → admin unblocks manually.</p>
+        <span class="pill b-danger">Rejected</span>
+        <p style="margin-top:12px;font-size:13.5px">Depends on someone outside the flow — slow and untraceable.</p>
       </div>
       <div class="card" style="border-color:var(--positive);box-shadow:0 0 0 1px var(--positive)">
-        <h3 style="color:var(--positive-70)">C. Đánh dấu offline & duyệt giùm</h3>
-        <p style="margin:10px 0 14px">Người đang duyệt tự xử lý ngay tại chỗ.</p>
-        <span class="pill b-positive">✓ Đã chọn</span>
-        <p style="margin-top:12px;font-size:13.5px">Giữ nguyên chuỗi, không cần người ngoài, vẫn lưu lý do đầy đủ.</p>
+        <h3 style="color:var(--positive-70)">C. Mark offline & approve on behalf</h3>
+        <p style="margin:10px 0 14px">The current approver handles it right there.</p>
+        <span class="pill b-positive">✓ Chosen</span>
+        <p style="margin-top:12px;font-size:13.5px">Keeps the chain, needs no outsider, and still records a full reason.</p>
       </div>
     </div>
   </div>
@@ -378,167 +378,167 @@
 
 <section class="alt" id="solution">
   <div class="wrap">
-    <div class="kicker"><span class="n">06</span> Giải pháp</div>
-    <h2>Một checkbox nhỏ giải quyết một bottleneck lớn</h2>
+    <div class="kicker"><span class="n">06</span> Solution</div>
+    <h2>A small checkbox solves a big bottleneck</h2>
     <div class="two-col">
       <div>
-        <p class="body">Mình thêm một lựa chọn ngay trên hàng của người duyệt đang bị vắng:</p>
+        <p class="body">I added an option right on the row of the absent approver:</p>
         <div class="callout good" style="margin:18px 0">
           <span class="big">☑</span>
           <div>
-            <h3>“Nhân viên này không trực tuyến (nghỉ phép, nghỉ ốm…)”</h3>
-            <p>Khi một NVBH ở trạng thái <strong>Vắng mặt / offline</strong>, người còn lại tick vào ô này, nhập lý do, rồi <strong>duyệt giùm và gửi thẳng lên quản lý</strong>.</p>
+            <h3>“This employee is offline (on leave, sick…)”</h3>
+            <p>When a rep is <strong>Absent / offline</strong>, the other one ticks this box, enters a reason, then <strong>approves on their behalf and sends it straight to the manager</strong>.</p>
           </div>
         </div>
-        <p class="body">Hệ thống đưa ra hướng dẫn ngay tại chỗ — không cần đào tài liệu: <em>“Nếu User ‘NVKD Trần Thị C’ không khả dụng, tick chọn ‘Bỏ qua’ tại trạng thái của người đó và nhập lý do.”</em></p>
-        <p class="body">Quan trọng: mọi lượt duyệt giùm đều được <strong>ghi lại lý do và đánh dấu rõ là “vắng mặt”</strong>, nên không làm mất tính minh bạch — quản lý cuối vẫn thấy đầy đủ bối cảnh trước khi duyệt.</p>
+        <p class="body">The system provides guidance right in place — no need to dig through docs: <em>“If user ‘Sales Rep Tran Thi C’ is unavailable, tick ‘Skip’ on their status and enter a reason.”</em></p>
+        <p class="body">Importantly, every on-behalf approval <strong>records a reason and is clearly marked “absent”</strong>, so transparency isn’t lost — the final manager still sees full context before approving.</p>
       </div>
       <figure>
         <div class="mock">
-          <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span class="ttl">Thông tin báo cáo — duyệt giùm</span></div>
+          <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span class="ttl">Report info — approve on behalf</span></div>
           <div class="mock-body">
-            <div class="ck"><span class="box on"></span><strong>Tôi xác nhận đã kiểm tra và duyệt báo cáo này</strong></div>
-            <div class="m-label" style="margin:8px 0 6px">Ghi chú</div>
-            <div class="field" style="margin-bottom:14px">Oke</div>
-            <div class="note-banner good">✓ &nbsp;<span><strong>Bạn đã duyệt thành công.</strong> Nếu User “NVKD Trần Thị C” không khả dụng, tick chọn “Bỏ qua” và nhập lý do.</span></div>
+            <div class="ck"><span class="box on"></span><strong>I confirm I have checked and approved this report</strong></div>
+            <div class="m-label" style="margin:8px 0 6px">Note</div>
+            <div class="field" style="margin-bottom:14px">OK</div>
+            <div class="note-banner good">✓ &nbsp;<span><strong>You approved successfully.</strong> If user “Sales Rep Tran Thi C” is unavailable, tick “Skip” and enter a reason.</span></div>
             <div class="appr">
               <div class="av">B</div>
-              <div><div class="who">NVKD Trần Thị B — NVBH 1 <span style="color:var(--brand)">(Bạn)</span></div>
-                <div class="st">Trạng thái: <span style="color:var(--careful)">Chờ duyệt</span> · Ghi chú: Oke</div></div>
+              <div><div class="who">Sales Rep Tran Thi B — Rep 1 <span style="color:var(--brand)">(You)</span></div>
+                <div class="st">Status: <span style="color:var(--careful)">Pending</span> · Note: OK</div></div>
               <div class="time">17:09 · 5/1</div>
             </div>
             <div class="appr" style="background:#fafbfc;border-radius:10px;padding:14px 12px">
               <div class="av">C</div>
               <div style="flex:1">
-                <div class="who">NVKD Trần Thị C — NVBH 2 <span class="pill b-off" style="margin-left:4px">Vắng mặt</span></div>
-                <div class="ck" style="padding:10px 0 8px"><span class="box on" style="width:20px;height:20px"></span><span style="font-size:13px;color:#344054">Nhân viên này không trực tuyến (nghỉ phép, nghỉ ốm..)</span></div>
-                <div class="field" style="font-size:12.5px">Xác nhận giùm vì user nghỉ phép</div>
+                <div class="who">Sales Rep Tran Thi C — Rep 2 <span class="pill b-off" style="margin-left:4px">Absent</span></div>
+                <div class="ck" style="padding:10px 0 8px"><span class="box on" style="width:20px;height:20px"></span><span style="font-size:13px;color:#344054">This employee is offline (on leave, sick..)</span></div>
+                <div class="field" style="font-size:12.5px">Approved on their behalf — user on leave</div>
               </div>
             </div>
             <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px">
-              <span class="btn btn-ghost">Hoàn tất và quay lại</span>
-              <span class="btn btn-primary">Chuyển lên quản lý</span>
+              <span class="btn btn-ghost">Finish and go back</span>
+              <span class="btn btn-primary">Send to manager</span>
             </div>
           </div>
         </div>
-        <p class="fig-cap">Khi NVBH 2 vắng mặt: tick offline → nhập lý do → chuyển thẳng lên quản lý.</p>
+        <p class="fig-cap">When Rep 2 is absent: tick offline → enter reason → send straight to the manager.</p>
       </figure>
     </div>
 
     <figure class="shotwrap">
       <div class="shot">
-        <img src="sales-report-shots/02-nvbh1-offline.png" alt="NVBH 1 xem, duyệt và xử lý khi NVBH 2 offline trong Figma" loading="lazy">
+        <img src="sales-report-shots/02-nvbh1-offline.png" alt="Rep 1 views, approves and handles the case when Rep 2 is offline, in Figma" loading="lazy">
       </div>
-      <figcaption class="fig-cap">Ảnh thật từ Figma — bước NVBH 1: duyệt, và khi NVBH 2 vắng mặt thì tick “không trực tuyến”, nhập lý do, chuyển thẳng lên quản lý.</figcaption>
+      <figcaption class="fig-cap">Real screenshot from Figma — the Rep 1 step: approve, and when Rep 2 is absent, tick “offline”, enter a reason, and send straight to the manager.</figcaption>
     </figure>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="kicker"><span class="n">07</span> Toàn bộ flow</div>
-    <h2>Hai nhánh, một đích đến</h2>
-    <p class="body">Flow được thiết kế để <strong>luôn về đích</strong> dù người duyệt có mặt hay không. Dưới đây là bốn bước của nhánh thường, và nhánh rẽ khi có người vắng.</p>
+    <div class="kicker"><span class="n">07</span> The full flow</div>
+    <h2>Two branches, one destination</h2>
+    <p class="body">The flow is designed to <strong>always reach the finish</strong> whether or not the approver is present. Below are the four steps of the normal branch, and the fork when someone is absent.</p>
 
-    <h3 style="margin:30px 0 16px;font-size:19px">Nhánh thường (đủ người)</h3>
+    <h3 style="margin:30px 0 16px;font-size:19px">Normal branch (everyone present)</h3>
     <div class="flow">
-      <div class="step"><div class="num">1</div><h4>NVBH 1 duyệt</h4><p>Tick xác nhận, ghi chú, duyệt. Trạng thái → <em>Đã duyệt</em>.</p></div>
-      <div class="step"><div class="num">2</div><h4>NVBH 2 duyệt</h4><p>Đến lượt người 2 kiểm tra chéo và duyệt.</p></div>
-      <div class="step"><div class="num">3</div><h4>Chuyển lên quản lý</h4><p>Đủ 2/2 → gửi lên cấp quản lý cuối.</p></div>
-      <div class="step"><div class="num">4</div><h4>Quản lý duyệt</h4><p>Duyệt → <strong>hoàn tất</strong>, hoặc từ chối kèm lý do.</p></div>
+      <div class="step"><div class="num">1</div><h4>Rep 1 approves</h4><p>Tick confirm, add a note, approve. Status → <em>Approved</em>.</p></div>
+      <div class="step"><div class="num">2</div><h4>Rep 2 approves</h4><p>It’s rep 2’s turn to cross-check and approve.</p></div>
+      <div class="step"><div class="num">3</div><h4>Send to manager</h4><p>2/2 done → send up to the final manager.</p></div>
+      <div class="step"><div class="num">4</div><h4>Manager approves</h4><p>Approve → <strong>complete</strong>, or reject with a reason.</p></div>
     </div>
 
-    <h3 style="margin:36px 0 16px;font-size:19px">Nhánh rẽ (một NVBH vắng)</h3>
+    <h3 style="margin:36px 0 16px;font-size:19px">Fork branch (one rep absent)</h3>
     <div class="flow" style="grid-template-columns:repeat(3,1fr)">
-      <div class="step" style="border-color:#fedf89;background:var(--careful-10)"><div class="num" style="background:var(--careful)">!</div><h4>Phát hiện vắng mặt</h4><p>NVBH 2 ở trạng thái offline / vắng mặt.</p></div>
-      <div class="step" style="border-color:var(--positive);background:#f6fdfb"><div class="num" style="background:var(--positive)">✓</div><h4>Duyệt giùm có lý do</h4><p>NVBH 1 tick offline, nhập lý do, duyệt thay.</p></div>
-      <div class="step"><div class="num">→</div><h4>Lên thẳng quản lý</h4><p>Bỏ qua bước chờ, gửi lên quản lý duyệt như thường.</p></div>
+      <div class="step" style="border-color:#fedf89;background:var(--careful-10)"><div class="num" style="background:var(--careful)">!</div><h4>Detect absence</h4><p>Rep 2 is offline / absent.</p></div>
+      <div class="step" style="border-color:var(--positive);background:#f6fdfb"><div class="num" style="background:var(--positive)">✓</div><h4>Approve on behalf with a reason</h4><p>Rep 1 ticks offline, enters a reason, approves in their place.</p></div>
+      <div class="step"><div class="num">→</div><h4>Straight to the manager</h4><p>Skip the waiting step, send to the manager to approve as usual.</p></div>
     </div>
 
     <div class="two-col" style="margin-top:48px">
       <figure>
         <div class="mock">
-          <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span class="ttl">Chi tiết tiến trình duyệt</span></div>
+          <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span class="ttl">Approval progress detail</span></div>
           <div class="mock-body">
-            <div class="mh"><h4>Chi tiết tiến trình duyệt</h4><span style="color:#98a2b3">✕</span></div>
+            <div class="mh"><h4>Approval progress detail</h4><span style="color:#98a2b3">✕</span></div>
             <div class="appr" style="border-top:none"><div class="av" style="background:var(--positive-10);color:var(--positive-70)">✓</div>
-              <div><div class="who">NVKD Trần Thị B — NVBH 1</div><div class="st">Trạng thái: <span style="color:var(--positive-70)">Đã duyệt</span> · Ghi chú: Oke</div></div><div class="time">17:09 · 5/1</div></div>
+              <div><div class="who">Sales Rep Tran Thi B — Rep 1</div><div class="st">Status: <span style="color:var(--positive-70)">Approved</span> · Note: OK</div></div><div class="time">17:09 · 5/1</div></div>
             <div class="appr"><div class="av" style="background:var(--positive-10);color:var(--positive-70)">✓</div>
-              <div><div class="who">NVKD Trần Thị C — NVBH 2</div><div class="st">Trạng thái: <span style="color:var(--positive-70)">Đã duyệt</span> · Ghi chú: Xác nhận, đồng ý</div></div><div class="time">17:36 · 5/1</div></div>
+              <div><div class="who">Sales Rep Tran Thi C — Rep 2</div><div class="st">Status: <span style="color:var(--positive-70)">Approved</span> · Note: Confirmed, agreed</div></div><div class="time">17:36 · 5/1</div></div>
             <div class="appr"><div class="av">D</div>
-              <div><div class="who">QL Phạm Minh D — Quản lý <span style="color:var(--brand)">(Bạn)</span></div><div class="st">Trạng thái: <span style="color:var(--careful)">Chờ duyệt</span></div></div><div class="time">Chưa duyệt</div></div>
+              <div><div class="who">Mgr Pham Minh D — Manager <span style="color:var(--brand)">(You)</span></div><div class="st">Status: <span style="color:var(--careful)">Pending</span></div></div><div class="time">Not yet approved</div></div>
             <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px">
-              <span class="btn btn-ghost">Hủy bỏ</span><span class="btn btn-primary">Xác nhận</span>
+              <span class="btn btn-ghost">Cancel</span><span class="btn btn-primary">Confirm</span>
             </div>
           </div>
         </div>
-        <p class="fig-cap">Tiến trình duyệt dạng timeline — ai, lúc nào, ghi chú gì.</p>
+        <p class="fig-cap">Approval progress as a timeline — who, when, and what note.</p>
       </figure>
       <figure>
         <div class="mock">
-          <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span class="ttl">Cấp quản lý — duyệt / từ chối</span></div>
+          <div class="mock-bar"><i class="r"></i><i class="y"></i><i class="g"></i><span class="ttl">Manager level — approve / reject</span></div>
           <div class="mock-body">
-            <div class="ck"><span class="box"></span><strong>Tôi xác nhận đã kiểm tra và duyệt báo cáo này</strong></div>
-            <div class="m-label" style="margin:8px 0 6px">Ghi chú</div>
-            <div class="field" style="margin-bottom:14px;color:var(--text-mute)">Nhập nội dung ghi chú…</div>
+            <div class="ck"><span class="box"></span><strong>I confirm I have checked and approved this report</strong></div>
+            <div class="m-label" style="margin:8px 0 6px">Note</div>
+            <div class="field" style="margin-bottom:14px;color:var(--text-mute)">Enter note content…</div>
             <div style="display:flex;gap:10px;justify-content:flex-end;margin-bottom:8px">
-              <span class="btn btn-danger">Từ chối</span><span class="btn btn-muted">Duyệt báo cáo</span>
+              <span class="btn btn-danger">Reject</span><span class="btn btn-muted">Approve report</span>
             </div>
-            <div class="appr"><div class="av" style="background:var(--positive-10);color:var(--positive-70)">✓</div><div><div class="who">NVKD Trần Thị B — NVBH 1</div><div class="st">Đã duyệt · Oke</div></div></div>
-            <div class="appr"><div class="av" style="background:var(--positive-10);color:var(--positive-70)">✓</div><div><div class="who">NVKD Trần Thị C — NVBH 2</div><div class="st">Đã duyệt · Xác nhận, đồng ý</div></div></div>
-            <div class="appr"><div class="av">D</div><div><div class="who">QL Phạm Minh D — Quản lý <span style="color:var(--brand)">(Bạn)</span></div><div class="st">Trạng thái: <span style="color:var(--careful)">Chờ duyệt</span></div></div></div>
+            <div class="appr"><div class="av" style="background:var(--positive-10);color:var(--positive-70)">✓</div><div><div class="who">Sales Rep Tran Thi B — Rep 1</div><div class="st">Approved · OK</div></div></div>
+            <div class="appr"><div class="av" style="background:var(--positive-10);color:var(--positive-70)">✓</div><div><div class="who">Sales Rep Tran Thi C — Rep 2</div><div class="st">Approved · Confirmed, agreed</div></div></div>
+            <div class="appr"><div class="av">D</div><div><div class="who">Mgr Pham Minh D — Manager <span style="color:var(--brand)">(You)</span></div><div class="st">Status: <span style="color:var(--careful)">Pending</span></div></div></div>
           </div>
         </div>
-        <p class="fig-cap">Màn quản lý: nút Duyệt chỉ bật khi đã tick xác nhận.</p>
+        <p class="fig-cap">Manager screen: the Approve button is enabled only after ticking confirm.</p>
       </figure>
     </div>
 
     <figure class="shotwrap">
-      <div class="shot"><img src="sales-report-shots/03-overview.png" alt="Toàn cảnh các màn trong flow duyệt báo cáo" loading="lazy"></div>
-      <figcaption class="fig-cap">Ảnh thật từ Figma — toàn cảnh các màn trong flow.</figcaption>
+      <div class="shot"><img src="sales-report-shots/03-overview.png" alt="Overview of all screens in the report approval flow" loading="lazy"></div>
+      <figcaption class="fig-cap">Real screenshot from Figma — overview of all screens in the flow.</figcaption>
     </figure>
     <figure class="shotwrap">
-      <div class="shot"><img src="sales-report-shots/04-nvbh2-escalate.png" alt="NVBH 2 duyệt và chuyển cấp lên quản lý" loading="lazy"></div>
-      <figcaption class="fig-cap">Bước NVBH 2: duyệt rồi xác nhận chuyển cấp lên quản lý.</figcaption>
+      <div class="shot"><img src="sales-report-shots/04-nvbh2-escalate.png" alt="Rep 2 approves and escalates to the manager" loading="lazy"></div>
+      <figcaption class="fig-cap">The Rep 2 step: approve, then confirm escalation to the manager.</figcaption>
     </figure>
     <figure class="shotwrap">
-      <div class="shot"><img src="sales-report-shots/05-manager.png" alt="Cấp quản lý xem, duyệt hoặc từ chối" loading="lazy"></div>
-      <figcaption class="fig-cap">Bước Quản lý: xem, duyệt (hoàn tất) hoặc từ chối kèm lý do.</figcaption>
+      <div class="shot"><img src="sales-report-shots/05-manager.png" alt="Manager level views, approves or rejects" loading="lazy"></div>
+      <figcaption class="fig-cap">The Manager step: view, approve (complete) or reject with a reason.</figcaption>
     </figure>
     <figure class="shotwrap">
-      <div class="shot"><img src="sales-report-shots/06-progress.png" alt="Modal chi tiết tiến trình duyệt" loading="lazy"></div>
-      <figcaption class="fig-cap">Modal “Chi tiết tiến trình duyệt” — timeline ai duyệt, lúc nào, ghi chú gì.</figcaption>
+      <div class="shot"><img src="sales-report-shots/06-progress.png" alt="Approval progress detail modal" loading="lazy"></div>
+      <figcaption class="fig-cap">The “Approval progress detail” modal — a timeline of who approved, when, and with what note.</figcaption>
     </figure>
   </div>
 </section>
 
 <section class="alt">
   <div class="wrap">
-    <div class="kicker"><span class="n">08</span> Hệ thống trạng thái</div>
-    <h2>Năm trạng thái, mỗi cái một màu rõ nghĩa</h2>
-    <p class="body">Để người dùng đọc tình huống chỉ trong một liếc mắt, mình ánh xạ mỗi trạng thái sang một màu semantic của design system.</p>
+    <div class="kicker"><span class="n">08</span> Status system</div>
+    <h2>Each status gets one clear, meaningful color</h2>
+    <p class="body">So users can read the situation at a glance, I mapped each status to a semantic color from the design system.</p>
     <div class="legend" style="margin-top:24px">
-      <div class="row"><span class="pill b-careful">● Chờ duyệt</span><p>Chưa tới lượt hoặc chưa ai xử lý.</p></div>
-      <div class="row"><span class="pill b-useful">● Đang duyệt</span><p>Đã có người duyệt, đang đi trong chuỗi.</p></div>
-      <div class="row"><span class="pill b-positive">● Đã duyệt</span><p>Mắt xích này đã đồng ý.</p></div>
-      <div class="row"><span class="pill b-off">● Vắng mặt</span><p>Offline — được duyệt giùm kèm lý do.</p></div>
-      <div class="row"><span class="pill b-danger">● Từ chối</span><p>Quản lý trả lại, kèm lý do cụ thể.</p></div>
-      <div class="row"><span class="pill b-positive">● Hoàn tất</span><p>Đủ cả 3 cấp — báo cáo chốt.</p></div>
+      <div class="row"><span class="pill b-careful">● Pending</span><p>Not their turn yet, or no one has acted.</p></div>
+      <div class="row"><span class="pill b-useful">● In review</span><p>Someone has approved; moving through the chain.</p></div>
+      <div class="row"><span class="pill b-positive">● Approved</span><p>This link has agreed.</p></div>
+      <div class="row"><span class="pill b-off">● Absent</span><p>Offline — approved on their behalf with a reason.</p></div>
+      <div class="row"><span class="pill b-danger">● Rejected</span><p>The manager sends it back with a specific reason.</p></div>
+      <div class="row"><span class="pill b-positive">● Completed</span><p>All 3 levels done — the report is finalized.</p></div>
     </div>
     <div class="callout bad" style="margin-top:26px">
       <span class="big">✕</span>
-      <div><h3 style="color:var(--danger)">Trạng thái “Từ chối” có lối thoát</h3>
-      <p>Khi quản lý từ chối, lý do được lưu công khai (vd: “Từ chối do bị sai số lượng sản phẩm”) để NVBH biết chính xác cần sửa gì — thay vì chỉ thấy báo cáo bị trả về.</p></div>
+      <div><h3 style="color:var(--danger)">The “Rejected” status has a way out</h3>
+      <p>When the manager rejects, the reason is stored openly (e.g. “Rejected due to incorrect product quantity”) so the rep knows exactly what to fix — instead of just seeing the report bounced back.</p></div>
     </div>
 
     <div class="shot-grid">
       <figure class="shotwrap">
-        <div class="shot"><img src="sales-report-shots/08-home-approved.png" alt="Danh sách với báo cáo trạng thái Hoàn thành" loading="lazy"></div>
-        <figcaption class="fig-cap">Trạng thái “Hoàn thành” hiển thị trên danh sách (final UI).</figcaption>
+        <div class="shot"><img src="sales-report-shots/08-home-approved.png" alt="List with a report in Completed status" loading="lazy"></div>
+        <figcaption class="fig-cap">The “Completed” status shown in the list (final UI).</figcaption>
       </figure>
       <figure class="shotwrap">
-        <div class="shot"><img src="sales-report-shots/09-home-rejected.png" alt="Danh sách với báo cáo trạng thái Từ chối" loading="lazy"></div>
-        <figcaption class="fig-cap">Trạng thái “Từ chối” hiển thị trên danh sách (final UI).</figcaption>
+        <div class="shot"><img src="sales-report-shots/09-home-rejected.png" alt="List with a report in Rejected status" loading="lazy"></div>
+        <figcaption class="fig-cap">The “Rejected” status shown in the list (final UI).</figcaption>
       </figure>
     </div>
   </div>
@@ -546,28 +546,28 @@
 
 <section id="outcome">
   <div class="wrap">
-    <div class="kicker"><span class="n">09</span> Kết quả & nguyên tắc</div>
-    <h2>Thiết kế cho cả ngày đẹp trời lẫn ngày có người nghỉ ốm</h2>
+    <div class="kicker"><span class="n">09</span> Outcome & principles</div>
+    <h2>Designing for both sunny days and days when someone calls in sick</h2>
     <div class="grid g3" style="margin:8px 0 36px">
-      <div class="metric card"><div class="num">0</div><p>báo cáo bị treo vì người duyệt vắng mặt</p></div>
-      <div class="metric card"><div class="num">3→2</div><p>số chữ ký tối thiểu khi có người offline, vẫn đủ truy vết</p></div>
-      <div class="metric card"><div class="num">100%</div><p>lượt duyệt giùm đều lưu lý do & đánh dấu rõ</p></div>
+      <div class="metric card"><div class="num">0</div><p>reports hung because an approver was absent</p></div>
+      <div class="metric card"><div class="num">3→2</div><p>minimum signatures when someone is offline, still fully traceable</p></div>
+      <div class="metric card"><div class="num">100%</div><p>of on-behalf approvals record a reason & are clearly marked</p></div>
     </div>
     <div class="grid g2">
-      <div class="card"><h3>① Edge case là một phần của thiết kế</h3><p style="margin-top:8px">Bottleneck “người vắng” không nằm trong brief, nhưng là thứ chắc chắn xảy ra. Chủ động đề xuất giải pháp giúp sản phẩm bền hơn khi ra vận hành.</p></div>
-      <div class="card"><h3>② Linh hoạt mà không mất kiểm soát</h3><p style="margin-top:8px">Cho phép bỏ qua một bước, nhưng buộc ghi lý do và đánh dấu rõ. Tốc độ không phải đánh đổi bằng minh bạch.</p></div>
-      <div class="card"><h3>③ Hướng dẫn ngay tại chỗ</h3><p style="margin-top:8px">Banner gợi ý xuất hiện đúng lúc người dùng cần, thay vì giấu trong tài liệu — giảm phụ thuộc đào tạo.</p></div>
-      <div class="card"><h3>④ Bám design system</h3><p style="margin-top:8px">Màu semantic, spacing và component đều lấy từ token có sẵn, nên flow mới khớp liền với phần còn lại của sản phẩm.</p></div>
+      <div class="card"><h3>① Edge cases are part of the design</h3><p style="margin-top:8px">The “absent person” bottleneck wasn’t in the brief, but it’s certain to happen. Proactively proposing a solution makes the product more robust in operation.</p></div>
+      <div class="card"><h3>② Flexible without losing control</h3><p style="margin-top:8px">Allow skipping a step, but require a recorded reason and a clear marker. Speed isn’t traded for transparency.</p></div>
+      <div class="card"><h3>③ Guidance right in place</h3><p style="margin-top:8px">A helper banner appears exactly when the user needs it, instead of being buried in docs — reducing reliance on training.</p></div>
+      <div class="card"><h3>④ Stay close to the design system</h3><p style="margin-top:8px">Semantic colors, spacing and components all come from existing tokens, so the new flow snaps right into the rest of the product.</p></div>
     </div>
     <div style="margin-top:36px">
-      <div class="m-label" style="margin-bottom:10px">Đóng góp của mình</div>
+      <div class="m-label" style="margin-bottom:10px">My contribution</div>
       <div class="tag-list">
-        <span class="tag">Phân tích flow & edge case</span>
-        <span class="tag">Đề xuất giải pháp offline</span>
-        <span class="tag">Thiết kế UI các màn hình</span>
-        <span class="tag">Hệ thống trạng thái</span>
-        <span class="tag">Microcopy & hướng dẫn</span>
-        <span class="tag">Áp design system / tokens</span>
+        <span class="tag">Flow & edge-case analysis</span>
+        <span class="tag">Proposing the offline solution</span>
+        <span class="tag">Screen UI design</span>
+        <span class="tag">Status system</span>
+        <span class="tag">Microcopy & guidance</span>
+        <span class="tag">Applying the design system / tokens</span>
       </div>
     </div>
   </div>
@@ -575,8 +575,8 @@
 
 <footer>
   <div class="wrap">
-    <p><strong>Case study — Flow duyệt báo cáo bán hàng</strong></p>
-    <p style="margin-top:8px">Thiết kế bởi Thickness · Product / UX Designer · Figma Design System</p>
+    <p><strong>Case study — Sales Report Approval Flow</strong></p>
+    <p style="margin-top:8px">Designed by Thickness · Product / UX Designer · Figma Design System</p>
   </div>
 </footer>
 
@@ -585,32 +585,32 @@
 
 <script>
 (function(){
-  var STATUS={cho:{t:'Chờ duyệt',c:'b-careful'},duyet:{t:'Đã duyệt',c:'b-positive'},vang:{t:'Vắng mặt',c:'b-off'},tuchoi:{t:'Từ chối',c:'b-danger'}};
+  var STATUS={cho:{t:'Pending',c:'b-careful'},duyet:{t:'Approved',c:'b-positive'},vang:{t:'Absent',c:'b-off'},tuchoi:{t:'Rejected',c:'b-danger'}};
   function stamp(){var d=new Date();function p(n){return String(n).padStart(2,'0');}return p(d.getHours())+':'+p(d.getMinutes())+' '+p(d.getDate())+'/'+p(d.getMonth()+1);}
-  function R(date,team,n1,no1,n2,no2,m,nom){return{name:'BCBH ngày '+date,team:team,date:date,
-    nv1:{name:'Trần Thị B',role:'NVBH 1',status:n1,note:no1||'',time:n1!=='cho'?'17:09 5/1':''},
-    nv2:{name:'Trần Thị C',role:'NVBH 2',status:n2,note:no2||'',offline:n2==='vang',time:n2!=='cho'?'17:36 5/1':''},
-    mgr:{name:'Phạm Minh D',role:'Quản lý',status:m,note:nom||'',time:m!=='cho'?'09:22 6/1':''}};}
+  function R(date,team,n1,no1,n2,no2,m,nom){return{name:'Sales report '+date,team:team,date:date,
+    nv1:{name:'Tran Thi B',role:'Rep 1',status:n1,note:no1||'',time:n1!=='cho'?'17:09 5/1':''},
+    nv2:{name:'Tran Thi C',role:'Rep 2',status:n2,note:no2||'',offline:n2==='vang',time:n2!=='cho'?'17:36 5/1':''},
+    mgr:{name:'Pham Minh D',role:'Manager',status:m,note:nom||'',time:m!=='cho'?'09:22 6/1':''}};}
   function SEED(){return[
-    R('04/01/2026','Đội SG 01','duyet','Oke','duyet','Xác nhận, đồng ý','cho'),
-    R('03/01/2026','Đội SG 02','duyet','Số liệu ổn','cho','','cho'),
-    R('02/01/2026','Đội SG 03','cho','','cho','','cho'),
-    R('01/01/2026','Đội SG 04','duyet','Đã rà soát','cho','','cho'),
-    R('31/12/2025','Đội SG 01','duyet','Oke','duyet','Đồng ý','duyet','Duyệt và hoàn tất'),
-    R('30/12/2025','Đội SG 02','duyet','Oke','duyet','Ok','tuchoi','Từ chối do bị sai số lượng sản phẩm'),
-    R('29/12/2025','Đội SG 05','duyet','Oke','vang','Xác nhận giùm vì user nghỉ phép','cho'),
-    R('28/12/2025','Đội SG 03','cho','','cho','','cho'),
-    R('27/12/2025','Đội SG 04','duyet','Đã kiểm tra','duyet','Đồng ý','cho'),
-    R('26/12/2025','Đội SG 05','duyet','Oke','cho','','cho'),
-    R('25/12/2025','Đội SG 01','cho','','cho','','cho')
+    R('04/01/2026','SG Team 01','duyet','OK','duyet','Confirmed, agreed','cho'),
+    R('03/01/2026','SG Team 02','duyet','Numbers look fine','cho','','cho'),
+    R('02/01/2026','SG Team 03','cho','','cho','','cho'),
+    R('01/01/2026','SG Team 04','duyet','Reviewed','cho','','cho'),
+    R('31/12/2025','SG Team 01','duyet','OK','duyet','Agreed','duyet','Approved and completed'),
+    R('30/12/2025','SG Team 02','duyet','OK','duyet','OK','tuchoi','Rejected due to incorrect product quantity'),
+    R('29/12/2025','SG Team 05','duyet','OK','vang','Approved on their behalf — user on leave','cho'),
+    R('28/12/2025','SG Team 03','cho','','cho','','cho'),
+    R('27/12/2025','SG Team 04','duyet','Checked','duyet','Agreed','cho'),
+    R('26/12/2025','SG Team 05','duyet','OK','cho','','cho'),
+    R('25/12/2025','SG Team 01','cho','','cho','','cho')
   ];}
   var data=SEED();
   function isDone(s){return s==='duyet'||s==='vang';}
   function overall(r){
-    if(r.mgr.status==='tuchoi')return{t:'Từ chối',c:'b-danger'};
-    if(r.mgr.status==='duyet')return{t:'Hoàn tất',c:'b-positive'};
+    if(r.mgr.status==='tuchoi')return{t:'Rejected',c:'b-danger'};
+    if(r.mgr.status==='duyet')return{t:'Completed',c:'b-positive'};
     var p=(isDone(r.nv1.status)?1:0)+(isDone(r.nv2.status)?1:0);
-    return p===0?{t:'Chờ duyệt',c:'b-careful'}:{t:'Đang duyệt',c:'b-useful'};
+    return p===0?{t:'Pending',c:'b-careful'}:{t:'In review',c:'b-useful'};
   }
   function progress(r){return ((isDone(r.nv1.status)?1:0)+(isDone(r.nv2.status)?1:0))+'/2';}
   function nextActor(r){
@@ -625,7 +625,7 @@
   var teamSet={},teams=[];
   SEED().forEach(function(r){if(!teamSet[r.team]){teamSet[r.team]=1;teams.push(r.team);}});
   teams.sort();
-  fTeam.innerHTML='<option value="">Tất cả đội</option>'+teams.map(function(t){return'<option>'+t+'</option>';}).join('');
+  fTeam.innerHTML='<option value="">All teams</option>'+teams.map(function(t){return'<option>'+t+'</option>';}).join('');
   function filtered(){
     return data.filter(function(r){
       if(fTeam.value&&r.team!==fTeam.value)return false;
@@ -647,12 +647,12 @@
         '<td>'+progress(r)+'</td>'+
         '<td><span class="pill '+ov.c+'">● '+ov.t+'</span></td>'+
         '<td><div class="acts">'+
-          '<button class="btn btn-ghost live" data-view="'+idx+'">👁 Xem</button>'+
-          '<button class="btn '+(dz?'btn-muted':'btn-approve')+' live" data-act="'+idx+'" '+(dz?'disabled style="cursor:not-allowed"':'')+'>✓ Duyệt</button>'+
+          '<button class="btn btn-ghost live" data-view="'+idx+'">👁 View</button>'+
+          '<button class="btn '+(dz?'btn-muted':'btn-approve')+' live" data-act="'+idx+'" '+(dz?'disabled style="cursor:not-allowed"':'')+'>✓ Approve</button>'+
         '</div></td></tr>';
-    }).join('') : '<tr><td colspan="6" class="empty">Không có báo cáo phù hợp bộ lọc.</td></tr>';
+    }).join('') : '<tr><td colspan="6" class="empty">No reports match the filter.</td></tr>';
     $('pgCur').textContent=page+' / '+pages;
-    $('countInfo').textContent='Hiển thị '+slice.length+' / '+rows.length+' báo cáo';
+    $('countInfo').textContent='Showing '+slice.length+' / '+rows.length+' reports';
     $('pgFirst').disabled=$('pgPrev').disabled=page<=1;
     $('pgLast').disabled=$('pgNext').disabled=page>=pages;
   }
@@ -666,19 +666,19 @@
     var avTxt=(p.status==='duyet'||p.status==='vang')?'✓':(p.status==='tuchoi'?'✕':p.name.slice(-1));
     return '<div class="appr">'+
       '<div class="av" style="'+avBg+'">'+avTxt+'</div>'+
-      '<div style="flex:1"><div class="who">'+p.name+' — '+p.role+(you?' <span style="color:var(--brand)">(Bạn)</span>':'')+'</div>'+
-      '<div class="st">Trạng thái: <span class="pill '+s.c+'" style="padding:2px 8px">'+s.t+'</span>'+(p.note?' · Ghi chú: '+p.note:'')+'</div></div>'+
-      '<div class="time">'+(p.time||'Chưa duyệt')+'</div></div>';
+      '<div style="flex:1"><div class="who">'+p.name+' — '+p.role+(you?' <span style="color:var(--brand)">(You)</span>':'')+'</div>'+
+      '<div class="st">Status: <span class="pill '+s.c+'" style="padding:2px 8px">'+s.t+'</span>'+(p.note?' · Note: '+p.note:'')+'</div></div>'+
+      '<div class="time">'+(p.time||'Not yet approved')+'</div></div>';
   }
   function viewModal(idx){
     var r=data[idx];
-    modal.innerHTML='<div class="modal-head"><h4>Chi tiết tiến trình duyệt</h4><button class="modal-x" id="mx">✕</button></div>'+
+    modal.innerHTML='<div class="modal-head"><h4>Approval progress detail</h4><button class="modal-x" id="mx">✕</button></div>'+
     '<div class="modal-body">'+
-      '<div class="m-card"><div class="m-label">Tên báo cáo</div><div style="font-weight:600;color:#1d2433;margin-top:2px">'+r.name+'</div>'+
-        '<div class="m-label" style="margin-top:8px">Đội: '+r.team+' · Tiến độ: '+progress(r)+'</div></div>'+
+      '<div class="m-card"><div class="m-label">Report name</div><div style="font-weight:600;color:#1d2433;margin-top:2px">'+r.name+'</div>'+
+        '<div class="m-label" style="margin-top:8px">Team: '+r.team+' · Progress: '+progress(r)+'</div></div>'+
       personRow(r.nv1)+personRow(r.nv2)+personRow(r.mgr)+
     '</div>'+
-    '<div class="modal-foot"><button class="btn btn-ghost live" id="mc">Đóng</button></div>';
+    '<div class="modal-foot"><button class="btn btn-ghost live" id="mc">Close</button></div>';
     overlay.classList.add('show');
     $('mx').onclick=$('mc').onclick=closeModal;
   }
@@ -689,79 +689,79 @@
   }
   function applyOffline(r,otherKey){
     var off=document.getElementById('off');
-    if(off&&off.checked){var reason=(document.getElementById('offReason').value||'').trim()||'Duyệt giùm do nhân viên vắng mặt';
+    if(off&&off.checked){var reason=(document.getElementById('offReason').value||'').trim()||'Approved on behalf — employee absent';
       r[otherKey].status='vang';r[otherKey].note=reason;r[otherKey].offline=true;r[otherKey].time=stamp();}
   }
   function nvbhPanel(idx,actor){
     var r=data[idx];var me=r[actor];var otherKey=actor==='nv1'?'nv2':'nv1';var other=r[otherKey];
     var otherPending=other.status==='cho';
-    modal.innerHTML='<div class="modal-head"><h4>Thông tin báo cáo</h4><button class="modal-x" id="mx">✕</button></div>'+
+    modal.innerHTML='<div class="modal-head"><h4>Report info</h4><button class="modal-x" id="mx">✕</button></div>'+
     '<div class="modal-body">'+
-      '<div class="m-card"><div class="m-label">Tên báo cáo</div><div style="font-weight:600;color:#1d2433">'+r.name+'</div>'+
-        '<div class="m-label" style="margin-top:6px">Ngày tạo: '+r.date+' · Đội: '+r.team+'</div></div>'+
-      '<div style="margin:6px 0 14px"><span class="role-tag">👤 Bạn đang thao tác với vai trò: '+me.role+'</span></div>'+
-      '<label class="ck" style="cursor:pointer"><input type="checkbox" id="cfm"> <strong>Tôi xác nhận đã kiểm tra và duyệt báo cáo này</strong></label>'+
-      '<div class="m-label" style="margin:8px 0 6px">Ghi chú</div>'+
-      '<textarea class="field" id="note" placeholder="Nhập nội dung ghi chú…"></textarea>'+
+      '<div class="m-card"><div class="m-label">Report name</div><div style="font-weight:600;color:#1d2433">'+r.name+'</div>'+
+        '<div class="m-label" style="margin-top:6px">Created: '+r.date+' · Team: '+r.team+'</div></div>'+
+      '<div style="margin:6px 0 14px"><span class="role-tag">👤 You are acting as: '+me.role+'</span></div>'+
+      '<label class="ck" style="cursor:pointer"><input type="checkbox" id="cfm"> <strong>I confirm I have checked and approved this report</strong></label>'+
+      '<div class="m-label" style="margin:8px 0 6px">Note</div>'+
+      '<textarea class="field" id="note" placeholder="Enter note content…"></textarea>'+
       '<div style="margin-top:16px">'+
         personRow(me,true)+
         '<div style="border-top:1px solid var(--line-soft);padding-top:6px">'+
           personRow(other)+
           (otherPending?'<div class="offline-box">'+
-             '<label class="ck" style="padding:0;cursor:pointer"><input type="checkbox" id="off"> <span style="font-size:13px;color:#344054">Nhân viên này không trực tuyến (nghỉ phép, nghỉ ốm..)</span></label>'+
-             '<textarea class="field" id="offReason" style="margin-top:10px;display:none" placeholder="Nhập lý do duyệt giùm…"></textarea>'+
+             '<label class="ck" style="padding:0;cursor:pointer"><input type="checkbox" id="off"> <span style="font-size:13px;color:#344054">This employee is offline (on leave, sick..)</span></label>'+
+             '<textarea class="field" id="offReason" style="margin-top:10px;display:none" placeholder="Enter the reason for approving on their behalf…"></textarea>'+
            '</div>':'')+
         '</div>'+
       '</div>'+
     '</div>'+
     '<div class="modal-foot">'+
-      '<button class="btn btn-ghost live" id="saveBtn">Hoàn tất và quay lại</button>'+
-      '<button class="btn btn-primary live" id="sendBtn">Chuyển lên quản lý</button>'+
+      '<button class="btn btn-ghost live" id="saveBtn">Finish and go back</button>'+
+      '<button class="btn btn-primary live" id="sendBtn">Send to manager</button>'+
     '</div>';
     overlay.classList.add('show');
     $('mx').onclick=closeModal;
     var off=$('off');if(off){off.onchange=function(){$('offReason').style.display=off.checked?'block':'none';};}
     $('saveBtn').onclick=function(){
-      if(!$('cfm').checked){toast('Hãy tick xác nhận trước khi lưu');return;}
-      me.status='duyet';me.note=($('note').value||'').trim()||'Đã duyệt';me.time=stamp();
+      if(!$('cfm').checked){toast('Please tick confirm before saving');return;}
+      me.status='duyet';me.note=($('note').value||'').trim()||'Approved';me.time=stamp();
       applyOffline(r,otherKey);
-      closeModal();render();toast('Đã lưu phê duyệt của '+me.role);
+      closeModal();render();toast('Saved approval by '+me.role);
     };
     $('sendBtn').onclick=function(){
-      if(!$('cfm').checked){toast('Hãy tick xác nhận trước khi duyệt');return;}
-      me.status='duyet';me.note=($('note').value||'').trim()||'Đã duyệt';me.time=stamp();
+      if(!$('cfm').checked){toast('Please tick confirm before approving');return;}
+      me.status='duyet';me.note=($('note').value||'').trim()||'Approved';me.time=stamp();
       applyOffline(r,otherKey);
-      if(other.status==='cho'){render();toast('Người '+other.role+' chưa duyệt — tick “offline” nếu họ vắng mặt');return;}
-      closeModal();render();toast('Đã chuyển báo cáo lên cấp quản lý');
+      if(other.status==='cho'){render();toast(other.role+' hasn’t approved — tick “offline” if they’re absent');return;}
+      closeModal();render();toast('Report sent up to the manager');
     };
   }
   function mgrPanel(idx){
     var r=data[idx];
-    modal.innerHTML='<div class="modal-head"><h4>Thông tin báo cáo — cấp quản lý</h4><button class="modal-x" id="mx">✕</button></div>'+
+    modal.innerHTML='<div class="modal-head"><h4>Report info — manager level</h4><button class="modal-x" id="mx">✕</button></div>'+
     '<div class="modal-body">'+
-      '<div class="m-card"><div class="m-label">Tên báo cáo</div><div style="font-weight:600;color:#1d2433">'+r.name+'</div>'+
-        '<div class="m-label" style="margin-top:6px">Ngày tạo: '+r.date+' · Đội: '+r.team+' · Tiến độ: '+progress(r)+'</div></div>'+
-      '<div style="margin:6px 0 14px"><span class="role-tag">👤 Bạn đang thao tác với vai trò: Quản lý</span></div>'+
-      '<label class="ck" style="cursor:pointer"><input type="checkbox" id="cfm"> <strong>Tôi xác nhận đã kiểm tra và duyệt báo cáo này</strong></label>'+
-      '<div class="m-label" style="margin:8px 0 6px">Ghi chú</div>'+
-      '<textarea class="field" id="note" placeholder="Nhập nội dung ghi chú… (bắt buộc khi từ chối)"></textarea>'+
+      '<div class="m-card"><div class="m-label">Report name</div><div style="font-weight:600;color:#1d2433">'+r.name+'</div>'+
+        '<div class="m-label" style="margin-top:6px">Created: '+r.date+' · Team: '+r.team+' · Progress: '+progress(r)+'</div></div>'+
+      '<div style="margin:6px 0 14px"><span class="role-tag">👤 You are acting as: Manager</span></div>'+
+      '<label class="ck" style="cursor:pointer"><input type="checkbox" id="cfm"> <strong>I confirm I have checked and approved this report</strong></label>'+
+      '<div class="m-label" style="margin:8px 0 6px">Note</div>'+
+      '<textarea class="field" id="note" placeholder="Enter note content… (required when rejecting)"></textarea>'+
       '<div style="margin-top:16px">'+personRow(r.nv1)+personRow(r.nv2)+'</div>'+
     '</div>'+
     '<div class="modal-foot">'+
-      '<button class="btn btn-danger live" id="rejBtn">Từ chối</button>'+
-      '<button class="btn btn-primary live" id="appBtn">Duyệt báo cáo</button>'+
+      '<button class="btn btn-danger live" id="rejBtn">Reject</button>'+
+      '<button class="btn btn-primary live" id="appBtn">Approve report</button>'+
     '</div>';
     overlay.classList.add('show');
     $('mx').onclick=closeModal;
     $('appBtn').onclick=function(){
-      if(!$('cfm').checked){toast('Hãy tick xác nhận trước khi duyệt');return;}
-      r.mgr.status='duyet';r.mgr.note=($('note').value||'').trim()||'Duyệt và hoàn tất';r.mgr.time=stamp();
-      closeModal();render();toast('Báo cáo đã được duyệt — Hoàn tất 🎉');
+      if(!$('cfm').checked){toast('Please tick confirm before approving');return;}
+      r.mgr.status='duyet';r.mgr.note=($('note').value||'').trim()||'Approved and completed';r.mgr.time=stamp();
+      closeModal();render();toast('Report approved — Completed 🎉');
     };
     $('rejBtn').onclick=function(){
-      var n=($('note').value||'').trim();if(!n){toast('Nhập lý do từ chối trước khi từ chối');return;}
+      var n=($('note').value||'').trim();if(!n){toast('Enter a rejection reason before rejecting');return;}
       r.mgr.status='tuchoi';r.mgr.note=n;r.mgr.time=stamp();
-      closeModal();render();toast('Đã từ chối báo cáo');
+      closeModal();render();toast('Report rejected');
     };
   }
   tbody.addEventListener('click',function(e){
@@ -771,12 +771,12 @@
   });
   [fTeam,fStatus,pageSizeSel].forEach(function(el){el.addEventListener('change',function(){page=1;render();});});
   fName.addEventListener('input',function(){page=1;render();});
-  $('applyBtn').onclick=function(){page=1;render();toast('Đã áp dụng bộ lọc');};
+  $('applyBtn').onclick=function(){page=1;render();toast('Filter applied');};
   $('pgFirst').onclick=function(){page=1;render();};
   $('pgPrev').onclick=function(){page--;render();};
   $('pgNext').onclick=function(){page++;render();};
   $('pgLast').onclick=function(){var ps=+pageSizeSel.value;page=Math.max(1,Math.ceil(filtered().length/ps));render();};
-  $('resetData').onclick=function(){data=SEED();page=1;render();toast('Đã reset dữ liệu giả lập');};
+  $('resetData').onclick=function(){data=SEED();page=1;render();toast('Simulated data reset');};
   render();
 })();
 </script>
